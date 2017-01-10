@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Using BED files with epiviz">
+    <meta name="author" content="epiviz">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="http://epiviz.github.io/favicon.ico">
+
+    <title>Using BED files with epiviz &middot; Epiviz</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://epiviz.github.io/css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="http://epiviz.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://epiviz.github.io/css/style.css">
+
+
+    
+    <script src="http://epiviz.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://epiviz.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Epiviz" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default " role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://epiviz.github.io"><img src="http://epiviz.github.io/images/epiviz_4_logo_medium.png"></a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://epiviz.github.io">Home</a></li>
+                    <li><a href="http://epiviz.github.io/post/">News</a></li>
+                    
+                      <li><a href="http://epiviz.github.io/tutorials/"> Tutorials </a></li>
+                    
+                      <li><a href="http://epiviz.github.io/documentation/"> Documentation </a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>Using BED files with epiviz</h3>
+				<span class="label label-primary">18.12.2014</span> in 
+				
+					
+					<a href="http://epiviz.github.io/categories/epivizr">epivizr</a>
+				 using tags
+				
+					
+					<a href="http://epiviz.github.io/tags/epivizr">epivizr</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<p>On <a href="https://twitter.com/aaronquinlan/status/545559723853246464">a twitter exchange</a> I showed <a href="https://twitter.com/aaronquinlan">A. Quinlan</a> how to use <code>epivizr</code> to load data from a custom <code>bed</code> file. Here is the code I gave him:</p>
+
+<pre><code class="language-r">library(epivizr)
+library(rtracklayer)
+
+# download example bed file
+download.file(&quot;https://raw.githubusercontent.com/arq5x/bedtools/master/data/aluY.hg19.bed.gz&quot;, destfile=&quot;test.bed.gz&quot;, method=&quot;curl&quot;)
+
+# start UI
+mgr &lt;- startEpiviz(workspace=&quot;mi9NojjqT1l&quot;)
+
+# import bed file
+gr &lt;- import(BEDFile(&quot;test.bed.gz&quot;))
+
+# drop data from unplaced contigs
+gr &lt;- keepSeqlevels(gr, paste0(&quot;chr&quot;,c(1:22,&quot;X&quot;,&quot;Y&quot;)))
+
+# add track with bed file data
+dev &lt;- mgr$addDevice(gr, &quot;example bed&quot;)
+
+# finish up
+mgr$stopServer()
+</code></pre>
+
+<p>Also at <a href="https://gist.github.com/hcorrada/f930fa0092f1100f1d37">https://gist.github.com/hcorrada/f930fa0092f1100f1d37</a>.</p>
+
+<p>The idea behind the <code>epivizr</code> BioC package is that it can use that infrastructure to import <strong>a lot</strong> of data formats into <code>GenomicRanges</code>-like objects one can manipulate (say, filter or transform), and have interactive visualization that reflects those manipulations immediately. However, it&rsquo;s a little cumbersome for the use-case of where you have data on a BED file that you don&rsquo;t need to manipulate, but just explore visually.</p>
+
+<p>An option we&rsquo;d like to get started with to support this <em>contextual-data</em> use-case is to write small programs that would use, say <a href="https://github.com/arq5x/bedtools">bedtools</a> for example, to implement the epiviz <a href="http://epiviz.github.io/plugins.html#new-data-provider-plugin">Data Provider API</a> and serve data directly from a bed file.</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2016 ~ epiviz ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.17 ~ <a href="http://epiviz.github.io/license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/epiviz" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                        <a href="https://github.com/epiviz" target="_blank">
+                        <i class="fa fa-github-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="New Code Customization Feature for Visualizations">
+    <meta name="author" content="epiviz">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="http://epiviz.github.io/favicon.ico">
+
+    <title>New Code Customization Feature for Visualizations &middot; Epiviz</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://epiviz.github.io/css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="http://epiviz.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://epiviz.github.io/css/style.css">
+
+
+    
+    <script src="http://epiviz.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://epiviz.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Epiviz" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default " role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://epiviz.github.io"><img src="http://epiviz.github.io/images/epiviz_4_logo_medium.png"></a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://epiviz.github.io">Home</a></li>
+                    <li><a href="http://epiviz.github.io/post/">News</a></li>
+                    
+                      <li><a href="http://epiviz.github.io/tutorials/"> Tutorials </a></li>
+                    
+                      <li><a href="http://epiviz.github.io/documentation/"> Documentation </a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>New Code Customization Feature for Visualizations</h3>
+				<span class="label label-primary">28.10.2014</span> in 
+				
+					
+					<a href="http://epiviz.github.io/categories/features">features</a>
+				 using tags
+				
+					
+					<a href="http://epiviz.github.io/tags/features">features</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			<ul>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/4/?ws=MaQiywcMkec&amp;settings=default">See it in Epiviz 4</a></strong></li>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/3/?ws=MaQiywcMkec&amp;settings=default">See it in Epiviz 3</a></strong></li>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/2/?ws=MaQiywcMkec&amp;settings=default">See it in Epiviz 2</a></strong></li>
+</ul>
+
+<p>Now visualizations&rsquo; code can be customized in the UI, based on user needs!</p>
+
+<p>To do it, simply click on the <em>Edit code</em> button on any of the available charts:
+<img src="http://epiviz.github.io/images/edit_code_button.png" alt="Edit Code Button" /></p>
+
+<p>Select the method(s) you want to edit. Only the methods corresponding to this particular instance
+of the chart will be modified. For example, in the MA Plot at
+<a href="http://epiviz.cbcb.umd.edu/4/?ws=S5qde7SD1Je&amp;settings=default">http://epiviz.cbcb.umd.edu/4/?ws=S5qde7SD1Je</a>,
+we edited the <code>_drawAxes</code> method by adding the following code at the beginning of the method:</p>
+
+<pre><code class="language-javascript">  this._svg.selectAll('.midline').remove();
+  this._svg.append('line')
+      .attr('class', 'midline')
+      .attr('x1', this.margins().left())
+      .attr('x2', this.width() - this.margins().right())
+      .attr('y1', yScale(0) + this.margins().top())
+      .attr('y2', yScale(0) + this.margins().top())
+      .style('stroke', '#444444')
+      .style('shape-rendering', 'crispEdges');
+</code></pre>
+
+<p><img src="http://epiviz.github.io/images/edit_code_dialog.png" alt="Edit Code Dialog" /></p>
+
+<p>This should add a line at <code>y=0</code>, which is a common view for the MA Plot.</p>
+
+<p>Once happy with the changes, click <em>Save</em> and see the changes take effect immediately:</p>
+
+<p><img src="http://epiviz.github.io/images/edit_code_ma_plot.png" alt="Heatmap Clustering" /></p>
+
+<p><strong>The changes can be saved in the current workspace!</strong></p>
+
+<ul>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/4/?ws=MaQiywcMkec&amp;settings=default">See it in Epiviz 4</a></strong></li>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/3/?ws=MaQiywcMkec&amp;settings=default">See it in Epiviz 3</a></strong></li>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/2/?ws=MaQiywcMkec&amp;settings=default">See it in Epiviz 2</a></strong></li>
+</ul>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2016 ~ epiviz ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.17 ~ <a href="http://epiviz.github.io/license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/epiviz" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                        <a href="https://github.com/epiviz" target="_blank">
+                        <i class="fa fa-github-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

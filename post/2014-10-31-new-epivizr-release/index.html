@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="New epivizr release">
+    <meta name="author" content="epiviz">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="http://epiviz.github.io/favicon.ico">
+
+    <title>New epivizr release &middot; Epiviz</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://epiviz.github.io/css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="http://epiviz.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://epiviz.github.io/css/style.css">
+
+
+    
+    <script src="http://epiviz.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://epiviz.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Epiviz" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default " role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://epiviz.github.io"><img src="http://epiviz.github.io/images/epiviz_4_logo_medium.png"></a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://epiviz.github.io">Home</a></li>
+                    <li><a href="http://epiviz.github.io/post/">News</a></li>
+                    
+                      <li><a href="http://epiviz.github.io/tutorials/"> Tutorials </a></li>
+                    
+                      <li><a href="http://epiviz.github.io/documentation/"> Documentation </a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>New epivizr release</h3>
+				<span class="label label-primary">31.10.2014</span> in 
+				
+					
+					<a href="http://epiviz.github.io/categories/epivizr">epivizr</a>
+				 using tags
+				
+					
+					<a href="http://epiviz.github.io/tags/epivizr">epivizr</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			
+
+<p>Version 1.4 of <a href="http://www.bioconductor.org/packages/release/bioc/html/epivizr.html"><code>epivizr</code></a> was released as part of the new <a href="http://master.bioconductor.org/news/bioc_3_0_release/">Bioconductor 3.0 release</a>. There are a good number of new features in <code>epivizr</code> in this release, including the ability of running the Epiviz UI <em>within R</em>, making R/Bioconductor capable of running it&rsquo;s own genome browser!</p>
+
+<h2 id="running-epiviz-as-a-standalone">Running <code>epiviz</code> as a standalone</h2>
+
+<p>Previous versions of <code>epivizr</code> used the {{ site.epiviz }} web application hosted at the University of Maryland as the front-end for UI. In this new version, we bundle the <code>JavaScript</code> source for the {{ site.epiviz }} UI in the <code>epivizr</code> package which allows <code>R</code> to serve as it&rsquo;s own web host. Like <a href="http://shiny.rstudio.com/">Shiny</a>, we use the <code>httpuv</code> package to serve the interactive application. In fact, lots of thanks to <a href="http://github.com/jcheng5">Joe Cheng</a> and <a href="http://rstudio.com">RStudio</a> for helping to make this happen!</p>
+
+<p>A genome browser without a genome is not very useful, so you need to tell it about the genome annotation you want to use. One place in <code>Bioconductor</code> where you can get genome annotation information is in their <code>OrganismDb</code> packages.</p>
+
+<p>(Make sure you have version 1.4.2 installed to follow along! Just run <code>biocLite(&quot;epivizr&quot;)</code> to get it). The <code>startStandalone</code> function can take an object of this class and start the UI with that genome and its gene annotation loaded. Here&rsquo;s how you can browse the mouse genome with Bioconductor:</p>
+
+<pre><code class="language-r">library(epivizr)
+library(Mus.musculus)
+
+# this call makes the gene annotation from Mus.musculus,
+# takes a couple of seconds (see more info below)
+mgr &lt;- startStandalone(Mus.musculus, &quot;mm10&quot;, keepSeqlevels=paste0(&quot;chr&quot;,c(1:19,&quot;X&quot;,&quot;Y&quot;)))
+mgr$stopServer()
+</code></pre>
+
+<h2 id="dynamic-genome-annotation-on-any-ui">Dynamic genome annotation on any UI</h2>
+
+<p>This release also allows to add genome and gene information on any Epiviz UI, both standalone and hosted (e.g., at the University of Maryland). For instance, to add the mouse genome to the Epiviz UI hosted at UMD you can use:</p>
+
+<pre><code class="language-r">mgr &lt;- startEpiviz(workspace=&quot;OJS2BPGrh7v&quot;)
+
+
+# remove the pre-loaded hg19 annotation
+mgr$rmSeqinfo(paste0(&quot;chr&quot;,c(1:22,&quot;X&quot;,&quot;Y&quot;)))
+
+# make a genome annotation object (takes a few seconds)
+anno &lt;- epivizr::makeGeneTrackAnnotation(Mus.musculus, keepSeqlevels=paste0(&quot;chr&quot;, c(1:19,&quot;X&quot;,&quot;Y&quot;)))
+
+# add chromosome names and lengths
+mgr$addSeqinfo(seqinfo(anno))
+
+# check on UI, only 19 autosomes now
+# add the gene annotation track
+annoDevice &lt;- mgr$addDevice(anno, &quot;mm10&quot;, type=&quot;geneInfo&quot;)
+
+# now you have a mouse genome browser!
+mgr$stopServer()
+</code></pre>
+
+<h2 id="heatmaps">Heatmaps</h2>
+
+<p>You can now add heatmaps to your Epiviz sessions. Here is an example using exon-level RNA-seq count data from the TCGA project (this data is included in the <code>epivizr</code> package).</p>
+
+<pre><code class="language-r">library(epivizr)
+data(tcga_colon_expression)
+
+# make the names easier to understand
+sampleNames &lt;- paste0(seq(len=nrow(colData(colonSE))),&quot;:&quot;,colData(colonSE)$sample_type)
+colnames(colonSE) &lt;- sampleNames
+
+# normalize counts using DE-Seq's size factors
+ref_sample &lt;- 2 ^ rowMeans(log2(assay(colonSE) + 1))
+scaled &lt;- (assay(colonSE) + 1) / ref_sample
+scaleFactor &lt;- Biobase::rowMedians(t(scaled))
+assay_normalized &lt;- sweep(assay(colonSE), 2, scaleFactor, &quot;/&quot;)
+assay(colonSE) &lt;- log2(assay_normalized + 1)
+
+# start the UI manager
+mgr &lt;- startEpiviz(workspace=&quot;qyOTB6vVnff&quot;)
+
+# add the count data
+msObj &lt;- mgr$addMeasurements(colonSE, &quot;tcga exon expression&quot;)
+
+# make a heatmap of the first 15 samples
+devObj &lt;- mgr$heatmapChart(msObj$getMeasurements()[1:15])
+
+mgr$stopServer()
+</code></pre>
+
+<p>And since Epiviz <a href="http://epiviz.github.io/features/2014/10/28/new-feature-clustering.html">now supports clustering on heatmaps</a>, you have a dynamic heatmap visualization of your expression data as you browse the genome.</p>
+
+<h2 id="what-s-coming-next">What&rsquo;s coming next&hellip;</h2>
+
+<p>For the next release of <code>epivizr</code> we are planning some new fun things:</p>
+
+<ol>
+<li>Support for visualization directly from <code>BigWig</code> and <code>BAM</code> files to support NGS workflows.</li>
+<li>Using epiviz browser sessions, or standalone visualizations in publications (markdown documents, html5 slidedecks, or your own web application).</li>
+</ol>
+
+<p>We&rsquo;ve started working on #1 above, you can see how it&rsquo;s going by using the <a href="https://github.com/epiviz/epivizr"><code>epivizr</code> development version</a>.</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2016 ~ epiviz ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.17 ~ <a href="http://epiviz.github.io/license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/epiviz" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                        <a href="https://github.com/epiviz" target="_blank">
+                        <i class="fa fa-github-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

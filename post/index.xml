@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Post-rsses on Epiviz</title>
+    <link>http://epiviz.github.io/post/index.xml</link>
+    <description>Recent content in Post-rsses on Epiviz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>2016 ~ epiviz</copyright>
+    <lastBuildDate>Tue, 15 Sep 2015 10:52:12 -0500</lastBuildDate>
+    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>ISO: Data Scientist/Programmer</title>
+            <link>http://epiviz.github.io/post/2015-09-15-hiring/</link>
+            <pubDate>Tue, 15 Sep 2015 10:52:12 -0500</pubDate>
+            
+            <guid>http://epiviz.github.io/post/2015-09-15-hiring/</guid>
+            <description>&lt;p&gt;&lt;strong&gt;UPDATED: This position is now filled&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;re looking for a Data Scientist to make Epiviz better, stronger and faster! This is a full-time
+position (officially Faculty Research Assistant) within the &lt;a href=&#34;http://cbcb.umd.edu&#34;&gt;Center for Bioinformatics and Computational Biology (CBCB)&lt;/a&gt; at the University of Maryland in College Park. You will work along faculty in CBCB and the &lt;a href=&#34;http://www.cs.umd.edu/hcil/&#34;&gt;Human-Computer Interaction Lab&lt;/a&gt; in developing state-of-the-art genomic data visual analytics software tools.&lt;/p&gt;
+
+&lt;p&gt;##What you will do:&lt;/p&gt;
+
+&lt;p&gt;1) &lt;em&gt;Develop Software&lt;/em&gt;: design, implement, test and deploy code for the &lt;a href=&#34;http://epiviz.cbcb.umd.edu/help&#34;&gt;Epiviz&lt;/a&gt; project. Javascript, d3.js and R have been our tools of choice.&lt;br /&gt;
+2) &lt;em&gt;Do Research&lt;/em&gt;: apply interactive visualization tools as part of collaborative projects in genomics. Design and implement new visual analytics methods along with faculty, graduate and undergraduate students at UMD.&lt;br /&gt;
+3) &lt;em&gt;Share your work&lt;/em&gt;: provide support for users, participate in interactive visualization efforts of the &lt;a href=&#34;http://bioconductor.org&#34;&gt;Bioconductor&lt;/a&gt; project.&lt;/p&gt;
+
+&lt;p&gt;Check out what we&amp;rsquo;ve been working on &lt;a href=&#34;http://github.com/epiviz&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;##Who you are:&lt;/p&gt;
+
+&lt;p&gt;1) MS or BS in Computer Science, Statistics, Bioinformatics, Computational Biology or other relevant field required.&lt;br /&gt;
+2) Strong programming skills, either in OOP (e.g., Java, C#, C++), or functional languages (e.g, R, Clojure, ML) required. Good knowledge of design patterns strongly preferred.&lt;br /&gt;
+3) Familiarity with web technologies preferred (HTML5, Javascript, d3.js).&lt;br /&gt;
+4) Verifiable track record in open source software development preferred.&lt;br /&gt;
+5) No strong previous knowledge of biology/genomics required.&lt;/p&gt;
+
+&lt;p&gt;##Salary:&lt;/p&gt;
+
+&lt;p&gt;Approximately $75,000 for qualified candidates. The University of Maryland offers a competitive benefits package.&lt;/p&gt;
+
+&lt;p&gt;##To apply:&lt;/p&gt;
+
+&lt;p&gt;Send resume and short letter of intent to &lt;a href=&#34;mailto:hcorrada@umiacs.umd.edu?subject=Data%20Scientist%20Position&#34;&gt;hcorrada@umiacs.umd.edu&lt;/a&gt; with subject &amp;ldquo;Data Scientist Position&amp;rdquo;.&lt;br /&gt;
+Please include in resume (a) contact information for 2 references and (b) links to code repositories if appropriate.&lt;/p&gt;
+
+&lt;p&gt;For best consideration, apply by &lt;strong&gt;October 15, 2015&lt;/strong&gt;.&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>Architecture and design paper in Biovis &#39;15</title>
+            <link>http://epiviz.github.io/post/2015-08-17-biovis15/</link>
+            <pubDate>Mon, 17 Aug 2015 10:52:12 -0500</pubDate>
+            
+            <guid>http://epiviz.github.io/post/2015-08-17-biovis15/</guid>
+            <description>&lt;p&gt;Our paper detailing the architecture and design of Epiviz is now available on the &lt;a href=&#34;http://www.biomedcentral.com/1471-2105/16/S11/S4&#34;&gt;BMC Bioinformatics site&lt;/a&gt;. It is published in a &lt;a href=&#34;http://www.biomedcentral.com/bmcbioinformatics/supplements/16/S11&#34;&gt;supplement&lt;/a&gt; containing a good number of interesting papers from the &lt;a href=&#34;http://www.biovis.net/&#34;&gt;Biovis &amp;lsquo;15&lt;/a&gt; conference held as a satellite meeting of the &lt;a href=&#34;http://www.iscb.org/ismbeccb2015&#34;&gt;ISMB 2015 conference&lt;/a&gt;. We also presented our &lt;a href=&#34;http://www.nature.com/nmeth/journal/v11/n9/full/nmeth.3038.html&#34;&gt;Nature Methods&lt;/a&gt; paper on Epiviz in the highlights track at ISMB. Slides for that talk are &lt;a href=&#34;http://hcorrada.github.io/ismb2015/&#34;&gt;available on github&lt;/a&gt;.&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>Epigenomic visualization in Nature Methods News and Comment</title>
+            <link>http://epiviz.github.io/post/2015-08-17-natmethods_news/</link>
+            <pubDate>Mon, 17 Aug 2015 10:52:12 -0500</pubDate>
+            
+            <guid>http://epiviz.github.io/post/2015-08-17-natmethods_news/</guid>
+            <description>&lt;p&gt;Epiviz was highlighted in a recent &lt;a href=&#34;http://www.nature.com/nmeth/journal/v12/n6/full/nmeth.3409.html&#34;&gt;Nature Methods News and Comment piece&lt;/a&gt; on visualization of epigenomic data.&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>Using BED files with epiviz</title>
+            <link>http://epiviz.github.io/post/2014-12-18-bedtools/</link>
+            <pubDate>Thu, 18 Dec 2014 10:52:12 -0500</pubDate>
+            
+            <guid>http://epiviz.github.io/post/2014-12-18-bedtools/</guid>
+            <description>&lt;p&gt;On &lt;a href=&#34;https://twitter.com/aaronquinlan/status/545559723853246464&#34;&gt;a twitter exchange&lt;/a&gt; I showed &lt;a href=&#34;https://twitter.com/aaronquinlan&#34;&gt;A. Quinlan&lt;/a&gt; how to use &lt;code&gt;epivizr&lt;/code&gt; to load data from a custom &lt;code&gt;bed&lt;/code&gt; file. Here is the code I gave him:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(epivizr)
+library(rtracklayer)
+
+# download example bed file
+download.file(&amp;quot;https://raw.githubusercontent.com/arq5x/bedtools/master/data/aluY.hg19.bed.gz&amp;quot;, destfile=&amp;quot;test.bed.gz&amp;quot;, method=&amp;quot;curl&amp;quot;)
+
+# start UI
+mgr &amp;lt;- startEpiviz(workspace=&amp;quot;mi9NojjqT1l&amp;quot;)
+
+# import bed file
+gr &amp;lt;- import(BEDFile(&amp;quot;test.bed.gz&amp;quot;))
+
+# drop data from unplaced contigs
+gr &amp;lt;- keepSeqlevels(gr, paste0(&amp;quot;chr&amp;quot;,c(1:22,&amp;quot;X&amp;quot;,&amp;quot;Y&amp;quot;)))
+
+# add track with bed file data
+dev &amp;lt;- mgr$addDevice(gr, &amp;quot;example bed&amp;quot;)
+
+# finish up
+mgr$stopServer()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also at &lt;a href=&#34;https://gist.github.com/hcorrada/f930fa0092f1100f1d37&#34;&gt;https://gist.github.com/hcorrada/f930fa0092f1100f1d37&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The idea behind the &lt;code&gt;epivizr&lt;/code&gt; BioC package is that it can use that infrastructure to import &lt;strong&gt;a lot&lt;/strong&gt; of data formats into &lt;code&gt;GenomicRanges&lt;/code&gt;-like objects one can manipulate (say, filter or transform), and have interactive visualization that reflects those manipulations immediately. However, it&amp;rsquo;s a little cumbersome for the use-case of where you have data on a BED file that you don&amp;rsquo;t need to manipulate, but just explore visually.&lt;/p&gt;
+
+&lt;p&gt;An option we&amp;rsquo;d like to get started with to support this &lt;em&gt;contextual-data&lt;/em&gt; use-case is to write small programs that would use, say &lt;a href=&#34;https://github.com/arq5x/bedtools&#34;&gt;bedtools&lt;/a&gt; for example, to implement the epiviz &lt;a href=&#34;http://epiviz.github.io/plugins.html#new-data-provider-plugin&#34;&gt;Data Provider API&lt;/a&gt; and serve data directly from a bed file.&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>New epivizr release</title>
+            <link>http://epiviz.github.io/post/2014-10-31-new-epivizr-release/</link>
+            <pubDate>Fri, 31 Oct 2014 10:52:12 -0500</pubDate>
+            
+            <guid>http://epiviz.github.io/post/2014-10-31-new-epivizr-release/</guid>
+            <description>
+
+&lt;p&gt;Version 1.4 of &lt;a href=&#34;http://www.bioconductor.org/packages/release/bioc/html/epivizr.html&#34;&gt;&lt;code&gt;epivizr&lt;/code&gt;&lt;/a&gt; was released as part of the new &lt;a href=&#34;http://master.bioconductor.org/news/bioc_3_0_release/&#34;&gt;Bioconductor 3.0 release&lt;/a&gt;. There are a good number of new features in &lt;code&gt;epivizr&lt;/code&gt; in this release, including the ability of running the Epiviz UI &lt;em&gt;within R&lt;/em&gt;, making R/Bioconductor capable of running it&amp;rsquo;s own genome browser!&lt;/p&gt;
+
+&lt;h2 id=&#34;running-epiviz-as-a-standalone&#34;&gt;Running &lt;code&gt;epiviz&lt;/code&gt; as a standalone&lt;/h2&gt;
+
+&lt;p&gt;Previous versions of &lt;code&gt;epivizr&lt;/code&gt; used the {{ site.epiviz }} web application hosted at the University of Maryland as the front-end for UI. In this new version, we bundle the &lt;code&gt;JavaScript&lt;/code&gt; source for the {{ site.epiviz }} UI in the &lt;code&gt;epivizr&lt;/code&gt; package which allows &lt;code&gt;R&lt;/code&gt; to serve as it&amp;rsquo;s own web host. Like &lt;a href=&#34;http://shiny.rstudio.com/&#34;&gt;Shiny&lt;/a&gt;, we use the &lt;code&gt;httpuv&lt;/code&gt; package to serve the interactive application. In fact, lots of thanks to &lt;a href=&#34;http://github.com/jcheng5&#34;&gt;Joe Cheng&lt;/a&gt; and &lt;a href=&#34;http://rstudio.com&#34;&gt;RStudio&lt;/a&gt; for helping to make this happen!&lt;/p&gt;
+
+&lt;p&gt;A genome browser without a genome is not very useful, so you need to tell it about the genome annotation you want to use. One place in &lt;code&gt;Bioconductor&lt;/code&gt; where you can get genome annotation information is in their &lt;code&gt;OrganismDb&lt;/code&gt; packages.&lt;/p&gt;
+
+&lt;p&gt;(Make sure you have version 1.4.2 installed to follow along! Just run &lt;code&gt;biocLite(&amp;quot;epivizr&amp;quot;)&lt;/code&gt; to get it). The &lt;code&gt;startStandalone&lt;/code&gt; function can take an object of this class and start the UI with that genome and its gene annotation loaded. Here&amp;rsquo;s how you can browse the mouse genome with Bioconductor:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(epivizr)
+library(Mus.musculus)
+
+# this call makes the gene annotation from Mus.musculus,
+# takes a couple of seconds (see more info below)
+mgr &amp;lt;- startStandalone(Mus.musculus, &amp;quot;mm10&amp;quot;, keepSeqlevels=paste0(&amp;quot;chr&amp;quot;,c(1:19,&amp;quot;X&amp;quot;,&amp;quot;Y&amp;quot;)))
+mgr$stopServer()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;dynamic-genome-annotation-on-any-ui&#34;&gt;Dynamic genome annotation on any UI&lt;/h2&gt;
+
+&lt;p&gt;This release also allows to add genome and gene information on any Epiviz UI, both standalone and hosted (e.g., at the University of Maryland). For instance, to add the mouse genome to the Epiviz UI hosted at UMD you can use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;mgr &amp;lt;- startEpiviz(workspace=&amp;quot;OJS2BPGrh7v&amp;quot;)
+
+
+# remove the pre-loaded hg19 annotation
+mgr$rmSeqinfo(paste0(&amp;quot;chr&amp;quot;,c(1:22,&amp;quot;X&amp;quot;,&amp;quot;Y&amp;quot;)))
+
+# make a genome annotation object (takes a few seconds)
+anno &amp;lt;- epivizr::makeGeneTrackAnnotation(Mus.musculus, keepSeqlevels=paste0(&amp;quot;chr&amp;quot;, c(1:19,&amp;quot;X&amp;quot;,&amp;quot;Y&amp;quot;)))
+
+# add chromosome names and lengths
+mgr$addSeqinfo(seqinfo(anno))
+
+# check on UI, only 19 autosomes now
+# add the gene annotation track
+annoDevice &amp;lt;- mgr$addDevice(anno, &amp;quot;mm10&amp;quot;, type=&amp;quot;geneInfo&amp;quot;)
+
+# now you have a mouse genome browser!
+mgr$stopServer()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;heatmaps&#34;&gt;Heatmaps&lt;/h2&gt;
+
+&lt;p&gt;You can now add heatmaps to your Epiviz sessions. Here is an example using exon-level RNA-seq count data from the TCGA project (this data is included in the &lt;code&gt;epivizr&lt;/code&gt; package).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(epivizr)
+data(tcga_colon_expression)
+
+# make the names easier to understand
+sampleNames &amp;lt;- paste0(seq(len=nrow(colData(colonSE))),&amp;quot;:&amp;quot;,colData(colonSE)$sample_type)
+colnames(colonSE) &amp;lt;- sampleNames
+
+# normalize counts using DE-Seq&#39;s size factors
+ref_sample &amp;lt;- 2 ^ rowMeans(log2(assay(colonSE) + 1))
+scaled &amp;lt;- (assay(colonSE) + 1) / ref_sample
+scaleFactor &amp;lt;- Biobase::rowMedians(t(scaled))
+assay_normalized &amp;lt;- sweep(assay(colonSE), 2, scaleFactor, &amp;quot;/&amp;quot;)
+assay(colonSE) &amp;lt;- log2(assay_normalized + 1)
+
+# start the UI manager
+mgr &amp;lt;- startEpiviz(workspace=&amp;quot;qyOTB6vVnff&amp;quot;)
+
+# add the count data
+msObj &amp;lt;- mgr$addMeasurements(colonSE, &amp;quot;tcga exon expression&amp;quot;)
+
+# make a heatmap of the first 15 samples
+devObj &amp;lt;- mgr$heatmapChart(msObj$getMeasurements()[1:15])
+
+mgr$stopServer()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And since Epiviz &lt;a href=&#34;http://epiviz.github.io/features/2014/10/28/new-feature-clustering.html&#34;&gt;now supports clustering on heatmaps&lt;/a&gt;, you have a dynamic heatmap visualization of your expression data as you browse the genome.&lt;/p&gt;
+
+&lt;h2 id=&#34;what-s-coming-next&#34;&gt;What&amp;rsquo;s coming next&amp;hellip;&lt;/h2&gt;
+
+&lt;p&gt;For the next release of &lt;code&gt;epivizr&lt;/code&gt; we are planning some new fun things:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Support for visualization directly from &lt;code&gt;BigWig&lt;/code&gt; and &lt;code&gt;BAM&lt;/code&gt; files to support NGS workflows.&lt;/li&gt;
+&lt;li&gt;Using epiviz browser sessions, or standalone visualizations in publications (markdown documents, html5 slidedecks, or your own web application).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;We&amp;rsquo;ve started working on #1 above, you can see how it&amp;rsquo;s going by using the &lt;a href=&#34;https://github.com/epiviz/epivizr&#34;&gt;&lt;code&gt;epivizr&lt;/code&gt; development version&lt;/a&gt;.&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>New Code Customization Feature for Visualizations</title>
+            <link>http://epiviz.github.io/post/2014-10-28-new-feature-code-edit/</link>
+            <pubDate>Tue, 28 Oct 2014 13:00:00 -0500</pubDate>
+            
+            <guid>http://epiviz.github.io/post/2014-10-28-new-feature-code-edit/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=MaQiywcMkec&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/3/?ws=MaQiywcMkec&amp;amp;settings=default&#34;&gt;See it in Epiviz 3&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/2/?ws=MaQiywcMkec&amp;amp;settings=default&#34;&gt;See it in Epiviz 2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now visualizations&amp;rsquo; code can be customized in the UI, based on user needs!&lt;/p&gt;
+
+&lt;p&gt;To do it, simply click on the &lt;em&gt;Edit code&lt;/em&gt; button on any of the available charts:
+&lt;img src=&#34;http://epiviz.github.io/images/edit_code_button.png&#34; alt=&#34;Edit Code Button&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Select the method(s) you want to edit. Only the methods corresponding to this particular instance
+of the chart will be modified. For example, in the MA Plot at
+&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=S5qde7SD1Je&amp;amp;settings=default&#34;&gt;http://epiviz.cbcb.umd.edu/4/?ws=S5qde7SD1Je&lt;/a&gt;,
+we edited the &lt;code&gt;_drawAxes&lt;/code&gt; method by adding the following code at the beginning of the method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  this._svg.selectAll(&#39;.midline&#39;).remove();
+  this._svg.append(&#39;line&#39;)
+      .attr(&#39;class&#39;, &#39;midline&#39;)
+      .attr(&#39;x1&#39;, this.margins().left())
+      .attr(&#39;x2&#39;, this.width() - this.margins().right())
+      .attr(&#39;y1&#39;, yScale(0) + this.margins().top())
+      .attr(&#39;y2&#39;, yScale(0) + this.margins().top())
+      .style(&#39;stroke&#39;, &#39;#444444&#39;)
+      .style(&#39;shape-rendering&#39;, &#39;crispEdges&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/images/edit_code_dialog.png&#34; alt=&#34;Edit Code Dialog&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This should add a line at &lt;code&gt;y=0&lt;/code&gt;, which is a common view for the MA Plot.&lt;/p&gt;
+
+&lt;p&gt;Once happy with the changes, click &lt;em&gt;Save&lt;/em&gt; and see the changes take effect immediately:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/images/edit_code_ma_plot.png&#34; alt=&#34;Heatmap Clustering&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The changes can be saved in the current workspace!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=MaQiywcMkec&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/3/?ws=MaQiywcMkec&amp;amp;settings=default&#34;&gt;See it in Epiviz 3&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/2/?ws=MaQiywcMkec&amp;amp;settings=default&#34;&gt;See it in Epiviz 2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>New Clustering Feature for Heatmap Plots</title>
+            <link>http://epiviz.github.io/post/2014-10-28-new-feature-clustering/</link>
+            <pubDate>Tue, 28 Oct 2014 12:00:00 -0500</pubDate>
+            
+            <guid>http://epiviz.github.io/post/2014-10-28-new-feature-clustering/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=wZJc0JKhWK&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/3/?ws=wZJc0JKhWK&amp;amp;settings=default&#34;&gt;See it in Epiviz 3&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/2/?ws=UqaReWj5Sd&amp;amp;settings=default&#34;&gt;See it in Epiviz 2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We implemented a new &lt;strong&gt;Clustering&lt;/strong&gt; feature in the &lt;em&gt;Heatmap Plot&lt;/em&gt;! You can use it to group together
+measurements using the values in the selected region.&lt;/p&gt;
+
+&lt;p&gt;For example, we selected the following samples in the &lt;em&gt;gene expression barcode&lt;/em&gt;: &lt;code&gt;kidney normal&lt;/code&gt; and &lt;code&gt;tumor&lt;/code&gt;,
+&lt;code&gt;lung normal&lt;/code&gt; and &lt;code&gt;tumor&lt;/code&gt;, &lt;code&gt;esophagus normal&lt;/code&gt; and &lt;code&gt;tumor&lt;/code&gt;, &lt;code&gt;breast normal&lt;/code&gt; and &lt;code&gt;tumor&lt;/code&gt;,
+&lt;code&gt;stomach normal&lt;/code&gt; and &lt;code&gt;tumor&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;em&gt;custom settings&lt;/em&gt; menu of the newly generated chart, we enabled clustering:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/images/heatmap_clustering_dialog.png&#34; alt=&#34;Heatmap Custom Settings&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This causes the rows to be re-ordered according to the clustering, and a dendrogram to be displayed:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/images/heatmap_clustering.png&#34; alt=&#34;Heatmap Clustering&#34; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=wZJc0JKhWK&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/3/?ws=wZJc0JKhWK&amp;amp;settings=default&#34;&gt;See it in Epiviz 3&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/2/?ws=UqaReWj5Sd&amp;amp;settings=default&#34;&gt;See it in Epiviz 2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>Epiviz published in Nature Methods</title>
+            <link>http://epiviz.github.io/post/2014-08-03-epiviz-paper-published/</link>
+            <pubDate>Sun, 03 Aug 2014 19:46:32 -0500</pubDate>
+            
+            <guid>http://epiviz.github.io/post/2014-08-03-epiviz-paper-published/</guid>
+            <description>&lt;p&gt;Our first paper describing the {{ site.epiviz }} system was published today in
+&lt;a href=&#34;http://www.nature.com/nmeth/journal/v11/n9/full/nmeth.3038.html&#34;&gt;Nature Methods&lt;/a&gt;.
+From the abstract:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Visualization is an integral aspect of genomics data
+analysis. Algorithmic-statistical analysis and interactive
+visualization are most effective when used iteratively.
+Epiviz (&lt;a href=&#34;http://epiviz.cbcb.umd.edu/&#34;&gt;http://epiviz.cbcb.umd.edu/&lt;/a&gt;), a web-based genome browser,
+and the Epivizr Bioconductor package allow interactive, extensible
+and reproducible visualization within a state-of-the-art
+data-analysis platform.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And the editor&amp;rsquo;s blurb:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Integration of genome visualization with
+Bioconductor-based analysis tools allows rapid
+and interactive analysis of genomes, transcriptomes and epigenomes.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>

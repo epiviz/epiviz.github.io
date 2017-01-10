@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+	<meta name="generator" content="Hugo 0.17" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Epiviz">
+    <meta name="author" content="epiviz">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="http://epiviz.github.io/favicon.ico">
+
+    <title>Epiviz</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://epiviz.github.io/css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="http://epiviz.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://epiviz.github.io/css/style.css">
+
+
+    
+    <script src="http://epiviz.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://epiviz.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="http://epiviz.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Epiviz" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default " role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://epiviz.github.io"><img src="http://epiviz.github.io/images/epiviz_4_logo_medium.png"></a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://epiviz.github.io">Home</a></li>
+                    <li><a href="http://epiviz.github.io/post/">News</a></li>
+                    
+                      <li><a href="http://epiviz.github.io/tutorials/"> Tutorials </a></li>
+                    
+                      <li><a href="http://epiviz.github.io/documentation/"> Documentation </a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-9 col-md-offset-1">
+                <p>
+                    Epiviz is an interactive visualization tool for functional genomics data. 
+                    It supports genome navigation like other genome browsers, but allows multiple visualizations of 
+                    data within genomic regions using scatterplots, heatmaps and other user-supplied visualizations. 
+                    It also includes data from the <a href="http://barcode.luhs.org/">Gene Expression Barcode project</a> 
+                    for transcriptome visualization. It has a flexible plugin framework so users can add 
+                    <a href="http://d3js.org/">d3</a> visualizations. You can see a video 
+                    tour <a href="http://youtu.be/099c4wUxozA">here</a>.
+                </p>
+
+                <p style="text-align: center;">
+                    <iframe width="480" height="360" src="https://www.youtube.com/embed/099c4wUxozA" frameborder="0"></iframe>
+                </p>
+
+                <p>
+                    The <a href="http://bioconductor.org/packages/release/bioc/html/epivizr.html">Epivizr Bioconductor package</a> 
+                    implements two-way communication between the <code>R/Bioconductor</code> 
+                    computational genomics environment and Epiviz. Objects in an <code>R</code> session 
+                    can be displayed as tracks or plots on Epiviz. Epivizr uses 
+                    <a href="http://www.websocket.org/">WebSockets</a> for communication between 
+                    the browser <code>JavaScript</code> client and the <code>R</code> environment, the same technology 
+                    underlying the popular <a href="http://www.rstudio.com/shiny/">Shiny</a> system 
+                    for authoring interactive web-based reports in <code>R</code>.
+                </p>
+            </div>
+
+        </div>
+
+        <h3>Applications</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            
+            <div class="col-sm-6 col-md-4 col-sm-offset-1">
+                <div class="thumbnail">
+                    <img src="images/epiviz.jpg" alt="Epiviz"/>
+                    <div class="caption">
+                        <h3>Epiviz</h3>
+                        <p>Epiviz is an interactive visualization tool for functional genomics data</p>
+                        <p><a href="https://github.com/epiviz/epiviz" class="btn btn-primary" role="button">Website</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-4 col-sm-offset-1">
+                <div class="thumbnail">
+                    <img src="images/metaviz.png" alt="metaviz"/>
+                    <div class="caption">
+                        <h3>Metaviz</h3>
+                        <p>Metaviz is an interactive visualization tool for metagenomics datasets</p>
+                        <p><a href="https://github.com/epiviz/epiviz" class="btn btn-primary" role="button">Website</a></p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <h3>Tools and Packages </h3>
+        <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            
+            <div class="col-sm-6 col-md-4  col-sm-offset-1">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>epivizR</h3>
+                        <p>EpivizR is an R/Bioconductor package that handles genomic data from R session to the epiviz app</p>
+                        <p><a href="https://github.com/epiviz/epivizr" class="btn btn-primary" role="button">Github</a> <a href="https://github.com/epiviz/epivizr" class="btn btn-primary" role="button">Bioconductor</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-4  col-sm-offset-1">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>metavizR</h3>
+                        <p>Metaviz is an R pacakges that handles metagenomics datasets from an R session to the metaviz app</p>
+                        <p><a href="https://github.com/epiviz/metavizr" class="btn btn-primary" role="button">Github</a> <a href="https://github.com/epiviz/metavizr" class="btn btn-primary" role="button">Bioconductor</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-4  col-sm-offset-1">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>epivizrData</h3>
+                        <p>epivizrData is a data manager that handles various bioconductor data types.</p>
+                        <p><a href="https://github.com/epiviz/epivizrData" class="btn btn-primary" role="button">Github</a> <a href="https://github.com/epiviz/epivizrData" class="btn btn-primary" role="button">Bioconductor</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-4  col-sm-offset-1">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>epivizrServer</h3>
+                        <p>epivizrServer is a server managemenet package that creates and manages the websocket session between R and the epiviz app</p>
+                        <p><a href="https://github.com/epiviz/epivizrServer" class="btn btn-primary" role="button">Github</a> <a href="https://github.com/epiviz/epivizrServer" class="btn btn-primary" role="button">Bioconductor</a></p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2016 ~ epiviz ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.17 ~ <a href="http://epiviz.github.io/license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/epiviz" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                        <a href="https://github.com/epiviz" target="_blank">
+                        <i class="fa fa-github-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                        <a href="http://epiviz.github.io/index.xml" target="_blank">
+                        <i class="fa fa-rss-square fa-2x"></i></a>
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>

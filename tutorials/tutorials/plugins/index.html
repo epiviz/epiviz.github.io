@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.17" />
+    <meta name="description" content="">
+
+
+    <link rel="shortcut icon" href="http://epiviz.github.io/tutorials/images/favicon.png" type="image/x-icon" />
+
+    
+    <title>External Scripts and Plugins</title>
+    <link href="http://epiviz.github.io/tutorials/css/nucleus.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/hybrid.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/featherlight.min.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/horsey.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/theme.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/hugo-theme.css" rel="stylesheet">
+    <script src="http://epiviz.github.io/tutorials/js/jquery-2.x.min.js"></script>
+    <style type="text/css">:root #header + #content > #left > #rlblock_left
+    {display:none !important;}</style>
+    <link href="http://epiviz.github.io/tutorials/css/my_style.css" rel="stylesheet">
+  </head>
+  <body class="" data-url="/tutorials/plugins/">
+    <nav id="sidebar">
+  <div id="header-wrapper">
+    <div id="header">
+      <a width="100%" height="100%" href="http://epiviz.github.io/tutorials"><img src="http://epiviz.github.io/tutorials/images/epiviz_logo.png"></a>
+    </div>
+    
+</div>
+
+
+  <div class="highlightable">
+    <ul class="topics">
+      
+      
+        
+      
+      
+      
+      
+
+      
+        
+      
+      
+      
+
+      <li class="dd-item  parent" data-nav-id="/tutorials/">
+        <a href="http://epiviz.github.io/tutorials/tutorials/">
+          <span>
+            
+              <b>X. </b>
+            
+             Tutorials
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/timp2014/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/timp2014/">
+                <span>450k Illumina Human Methylation data for multiple solid tumors     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/charts/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/charts/">
+                <span>Chart Tutorial     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/computed-measurements/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/computed-measurements/">
+                <span>Computed Measurements     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/epivizr/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/epivizr/">
+                <span>Epivizr     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item active" data-nav-id="/tutorials/plugins/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/plugins/">
+                <span>External Scripts and Plugins     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/websocket/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/websocket/">
+                <span>Websocket Tutorial     </i></span>
+              </a>
+            </li>
+          
+          
+        </ul>
+        
+      </li>
+      
+      
+    </ul>
+    <hr>
+     
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+    </section>
+  </div>
+</nav>
+
+        <section id="body">
+        <div id="overlay"></div>
+
+        <div class="padding highlightable">
+
+            <div id="top-bar">
+              
+              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                  <span id="sidebar-toggle-span">
+                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                        <i class="fa fa-bars"></i>
+                      </a>
+                  </span>
+                
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
+                
+                
+                
+                  
+                    
+                    
+                <a href="http://epiviz.github.io/tutorials/tutorials/" itemprop="url"><span itemprop="title">Tutorials</span></a> <i class="fa fa-angle-right"></i>
+                    
+                  
+                
+                <span itemprop="title"> External Scripts and Plugins</span>
+              </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#creating-a-new-data-provider-plugin-new-data-provider-plugin"><a href="#new-data-provider-plugin">Creating a new Data Provider Plugin</a></a></li>
+<li><a href="#plugging-in-external-scripts-and-settings">Plugging in external scripts and settings</a></li>
+<li><a href="#creating-a-new-chart-plugin">Creating a new chart plugin</a></li>
+<li><a href="#creating-a-new-data-provider-plugin">Creating a new Data Provider Plugin</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+              
+
+            </div>
+            
+    	        <div id="body-inner">
+                
+                <h1>External Scripts and Plugins</h1>
+                
+
+
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+<li><a href="#external-scripts-and-settings">Plugging in external scripts and settings</a></li>
+<li><a href="#new-chart-plugin">Creating a new Chart Plugin</a></li>
+
+<li><h2 id="creating-a-new-data-provider-plugin-new-data-provider-plugin"><a href="#new-data-provider-plugin">Creating a new Data Provider Plugin</a></h2>
+
+<p><a name="external-scripts-and-settings"></p>
+
+<h2 id="plugging-in-external-scripts-and-settings">Plugging in external scripts and settings</h2>
+
+<p></a></p></li>
+</ul>
+
+<p><strong>Epiviz</strong> allows users to plug in new visualizations and data providers on the fly, by using the <strong>Charts API</strong> and <strong>Data
+Providers API</strong>, without the need of downloading or installing anything on the local machine. The new visualizations
+and data providers can be used immediately, alongside existing ones. Also, users can override the default settings of the
+UI to adapt it to their own needs. Here&rsquo;s how to do it:</p>
+
+<ol>
+<li><strong>Create a plugin script.</strong> Whether it&rsquo;s a new visualization, new data provider, or simply changing the default
+settings of <code>Epiviz</code>, you need to write a <code>JavaScript</code> script for it.</li>
+</ol>
+
+<p><strong>Example</strong></p>
+
+<p>A very simple example is a script that overrides some of the <strong>{{ site.epiviz }}</strong> default settings. A copy of the default settings
+  in <code>Epiviz</code> can be found here: <a href="http://epiviz.cbcb.umd.edu/4/src/epiviz/default-settings.js">http://epiviz.cbcb.umd.edu/4/src/epiviz/default-settings.js</a>.
+  Choose a subset of settings you want to modify. In our example, we change the default colors for the <strong>Scatter Plot</strong>
+  and set the initial circle radius for data points to be <code>0.02</code>, instead of <code>0.01</code>, which is the default. Also, we
+  change the settings so that <code>Epiviz</code> can only display scatter plots and genes tracks.</p>
+
+<p>Epiviz 4 or 3:</p>
+
+<pre><code class="language-javascript">  // Create a new color palette
+  var myPalette = new epiviz.ui.charts.ColorPalette(['#ed2d2e', '#008c47'], 'My Palette', 'my-palette');
+  epiviz.Config.SETTINGS.colorPalettes.push(myPalette);
+
+  // Set the default colors for the Scatter Plot to '#ed2d2e' and '#008c47'
+  epiviz.Config.SETTINGS.chartSettings['epiviz.plugins.charts.ScatterPlot']['colors'] = 'my-palette';
+
+  // Set the Scatter Plot custom setting circleRadiusRatio to 0.02
+  epiviz.Config.SETTINGS.chartCustomSettings['epiviz.plugins.charts.ScatterPlot']['circleRadiusRatio'] = 0.02;
+
+  // Tell EpiViz to only show two types of charts: Scatter Plots and Genes Tracks
+  epiviz.Config.SETTINGS.chartTypes = [
+    'epiviz.plugins.charts.ScatterPlotType',
+    'epiviz.plugins.charts.GenesTrackType'];
+</code></pre>
+
+<p>Epiviz 2:</p>
+
+<pre><code class="language-javascript">  // Set the default colors for the Scatter Plot to '#ed2d2e' and '#008c47'
+  epiviz.EpiViz.SETTINGS.chartSettings['epiviz.plugins.charts.ScatterPlot']['colors'] = new epiviz.ui.charts.ColorPalette(['#ed2d2e', '#008c47']);
+
+  // Set the Scatter Plot custom setting circleRadiusRatio to 0.02
+  epiviz.EpiViz.SETTINGS.chartCustomSettings['epiviz.plugins.charts.ScatterPlot']['circleRadiusRatio'] = 0.02;
+
+  // Tell EpiViz to only show two types of charts: Scatter Plots and Genes Tracks
+  epiviz.EpiViz.SETTINGS.chartTypes = ['epiviz.plugins.charts.ScatterPlotType', 'epiviz.plugins.charts.GenesTrackType'];
+</code></pre>
+
+<ol>
+<li>Epiviz also implements the <strong><a href="https://developer.github.com/v3/gists/">GitHub Gist API</a></strong>, allowing users to create and use <strong>Gist</strong> as plugins (see <strong><a href="https://help.github.com/articles/creating-gists">here</a></strong> a short tutorial on how to create a Gist script).</li>
+</ol>
+
+<p><strong>Example:</strong> For the purpose of this tutorial, we created a Gist script with the same contents here
+  * (Epiviz 4|3): <a href="http://gist.github.com/fa247476e6d9b4efb76a">http://gist.github.com/fa247476e6d9b4efb76a</a>
+  * (Epiviz 2): <a href="http://gist.github.com/7851244d2d9a9996403a">http://gist.github.com/7851244d2d9a9996403a</a>.</p>
+
+<ol>
+<li><p>Open <strong>{% link Epiviz <a href="http://epiviz.cbbc.umd.edu/4">http://epiviz.cbbc.umd.edu/4</a> %}</strong> using the id of the GitHub Gist script as value for the <code>gist</code> argument. <strong>Note:</strong> the <code>gist</code> argument represents an array, so that multiple scripts can be provided at once. Thus, the format <code>gist[]=&lt;gist id&gt;</code> should be used. In background, Epiviz uses the GitHub Gist API to retrieve the scripts using the given id, and use plug them in at start-up.</p>
+
+<ul>
+<li><strong>Example:</strong> (Epiviz 4) <a href="{{ site.epivizUiMain }}?ws=wjRtqAK3GCd&amp;settings=default&amp;gist[]=fa247476e6d9b4efb76a">http://epiviz.cbcb.umd.edu/4/?ws=wjRtqAK3GCd&amp;settings=default&amp;gist[]=fa247476e6d9b4efb76a</a></li>
+<li><strong>Example:</strong> (Epiviz 3) <a href="{{ site.epivizUiMain }}?ws=wjRtqAK3GCd&amp;settings=default&amp;gist[]=fa247476e6d9b4efb76a">http://epiviz.cbcb.umd.edu/3/?ws=wjRtqAK3GCd&amp;settings=default&amp;gist[]=fa247476e6d9b4efb76a</a></li>
+<li><strong>Example:</strong> (Epiviz 2) <a href="{{ site.epiviz2UiMain }}?ws=wjRtqAK3GCd&amp;settings=default&amp;gist[]=7851244d2d9a9996403a">http://epiviz.cbcb.umd.edu/2/?ws=wjRtqAK3GCd&amp;settings=default&amp;gist[]=7851244d2d9a9996403a</a></li>
+</ul></li>
+</ol>
+
+<p><strong>Overriding settings</strong></p>
+
+<p>In Epiviz, there are a few ways to override the default settings.</p>
+
+<ul>
+<li>The first one, demonstrated earlier, is to provide a <code>gist</code> GET argument.</li>
+<li>The second one, is by creating an entire settings file to override the existing default settings. This works similar
+to the first method, only differing from it by the fact that it uses cookies to preserve the latest used settings. The
+GET arguments used for this are <code>settings</code> and <code>settingsGist</code>. To revert to the default {{ site.epiviz }} settings, one should open (<a href="http://epiviz.cbcb.umd.edu/4/)[http://epiviz.cbcb.umd.edu/4/">http://epiviz.cbcb.umd.edu/4/)[http://epiviz.cbcb.umd.edu/4/</a>] with <code>settings=default</code>.</li>
+</ul>
+
+<p>In the tutorial examples for <strong>Creating a new chart plugin</strong> and <strong>Creating a new data provider plugin</strong> we provide more
+examples of plugging in various scripts and settings.</p>
+
+<p><a name="new-chart-plugin"></p>
+
+<h2 id="creating-a-new-chart-plugin">Creating a new chart plugin</h2>
+
+<p></a></p>
+
+<ul>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/4/?ws=Y8kWxCO2Ajn&amp;settings=default&amp;gist[]=9cff81ce56ba153f0b72">See it in Epiviz 4</a></strong></li>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/3/?ws=Y8kWxCO2Ajn&amp;settings=default&amp;gist[]=9cff81ce56ba153f0b72">See it in Epiviz 3</a></strong></li>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/2/?ws=Y8kWxCO2Ajn&amp;settings=default&amp;gist[]=11017650">See it in Epiviz 2</a></strong></li>
+</ul>
+
+<ol>
+<li>Create a class for the actual visualization</li>
+</ol>
+
+<p><strong>Example</strong></p>
+
+<pre><code class="language-javascript">
+  goog.provide('epiviz.plugins.charts.MyTrack');
+
+  /**
+   * @constructor
+   */
+  epiviz.plugins.charts.MyTrack = function() {
+  };
+</code></pre>
+
+<ol>
+<li>Inherit either <code>epiviz.ui.charts.Track</code> or <code>epiviz.ui.charts.Plot</code> (depending on display type)</li>
+</ol>
+
+<p><strong>Example</strong></p>
+
+<pre><code class="language-javascript">  goog.provide('epiviz.plugins.charts.MyTrack');
+
+  /**
+   * @param id
+   * @param {jQuery} container
+   * @param {epiviz.ui.charts.ChartProperties} properties
+   * @extends {epiviz.ui.charts.Track}
+   * @constructor
+   */
+  epiviz.plugins.charts.MyTrack = function(id, container, properties) {
+    // Call superclass constructor
+    epiviz.ui.charts.Track.call(this, id, container, properties);
+
+    this._initialize();
+  };
+
+  /*
+   * Copy methods from upper class
+   */
+  epiviz.plugins.charts.MyTrack.prototype = epiviz.utils.mapCopy(epiviz.ui.charts.Track.prototype);
+  epiviz.plugins.charts.MyTrack.constructor = epiviz.plugins.charts.MyTrack;
+
+
+  /**
+   * @param {epiviz.datatypes.GenomicRange} [range]
+   * @param {epiviz.measurements.MeasurementHashtable.&lt;epiviz.datatypes.GenomicDataMeasurementWrapper&gt;} [data]
+   * @param {number} [slide]
+   * @param {number} [zoom]
+   * @returns {Array.&lt;epiviz.ui.charts.UiObject&gt;} The objects drawn
+   */
+  epiviz.plugins.charts.MyTrack.prototype.draw = function(range, data, slide, zoom) {
+    return epiviz.ui.charts.Chart.prototype.draw.call(this, range, data, slide, zoom);
+  };
+
+  /**
+   * @returns {string}
+   */
+  epiviz.plugins.charts.MyTrack.prototype.chartTypeName = function() {
+    return 'epiviz.plugins.charts.MyTrack';
+  };
+</code></pre>
+
+<ol>
+<li>Implement the <code>draw()</code> method</li>
+</ol>
+
+<p><strong>Example</strong></p>
+
+<pre><code class="language-javascript">  /**
+   * @param {epiviz.datatypes.GenomicRange} [range]
+   * @param {epiviz.measurements.MeasurementHashtable.&lt;epiviz.datatypes.GenomicDataMeasurementWrapper&gt;} [data]
+   * @param {number} [slide]
+   * @param {number} [zoom]
+   * @returns {Array.&lt;epiviz.ui.charts.UiObject&gt;} The objects drawn
+   */
+  epiviz.plugins.charts.MyTrack.prototype.draw = function(range, data, slide, zoom) {
+      epiviz.ui.charts.Track.prototype.draw.call(this, range, data, slide, zoom);
+
+      // If data is defined, then the base class sets this._lastData to data.
+      // If it isn't, then we'll use the data from the last draw call.
+      // Same with this._lastRange and range.
+      data = this._lastData;
+      range = this._lastRange;
+
+      // If data is not defined, there is nothing to draw
+      if (!data || !range) { return []; }
+
+      // Using D3, compute a function that maps base-pair locations to chart pixel coordinates
+      var xScale = d3.scale.linear()
+        .domain([range.start(), range.end()])
+        .range([0, this.width() - this.margins().left() - this.margins().right()]);
+
+      // Compute the minimum maximum values of values to be plotted on the Y axis:
+      // Iterate throught all measurements that the chart is supposed to draw and find
+      // default minimum and maximum values.
+      var minY, maxY;
+      this.measurements().foreach(function(m) {
+        if (minY == undefined || m.minValue() &lt; minY) {
+          minY = m.minValue();
+        }
+        if (maxY == undefined || m.maxValue() &gt; maxY) {
+          maxY = m.maxValue();
+        }
+      });
+
+      // Now create a function that maps measurement values to chart pixel coordinates
+      var yScale = d3.scale.linear()
+        .domain([minY, maxY])
+        .range([this.height() - this.margins().top() - this.margins().bottom(), 0]);
+
+      // Draw x and y axes
+      var xTicks = 10, yTicks = 5;
+      this._clearAxes();
+      this._drawAxes(xScale, yScale, xTicks, yTicks);
+
+      // Create an array of items to be drawn
+      /** @type {Array.&lt;epiviz.ui.charts.UiObject&gt;} */
+      var items = [];
+      this.measurements().foreach(function(m, i) {
+        /** @type {epiviz.datatypes.GenomicDataMeasurementWrapper} */
+        var dataSeries = data.get(m);
+
+        for (var j = 0; j &lt; dataSeries.size(); ++j) {
+          /** @type {epiviz.datatypes.GenomicDataMeasurementWrapper.ValueItem} */
+          var valueItem = dataSeries.get(j);
+
+          // Check that the current item overlaps the requested draw range; if not, skip it.
+          if (valueItem.rowItem.start() &gt; range.end() || valueItem.rowItem.end() &lt; range.start()) { continue; }
+
+          items.push(new epiviz.ui.charts.UiObject(
+            sprintf('item-%s-%s', i, valueItem.globalIndex), // an id that uniquely identifies this object
+            valueItem.rowItem.start(), // start location of current item
+            valueItem.rowItem.end(), // end location of current item
+            [valueItem.value], // the Y value for the current object
+            i, // series index
+            [[valueItem]],
+            [m], // measurement
+            'item' // css class
+          ));
+        }
+      });
+
+      var itemsGroup = this._svg.select('.items');
+      if (itemsGroup.empty()) {
+        itemsGroup = this._svg.append('g').attr('class', 'items');
+      }
+      itemsGroup.attr('transform', 'translate(' + this.margins().left() + ', ' + this.margins().top() + ')');
+
+      var selection = itemsGroup.selectAll('.item')
+        .data(items, function(uiObj) { return uiObj.id; });
+
+      var self = this;
+      selection
+        .enter()
+        .append('rect')
+        .attr('class', function(uiObj) { return uiObj.cssClasses; })
+        .style('fill', function(uiObj) { return self.colors().get(uiObj.seriesIndex); })
+        .attr('x', function(uiObj) { return xScale(uiObj.start); })
+        .attr('width', function(uiObj) { return xScale(uiObj.end + 1) - xScale(uiObj.start); })
+        .attr('y', function(uiObj) { return yScale(minY) - yScale(uiObj.values[0]); })
+        .attr('height', function(uiObj) { return yScale(uiObj.values[0]); })
+        .style('opacity', '0')
+        .on('mouseout', function () { self._unhover.notify(); })
+        .on('mouseover', function (uiObj) { self._hover.notify(uiObj); })
+        .on('click', function(uiObj) {
+          self._deselect.notify();
+          self._select.notify(uiObj);
+          d3.event.stopPropagation();
+        });
+
+      selection
+        .transition()
+        .duration(500)
+        .attr('x', function(uiObj) { return xScale(uiObj.start); })
+        .attr('width', function(uiObj) { return xScale(uiObj.end + 1) - xScale(uiObj.start); })
+        .attr('y', function(uiObj) { return yScale(minY) - yScale(uiObj.values[0]); })
+        .attr('height', function(uiObj) { return yScale(uiObj.values[0]); })
+        .style('opacity', '0.2');
+
+      selection
+        .exit()
+        .transition()
+        .duration(500)
+        .style('opacity', '0')
+        .remove();
+
+      return items;
+  };
+</code></pre>
+
+<ol>
+<li>Create a class used as factory, derived from <code>epiviz.ui.charts.TrackType</code> or <code>epiviz.ui.charts.PlotType</code></li>
+</ol>
+
+<p><strong>Example</strong></p>
+
+<pre><code class="language-javascript">  goog.provide('epiviz.plugins.charts.MyTrackType');
+
+  /**
+   * @param {epiviz.Config} config
+   * @extends {epiviz.ui.charts.TrackType}
+   * @constructor
+   */
+  epiviz.plugins.charts.MyTrackType = function(config) {
+      // Call superclass constructor
+      epiviz.ui.charts.TrackType.call(this, config);
+  };
+
+  /*
+   * Copy methods from upper class
+   */
+  epiviz.plugins.charts.MyTrackType.prototype = epiviz.utils.mapCopy(epiviz.ui.charts.TrackType.prototype);
+  epiviz.plugins.charts.MyTrackType.constructor = epiviz.plugins.charts.MyTrackType;
+
+  /**
+   * @param {string} id
+   * @param {jQuery} container The div where the chart will be drawn
+   * @param {epiviz.ui.charts.ChartProperties} properties
+   * @returns {epiviz.plugins.charts.MyTrack}
+   */
+  epiviz.plugins.charts.MyTrackType.prototype.createNew = function(id, container, properties) {
+      return new epiviz.plugins.charts.MyTrack(id, container, properties);
+  };
+
+  /**
+   * @returns {string}
+   */
+  epiviz.plugins.charts.MyTrackType.prototype.typeName = function() { return 'epiviz.plugins.charts.MyTrack'; };
+
+  /**
+   * @returns {string}
+   */
+  epiviz.plugins.charts.MyTrackType.prototype.chartName = function() { return 'My Track'; };
+
+  /**
+   * @returns {string}
+   */
+  epiviz.plugins.charts.MyTrackType.prototype.chartHtmlAttributeName = function() { return 'mytrack'; };
+
+  /**
+   * @returns {epiviz.measurements.Measurement.Type}
+   */
+  epiviz.plugins.charts.MyTrackType.prototype.chartContentType = function() { return epiviz.measurements.Measurement.Type.FEATURE; };
+</code></pre>
+
+<ol>
+<li>In the settings file, add an entry in the <code>chartTypes</code> property corresponding to the track type.</li>
+</ol>
+
+<p><strong>Example</strong></p>
+
+<pre><code class="language-javascript">  ...
+  chartTypes: [
+      ...,
+      'epiviz.plugins.charts.MyTrackType'
+  ],
+  ...
+</code></pre>
+
+<p>Alternatively, create a script to override the default {{ site.epiviz }} settings and add the new chart type:</p>
+
+<pre><code class="language-javascript">  epiviz.EpiViz.SETTINGS.chartTypes.push('epiviz.plugins.charts.MyTrackType');
+</code></pre>
+
+<ol>
+<li>If using Epiviz on a remote server, plug in your scripts and settings file and start using them!</li>
+</ol>
+
+<p><strong>Example</strong>
+  * <code>my-track.js</code>,<code>my-track-type.js</code> and <code>my-settings-overrides.js</code>: <a href="http://gist.github.com/9cff81ce56ba153f0b72">http://gist.github.com/9cff81ce56ba153f0b72</a></p>
+
+<p>In the Track Menu, notice the new type of visualization, called <strong>My Track</strong></p>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_add_mytrack.png" alt="The new track in the Track Menu" />
+  <img src="http://epiviz.github.io/tutorials/images/scr_mytrack.png" alt="New Track" /></p>
+
+<hr />
+
+<ul>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/4/?ws=Y8kWxCO2Ajn&amp;settings=default&amp;gist[]=9cff81ce56ba153f0b72">See it in Epiviz 4</a></strong></li>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/3/?ws=Y8kWxCO2Ajn&amp;settings=default&amp;gist[]=9cff81ce56ba153f0b72">See it in Epiviz 3</a></strong></li>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/2/?ws=Y8kWxCO2Ajn&amp;settings=default&amp;gist[]=11017650">See it in Epiviz 2</a></strong></li>
+</ul>
+
+<p><a name="new-data-provider-plugin"></p>
+
+<h2 id="creating-a-new-data-provider-plugin">Creating a new Data Provider Plugin</h2>
+
+<p></a></p>
+
+<ul>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/4/?ws=WRIOVgCREuu&amp;gist[]=63dce2a92d80f57637c6&amp;settings=default">See it in Epiviz 4</a></strong></li>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/3/?ws=WRIOVgCREuu&amp;gist[]=63dce2a92d80f57637c6&amp;settings=default">See it in Epiviz 3</a></strong></li>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/2/?ws=IqvEuzLIiMd&amp;gist[]=11026256&amp;settings=default">See it in Epiviz 2</a></strong></li>
+</ul>
+
+<p>In Epiviz, data can be retrieved simultaneously from any number of servers (like the UMD PHP server, or the Epivizr
+Websocket server). The proxies between the servers and the <code>Epiviz</code> UI are called <strong>Data providers</strong>. Currently, Epiviz has two predefined types of data providers: <code>epiviz.data.WebServerDataProvider</code> and <code>epiviz.data.WebSocketDataProvider</code>.
+However, through <code>Epiviz</code> plugin mechanism, users can add new data providers to interface other sources of data.</p>
+
+<ol>
+<li>Create a new class and inherit <code>epiviz.data.DataProvider</code>.</li>
+</ol>
+
+<p><strong>Example</strong></p>
+
+<pre><code class="language-javascript">  goog.provide('epiviz.plugins.data.MyDataProvider');
+
+  /**
+   * @constructor
+   * @extends {epiviz.data.DataProvider}
+   */
+  epiviz.plugins.data.MyDataProvider = function () {
+      epiviz.data.DataProvider.call(this);
+  };
+
+  /**
+   * Copy methods from upper class
+   */
+  epiviz.plugins.data.MyDataProvider.prototype = epiviz.utils.mapCopy(epiviz.data.DataProvider.prototype);
+  epiviz.plugins.data.MyDataProvider.constructor = epiviz.plugins.data.MyDataProvider;
+
+  epiviz.plugins.data.MyDataProvider.DEFAULT_ID = 'myprovider';
+
+  /**
+   * @param {epiviz.data.Request} request
+   * @param {function(epiviz.data.Response)} callback
+   * @override
+   */
+  epiviz.plugins.data.MyDataProvider.prototype.getData = function (request, callback) {
+  };
+</code></pre>
+
+<ol>
+<li>Override and implement the <code>getData(request, callback)</code> method.</li>
+</ol>
+
+<p>The <strong>Request/Response API</strong> has the following format:</p>
+
+<pre><code class="language-javascript">  {
+      requestId: number,
+      type: string,
+      data: Object.&lt;string, *&gt;
+  }
+</code></pre>
+
+<ul>
+<li><code>requestId</code> is a unique numeric id identifying the request; responses are paired with requests by using the same <code>requestId</code> value.</li>
+<li><code>type</code> can be either <code>'request'</code> or <code>'response'</code>, depending on the message type.</li>
+
+<li><p><code>data</code> is a map of key-value pairs of request/response arguments.</p>
+
+<p>For requests, <code>data</code> always has an <code>'action'</code> key, identifying the request type. The possible values for <code>'action'</code>
+are defined in the Epiviz API in the enum type <a href="http://epiviz.github.io/tutorials/docs/epiviz.data.Request.html#Action"><code>epiviz.data.Request.Action</code></a>.
+The other request keys and values vary depending on the action.</p>
+
+<p>Actions are grouped in two categories - <strong><em>Server Actions</em></strong>  (requests from the UI to the Data Provider) and <strong><em>UI Actions</em></strong> (requests from the Data Provider to the UI).</p>
+
+<p><strong>Server Actions</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Args</th>
+<th>Response format</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>'getRows'</code></td>
+<td><code>'seqName': string</code>,<br/><code>'start': number</code>,<br/><code>'end': number</code>,<br/><code>'metadata': string[]</code>, a list of metadata columns in the data source table<br/><code>'datasource': string</code>, the name of the data source table</td>
+<td><pre>{<br/>  globalStartIndex: ?number,<br/>  useOffset: boolean,<br/>  values: {<br/>    id: number[],<br/>    start: number[],<br/>    end: number[],<br/>    metadata: Object.&lt;string, string[]&gt;<br/>  }<br/>}</pre></td>
+<td>Requests range data for a given data source.</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'getValues'</code></td>
+<td><code>'seqName': string</code>,<br/><code>'start': number</code>,<br/><code>'end': number</code>,<br/><code>'datasource': string</code>, the name of the data source table,<br/><code>'measurement': string</code>, the name of the column in the table where values reside</td>
+<td><pre>{<br/>  globalStartIndex: ?number,<br/>  values: number[]<br/>}</pre></td>
+<td>Requests the values in a particular column of a data source table.</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'getMeasurements'</code></td>
+<td></td>
+<td><pre>{<br/>  id: string[],<br/>  name: string[],<br/>  type: string[],<br/>  datasourceId: string[],<br/>  datasourceGroup: string[],<br/>  defaultChartType: string[],<br/>  annotation: Array.&lt;Object.&lt;string, string&gt;&gt;,<br/>  minValue: number[],<br/>  maxValue: number[],<br/>  metadata: Array.&lt;string[]&gt;<br/>}</td>
+<td>Requests all the measurements available to serve by the data provider.</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'getSeqInfos'</code></td>
+<td></td>
+<td><pre>Array.&lt;Array&gt;</pre> an array of arrays of three elements: sequence name, minimum and maximum base pair boundaries. For example: <pre>[[&lsquo;chr1&rsquo;, 1, 248956422], [&lsquo;myChr&rsquo;, 1, 1000000000]]</pre></td>
+<td>Requests the sequence information - name and boundaries available to serve by the data provider.</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'search'</code></td>
+<td><code>'q': string</code>, a text to filter results by<br/><code>'maxResults': number</code>, the maximum number of results to return</td>
+<td></td>
+<td><span class="optional">optional</span> Requests gene and Affymetrix probe information for data that contains the given filter string.</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'saveWorkspace'</code></td>
+<td><code>'id': string</code>,<br/><code>'name': string</code>,<br/><code>'content': Object.&lt;string, *&gt;</code></td>
+<td></td>
+<td><span class="optional">optional</span> Sends information about the active workspace to the data provider, in order to be saved.</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'deleteWorkspace'</code></td>
+<td><code>'id': string</code>,</td>
+<td></td>
+<td><span class="optional">optional</span> Requests the deletion of the workspace with the given id.</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'getWorkspaces'</code></td>
+<td><code>'q': string</code>,<br/><code>'ws': string</code></td>
+<td></td>
+<td><span class="optional">optional</span> Requests all the workspace for the current user whose names match the given filter.</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>UI Actions</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Args</th>
+<th>Response format</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>'addMeasurements'</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'removeMeasurements'</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'addSeqInfos'</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'removeSeqNames'</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'addChart'</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'removeChart'</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'clearDatasourceGroupCache'</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'flushCache'</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>'navigate'</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+
+<p><strong>Example implementation</strong></p>
+
+<pre><code class="language-javascript">  goog.provide('epiviz.plugins.data.MyDataProvider');
+
+  /**
+   * @constructor
+   * @extends {epiviz.data.DataProvider}
+   */
+  epiviz.plugins.data.MyDataProvider = function () {
+      epiviz.data.DataProvider.call(this);
+
+      this._mockMeasurement = new epiviz.measurements.Measurement(
+        'my_feature_column', // The column in the data source table that contains the values for this feature measurement
+        'My Feature Measurement', // A name not containing any special characters (only alphanumeric and underscores)
+        epiviz.measurements.Measurement.Type.FEATURE,
+        'my_datasource', // Data source: the table/data frame containing the data
+        'my_datasourcegroup', // An identifier for use to group with other measurements from different data providers
+                              // that have the same seqName, start and end values
+        this.id(), // Data provider
+        null, // Formula: always null for measurements coming directly from the data provider
+        'Line Track', // Default chart type filter
+        null, // Annotation
+        -5, // Min Value
+        25, // Max Value
+        ['my_metadata'] // Metadata columns
+      );
+  };
+
+  /**
+   * Copy methods from upper class
+   */
+  epiviz.plugins.data.MyDataProvider.prototype = epiviz.utils.mapCopy(epiviz.data.DataProvider.prototype);
+  epiviz.plugins.data.MyDataProvider.constructor = epiviz.plugins.data.MyDataProvider;
+
+  epiviz.plugins.data.MyDataProvider.DEFAULT_ID = 'myprovider';
+
+  /**
+   * @param {epiviz.data.Request} request
+   * @param {function(epiviz.data.Response)} callback
+   * @override
+   */
+  epiviz.plugins.data.MyDataProvider.prototype.getData = function (request, callback) {
+      var requestId = request.id();
+      var action = request.get('action');
+      var seqName = request.get('seqName');
+      var start = request.get('start');
+      var end = request.get('end');
+      var datasource = request.get('datasource');
+
+      // Return a genomic range of 100 base pairs every 1000 base pairs
+      var step = 1000, width = 100;
+      var globalStartIndex, firstStart, firstEnd;
+      if (action == epiviz.data.Request.Action.GET_ROWS || action == epiviz.data.Request.Action.GET_VALUES) {
+        globalStartIndex = Math.floor((start - 1) / step) + 1;
+        firstStart = globalStartIndex * step + 1;
+        firstEnd = firstStart + width;
+
+        if (firstEnd &lt; start) {
+          firstStart += step;
+          firstEnd += step;
+        }
+      }
+
+      var globalIndex, s;
+      switch (action) {
+        case epiviz.data.Request.Action.GET_ROWS:
+          if (firstStart &gt;= end) {
+            // Nothing to return
+            callback(epiviz.data.Response.fromRawObject({
+              data: { values: { id: [], start: [], end:[], strand: [], metadata:{my_metadata:[]} }, globalStartIndex: null, useOffset: false },
+              requestId: requestId
+            }));
+            return;
+          }
+
+          var ids = [], starts = [], ends = [], strands = '*', myMetadata = [];
+          for (globalIndex = globalStartIndex, s = firstStart; s &lt; end; ++globalIndex, s += step) {
+            ids.push(globalIndex);
+            starts.push(s);
+            ends.push(s + width);
+            myMetadata.push(epiviz.utils.generatePseudoGUID(5)); // Random string
+          }
+
+          callback(epiviz.data.Response.fromRawObject({
+            data: {
+              values: { id: ids, start: starts, end: ends, strand: strands, metadata:{ my_metadata: myMetadata } },
+              globalStartIndex: globalStartIndex,
+              useOffset: false
+            },
+            requestId: requestId
+          }));
+          return;
+
+        case epiviz.data.Request.Action.GET_VALUES:
+          if (firstStart &gt;= end) {
+            // Nothing to return
+            callback(epiviz.data.Response.fromRawObject({
+              data: { values: [], globalStartIndex: null },
+              requestId: requestId
+            }));
+            return;
+          }
+
+          var values = [];
+          for (globalIndex = globalStartIndex, s = firstStart; s &lt; end; ++globalIndex, s += step) {
+            var v = Math.random()
+              * (this._mockMeasurement.maxValue() - this._mockMeasurement.minValue())
+              +  this._mockMeasurement.minValue();
+            values.push(v);
+          }
+
+          callback(epiviz.data.Response.fromRawObject({
+            data: {
+              values: values,
+              globalStartIndex: globalStartIndex
+            },
+            requestId: requestId
+          }));
+
+          return;
+
+        case epiviz.data.Request.Action.GET_MEASUREMENTS:
+          callback(epiviz.data.Response.fromRawObject({
+            requestId: request.id(),
+            data: {
+              id: [this._mockMeasurement.id()],
+              name: [this._mockMeasurement.name()],
+              type: [this._mockMeasurement.type()],
+              datasourceId: [this._mockMeasurement.datasourceId()],
+              datasourceGroup: [this._mockMeasurement.datasourceGroup()],
+              defaultChartType: [this._mockMeasurement.defaultChartType()],
+              annotation: [this._mockMeasurement.annotation()],
+              minValue: [this._mockMeasurement.minValue()],
+              maxValue: [this._mockMeasurement.maxValue()],
+              metadata: [this._mockMeasurement.metadata()]
+            }
+          }));
+          return;
+
+        case epiviz.data.Request.Action.GET_SEQINFOS:
+          callback(epiviz.data.Response.fromRawObject({
+            requestId: request.id(),
+            data: [['chr1', 1, 248956422], ['myChr', 1, 1000000000]]
+          }));
+          return;
+
+        default:
+          epiviz.data.DataProvider.prototype.getData.call(this, request, callback);
+          break;
+      }
+  };
+</code></pre>
+
+<ol>
+<li>Declare the data provider in your settings file, in the <code>dataProviders</code> property.</li>
+</ol>
+
+<p><strong>Example</strong></p>
+
+<pre><code class="language-javascript">  dataProviders: [
+      ...,
+      'epiviz.plugins.data.MyDataProvider'
+  ],
+</code></pre>
+
+<p>Alternatively, create a script to override the default <code>Epiviz</code> settings and add the new data provider:</p>
+
+<pre><code class="language-javascript">  epiviz.EpiViz.SETTINGS.dataProviders.push('epiviz.plugins.data.MyDataProvider');
+</code></pre>
+
+<ol>
+<li>If using Epiviz on a remote server, plug in your scripts and settings file and start using them!</li>
+</ol>
+
+<p><strong>Example</strong>
+  * <code>my-data-provider.js</code> and <code>my-data-provider-settings-overrides.js</code>: <a href="http://gist.github.com/63dce2a92d80f57637c6">http://gist.github.com/63dce2a92d80f57637c6</a></p>
+
+<p>In the measurement selection dialogs, notice the new data source, <strong>my_datasource</strong> and the new measurement, <strong>My Measurement</strong></p>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_mydataprovider_addblocks.png" alt="The new data source" /></p>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_mydataprovider_addms.png" alt="The new measurement" /></p>
+
+<p>A heatmap displaying data provided by <strong>My DataProvider</strong></p>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_mydataprovider_heatmap.png" alt="A heatmap with the new measurement" /></p>
+
+<p>A line track displaying data provided by <strong>My DataProvider</strong></p>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_mydataprovider_line.png" alt="Line Track with new measurement" /></p>
+
+<p>A blocks track displaying data provided by <strong>My DataProvider</strong>
+  <img src="http://epiviz.github.io/tutorials/images/scr_mydataprovider_blocks.png" alt="Blocks Track with new measurement" /></p>
+
+<hr />
+
+<ul>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/4/?ws=WRIOVgCREuu&amp;gist[]=63dce2a92d80f57637c6&amp;settings=default">See it in Epiviz 4</a></strong></li>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/3/?ws=WRIOVgCREuu&amp;gist[]=63dce2a92d80f57637c6&amp;settings=default">See it in Epiviz 3</a></strong></li>
+<li><strong><a href="http://epiviz.cbcb.umd.edu/2/?ws=IqvEuzLIiMd&amp;gist[]=11026256&amp;settings=default">See it in Epiviz 2</a></strong></li>
+</ul>
+
+
+      
+      </div>
+    </div>
+
+    <div id="navigation">
+        
+        
+        
+    </div>
+
+    </section>
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="http://epiviz.github.io/tutorials/js/clipboard.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/perfect-scrollbar.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/jquery.sticky-kit.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/featherlight.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/html5shiv-printshiv.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="http://epiviz.github.io/tutorials/js/modernizr.custom.71422.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/learn.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/hugo-learn.js"></script>
+    
+
+  </body>
+</html>
+

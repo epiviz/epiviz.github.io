@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Epiviz</title>
+    <link>http://epiviz.github.io/categories/features/index.xml</link>
+    <description>Recent content on Epiviz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>2016 ~ epiviz</copyright>
+    <atom:link href="/categories/features/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>New Code Customization Feature for Visualizations</title>
+            <link>http://epiviz.github.io/post/2014-10-28-new-feature-code-edit/</link>
+            <pubDate>Tue, 28 Oct 2014 13:00:00 -0500</pubDate>
+            
+            <guid>http://epiviz.github.io/post/2014-10-28-new-feature-code-edit/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=MaQiywcMkec&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/3/?ws=MaQiywcMkec&amp;amp;settings=default&#34;&gt;See it in Epiviz 3&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/2/?ws=MaQiywcMkec&amp;amp;settings=default&#34;&gt;See it in Epiviz 2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now visualizations&amp;rsquo; code can be customized in the UI, based on user needs!&lt;/p&gt;
+
+&lt;p&gt;To do it, simply click on the &lt;em&gt;Edit code&lt;/em&gt; button on any of the available charts:
+&lt;img src=&#34;http://epiviz.github.io/images/edit_code_button.png&#34; alt=&#34;Edit Code Button&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Select the method(s) you want to edit. Only the methods corresponding to this particular instance
+of the chart will be modified. For example, in the MA Plot at
+&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=S5qde7SD1Je&amp;amp;settings=default&#34;&gt;http://epiviz.cbcb.umd.edu/4/?ws=S5qde7SD1Je&lt;/a&gt;,
+we edited the &lt;code&gt;_drawAxes&lt;/code&gt; method by adding the following code at the beginning of the method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  this._svg.selectAll(&#39;.midline&#39;).remove();
+  this._svg.append(&#39;line&#39;)
+      .attr(&#39;class&#39;, &#39;midline&#39;)
+      .attr(&#39;x1&#39;, this.margins().left())
+      .attr(&#39;x2&#39;, this.width() - this.margins().right())
+      .attr(&#39;y1&#39;, yScale(0) + this.margins().top())
+      .attr(&#39;y2&#39;, yScale(0) + this.margins().top())
+      .style(&#39;stroke&#39;, &#39;#444444&#39;)
+      .style(&#39;shape-rendering&#39;, &#39;crispEdges&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/images/edit_code_dialog.png&#34; alt=&#34;Edit Code Dialog&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This should add a line at &lt;code&gt;y=0&lt;/code&gt;, which is a common view for the MA Plot.&lt;/p&gt;
+
+&lt;p&gt;Once happy with the changes, click &lt;em&gt;Save&lt;/em&gt; and see the changes take effect immediately:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/images/edit_code_ma_plot.png&#34; alt=&#34;Heatmap Clustering&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The changes can be saved in the current workspace!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=MaQiywcMkec&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/3/?ws=MaQiywcMkec&amp;amp;settings=default&#34;&gt;See it in Epiviz 3&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/2/?ws=MaQiywcMkec&amp;amp;settings=default&#34;&gt;See it in Epiviz 2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+      
+        
+          <item>
+            <title>New Clustering Feature for Heatmap Plots</title>
+            <link>http://epiviz.github.io/post/2014-10-28-new-feature-clustering/</link>
+            <pubDate>Tue, 28 Oct 2014 12:00:00 -0500</pubDate>
+            
+            <guid>http://epiviz.github.io/post/2014-10-28-new-feature-clustering/</guid>
+            <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=wZJc0JKhWK&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/3/?ws=wZJc0JKhWK&amp;amp;settings=default&#34;&gt;See it in Epiviz 3&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/2/?ws=UqaReWj5Sd&amp;amp;settings=default&#34;&gt;See it in Epiviz 2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We implemented a new &lt;strong&gt;Clustering&lt;/strong&gt; feature in the &lt;em&gt;Heatmap Plot&lt;/em&gt;! You can use it to group together
+measurements using the values in the selected region.&lt;/p&gt;
+
+&lt;p&gt;For example, we selected the following samples in the &lt;em&gt;gene expression barcode&lt;/em&gt;: &lt;code&gt;kidney normal&lt;/code&gt; and &lt;code&gt;tumor&lt;/code&gt;,
+&lt;code&gt;lung normal&lt;/code&gt; and &lt;code&gt;tumor&lt;/code&gt;, &lt;code&gt;esophagus normal&lt;/code&gt; and &lt;code&gt;tumor&lt;/code&gt;, &lt;code&gt;breast normal&lt;/code&gt; and &lt;code&gt;tumor&lt;/code&gt;,
+&lt;code&gt;stomach normal&lt;/code&gt; and &lt;code&gt;tumor&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;em&gt;custom settings&lt;/em&gt; menu of the newly generated chart, we enabled clustering:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/images/heatmap_clustering_dialog.png&#34; alt=&#34;Heatmap Custom Settings&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This causes the rows to be re-ordered according to the clustering, and a dendrogram to be displayed:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/images/heatmap_clustering.png&#34; alt=&#34;Heatmap Clustering&#34; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=wZJc0JKhWK&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/3/?ws=wZJc0JKhWK&amp;amp;settings=default&#34;&gt;See it in Epiviz 3&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/2/?ws=UqaReWj5Sd&amp;amp;settings=default&#34;&gt;See it in Epiviz 2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>

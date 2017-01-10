@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: datatypes/genomic-range-array.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: datatypes/genomic-range-array.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Created by Florin Chelaru ( florinc [at] umd [dot] edu )
+ * Date: 11/1/13
+ * Time: 10:26 AM
+ */
+
+goog.provide('epiviz.datatypes.GenomicRangeArray');
+
+/**
+ * @param {epiviz.measurements.Measurement} measurement
+ * @param {epiviz.datatypes.GenomicRange} boundaries
+ * @param {number} globalStartIndex
+ * @param {{id: Array.&lt;string>, start: Array.&lt;number>, end: Array.&lt;number>, strand: Array.&lt;string>|string, metadata: Object.&lt;string, Array>}} values
+ * @param {boolean} [useOffset] True if the values are compressed and false/undefined/null otherwise
+ * @constructor
+ * @implements {epiviz.utils.Iterable}
+ * @extends {epiviz.datatypes.GenomicArray}
+ */
+epiviz.datatypes.GenomicRangeArray = function(measurement, boundaries, globalStartIndex, values, useOffset) {
+
+  epiviz.datatypes.GenomicArray.call(this, measurement, boundaries, globalStartIndex, values);
+
+  /**
+   * @type {Array.&lt;string>}
+   * @private
+   */
+  this._id = values.id;
+
+  /**
+   * @type {Array.&lt;number>}
+   * @private
+   */
+  this._start = values.start;
+
+  /**
+   * @type {Array.&lt;number>}
+   * @private
+   */
+  this._end = values.end;
+
+  /**
+   * @type {Array.&lt;string>|string}
+   * @private
+   */
+  this._strand = values.strand || null;
+
+  /**
+   * @type {Object.&lt;string, Array>}
+   * @private
+   */
+  this._metadata = values.metadata;
+
+  /**
+   * @type {?number}
+   * @private
+   */
+  this._size = null;
+
+  // If useOffset is true, it means that the values in the start/end arrays are compressed, and each value
+  // in the array (with the exception of the first) is the offset between the real value and the previous one.
+  // If the values are compressed, here we decompress them:
+  if (useOffset) {
+    var i;
+    for (i = 1; i &lt; this._start.length; ++i) {
+      this._start[i] += this._start[i - 1];
+
+      if (this._end) { this._end[i] += this._end[i - 1]; }
+    }
+  }
+};
+
+/**
+ * Copy methods from upper class
+ */
+epiviz.datatypes.GenomicRangeArray.prototype = epiviz.utils.mapCopy(epiviz.datatypes.GenomicArray.prototype);
+epiviz.datatypes.GenomicRangeArray.constructor = epiviz.datatypes.GenomicRangeArray;
+
+/**
+ * @param {epiviz.measurements.Measurement} measurement
+ * @param {epiviz.datatypes.GenomicRange} boundaries
+ * @param {number} globalStartIndex
+ * @param {{id: Array.&lt;string>, start: Array.&lt;number>, end: Array.&lt;number>, strand: Array.&lt;string>|string, metadata: Object.&lt;string, Array>}} values
+ * @returns {epiviz.datatypes.GenomicArray}
+ * @override
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.createNew = function(measurement, boundaries, globalStartIndex, values) {
+  return new epiviz.datatypes.GenomicRangeArray(measurement, boundaries, globalStartIndex, values);
+};
+
+/**
+ * @param {number} i a numeric index of the row
+ * @returns {epiviz.datatypes.GenomicData.RowItem}
+ * @override
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.get = function(i) {
+  if (i &lt; 0 || i >= this.size()) { return null; }
+
+  return new epiviz.datatypes.GenomicRangeArray.RowItemWrapper(this, i);
+};
+
+/**
+ * @returns {number} the total number of items in the structure
+ * @override
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.size = function() {
+  if (this._size == undefined) {
+    var size = Math.max(
+      this._id ? this._id.length : 0,
+      this._start ? this._start.length : 0,
+      this._end ? this._end.length : 0,
+      (this._metadata &amp;&amp; Object.keys(this._metadata).length) ?
+        Math.max.apply(undefined, $.map(this._metadata, function(col) { return col.length; })) : 0);
+    this._size = size;
+  }
+  return this._size;
+};
+
+/**
+ * @param {epiviz.datatypes.GenomicRangeArray} second
+ * @param {number} secondIndex
+ * @returns {{id: Array.&lt;string>, start: Array.&lt;number>, end: Array.&lt;number>, strand: Array.&lt;string>|string, metadata: Object.&lt;string, Array>}}
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.concatValues = function(second, secondIndex) {
+  var strand = null;
+  if (!Array.isArray(this._strand) &amp;&amp; !Array.isArray(second._strand) &amp;&amp; this._strand == second._strand) {
+    strand = this._strand;
+  } else {
+    var
+      firstStrand = Array.isArray(this._strand) ? this._strand : epiviz.utils.fillArray(this.size(), this._strand),
+      secondStrand = Array.isArray(second._strand) ? second._strand : epiviz.utils.fillArray(second.size(), second._strand);
+    strand = firstStrand.concat(secondStrand.slice(secondIndex))
+  }
+
+  var
+    id = this._id ? this._id.concat(second._id.slice(secondIndex)) : null,
+    start = this._start.concat(second._start.slice(secondIndex)),
+    end = this._end ? this._end.concat(second._end.slice(secondIndex)) : null;
+
+  // Concatenate metadata values. We assume that both structures have the same columns
+  var metadata = {};
+  for (var col in this._metadata) {
+    if (!this._metadata.hasOwnProperty(col)) { continue; }
+    metadata[col] = this._metadata[col].concat(second._metadata[col].slice(secondIndex));
+  }
+
+  return {
+    id: id,
+    start: start,
+    end: end,
+    strand: strand,
+    metadata: metadata
+  };
+};
+
+/**
+ * @param {epiviz.datatypes.GenomicRange} range
+ * @returns {?epiviz.datatypes.GenomicRangeArray}
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.trim = function(range) {
+  if (this.globalStartIndex() == undefined || !this.size() || !range || !this.boundaries() || this.boundaries().seqName() != range.seqName()) {
+    return null;
+  }
+
+  var start = Math.max(this.boundaries().start(), range.start());
+  var end = Math.min(this.boundaries().end(), range.end());
+  if (end &lt;= start) { return null; }
+  range = epiviz.datatypes.GenomicRange.fromStartEnd(range.seqName(), start, end);
+
+  var startIndex = -1;
+  var endIndex = -1;
+  for (var i = 0; i &lt; this.size(); ++i) {
+    if (startIndex &lt; 0 &amp;&amp; this.end(i) >= range.start()) { startIndex = i; }
+    if (this._start[i] &lt; range.end()) { endIndex = i + 1; }
+  }
+  if (endIndex &lt;= startIndex) { return null; }
+
+  var values, globalStartIndex;
+  var col;
+
+  if (startIndex >= 0 &amp;&amp; endIndex >= startIndex) {
+    values = {
+      id: this._id ? this._id.slice(startIndex, endIndex) : null,
+      start: this._start.slice(startIndex, endIndex),
+      end: this._end ? this._end.slice(startIndex, endIndex) : null,
+      strand: Array.isArray(this._strand) ? this._strand.slice(startIndex, endIndex) : this._strand,
+      metadata: {}
+    };
+    for (col in this._metadata) {
+      if (!this._metadata.hasOwnProperty(col)) { continue; }
+      values.metadata[col] = this._metadata[col].slice(startIndex, endIndex);
+    }
+    globalStartIndex = this.globalStartIndex() + startIndex;
+  } else {
+    values = {
+      id: this._id ? [] : null,
+      start: [],
+      end: this._end ? [] : null,
+      strand: Array.isArray(this._strand) ? [] : this._strand,
+      metadata: {}
+    };
+    for (col in this._metadata) {
+      if (!this._metadata.hasOwnProperty(col)) { continue; }
+      values.metadata[col] = [];
+    }
+    globalStartIndex = null;
+  }
+
+  return new epiviz.datatypes.GenomicRangeArray(this.measurement(), range, globalStartIndex, values);
+};
+
+/**
+ * @returns {epiviz.datatypes.GenomicRangeArray}
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.ranges = function() { return this; };
+
+/**
+ * Iterates through all genomic ranges until func returns something that evaluates to true
+ * @param {function(epiviz.datatypes.GenomicData.RowItem)} func
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.foreach = function(func) {
+  var size = this.size();
+  for (var i = 0; i &lt; size; ++i) {
+    if (func(this.get(i))) { return; }
+  }
+};
+
+/**
+ * @returns {Array.&lt;string>} the names of the metadata columns associated with the epiviz.datatypes.GenomicRangeArray instance
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.metadataColumns = function() {
+  if (this._metadata) {
+    return Object.keys(this._metadata);
+  }
+
+  return [];
+};
+
+/**
+ * @param {number} index
+ * @returns {string}
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.id = function(index) {
+  return this._id ? this._id[index] : this.globalStartIndex() + index;
+};
+
+/**
+ * @param {number} index
+ * @returns {number}
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.start = function(index) {
+  return this._start ? this._start[index] : undefined;
+};
+
+/**
+ * @param {number} index
+ * @returns {number}
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.end = function(index) {
+  return this._end ? this._end[index] : this.start(index);
+};
+
+/**
+ * @param {number} index
+ * @returns {string}
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.strand = function(index) {
+  return Array.isArray(this._strand) ? this._strand[index] : this._strand;
+};
+
+/**
+ * @param {string} column
+ * @param {number} index
+ * @returns {*}
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.metadata = function(column, index) {
+  if (!this._metadata || !this._metadata[column]) { return null; }
+  return this._metadata[column][index];
+};
+
+/**
+ * @param {number} index
+ * @returns {Object.&lt;string, *>}
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.rowMetadata = function(index) {
+  var result = {};
+  for (var column in this._metadata) {
+    if (!this._metadata.hasOwnProperty(column)) { continue; }
+    result[column] = this._metadata[column][index];
+  }
+
+  return result;
+};
+
+/**
+ * @returns {string}
+ */
+epiviz.datatypes.GenomicRangeArray.prototype.toString = function() {
+  var c, s, e;
+  if (this.boundaries()) {
+    c = this.boundaries().seqName();
+    s = this.boundaries().start();
+    e = this.boundaries().end();
+  } else {
+    c = s = e = '*';
+  }
+  var header = sprintf('%25s', this.measurement().name().substr(0, 22)) + sprintf(' [%6s%10s%10s]', c, s, e);
+  var id = sprintf('%10s:', 'id');
+  var idx = sprintf('%10s:', 'idx');
+  var chr = sprintf('%10s:', 'chr');
+  var start = sprintf('%10s:', 'start');
+  var end = sprintf('%10s:', 'end');
+
+  if (this.globalStartIndex() != undefined) {
+    for (var globalIndex = this.globalStartIndex(); globalIndex &lt; this.globalStartIndex() + this.size(); ++globalIndex) {
+      /** @type {epiviz.datatypes.GenomicData.RowItem} */
+      var row = this.getByGlobalIndex(globalIndex);
+      id += sprintf('%10s', row.id());
+      idx += sprintf('%10s', globalIndex);
+      chr += sprintf('%10s', row.seqName());
+      start += sprintf('%10s', row.start());
+      end += sprintf('%10s', row.end());
+    }
+  }
+
+  return [header, id, idx, chr, start, end].join('\n');
+};
+
+goog.provide('epiviz.datatypes.GenomicRangeArray.RowItemWrapper');
+
+/**
+ * @param {epiviz.datatypes.GenomicRangeArray} parent
+ * @param {number} index
+ *
+ * @constructor
+ * @implements {epiviz.datatypes.GenomicData.RowItem}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper = function(parent, index) {
+  /**
+   * @type {number}
+   * @private
+   */
+  this._index = index;
+
+  /**
+   * @type {epiviz.datatypes.GenomicRangeArray}
+   * @private
+   */
+  this._parent = parent;
+};
+
+/**
+ * @returns {epiviz.datatypes.GenomicRangeArray}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper.prototype.parent = function() {
+  return this._parent;
+};
+
+/**
+ * @returns {string}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper.prototype.id = function() {
+  return this._parent.id(this._index);
+};
+
+/**
+ * @returns {string}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper.prototype.seqName = function() {
+  return this._parent.boundaries() ? this._parent.boundaries().seqName() : undefined;
+};
+
+/**
+ * @returns {number}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper.prototype.start = function() {
+  return this._parent.start(this._index);
+};
+
+/**
+ * @returns {number}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper.prototype.end = function() {
+  return this._parent.end(this._index);
+};
+
+/**
+ * @returns {number}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper.prototype.index = function() {
+  return this._index;
+};
+
+/**
+ * @returns {number}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper.prototype.globalIndex = function() {
+  return this._index + this._parent.globalStartIndex();
+};
+
+/**
+ * @param {epiviz.datatypes.GenomicData.RowItem} other
+ * @returns {boolean}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper.prototype.equals = function(other) {
+  if (!other) { return false; }
+  if (this == other) { return true; }
+
+  return (other.seqName() == this.seqName() &amp;&amp;
+    other.start() == this.start() &amp;&amp;
+    other.end() == this.end());
+};
+
+/**
+ * @returns {string}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper.prototype.strand = function() {
+  return this._parent.strand(this._index);
+};
+
+/**
+ * @param {string} column
+ * @returns {*}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper.prototype.metadata = function(column) {
+  return this._parent.metadata(column, this._index);
+};
+
+/**
+ * @returns {Object.&lt;string, *>}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper.prototype.rowMetadata = function() {
+  return this._parent.rowMetadata(this._index);
+};
+
+/**
+ * @param {epiviz.datatypes.GenomicData.RowItem} other
+ * @returns {boolean}
+ */
+epiviz.datatypes.GenomicRangeArray.RowItemWrapper.prototype.overlapsWith = function(other) {
+  if (!other) { return false; }
+  if (this == other) { return true; }
+  if (this.seqName() != other.seqName()) { return false; }
+  return (this.start() &lt; other.end() &amp;&amp; this.end() > other.start());
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="epiviz.Config.html">epiviz.Config</a></li><li><a href="epiviz.data.Cache.html">epiviz.data.Cache</a></li><li><a href="epiviz.data.DataManager.html">epiviz.data.DataManager</a></li><li><a href="epiviz.data.DataProvider.html">epiviz.data.DataProvider</a></li><li><a href="epiviz.data.DataProviderFactory.html">epiviz.data.DataProviderFactory</a></li><li><a href="epiviz.data.EmptyResponseDataProvider.html">epiviz.data.EmptyResponseDataProvider</a></li><li><a href="epiviz.data.EpivizApiDataProvider.html">epiviz.data.EpivizApiDataProvider</a></li><li><a href="epiviz.data.EpivizApiDataProvider.Request.html">epiviz.data.EpivizApiDataProvider.Request</a></li><li><a href="epiviz.data.EpivizApiDataProvider.Response.html">epiviz.data.EpivizApiDataProvider.Response</a></li><li><a href="epiviz.data.MetagenomicsDataProvider.html">epiviz.data.MetagenomicsDataProvider</a></li><li><a href="epiviz.data.MockDataProvider.html">epiviz.data.MockDataProvider</a></li><li><a href="epiviz.data.Request.html">epiviz.data.Request</a></li><li><a href="epiviz.data.RequestStack.html">epiviz.data.RequestStack</a></li><li><a href="epiviz.data.Response.html">epiviz.data.Response</a></li><li><a href="epiviz.data.Response.fromRawObject.html">epiviz.data.Response.fromRawObject</a></li><li><a href="epiviz.data.WebServerDataProvider.html">epiviz.data.WebServerDataProvider</a></li><li><a href="epiviz.data.WebsocketDataProvider.html">epiviz.data.WebsocketDataProvider</a></li><li><a href="epiviz.datatypes.deprecated.GenomicRanges.html">epiviz.datatypes.deprecated.GenomicRanges</a></li><li><a href="epiviz.datatypes.deprecated.GenomicRanges.Hits.html">epiviz.datatypes.deprecated.GenomicRanges.Hits</a></li><li><a href="epiviz.datatypes.deprecated.GenomicRanges.Row.html">epiviz.datatypes.deprecated.GenomicRanges.Row</a></li><li><a href="epiviz.datatypes.deprecated.GenomicRanges.Subset.html">epiviz.datatypes.deprecated.GenomicRanges.Subset</a></li><li><a href="epiviz.datatypes.deprecated.SeqInfo.html">epiviz.datatypes.deprecated.SeqInfo</a></li><li><a href="epiviz.datatypes.FeatureValueArray.html">epiviz.datatypes.FeatureValueArray</a></li><li><a href="epiviz.datatypes.GenomicArray.html">epiviz.datatypes.GenomicArray</a></li><li><a href="epiviz.datatypes.GenomicData.ValueItem.html">epiviz.datatypes.GenomicData.ValueItem</a></li><li><a href="epiviz.datatypes.GenomicRange.html">epiviz.datatypes.GenomicRange</a></li><li><a href="epiviz.datatypes.GenomicRangeArray.html">epiviz.datatypes.GenomicRangeArray</a></li><li><a href="epiviz.datatypes.GenomicRangeArray.RowItemWrapper.html">epiviz.datatypes.GenomicRangeArray.RowItemWrapper</a></li><li><a href="epiviz.datatypes.ItemFilteredGenomicData.html">epiviz.datatypes.ItemFilteredGenomicData</a></li><li><a href="epiviz.datatypes.MapGenomicData.html">epiviz.datatypes.MapGenomicData</a></li><li><a href="epiviz.datatypes.MeasurementAggregatedGenomicData.html">epiviz.datatypes.MeasurementAggregatedGenomicData</a></li><li><a href="epiviz.datatypes.MeasurementGenomicDataArrayWrapper.html">epiviz.datatypes.MeasurementGenomicDataArrayWrapper</a></li><li><a href="epiviz.datatypes.MeasurementGenomicDataWrapper.html">epiviz.datatypes.MeasurementGenomicDataWrapper</a></li><li><a href="epiviz.datatypes.MeasurementOrderedGenomicData.html">epiviz.datatypes.MeasurementOrderedGenomicData</a></li><li><a href="epiviz.datatypes.PartialSummarizedExperiment.html">epiviz.datatypes.PartialSummarizedExperiment</a></li><li><a href="epiviz.datatypes.RowItemImpl.html">epiviz.datatypes.RowItemImpl</a></li><li><a href="epiviz.datatypes.SeqInfo.html">epiviz.datatypes.SeqInfo</a></li><li><a href="epiviz.deferred.Deferred.html">epiviz.deferred.Deferred</a></li><li><a href="epiviz.deferred.Promise.html">epiviz.deferred.Promise</a></li><li><a href="epiviz.EpiViz.html">epiviz.EpiViz</a></li><li><a href="epiviz.events.Event.html">epiviz.events.Event</a></li><li><a href="epiviz.events.EventListener.html">epiviz.events.EventListener</a></li><li><a href="epiviz.events.EventResult.html">epiviz.events.EventResult</a></li><li><a href="epiviz.localstorage.LocalStorageManager.html">epiviz.localstorage.LocalStorageManager</a></li><li><a href="epiviz.measurements.Measurement.html">epiviz.measurements.Measurement</a></li><li><a href="epiviz.measurements.MeasurementHashtable.html">epiviz.measurements.MeasurementHashtable</a></li><li><a href="epiviz.measurements.MeasurementHashtable.Iterator.html">epiviz.measurements.MeasurementHashtable.Iterator</a></li><li><a href="epiviz.measurements.MeasurementSet.html">epiviz.measurements.MeasurementSet</a></li><li><a href="epiviz.measurements.MeasurementSet.Iterator.html">epiviz.measurements.MeasurementSet.Iterator</a></li><li><a href="epiviz.measurements.MeasurementsManager.html">epiviz.measurements.MeasurementsManager</a></li><li><a href="epiviz.plugins.charts.BlocksTrack.html">epiviz.plugins.charts.BlocksTrack</a></li><li><a href="epiviz.plugins.charts.BlocksTrackType.html">epiviz.plugins.charts.BlocksTrackType</a></li><li><a href="epiviz.plugins.charts.GenesTrack.html">epiviz.plugins.charts.GenesTrack</a></li><li><a href="epiviz.plugins.charts.GenesTrackType.html">epiviz.plugins.charts.GenesTrackType</a></li><li><a href="epiviz.plugins.charts.HeatmapPlot.html">epiviz.plugins.charts.HeatmapPlot</a></li><li><a href="epiviz.plugins.charts.HeatmapPlotType.html">epiviz.plugins.charts.HeatmapPlotType</a></li><li><a href="epiviz.plugins.charts.LinePlot.html">epiviz.plugins.charts.LinePlot</a></li><li><a href="epiviz.plugins.charts.LinePlotType.html">epiviz.plugins.charts.LinePlotType</a></li><li><a href="epiviz.plugins.charts.LineTrack.html">epiviz.plugins.charts.LineTrack</a></li><li><a href="epiviz.plugins.charts.LineTrackCustom.html">epiviz.plugins.charts.LineTrackCustom</a></li><li><a href="epiviz.plugins.charts.LineTrackType.html">epiviz.plugins.charts.LineTrackType</a></li><li><a href="epiviz.plugins.charts.LineTrackTypeCustom.html">epiviz.plugins.charts.LineTrackTypeCustom</a></li><li><a href="epiviz.plugins.charts.ScatterPlot.html">epiviz.plugins.charts.ScatterPlot</a></li><li><a href="epiviz.plugins.charts.ScatterPlotType.html">epiviz.plugins.charts.ScatterPlotType</a></li><li><a href="epiviz.plugins.charts.StackedLinePlot.html">epiviz.plugins.charts.StackedLinePlot</a></li><li><a href="epiviz.plugins.charts.StackedLinePlotType.html">epiviz.plugins.charts.StackedLinePlotType</a></li><li><a href="epiviz.plugins.charts.StackedLineTrack.html">epiviz.plugins.charts.StackedLineTrack</a></li><li><a href="epiviz.plugins.charts.StackedLineTrackType.html">epiviz.plugins.charts.StackedLineTrackType</a></li><li><a href="epiviz.ui.charts.Chart.html">epiviz.ui.charts.Chart</a></li><li><a href="epiviz.ui.charts.ChartFactory.html">epiviz.ui.charts.ChartFactory</a></li><li><a href="epiviz.ui.charts.ChartManager.html">epiviz.ui.charts.ChartManager</a></li><li><a href="epiviz.ui.charts.ChartObject.html">epiviz.ui.charts.ChartObject</a></li><li><a href="epiviz.ui.charts.ChartType.html">epiviz.ui.charts.ChartType</a></li><li><a href="epiviz.ui.charts.ColorPalette.html">epiviz.ui.charts.ColorPalette</a></li><li><a href="epiviz.ui.charts.CustomSetting.html">epiviz.ui.charts.CustomSetting</a></li><li><a href="epiviz.ui.charts.DataStructureVisualization.html">epiviz.ui.charts.DataStructureVisualization</a></li><li><a href="epiviz.ui.charts.DataStructureVisualizationType.html">epiviz.ui.charts.DataStructureVisualizationType</a></li><li><a href="epiviz.ui.charts.decoration.ChartColorByMeasurementsCodeButton.html">epiviz.ui.charts.decoration.ChartColorByMeasurementsCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartColorByRowCodeButton.html">epiviz.ui.charts.decoration.ChartColorByRowCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartColorsButton.html">epiviz.ui.charts.decoration.ChartColorsButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartFilterCodeButton.html">epiviz.ui.charts.decoration.ChartFilterCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartGroupByMeasurementsCodeButton.html">epiviz.ui.charts.decoration.ChartGroupByMeasurementsCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartLoaderAnimation.html">epiviz.ui.charts.decoration.ChartLoaderAnimation</a></li><li><a href="epiviz.ui.charts.decoration.ChartOptionButton.html">epiviz.ui.charts.decoration.ChartOptionButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartOrderByMeasurementsCodeButton.html">epiviz.ui.charts.decoration.ChartOrderByMeasurementsCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartResize.html">epiviz.ui.charts.decoration.ChartResize</a></li><li><a href="epiviz.ui.charts.decoration.ChartTooltip.html">epiviz.ui.charts.decoration.ChartTooltip</a></li><li><a href="epiviz.ui.charts.decoration.CodeButton.html">epiviz.ui.charts.decoration.CodeButton</a></li><li><a href="epiviz.ui.charts.decoration.CustomSettingsButton.html">epiviz.ui.charts.decoration.CustomSettingsButton</a></li><li><a href="epiviz.ui.charts.decoration.EditCodeButton.html">epiviz.ui.charts.decoration.EditCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.HierarchyFilterCodeButton.html">epiviz.ui.charts.decoration.HierarchyFilterCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.MarkerCodeButton.html">epiviz.ui.charts.decoration.MarkerCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.RemoveChartButton.html">epiviz.ui.charts.decoration.RemoveChartButton</a></li><li><a href="epiviz.ui.charts.decoration.SaveChartButton.html">epiviz.ui.charts.decoration.SaveChartButton</a></li><li><a href="epiviz.ui.charts.decoration.ToggleTooltipButton.html">epiviz.ui.charts.decoration.ToggleTooltipButton</a></li><li><a href="epiviz.ui.charts.decoration.VisualizationDecoration.html">epiviz.ui.charts.decoration.VisualizationDecoration</a></li><li><a href="epiviz.ui.charts.Margins.html">epiviz.ui.charts.Margins</a></li><li><a href="epiviz.ui.charts.markers.MeasurementAggregator.html">epiviz.ui.charts.markers.MeasurementAggregator</a></li><li><a href="epiviz.ui.charts.markers.VisualizationMarker.html">epiviz.ui.charts.markers.VisualizationMarker</a></li><li><a href="epiviz.ui.charts.Plot.html">epiviz.ui.charts.Plot</a></li><li><a href="epiviz.ui.charts.PlotType.html">epiviz.ui.charts.PlotType</a></li><li><a href="epiviz.ui.charts.Track.html">epiviz.ui.charts.Track</a></li><li><a href="epiviz.ui.charts.TrackType.html">epiviz.ui.charts.TrackType</a></li><li><a href="epiviz.ui.charts.transform.clustering.AgglomerativeClustering.html">epiviz.ui.charts.transform.clustering.AgglomerativeClustering</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusteringAlgorithmFactory.html">epiviz.ui.charts.transform.clustering.ClusteringAlgorithmFactory</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusterLeaf.html">epiviz.ui.charts.transform.clustering.ClusterLeaf</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusterSubtree.html">epiviz.ui.charts.transform.clustering.ClusterSubtree</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusterTree.html">epiviz.ui.charts.transform.clustering.ClusterTree</a></li><li><a href="epiviz.ui.charts.transform.clustering.CompleteLinkage.html">epiviz.ui.charts.transform.clustering.CompleteLinkage</a></li><li><a href="epiviz.ui.charts.transform.clustering.EuclideanMetric.html">epiviz.ui.charts.transform.clustering.EuclideanMetric</a></li><li><a href="epiviz.ui.charts.transform.clustering.NoneClustering.html">epiviz.ui.charts.transform.clustering.NoneClustering</a></li><li><a href="epiviz.ui.charts.tree.decoration.TogglePropagateSelectionButton.html">epiviz.ui.charts.tree.decoration.TogglePropagateSelectionButton</a></li><li><a href="epiviz.ui.charts.tree.HierarchyVisualization.html">epiviz.ui.charts.tree.HierarchyVisualization</a></li><li><a href="epiviz.ui.charts.tree.HierarchyVisualizationType.html">epiviz.ui.charts.tree.HierarchyVisualizationType</a></li><li><a href="epiviz.ui.charts.tree.Icicle.html">epiviz.ui.charts.tree.Icicle</a></li><li><a href="epiviz.ui.charts.tree.IcicleType.html">epiviz.ui.charts.tree.IcicleType</a></li><li><a href="epiviz.ui.charts.tree.Node.html">epiviz.ui.charts.tree.Node</a></li><li><a href="epiviz.ui.charts.tree.Sunburst.html">epiviz.ui.charts.tree.Sunburst</a></li><li><a href="epiviz.ui.charts.tree.UiNode.html">epiviz.ui.charts.tree.UiNode</a></li><li><a href="epiviz.ui.charts.VisEventArgs.html">epiviz.ui.charts.VisEventArgs</a></li><li><a href="epiviz.ui.charts.VisObject.html">epiviz.ui.charts.VisObject</a></li><li><a href="epiviz.ui.charts.Visualization.html">epiviz.ui.charts.Visualization</a></li><li><a href="epiviz.ui.charts.VisualizationProperties.html">epiviz.ui.charts.VisualizationProperties</a></li><li><a href="epiviz.ui.charts.VisualizationType.html">epiviz.ui.charts.VisualizationType</a></li><li><a href="epiviz.ui.ControlManager.html">epiviz.ui.ControlManager</a></li><li><a href="epiviz.ui.controls.CodeControl.html">epiviz.ui.controls.CodeControl</a></li><li><a href="epiviz.ui.controls.CodeDialog.html">epiviz.ui.controls.CodeDialog</a></li><li><a href="epiviz.ui.controls.ColorPickerDialog.html">epiviz.ui.controls.ColorPickerDialog</a></li><li><a href="epiviz.ui.controls.ComputedMeasurementsDialog.html">epiviz.ui.controls.ComputedMeasurementsDialog</a></li><li><a href="epiviz.ui.controls.Control.html">epiviz.ui.controls.Control</a></li><li><a href="epiviz.ui.controls.CustomSettingsDialog.html">epiviz.ui.controls.CustomSettingsDialog</a></li><li><a href="epiviz.ui.controls.DatasourceGroupWizardStep.html">epiviz.ui.controls.DatasourceGroupWizardStep</a></li><li><a href="epiviz.ui.controls.DataTable.html">epiviz.ui.controls.DataTable</a></li><li><a href="epiviz.ui.controls.DataTable.Column.html">epiviz.ui.controls.DataTable.Column</a></li><li><a href="epiviz.ui.controls.Dialog.html">epiviz.ui.controls.Dialog</a></li><li><a href="epiviz.ui.controls.EditCodeControl.html">epiviz.ui.controls.EditCodeControl</a></li><li><a href="epiviz.ui.controls.MarkerCodeControl.html">epiviz.ui.controls.MarkerCodeControl</a></li><li><a href="epiviz.ui.controls.MeaurementsWizardStep.html">epiviz.ui.controls.MeaurementsWizardStep</a></li><li><a href="epiviz.ui.controls.MessageDialog.html">epiviz.ui.controls.MessageDialog</a></li><li><a href="epiviz.ui.controls.SaveSvgAsImageDialog.html">epiviz.ui.controls.SaveSvgAsImageDialog</a></li><li><a href="epiviz.ui.controls.VisConfigSelection.html">epiviz.ui.controls.VisConfigSelection</a></li><li><a href="epiviz.ui.controls.Wizard.html">epiviz.ui.controls.Wizard</a></li><li><a href="epiviz.ui.LocationManager.html">epiviz.ui.LocationManager</a></li><li><a href="epiviz.ui.WebArgsManager.html">epiviz.ui.WebArgsManager</a></li><li><a href="epiviz.utils.IterableArray.html">epiviz.utils.IterableArray</a></li><li><a href="epiviz.workspaces.UserManager.html">epiviz.workspaces.UserManager</a></li><li><a href="epiviz.workspaces.Workspace.html">epiviz.workspaces.Workspace</a></li><li><a href="epiviz.workspaces.WorkspaceManager.html">epiviz.workspaces.WorkspaceManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="epiviz.datatypes.deprecated.GenomicData.html">epiviz.datatypes.deprecated.GenomicData</a></li><li><a href="epiviz.datatypes.GenomicData.html">epiviz.datatypes.GenomicData</a></li><li><a href="epiviz.datatypes.GenomicData.RowItem.html">epiviz.datatypes.GenomicData.RowItem</a></li><li><a href="epiviz.datatypes.MeasurementGenomicData.html">epiviz.datatypes.MeasurementGenomicData</a></li><li><a href="epiviz.datatypes.Range.html">epiviz.datatypes.Range</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusteringLinkage.html">epiviz.ui.charts.transform.clustering.ClusteringLinkage</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusteringMetric.html">epiviz.ui.charts.transform.clustering.ClusteringMetric</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusterNode.html">epiviz.ui.charts.transform.clustering.ClusterNode</a></li><li><a href="epiviz.ui.charts.transform.clustering.HierarchicalClusteringAlgorithm.html">epiviz.ui.charts.transform.clustering.HierarchicalClusteringAlgorithm</a></li><li><a href="epiviz.ui.controls.Wizard.Step.html">epiviz.ui.controls.Wizard.Step</a></li><li><a href="epiviz.utils.Iterable.html">epiviz.utils.Iterable</a></li><li><a href="epiviz.utils.Iterator.html">epiviz.utils.Iterator</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed May 11 2016 13:52:40 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

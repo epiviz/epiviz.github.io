@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Epiviz</title>
+    <link>http://epiviz.github.io/categories/papers/index.xml</link>
+    <description>Recent content on Epiviz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>2016 ~ epiviz</copyright>
+    <atom:link href="/categories/papers/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>Epiviz published in Nature Methods</title>
+            <link>http://epiviz.github.io/post/2014-08-03-epiviz-paper-published/</link>
+            <pubDate>Sun, 03 Aug 2014 19:46:32 -0500</pubDate>
+            
+            <guid>http://epiviz.github.io/post/2014-08-03-epiviz-paper-published/</guid>
+            <description>&lt;p&gt;Our first paper describing the {{ site.epiviz }} system was published today in
+&lt;a href=&#34;http://www.nature.com/nmeth/journal/v11/n9/full/nmeth.3038.html&#34;&gt;Nature Methods&lt;/a&gt;.
+From the abstract:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Visualization is an integral aspect of genomics data
+analysis. Algorithmic-statistical analysis and interactive
+visualization are most effective when used iteratively.
+Epiviz (&lt;a href=&#34;http://epiviz.cbcb.umd.edu/&#34;&gt;http://epiviz.cbcb.umd.edu/&lt;/a&gt;), a web-based genome browser,
+and the Epivizr Bioconductor package allow interactive, extensible
+and reproducible visualization within a state-of-the-art
+data-analysis platform.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And the editor&amp;rsquo;s blurb:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Integration of genome visualization with
+Bioconductor-based analysis tools allows rapid
+and interactive analysis of genomes, transcriptomes and epigenomes.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>

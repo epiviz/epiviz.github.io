@@ -1,0 +1,1844 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Epiviz</title>
+    <link>http://epiviz.github.io/tutorials/index.xml</link>
+    <description>Recent content on Epiviz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Nov 2016 14:12:05 -0500</lastBuildDate>
+    <atom:link href="http://epiviz.github.io/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Tutorials</title>
+      <link>http://epiviz.github.io/tutorials/tutorials/</link>
+      <pubDate>Tue, 22 Nov 2016 14:12:05 -0500</pubDate>
+      
+      <guid>http://epiviz.github.io/tutorials/tutorials/</guid>
+      <description>
+
+&lt;h3 id=&#34;tutorials&#34;&gt;Tutorials&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Basic
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;charts/&#34;&gt;Add charts and plots on epiviz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;epivizr/&#34;&gt;Epivizr&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Intermediate
+
+&lt;ul&gt;
+&lt;li&gt;[Load and Visualize data using epiviz R package]()&lt;/li&gt;
+&lt;li&gt;[Modify Visualization settings and colors using epiviz R package]()&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;computed-measurements/&#34;&gt;Create new measurements from existing measurements&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Advanced
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;plugins/&#34;&gt;Create new Plugins for Epiviz - External Scripts, Charts and Data Providers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;websocket/&#34;&gt;Websocket Tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>450k Illumina Human Methylation data for multiple solid tumors</title>
+      <link>http://epiviz.github.io/tutorials/tutorials/timp2014/</link>
+      <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
+      
+      <guid>http://epiviz.github.io/tutorials/tutorials/timp2014/</guid>
+      <description>
+
+&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#background&#34;&gt;Background&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#tissuedata&#34;&gt;Tissue data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#multiblocks&#34;&gt;Blocks in multiple tumors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#progression&#34;&gt;Blocks in tumor progression&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;h2 id=&#34;how-to-use-this-data-in-epiviz-howto&#34;&gt;&lt;a href=&#34;#howto&#34;&gt;How to use this data in epiviz&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;a name=&#34;background&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This page contains links to epiviz workspaces containing data from
+the following paper:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;W. Timp, H. Corrada Bravo, O.G. McDonald, M. Goggins, C.Umbricht
+M. Zieger, A.P. Feinberg, R.A. Irizarry (2014). &lt;em&gt;Genome Medicine&lt;/em&gt;,
+&lt;em&gt;in press&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a name=&#34;tissuedata&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;tissue-data&#34;&gt;Tissue data&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The following workspaces contain probe-level methylation values,
+collapsed methylation difference between cancer and normal,
+and cancer blocks in each tissue type.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/breast_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;a href=&#34;http://epiviz.cbcb.umd.edu/?settings=default&amp;ws=WZCPGTd7Duv&amp;seqName=chr11&amp;start=130099272&amp;end=133637378&amp;&#34;
+target=&#34;_blank&#34;&gt;Breast&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/colon_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;a
+href=&#34;http://epiviz.cbcb.umd.edu/?ws=Gx3GEFT4iti&amp;seqName=chr11&amp;start=3947953&amp;end=7164991&amp;settings=default&amp;&#34;
+target=&#34;_blank&#34;&gt;Colon&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/lung_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;a
+href=&#34;http://epiviz.cbcb.umd.edu/?ws=MCnnZYS0czp&amp;seqName=chr11&amp;start=3947953&amp;end=7164991&amp;settings=default&amp;&#34;
+target=&#34;__blank&#34;&gt;Lung&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/pancreas_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;a
+href=&#34;http://epiviz.cbcb.umd.edu/?settings=default&amp;ws=KHUT287HDLv&amp;seqName=chr10&amp;start=53056841&amp;end=54307111&amp;&#34;
+target=&#34;_blank&#34;&gt;Pancreas&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/thyroid_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;a
+href=&#34;http://epiviz.cbcb.umd.edu/?ws=iOxsV4P5CPv&amp;seqName=chr12&amp;start=33889924&amp;end=35322471&amp;settings=default&amp;&#34;
+target=&#34;_blank&#34;&gt;Thyroid&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;multiblocks&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;blocks-in-multiple-tumors&#34;&gt;Blocks in multiple tumors&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This workspace contains collapsed methylation difference between
+cancer and normal along with hypo-methylation blocks for all tumor types.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/multiblocks_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;a
+href=&#34;http://epiviz.cbcb.umd.edu/?settings=default&amp;ws=Ago25FdPLVb&amp;seqName=chr2&amp;start=78560000&amp;end=81440000&amp;&#34;
+target=&#34;_blank&#34;&gt;Multiple tumor blocks&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;progression&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;blocks-in-tumor-progression&#34;&gt;Blocks in tumor progression&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;These workspaces include collapsed methylation difference and hypo-methylation blocks across multiple
+stages of tumor progression.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/colonprog_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;a
+href=&#34;http://epiviz.cbcb.umd.edu/?settings=default&amp;ws=0TzurAoRxi&amp;seqName=chr5&amp;start=82000000&amp;end=85000000&amp;&#34;
+target=&#34;_blank&#34;&gt;Colon Progression&lt;/a&gt;&lt;/p&gt;
+
+&lt;!--
+&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/thyroidprog_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;  
+&lt;a
+href=&#34;http://epiviz.cbcb.umd.edu/?settings=default&amp;ws=g3PRJMCD1Ei&amp;seqName=chr12&amp;start=125722840&amp;end=127681259&amp;&#34;
+target=&#34;_blank&#34;&gt;Thyroid Progression&lt;/a&gt;
+--&gt;
+
+&lt;p&gt;&lt;a name=&#34;howto&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;how-to-use-this-data-in-epiviz&#34;&gt;How to use this data in epiviz&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Coming soon&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Chart Tutorial</title>
+      <link>http://epiviz.github.io/tutorials/tutorials/charts/</link>
+      <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
+      
+      <guid>http://epiviz.github.io/tutorials/tutorials/charts/</guid>
+      <description>
+
+&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#add-chart&#34;&gt;Adding a chart to the workspace&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#manipulating-charts&#34;&gt;Manipulating charts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;More about charts&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;plugins.html#new-chart-plugin&#34;&gt;Creating a new chart plugin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a name=&#34;add-chart&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;adding-a-chart-to-the-workspace&#34;&gt;Adding a chart to the workspace&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Epiviz has two types of charts: &lt;em&gt;Plots&lt;/em&gt;, that display data by feature, and &lt;em&gt;Tracks&lt;/em&gt;, that display data by location.
+For each of the two, it has a separate menu. Whether you want to add a &lt;em&gt;Plot&lt;/em&gt; or a &lt;em&gt;Track&lt;/em&gt;, open the corresponding menu,
+and select the chart you want to add. These menus expand dynamically, as the user adds more chart plugins.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_add_chart_menu.png&#34; alt=&#34;Plots Menu&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Select the appropriate data source group from the list. Only one row can be selected. Click &lt;em&gt;Next&lt;/em&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Some charts require measurements to belong to the same &lt;em&gt;data source group&lt;/em&gt;, like &lt;em&gt;Scatter Plots&lt;/em&gt;. Measurements with
+  the same &lt;em&gt;data source group&lt;/em&gt; have the same genomic ranges associated to each item in the data, and what differentiates
+  them are their values. For example, all measurements that measure the expression of genes for different tissue types
+  belong to the same &lt;em&gt;data source group&lt;/em&gt;, &lt;code&gt;affymetrix_probeset&lt;/code&gt;. The same applies for the &lt;em&gt;Gene Expression Barcode&lt;/em&gt; samples, which all belong
+  to the &lt;em&gt;data source group&lt;/em&gt; called &lt;code&gt;gexp_barcode&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_add_chart_dialog_dsgroup.png&#34; alt=&#34;Select Data Source Group&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class=&#34;optional&#34;&gt;optional&lt;/span&gt; Filter the displayed measurements to a subset you’re interested in. In the
+search boxes you can use regular expressions. For example applying the filter &lt;code&gt;(colon (normal|tumor))&lt;/code&gt; to the name of
+the measurements in the heatmap measurements dialog will filter to: &lt;code&gt;colon normal&lt;/code&gt;, &lt;code&gt;colon tumor&lt;/code&gt;, &lt;code&gt;sigmoid_colon normal&lt;/code&gt;,
+&lt;code&gt;sigmoid_colon tumor&lt;/code&gt;, &lt;code&gt;sigmoid_colon_mucosa tumor&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Select the measurements you want to use for the newly created chart. You can use the &lt;code&gt;Shift&lt;/code&gt; or &lt;code&gt;Ctrl&lt;/code&gt; (&lt;strong&gt;Mac&lt;/strong&gt;:
+&lt;code&gt;Command&lt;/code&gt;) keys to select multiple measurements. Click &lt;em&gt;Finish&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Some charts require a minimum number of measurements selected. For example, the &lt;em&gt;Scatter Plot&lt;/em&gt; requires two. The order
+  in which you select the measurements is also important! For example, the &lt;em&gt;Scatter Plot&lt;/em&gt; will display the first selected
+  measurement on the &lt;code&gt;X&lt;/code&gt; axis and the second on &lt;code&gt;Y&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_add_chart_dialog_measurements.png&#34; alt=&#34;Select Measurements&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The new chart is displayed on the screen.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_add_chart_heatmap.png&#34; alt=&#34;A New Heatmap Plot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;manipulating-charts&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;manipulating-charts&#34;&gt;Manipulating charts&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The charts in {{ site.epiviz }} are all resizable, and all feature a number of options, some specific to the chart, some general.
+In this section we go over a few of them.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Toggle Tooltip.&lt;/strong&gt; This button allows the user to toggle between showing and hiding tooltips on chart object hover.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_tooltip_button.png&#34; alt=&#34;Toggle Tooltip&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_tooltip.png&#34; alt=&#34;Tooltip&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Colors.&lt;/strong&gt; In {{ site.epiviz }}, colors in all charts can be customized.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Take, for example, a line track with two measurements: &lt;code&gt;Methylation Colon Cancer&lt;/code&gt;, and &lt;code&gt;Methylation Colon Normal&lt;/code&gt;.
+Initially, the first measurement is colored blue, and the second, red.&lt;br/&gt;&lt;br /&gt;
+&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_line_met_cancer_normal_red_blue.png&#34; alt=&#34;Line Track&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;In this case, the default chosen colors are counter-intuitive, so we choose to change &lt;code&gt;Methylation Colon Cancer&lt;/code&gt; to
+&lt;code&gt;red&lt;/code&gt;, and &lt;code&gt;Methylation Colon Normal&lt;/code&gt; to &lt;code&gt;green&lt;/code&gt;. Open the &lt;em&gt;Colors&lt;/em&gt; dialog, and select the first color, assigned to
+&lt;code&gt;Methylation Colon Cancer&lt;/code&gt;; pick a shade of red for it. Then select the second color, assigned to the second
+measurement; pick green. Click &lt;em&gt;Ok&lt;/em&gt;.&lt;br/&gt;
+&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_color_picker.png&#34; alt=&#34;Color Picker Dialog&#34; /&gt;
+&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_line_met_cancer_normal_green_red.png&#34; alt=&#34;Line Track&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Save Chart.&lt;/strong&gt; All charts in {{ site.epiviz }} are represented as &lt;a href=&#34;http://en.wikipedia.org/wiki/Scalable_Vector_Graphics&#34;&gt;SVG&lt;/a&gt;,
+and can be saved to the local computer in various file formats: &lt;em&gt;PDF&lt;/em&gt;, &lt;em&gt;PS&lt;/em&gt;, &lt;em&gt;PNG&lt;/em&gt;, &lt;em&gt;SVG&lt;/em&gt;, and &lt;em&gt;EPS&lt;/em&gt;. Click the &lt;em&gt;Save&lt;/em&gt;
+button; in the dialog, choose the desired file format, and click &lt;em&gt;Ok&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_save_chart_button.png&#34; alt=&#34;Save Chart Button&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_save_chart_dialog.png&#34; alt=&#34;Save Chart Dialog&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Custom Settings.&lt;/strong&gt; Charts in {{ site.epiviz }} also have settings specific to the visualization type, allowing to customize
+how many objects are displayed at a time, their size, axis boundaries, margins. Each chart has a &lt;em&gt;Custom settings&lt;/em&gt;
+button that opens the options for that particular chart type.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Computed Measurements</title>
+      <link>http://epiviz.github.io/tutorials/tutorials/computed-measurements/</link>
+      <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
+      
+      <guid>http://epiviz.github.io/tutorials/tutorials/computed-measurements/</guid>
+      <description>
+
+&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#create-computed-measurements&#34;&gt;How to create computed measurements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#expression-language-reference&#34;&gt;Expression language reference&lt;/a&gt;
+&amp;mdash;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&#34;create-computed-measurements&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;how-to-create-computed-measurements&#34;&gt;How to create computed measurements&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=k5jQbrYsbPb&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Epiviz&lt;/strong&gt; exposes a simple expression language that allows users to define new measurements as combinations of existing
+ones. The expression language is implemented using &lt;em&gt;&lt;a href=&#34;http://silentmatt.com/javascript-expression-evaluator/&#34;&gt;a JavaScript expression evaluator&lt;/a&gt;&lt;/em&gt;.
+This feature can be extremely handy in making simple tweaks in data analysis on the fly, without having to go back and
+forth to a programming environment.&lt;/p&gt;
+
+&lt;p&gt;In the following example we show how to create a couple of simple computed measurements, in order to display the popular
+&lt;em&gt;&lt;a href=&#34;http://bioinfo.cipf.es/babelomicstutorial/maplot&#34;&gt;MA Plot&lt;/a&gt;&lt;/em&gt; for &lt;em&gt;colon gene expression&lt;/em&gt; of &lt;em&gt;normal&lt;/em&gt; vs &lt;em&gt;cancer&lt;/em&gt; tissues.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Click the &lt;strong&gt;Computed Measurements&lt;/strong&gt; button in the Epiviz toolbar. In the &lt;strong&gt;Computed Measurements Dialog&lt;/strong&gt;, select the
+&lt;em&gt;data source group&lt;/em&gt; whose measurements will be used in creating the new one. Then click on &lt;strong&gt;Next&lt;/strong&gt; to go to the
+&lt;strong&gt;Expression tab&lt;/strong&gt;. For our example, we choose the &lt;code&gt;affymetrix_probeset&lt;/code&gt; data source group.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_comp_ms_dialog_dsgroup.png&#34; alt=&#34;Computed measurements data source group&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Fill in the expression, using either the &lt;code&gt;+&lt;/code&gt; buttons or just writing in the expression text box. Use the measurement
+identifier next to the measurement name to refer a particular measurement.  Here are some example valid expressions:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;{2} - {3}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;({6} + {7}) * 0.5&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;({0} + {1}) / 2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{1} + random(10) – 5&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sin({2})&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;log({1} - {2})&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sqrt({3})&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For our &lt;em&gt;MA Plot Example&lt;/em&gt;, we compute two measurements: &lt;code&gt;M (Colon Expression)&lt;/code&gt; (the difference between &lt;code&gt;Expression
+  Colon Cancer&lt;/code&gt; and &lt;code&gt;Expression Colon Normal&lt;/code&gt;) and &lt;code&gt;A (Colon Expression)&lt;/code&gt; (the average between the two):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_compms_dialog_m.png&#34; alt=&#34;M (Colon Expression)&#34; /&gt;
+ &lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_compms_dialog_a.png&#34; alt=&#34;A (Colon Expression)&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;For each computed measurement, fill in &lt;code&gt;Name&lt;/code&gt;, &lt;code&gt;Min&lt;/code&gt; ( &lt;em&gt;optional&lt;/em&gt; ) and &lt;code&gt;Max&lt;/code&gt;
+( &lt;em&gt;optional&lt;/em&gt; ), and then click &lt;strong&gt;Add&lt;/strong&gt;. When done, click &lt;strong&gt;Close&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Now add a chart using the newly computed measurement(s). In our example, we choose the &lt;strong&gt;Scatter Plot&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_compms_newscatter.png&#34; alt=&#34;New scatter plot&#34; /&gt;&lt;br/&gt;
+ &lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_compms_maplot.png&#34; alt=&#34;MA Plot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=k5jQbrYsbPb&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;expression-language-reference&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;expression-language-reference&#34;&gt;Expression language reference&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Description copied from &lt;b&gt;&lt;a href=&#34;http://silentmatt.com/javascript-expression-evaluator/&#34;&gt;JavaScript Expression Evaluator&lt;/a&gt;&lt;/b&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Expression Syntax&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The parser accepts a pretty basic grammar. Operators have the normal precidence - &lt;code&gt;f(x,y,z)&lt;/code&gt; (function calls), &lt;code&gt;^&lt;/code&gt;
+(exponentiation), &lt;code&gt;*&lt;/code&gt;, &lt;code&gt;/&lt;/code&gt;, and &lt;code&gt;%&lt;/code&gt; (multiplication, division, and remainder), and finally &lt;code&gt;+&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, and &lt;code&gt;||&lt;/code&gt; (addition,
+subtraction, and string concatenation) - and bind from left to right (yes, even exponentiation it&amp;rsquo;s simpler that way).&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s also a &lt;code&gt;,&lt;/code&gt; (comma) operator that concatenates values into an array. It&amp;rsquo;s mostly useful for passing arguments
+to functions, since it doesn&amp;rsquo;t always behave like you would think with regards to multi-dimensional arrays. If the left
+value is an array, it pushes the right value onto the end of the array, otherwise, it creates a new array &lt;code&gt;[left, right]&lt;/code&gt;.
+This makes it impossible to create an array with another array as it&amp;rsquo;s first element.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Function operators&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The parser has several built-in &lt;code&gt;functions&lt;/code&gt; that are actually operators. The only difference from an outside point of
+view, is that they cannot be called with multiple arguments and they are evaluated by the simplify method if their
+arguments are constant.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Function&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;sin(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Sine of x (x is in radians)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;cos(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Cosine of x (x is in radians)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;tan(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Tangent of x (x is&amp;hellip; well, you know)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;asin(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Arc sine of x (in radians)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;acos(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Arc cosine of x (in radians)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;atan(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Arc tangent of x (in radians)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;sqrt(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Square root of x. Result is NaN (Not a Number) if x is negative.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;log(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Natural logarithm of x (not base-10). It&amp;rsquo;s log instead of ln because that&amp;rsquo;s what JavaScript calls it.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;abs(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Absolute value (magnatude) of x&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ceil(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Ceiling of x - the smallest integer that&amp;rsquo;s &amp;gt;= x.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;floor(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Floor of x - the largest integer that&amp;rsquo;s &amp;lt;= x&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;round(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;X, rounded to the nearest integer, using &amp;ldquo;gradeschool rounding&amp;rdquo;.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;exp(x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;e^x (exponential/antilogarithm function with base e)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Pre-defined functions&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Besides the &amp;ldquo;operator&amp;rdquo; functions, there are several pre-defined functions.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Function&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;random(n)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Get a random number in the range [0, n). If n is zero, or not provided, it defaults to 1.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;fac(n)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;n! (factorial of n: &amp;ldquo;n * (n-1) * (n-2) * &amp;hellip; * 2 * 1″)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;min(a,b,...)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Get the smallest (&amp;ldquo;minimum&amp;rdquo;) number in the list&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;max(a,b,...)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Get the largest (&amp;ldquo;maximum&amp;rdquo;) number in the list&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;pyt(a, b)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Pythagorean function, i.e. the c in &amp;ldquo;c2 = a2 + b2&amp;rdquo;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;pow(x, y)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;x^y. This is exactly the same as &amp;ldquo;x^y&amp;rdquo;. It&amp;rsquo;s just provided since it&amp;rsquo;s in the Math object from JavaScript&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;atan2(y, x)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;arc tangent of x/y. i.e. the angle between (0, 0) and (x, y) in radians.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Epivizr</title>
+      <link>http://epiviz.github.io/tutorials/tutorials/epivizr/</link>
+      <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
+      
+      <guid>http://epiviz.github.io/tutorials/tutorials/epivizr/</guid>
+      <description>
+
+&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#installation-and-requirements&#34;&gt;Installation and requirements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#try-it-out&#34;&gt;Try it out&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#development-version&#34;&gt;Development version&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#non-blocking&#34;&gt;Non-blocking&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The &lt;code&gt;epivizr&lt;/code&gt; Bioconductor package implements two-way communication between the &lt;a href=&#34;http://bioconductor.org&#34;&gt;R/Bioconductor&lt;/a&gt;
+environment and &lt;strong&gt;{% link Epiviz &lt;a href=&#34;http://epiviz.cbbc.umd.edu/4&#34;&gt;http://epiviz.cbbc.umd.edu/4&lt;/a&gt; %}&lt;/strong&gt;. Objects in the R environment can be displayed as tracks or plots on &lt;strong&gt;{% link Epiviz &lt;a href=&#34;http://epiviz.cbbc.umd.edu/4&#34;&gt;http://epiviz.cbbc.umd.edu/4&lt;/a&gt; %}&lt;/strong&gt;. Epivizr uses the
+&lt;a href=&#34;{{ site.baseurl }}/websocket.html&#34;&gt;Websocket data provider API&lt;/a&gt; for communication between the browser Javascript client
+and the R environment.&lt;/p&gt;
+
+&lt;p&gt;To use &lt;code&gt;epivizr&lt;/code&gt; with the &lt;code&gt;epiviz&lt;/code&gt; APIs described &lt;a href=&#34;http://epiviz.github.io/tutorials/docs/&#34;&gt;here&lt;/a&gt;, you must use its &lt;a href=&#34;#development-version&#34;&gt;development branch&lt;/a&gt; (version 1.3.3 or higher)&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;installation-and-requirements&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;installation-and-requirements&#34;&gt;Installation and requirements&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Epivizr is available as part of the &lt;a href=&#34;http://bioconductor.org&#34;&gt;Bioconductor&lt;/a&gt; project as of version 2.13. To install the
+release version of &lt;code&gt;epivizr&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;source(&amp;quot;http://bioconductor.org/biocLite.R&amp;quot;)
+biocLite(&amp;quot;epivizr&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a name=&#34;try-it-out&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;try-it-out&#34;&gt;Try it out&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The easiest way to try &lt;code&gt;epivizr&lt;/code&gt; out is to &lt;a href=&#34;http://bioconductor.org/packages/release/bioc/vignettes/epivizr/inst/doc/IntroToEpivizr.html&#34;&gt;follow the package vignette&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;require(epivizr)
+browseVignettes(&amp;quot;epivizr&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a name=&#34;development-version&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;development-version&#34;&gt;Development version&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&#34;http://github.com/epiviz/epivizr&#34;&gt;&lt;code&gt;epivizr&lt;/code&gt; github repository&lt;/a&gt; contains the latest and greatest version of &lt;code&gt;epivizr&lt;/code&gt; and is tracked by the devel version in Bioconductor (see &lt;a href=&#34;http://bioconductor.org/developers/how-to/useDevel/&#34;&gt;http://bioconductor.org/developers/how-to/useDevel/&lt;/a&gt; for more info. In summary, if you install R-devel, you&amp;rsquo;ll be set.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;non-blocking&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;non-blocking&#34;&gt;Non-blocking&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Epivizr (as of version 1.2) supports a non-blocking workflow on both UNIX-like and Windows systems where data is served to the webapp without blocking the R/bioc interactive session. Make sure you are using the latest version of the &lt;a href=&#34;http://cran.r-project.org/web/packages/httpuv/index.html&#34;&gt;httpuv package&lt;/a&gt; (version 1.3 or greater to use this. (Thanks to the &lt;a href=&#34;http://rstudio.org&#34;&gt;Rstudio&lt;/a&gt; folks for folding our daemonizing code into the main httpuv release).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>External Scripts and Plugins</title>
+      <link>http://epiviz.github.io/tutorials/tutorials/plugins/</link>
+      <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
+      
+      <guid>http://epiviz.github.io/tutorials/tutorials/plugins/</guid>
+      <description>
+
+&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#external-scripts-and-settings&#34;&gt;Plugging in external scripts and settings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#new-chart-plugin&#34;&gt;Creating a new Chart Plugin&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;h2 id=&#34;creating-a-new-data-provider-plugin-new-data-provider-plugin&#34;&gt;&lt;a href=&#34;#new-data-provider-plugin&#34;&gt;Creating a new Data Provider Plugin&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;a name=&#34;external-scripts-and-settings&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;plugging-in-external-scripts-and-settings&#34;&gt;Plugging in external scripts and settings&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Epiviz&lt;/strong&gt; allows users to plug in new visualizations and data providers on the fly, by using the &lt;strong&gt;Charts API&lt;/strong&gt; and &lt;strong&gt;Data
+Providers API&lt;/strong&gt;, without the need of downloading or installing anything on the local machine. The new visualizations
+and data providers can be used immediately, alongside existing ones. Also, users can override the default settings of the
+UI to adapt it to their own needs. Here&amp;rsquo;s how to do it:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Create a plugin script.&lt;/strong&gt; Whether it&amp;rsquo;s a new visualization, new data provider, or simply changing the default
+settings of &lt;code&gt;Epiviz&lt;/code&gt;, you need to write a &lt;code&gt;JavaScript&lt;/code&gt; script for it.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A very simple example is a script that overrides some of the &lt;strong&gt;{{ site.epiviz }}&lt;/strong&gt; default settings. A copy of the default settings
+  in &lt;code&gt;Epiviz&lt;/code&gt; can be found here: &lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/src/epiviz/default-settings.js&#34;&gt;http://epiviz.cbcb.umd.edu/4/src/epiviz/default-settings.js&lt;/a&gt;.
+  Choose a subset of settings you want to modify. In our example, we change the default colors for the &lt;strong&gt;Scatter Plot&lt;/strong&gt;
+  and set the initial circle radius for data points to be &lt;code&gt;0.02&lt;/code&gt;, instead of &lt;code&gt;0.01&lt;/code&gt;, which is the default. Also, we
+  change the settings so that &lt;code&gt;Epiviz&lt;/code&gt; can only display scatter plots and genes tracks.&lt;/p&gt;
+
+&lt;p&gt;Epiviz 4 or 3:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  // Create a new color palette
+  var myPalette = new epiviz.ui.charts.ColorPalette([&#39;#ed2d2e&#39;, &#39;#008c47&#39;], &#39;My Palette&#39;, &#39;my-palette&#39;);
+  epiviz.Config.SETTINGS.colorPalettes.push(myPalette);
+
+  // Set the default colors for the Scatter Plot to &#39;#ed2d2e&#39; and &#39;#008c47&#39;
+  epiviz.Config.SETTINGS.chartSettings[&#39;epiviz.plugins.charts.ScatterPlot&#39;][&#39;colors&#39;] = &#39;my-palette&#39;;
+
+  // Set the Scatter Plot custom setting circleRadiusRatio to 0.02
+  epiviz.Config.SETTINGS.chartCustomSettings[&#39;epiviz.plugins.charts.ScatterPlot&#39;][&#39;circleRadiusRatio&#39;] = 0.02;
+
+  // Tell EpiViz to only show two types of charts: Scatter Plots and Genes Tracks
+  epiviz.Config.SETTINGS.chartTypes = [
+    &#39;epiviz.plugins.charts.ScatterPlotType&#39;,
+    &#39;epiviz.plugins.charts.GenesTrackType&#39;];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Epiviz 2:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  // Set the default colors for the Scatter Plot to &#39;#ed2d2e&#39; and &#39;#008c47&#39;
+  epiviz.EpiViz.SETTINGS.chartSettings[&#39;epiviz.plugins.charts.ScatterPlot&#39;][&#39;colors&#39;] = new epiviz.ui.charts.ColorPalette([&#39;#ed2d2e&#39;, &#39;#008c47&#39;]);
+
+  // Set the Scatter Plot custom setting circleRadiusRatio to 0.02
+  epiviz.EpiViz.SETTINGS.chartCustomSettings[&#39;epiviz.plugins.charts.ScatterPlot&#39;][&#39;circleRadiusRatio&#39;] = 0.02;
+
+  // Tell EpiViz to only show two types of charts: Scatter Plots and Genes Tracks
+  epiviz.EpiViz.SETTINGS.chartTypes = [&#39;epiviz.plugins.charts.ScatterPlotType&#39;, &#39;epiviz.plugins.charts.GenesTrackType&#39;];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Epiviz also implements the &lt;strong&gt;&lt;a href=&#34;https://developer.github.com/v3/gists/&#34;&gt;GitHub Gist API&lt;/a&gt;&lt;/strong&gt;, allowing users to create and use &lt;strong&gt;Gist&lt;/strong&gt; as plugins (see &lt;strong&gt;&lt;a href=&#34;https://help.github.com/articles/creating-gists&#34;&gt;here&lt;/a&gt;&lt;/strong&gt; a short tutorial on how to create a Gist script).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt; For the purpose of this tutorial, we created a Gist script with the same contents here
+  * (Epiviz 4|3): &lt;a href=&#34;http://gist.github.com/fa247476e6d9b4efb76a&#34;&gt;http://gist.github.com/fa247476e6d9b4efb76a&lt;/a&gt;
+  * (Epiviz 2): &lt;a href=&#34;http://gist.github.com/7851244d2d9a9996403a&#34;&gt;http://gist.github.com/7851244d2d9a9996403a&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Open &lt;strong&gt;{% link Epiviz &lt;a href=&#34;http://epiviz.cbbc.umd.edu/4&#34;&gt;http://epiviz.cbbc.umd.edu/4&lt;/a&gt; %}&lt;/strong&gt; using the id of the GitHub Gist script as value for the &lt;code&gt;gist&lt;/code&gt; argument. &lt;strong&gt;Note:&lt;/strong&gt; the &lt;code&gt;gist&lt;/code&gt; argument represents an array, so that multiple scripts can be provided at once. Thus, the format &lt;code&gt;gist[]=&amp;lt;gist id&amp;gt;&lt;/code&gt; should be used. In background, Epiviz uses the GitHub Gist API to retrieve the scripts using the given id, and use plug them in at start-up.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Example:&lt;/strong&gt; (Epiviz 4) &lt;a href=&#34;{{ site.epivizUiMain }}?ws=wjRtqAK3GCd&amp;amp;settings=default&amp;amp;gist[]=fa247476e6d9b4efb76a&#34;&gt;http://epiviz.cbcb.umd.edu/4/?ws=wjRtqAK3GCd&amp;amp;settings=default&amp;amp;gist[]=fa247476e6d9b4efb76a&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Example:&lt;/strong&gt; (Epiviz 3) &lt;a href=&#34;{{ site.epivizUiMain }}?ws=wjRtqAK3GCd&amp;amp;settings=default&amp;amp;gist[]=fa247476e6d9b4efb76a&#34;&gt;http://epiviz.cbcb.umd.edu/3/?ws=wjRtqAK3GCd&amp;amp;settings=default&amp;amp;gist[]=fa247476e6d9b4efb76a&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Example:&lt;/strong&gt; (Epiviz 2) &lt;a href=&#34;{{ site.epiviz2UiMain }}?ws=wjRtqAK3GCd&amp;amp;settings=default&amp;amp;gist[]=7851244d2d9a9996403a&#34;&gt;http://epiviz.cbcb.umd.edu/2/?ws=wjRtqAK3GCd&amp;amp;settings=default&amp;amp;gist[]=7851244d2d9a9996403a&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Overriding settings&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In Epiviz, there are a few ways to override the default settings.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The first one, demonstrated earlier, is to provide a &lt;code&gt;gist&lt;/code&gt; GET argument.&lt;/li&gt;
+&lt;li&gt;The second one, is by creating an entire settings file to override the existing default settings. This works similar
+to the first method, only differing from it by the fact that it uses cookies to preserve the latest used settings. The
+GET arguments used for this are &lt;code&gt;settings&lt;/code&gt; and &lt;code&gt;settingsGist&lt;/code&gt;. To revert to the default {{ site.epiviz }} settings, one should open (&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/)[http://epiviz.cbcb.umd.edu/4/&#34;&gt;http://epiviz.cbcb.umd.edu/4/)[http://epiviz.cbcb.umd.edu/4/&lt;/a&gt;] with &lt;code&gt;settings=default&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In the tutorial examples for &lt;strong&gt;Creating a new chart plugin&lt;/strong&gt; and &lt;strong&gt;Creating a new data provider plugin&lt;/strong&gt; we provide more
+examples of plugging in various scripts and settings.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;new-chart-plugin&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;creating-a-new-chart-plugin&#34;&gt;Creating a new chart plugin&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=Y8kWxCO2Ajn&amp;amp;settings=default&amp;amp;gist[]=9cff81ce56ba153f0b72&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/3/?ws=Y8kWxCO2Ajn&amp;amp;settings=default&amp;amp;gist[]=9cff81ce56ba153f0b72&#34;&gt;See it in Epiviz 3&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/2/?ws=Y8kWxCO2Ajn&amp;amp;settings=default&amp;amp;gist[]=11017650&#34;&gt;See it in Epiviz 2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a class for the actual visualization&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
+  goog.provide(&#39;epiviz.plugins.charts.MyTrack&#39;);
+
+  /**
+   * @constructor
+   */
+  epiviz.plugins.charts.MyTrack = function() {
+  };
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Inherit either &lt;code&gt;epiviz.ui.charts.Track&lt;/code&gt; or &lt;code&gt;epiviz.ui.charts.Plot&lt;/code&gt; (depending on display type)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  goog.provide(&#39;epiviz.plugins.charts.MyTrack&#39;);
+
+  /**
+   * @param id
+   * @param {jQuery} container
+   * @param {epiviz.ui.charts.ChartProperties} properties
+   * @extends {epiviz.ui.charts.Track}
+   * @constructor
+   */
+  epiviz.plugins.charts.MyTrack = function(id, container, properties) {
+    // Call superclass constructor
+    epiviz.ui.charts.Track.call(this, id, container, properties);
+
+    this._initialize();
+  };
+
+  /*
+   * Copy methods from upper class
+   */
+  epiviz.plugins.charts.MyTrack.prototype = epiviz.utils.mapCopy(epiviz.ui.charts.Track.prototype);
+  epiviz.plugins.charts.MyTrack.constructor = epiviz.plugins.charts.MyTrack;
+
+
+  /**
+   * @param {epiviz.datatypes.GenomicRange} [range]
+   * @param {epiviz.measurements.MeasurementHashtable.&amp;lt;epiviz.datatypes.GenomicDataMeasurementWrapper&amp;gt;} [data]
+   * @param {number} [slide]
+   * @param {number} [zoom]
+   * @returns {Array.&amp;lt;epiviz.ui.charts.UiObject&amp;gt;} The objects drawn
+   */
+  epiviz.plugins.charts.MyTrack.prototype.draw = function(range, data, slide, zoom) {
+    return epiviz.ui.charts.Chart.prototype.draw.call(this, range, data, slide, zoom);
+  };
+
+  /**
+   * @returns {string}
+   */
+  epiviz.plugins.charts.MyTrack.prototype.chartTypeName = function() {
+    return &#39;epiviz.plugins.charts.MyTrack&#39;;
+  };
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Implement the &lt;code&gt;draw()&lt;/code&gt; method&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  /**
+   * @param {epiviz.datatypes.GenomicRange} [range]
+   * @param {epiviz.measurements.MeasurementHashtable.&amp;lt;epiviz.datatypes.GenomicDataMeasurementWrapper&amp;gt;} [data]
+   * @param {number} [slide]
+   * @param {number} [zoom]
+   * @returns {Array.&amp;lt;epiviz.ui.charts.UiObject&amp;gt;} The objects drawn
+   */
+  epiviz.plugins.charts.MyTrack.prototype.draw = function(range, data, slide, zoom) {
+      epiviz.ui.charts.Track.prototype.draw.call(this, range, data, slide, zoom);
+
+      // If data is defined, then the base class sets this._lastData to data.
+      // If it isn&#39;t, then we&#39;ll use the data from the last draw call.
+      // Same with this._lastRange and range.
+      data = this._lastData;
+      range = this._lastRange;
+
+      // If data is not defined, there is nothing to draw
+      if (!data || !range) { return []; }
+
+      // Using D3, compute a function that maps base-pair locations to chart pixel coordinates
+      var xScale = d3.scale.linear()
+        .domain([range.start(), range.end()])
+        .range([0, this.width() - this.margins().left() - this.margins().right()]);
+
+      // Compute the minimum maximum values of values to be plotted on the Y axis:
+      // Iterate throught all measurements that the chart is supposed to draw and find
+      // default minimum and maximum values.
+      var minY, maxY;
+      this.measurements().foreach(function(m) {
+        if (minY == undefined || m.minValue() &amp;lt; minY) {
+          minY = m.minValue();
+        }
+        if (maxY == undefined || m.maxValue() &amp;gt; maxY) {
+          maxY = m.maxValue();
+        }
+      });
+
+      // Now create a function that maps measurement values to chart pixel coordinates
+      var yScale = d3.scale.linear()
+        .domain([minY, maxY])
+        .range([this.height() - this.margins().top() - this.margins().bottom(), 0]);
+
+      // Draw x and y axes
+      var xTicks = 10, yTicks = 5;
+      this._clearAxes();
+      this._drawAxes(xScale, yScale, xTicks, yTicks);
+
+      // Create an array of items to be drawn
+      /** @type {Array.&amp;lt;epiviz.ui.charts.UiObject&amp;gt;} */
+      var items = [];
+      this.measurements().foreach(function(m, i) {
+        /** @type {epiviz.datatypes.GenomicDataMeasurementWrapper} */
+        var dataSeries = data.get(m);
+
+        for (var j = 0; j &amp;lt; dataSeries.size(); ++j) {
+          /** @type {epiviz.datatypes.GenomicDataMeasurementWrapper.ValueItem} */
+          var valueItem = dataSeries.get(j);
+
+          // Check that the current item overlaps the requested draw range; if not, skip it.
+          if (valueItem.rowItem.start() &amp;gt; range.end() || valueItem.rowItem.end() &amp;lt; range.start()) { continue; }
+
+          items.push(new epiviz.ui.charts.UiObject(
+            sprintf(&#39;item-%s-%s&#39;, i, valueItem.globalIndex), // an id that uniquely identifies this object
+            valueItem.rowItem.start(), // start location of current item
+            valueItem.rowItem.end(), // end location of current item
+            [valueItem.value], // the Y value for the current object
+            i, // series index
+            [[valueItem]],
+            [m], // measurement
+            &#39;item&#39; // css class
+          ));
+        }
+      });
+
+      var itemsGroup = this._svg.select(&#39;.items&#39;);
+      if (itemsGroup.empty()) {
+        itemsGroup = this._svg.append(&#39;g&#39;).attr(&#39;class&#39;, &#39;items&#39;);
+      }
+      itemsGroup.attr(&#39;transform&#39;, &#39;translate(&#39; + this.margins().left() + &#39;, &#39; + this.margins().top() + &#39;)&#39;);
+
+      var selection = itemsGroup.selectAll(&#39;.item&#39;)
+        .data(items, function(uiObj) { return uiObj.id; });
+
+      var self = this;
+      selection
+        .enter()
+        .append(&#39;rect&#39;)
+        .attr(&#39;class&#39;, function(uiObj) { return uiObj.cssClasses; })
+        .style(&#39;fill&#39;, function(uiObj) { return self.colors().get(uiObj.seriesIndex); })
+        .attr(&#39;x&#39;, function(uiObj) { return xScale(uiObj.start); })
+        .attr(&#39;width&#39;, function(uiObj) { return xScale(uiObj.end + 1) - xScale(uiObj.start); })
+        .attr(&#39;y&#39;, function(uiObj) { return yScale(minY) - yScale(uiObj.values[0]); })
+        .attr(&#39;height&#39;, function(uiObj) { return yScale(uiObj.values[0]); })
+        .style(&#39;opacity&#39;, &#39;0&#39;)
+        .on(&#39;mouseout&#39;, function () { self._unhover.notify(); })
+        .on(&#39;mouseover&#39;, function (uiObj) { self._hover.notify(uiObj); })
+        .on(&#39;click&#39;, function(uiObj) {
+          self._deselect.notify();
+          self._select.notify(uiObj);
+          d3.event.stopPropagation();
+        });
+
+      selection
+        .transition()
+        .duration(500)
+        .attr(&#39;x&#39;, function(uiObj) { return xScale(uiObj.start); })
+        .attr(&#39;width&#39;, function(uiObj) { return xScale(uiObj.end + 1) - xScale(uiObj.start); })
+        .attr(&#39;y&#39;, function(uiObj) { return yScale(minY) - yScale(uiObj.values[0]); })
+        .attr(&#39;height&#39;, function(uiObj) { return yScale(uiObj.values[0]); })
+        .style(&#39;opacity&#39;, &#39;0.2&#39;);
+
+      selection
+        .exit()
+        .transition()
+        .duration(500)
+        .style(&#39;opacity&#39;, &#39;0&#39;)
+        .remove();
+
+      return items;
+  };
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a class used as factory, derived from &lt;code&gt;epiviz.ui.charts.TrackType&lt;/code&gt; or &lt;code&gt;epiviz.ui.charts.PlotType&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  goog.provide(&#39;epiviz.plugins.charts.MyTrackType&#39;);
+
+  /**
+   * @param {epiviz.Config} config
+   * @extends {epiviz.ui.charts.TrackType}
+   * @constructor
+   */
+  epiviz.plugins.charts.MyTrackType = function(config) {
+      // Call superclass constructor
+      epiviz.ui.charts.TrackType.call(this, config);
+  };
+
+  /*
+   * Copy methods from upper class
+   */
+  epiviz.plugins.charts.MyTrackType.prototype = epiviz.utils.mapCopy(epiviz.ui.charts.TrackType.prototype);
+  epiviz.plugins.charts.MyTrackType.constructor = epiviz.plugins.charts.MyTrackType;
+
+  /**
+   * @param {string} id
+   * @param {jQuery} container The div where the chart will be drawn
+   * @param {epiviz.ui.charts.ChartProperties} properties
+   * @returns {epiviz.plugins.charts.MyTrack}
+   */
+  epiviz.plugins.charts.MyTrackType.prototype.createNew = function(id, container, properties) {
+      return new epiviz.plugins.charts.MyTrack(id, container, properties);
+  };
+
+  /**
+   * @returns {string}
+   */
+  epiviz.plugins.charts.MyTrackType.prototype.typeName = function() { return &#39;epiviz.plugins.charts.MyTrack&#39;; };
+
+  /**
+   * @returns {string}
+   */
+  epiviz.plugins.charts.MyTrackType.prototype.chartName = function() { return &#39;My Track&#39;; };
+
+  /**
+   * @returns {string}
+   */
+  epiviz.plugins.charts.MyTrackType.prototype.chartHtmlAttributeName = function() { return &#39;mytrack&#39;; };
+
+  /**
+   * @returns {epiviz.measurements.Measurement.Type}
+   */
+  epiviz.plugins.charts.MyTrackType.prototype.chartContentType = function() { return epiviz.measurements.Measurement.Type.FEATURE; };
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;In the settings file, add an entry in the &lt;code&gt;chartTypes&lt;/code&gt; property corresponding to the track type.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  ...
+  chartTypes: [
+      ...,
+      &#39;epiviz.plugins.charts.MyTrackType&#39;
+  ],
+  ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Alternatively, create a script to override the default {{ site.epiviz }} settings and add the new chart type:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  epiviz.EpiViz.SETTINGS.chartTypes.push(&#39;epiviz.plugins.charts.MyTrackType&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;If using Epiviz on a remote server, plug in your scripts and settings file and start using them!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;
+  * &lt;code&gt;my-track.js&lt;/code&gt;,&lt;code&gt;my-track-type.js&lt;/code&gt; and &lt;code&gt;my-settings-overrides.js&lt;/code&gt;: &lt;a href=&#34;http://gist.github.com/9cff81ce56ba153f0b72&#34;&gt;http://gist.github.com/9cff81ce56ba153f0b72&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In the Track Menu, notice the new type of visualization, called &lt;strong&gt;My Track&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_add_mytrack.png&#34; alt=&#34;The new track in the Track Menu&#34; /&gt;
+  &lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_mytrack.png&#34; alt=&#34;New Track&#34; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=Y8kWxCO2Ajn&amp;amp;settings=default&amp;amp;gist[]=9cff81ce56ba153f0b72&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/3/?ws=Y8kWxCO2Ajn&amp;amp;settings=default&amp;amp;gist[]=9cff81ce56ba153f0b72&#34;&gt;See it in Epiviz 3&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/2/?ws=Y8kWxCO2Ajn&amp;amp;settings=default&amp;amp;gist[]=11017650&#34;&gt;See it in Epiviz 2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&#34;new-data-provider-plugin&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;creating-a-new-data-provider-plugin&#34;&gt;Creating a new Data Provider Plugin&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=WRIOVgCREuu&amp;amp;gist[]=63dce2a92d80f57637c6&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/3/?ws=WRIOVgCREuu&amp;amp;gist[]=63dce2a92d80f57637c6&amp;amp;settings=default&#34;&gt;See it in Epiviz 3&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/2/?ws=IqvEuzLIiMd&amp;amp;gist[]=11026256&amp;amp;settings=default&#34;&gt;See it in Epiviz 2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In Epiviz, data can be retrieved simultaneously from any number of servers (like the UMD PHP server, or the Epivizr
+Websocket server). The proxies between the servers and the &lt;code&gt;Epiviz&lt;/code&gt; UI are called &lt;strong&gt;Data providers&lt;/strong&gt;. Currently, Epiviz has two predefined types of data providers: &lt;code&gt;epiviz.data.WebServerDataProvider&lt;/code&gt; and &lt;code&gt;epiviz.data.WebSocketDataProvider&lt;/code&gt;.
+However, through &lt;code&gt;Epiviz&lt;/code&gt; plugin mechanism, users can add new data providers to interface other sources of data.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a new class and inherit &lt;code&gt;epiviz.data.DataProvider&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  goog.provide(&#39;epiviz.plugins.data.MyDataProvider&#39;);
+
+  /**
+   * @constructor
+   * @extends {epiviz.data.DataProvider}
+   */
+  epiviz.plugins.data.MyDataProvider = function () {
+      epiviz.data.DataProvider.call(this);
+  };
+
+  /**
+   * Copy methods from upper class
+   */
+  epiviz.plugins.data.MyDataProvider.prototype = epiviz.utils.mapCopy(epiviz.data.DataProvider.prototype);
+  epiviz.plugins.data.MyDataProvider.constructor = epiviz.plugins.data.MyDataProvider;
+
+  epiviz.plugins.data.MyDataProvider.DEFAULT_ID = &#39;myprovider&#39;;
+
+  /**
+   * @param {epiviz.data.Request} request
+   * @param {function(epiviz.data.Response)} callback
+   * @override
+   */
+  epiviz.plugins.data.MyDataProvider.prototype.getData = function (request, callback) {
+  };
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Override and implement the &lt;code&gt;getData(request, callback)&lt;/code&gt; method.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The &lt;strong&gt;Request/Response API&lt;/strong&gt; has the following format:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  {
+      requestId: number,
+      type: string,
+      data: Object.&amp;lt;string, *&amp;gt;
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;requestId&lt;/code&gt; is a unique numeric id identifying the request; responses are paired with requests by using the same &lt;code&gt;requestId&lt;/code&gt; value.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;type&lt;/code&gt; can be either &lt;code&gt;&#39;request&#39;&lt;/code&gt; or &lt;code&gt;&#39;response&#39;&lt;/code&gt;, depending on the message type.&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;data&lt;/code&gt; is a map of key-value pairs of request/response arguments.&lt;/p&gt;
+
+&lt;p&gt;For requests, &lt;code&gt;data&lt;/code&gt; always has an &lt;code&gt;&#39;action&#39;&lt;/code&gt; key, identifying the request type. The possible values for &lt;code&gt;&#39;action&#39;&lt;/code&gt;
+are defined in the Epiviz API in the enum type &lt;a href=&#34;http://epiviz.github.io/tutorials/docs/epiviz.data.Request.html#Action&#34;&gt;&lt;code&gt;epiviz.data.Request.Action&lt;/code&gt;&lt;/a&gt;.
+The other request keys and values vary depending on the action.&lt;/p&gt;
+
+&lt;p&gt;Actions are grouped in two categories - &lt;strong&gt;&lt;em&gt;Server Actions&lt;/em&gt;&lt;/strong&gt;  (requests from the UI to the Data Provider) and &lt;strong&gt;&lt;em&gt;UI Actions&lt;/em&gt;&lt;/strong&gt; (requests from the Data Provider to the UI).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Server Actions&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Action&lt;/th&gt;
+&lt;th&gt;Args&lt;/th&gt;
+&lt;th&gt;Response format&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;getRows&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;seqName&#39;: string&lt;/code&gt;,&lt;br/&gt;&lt;code&gt;&#39;start&#39;: number&lt;/code&gt;,&lt;br/&gt;&lt;code&gt;&#39;end&#39;: number&lt;/code&gt;,&lt;br/&gt;&lt;code&gt;&#39;metadata&#39;: string[]&lt;/code&gt;, a list of metadata columns in the data source table&lt;br/&gt;&lt;code&gt;&#39;datasource&#39;: string&lt;/code&gt;, the name of the data source table&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;{&lt;br/&gt;  globalStartIndex: ?number,&lt;br/&gt;  useOffset: boolean,&lt;br/&gt;  values: {&lt;br/&gt;    id: number[],&lt;br/&gt;    start: number[],&lt;br/&gt;    end: number[],&lt;br/&gt;    metadata: Object.&amp;lt;string, string[]&amp;gt;&lt;br/&gt;  }&lt;br/&gt;}&lt;/pre&gt;&lt;/td&gt;
+&lt;td&gt;Requests range data for a given data source.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;getValues&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;seqName&#39;: string&lt;/code&gt;,&lt;br/&gt;&lt;code&gt;&#39;start&#39;: number&lt;/code&gt;,&lt;br/&gt;&lt;code&gt;&#39;end&#39;: number&lt;/code&gt;,&lt;br/&gt;&lt;code&gt;&#39;datasource&#39;: string&lt;/code&gt;, the name of the data source table,&lt;br/&gt;&lt;code&gt;&#39;measurement&#39;: string&lt;/code&gt;, the name of the column in the table where values reside&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;{&lt;br/&gt;  globalStartIndex: ?number,&lt;br/&gt;  values: number[]&lt;br/&gt;}&lt;/pre&gt;&lt;/td&gt;
+&lt;td&gt;Requests the values in a particular column of a data source table.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;getMeasurements&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;{&lt;br/&gt;  id: string[],&lt;br/&gt;  name: string[],&lt;br/&gt;  type: string[],&lt;br/&gt;  datasourceId: string[],&lt;br/&gt;  datasourceGroup: string[],&lt;br/&gt;  defaultChartType: string[],&lt;br/&gt;  annotation: Array.&amp;lt;Object.&amp;lt;string, string&amp;gt;&amp;gt;,&lt;br/&gt;  minValue: number[],&lt;br/&gt;  maxValue: number[],&lt;br/&gt;  metadata: Array.&amp;lt;string[]&amp;gt;&lt;br/&gt;}&lt;/td&gt;
+&lt;td&gt;Requests all the measurements available to serve by the data provider.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;getSeqInfos&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt;Array.&amp;lt;Array&amp;gt;&lt;/pre&gt; an array of arrays of three elements: sequence name, minimum and maximum base pair boundaries. For example: &lt;pre&gt;[[&amp;lsquo;chr1&amp;rsquo;, 1, 248956422], [&amp;lsquo;myChr&amp;rsquo;, 1, 1000000000]]&lt;/pre&gt;&lt;/td&gt;
+&lt;td&gt;Requests the sequence information - name and boundaries available to serve by the data provider.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;search&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;q&#39;: string&lt;/code&gt;, a text to filter results by&lt;br/&gt;&lt;code&gt;&#39;maxResults&#39;: number&lt;/code&gt;, the maximum number of results to return&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;optional&#34;&gt;optional&lt;/span&gt; Requests gene and Affymetrix probe information for data that contains the given filter string.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;saveWorkspace&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;id&#39;: string&lt;/code&gt;,&lt;br/&gt;&lt;code&gt;&#39;name&#39;: string&lt;/code&gt;,&lt;br/&gt;&lt;code&gt;&#39;content&#39;: Object.&amp;lt;string, *&amp;gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;optional&#34;&gt;optional&lt;/span&gt; Sends information about the active workspace to the data provider, in order to be saved.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;deleteWorkspace&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;id&#39;: string&lt;/code&gt;,&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;optional&#34;&gt;optional&lt;/span&gt; Requests the deletion of the workspace with the given id.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;getWorkspaces&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&#39;q&#39;: string&lt;/code&gt;,&lt;br/&gt;&lt;code&gt;&#39;ws&#39;: string&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;optional&#34;&gt;optional&lt;/span&gt; Requests all the workspace for the current user whose names match the given filter.&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;UI Actions&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Action&lt;/th&gt;
+&lt;th&gt;Args&lt;/th&gt;
+&lt;th&gt;Response format&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;addMeasurements&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;removeMeasurements&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;addSeqInfos&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;removeSeqNames&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;addChart&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;removeChart&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;clearDatasourceGroupCache&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;flushCache&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;&#39;navigate&#39;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Example implementation&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  goog.provide(&#39;epiviz.plugins.data.MyDataProvider&#39;);
+
+  /**
+   * @constructor
+   * @extends {epiviz.data.DataProvider}
+   */
+  epiviz.plugins.data.MyDataProvider = function () {
+      epiviz.data.DataProvider.call(this);
+
+      this._mockMeasurement = new epiviz.measurements.Measurement(
+        &#39;my_feature_column&#39;, // The column in the data source table that contains the values for this feature measurement
+        &#39;My Feature Measurement&#39;, // A name not containing any special characters (only alphanumeric and underscores)
+        epiviz.measurements.Measurement.Type.FEATURE,
+        &#39;my_datasource&#39;, // Data source: the table/data frame containing the data
+        &#39;my_datasourcegroup&#39;, // An identifier for use to group with other measurements from different data providers
+                              // that have the same seqName, start and end values
+        this.id(), // Data provider
+        null, // Formula: always null for measurements coming directly from the data provider
+        &#39;Line Track&#39;, // Default chart type filter
+        null, // Annotation
+        -5, // Min Value
+        25, // Max Value
+        [&#39;my_metadata&#39;] // Metadata columns
+      );
+  };
+
+  /**
+   * Copy methods from upper class
+   */
+  epiviz.plugins.data.MyDataProvider.prototype = epiviz.utils.mapCopy(epiviz.data.DataProvider.prototype);
+  epiviz.plugins.data.MyDataProvider.constructor = epiviz.plugins.data.MyDataProvider;
+
+  epiviz.plugins.data.MyDataProvider.DEFAULT_ID = &#39;myprovider&#39;;
+
+  /**
+   * @param {epiviz.data.Request} request
+   * @param {function(epiviz.data.Response)} callback
+   * @override
+   */
+  epiviz.plugins.data.MyDataProvider.prototype.getData = function (request, callback) {
+      var requestId = request.id();
+      var action = request.get(&#39;action&#39;);
+      var seqName = request.get(&#39;seqName&#39;);
+      var start = request.get(&#39;start&#39;);
+      var end = request.get(&#39;end&#39;);
+      var datasource = request.get(&#39;datasource&#39;);
+
+      // Return a genomic range of 100 base pairs every 1000 base pairs
+      var step = 1000, width = 100;
+      var globalStartIndex, firstStart, firstEnd;
+      if (action == epiviz.data.Request.Action.GET_ROWS || action == epiviz.data.Request.Action.GET_VALUES) {
+        globalStartIndex = Math.floor((start - 1) / step) + 1;
+        firstStart = globalStartIndex * step + 1;
+        firstEnd = firstStart + width;
+
+        if (firstEnd &amp;lt; start) {
+          firstStart += step;
+          firstEnd += step;
+        }
+      }
+
+      var globalIndex, s;
+      switch (action) {
+        case epiviz.data.Request.Action.GET_ROWS:
+          if (firstStart &amp;gt;= end) {
+            // Nothing to return
+            callback(epiviz.data.Response.fromRawObject({
+              data: { values: { id: [], start: [], end:[], strand: [], metadata:{my_metadata:[]} }, globalStartIndex: null, useOffset: false },
+              requestId: requestId
+            }));
+            return;
+          }
+
+          var ids = [], starts = [], ends = [], strands = &#39;*&#39;, myMetadata = [];
+          for (globalIndex = globalStartIndex, s = firstStart; s &amp;lt; end; ++globalIndex, s += step) {
+            ids.push(globalIndex);
+            starts.push(s);
+            ends.push(s + width);
+            myMetadata.push(epiviz.utils.generatePseudoGUID(5)); // Random string
+          }
+
+          callback(epiviz.data.Response.fromRawObject({
+            data: {
+              values: { id: ids, start: starts, end: ends, strand: strands, metadata:{ my_metadata: myMetadata } },
+              globalStartIndex: globalStartIndex,
+              useOffset: false
+            },
+            requestId: requestId
+          }));
+          return;
+
+        case epiviz.data.Request.Action.GET_VALUES:
+          if (firstStart &amp;gt;= end) {
+            // Nothing to return
+            callback(epiviz.data.Response.fromRawObject({
+              data: { values: [], globalStartIndex: null },
+              requestId: requestId
+            }));
+            return;
+          }
+
+          var values = [];
+          for (globalIndex = globalStartIndex, s = firstStart; s &amp;lt; end; ++globalIndex, s += step) {
+            var v = Math.random()
+              * (this._mockMeasurement.maxValue() - this._mockMeasurement.minValue())
+              +  this._mockMeasurement.minValue();
+            values.push(v);
+          }
+
+          callback(epiviz.data.Response.fromRawObject({
+            data: {
+              values: values,
+              globalStartIndex: globalStartIndex
+            },
+            requestId: requestId
+          }));
+
+          return;
+
+        case epiviz.data.Request.Action.GET_MEASUREMENTS:
+          callback(epiviz.data.Response.fromRawObject({
+            requestId: request.id(),
+            data: {
+              id: [this._mockMeasurement.id()],
+              name: [this._mockMeasurement.name()],
+              type: [this._mockMeasurement.type()],
+              datasourceId: [this._mockMeasurement.datasourceId()],
+              datasourceGroup: [this._mockMeasurement.datasourceGroup()],
+              defaultChartType: [this._mockMeasurement.defaultChartType()],
+              annotation: [this._mockMeasurement.annotation()],
+              minValue: [this._mockMeasurement.minValue()],
+              maxValue: [this._mockMeasurement.maxValue()],
+              metadata: [this._mockMeasurement.metadata()]
+            }
+          }));
+          return;
+
+        case epiviz.data.Request.Action.GET_SEQINFOS:
+          callback(epiviz.data.Response.fromRawObject({
+            requestId: request.id(),
+            data: [[&#39;chr1&#39;, 1, 248956422], [&#39;myChr&#39;, 1, 1000000000]]
+          }));
+          return;
+
+        default:
+          epiviz.data.DataProvider.prototype.getData.call(this, request, callback);
+          break;
+      }
+  };
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Declare the data provider in your settings file, in the &lt;code&gt;dataProviders&lt;/code&gt; property.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  dataProviders: [
+      ...,
+      &#39;epiviz.plugins.data.MyDataProvider&#39;
+  ],
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Alternatively, create a script to override the default &lt;code&gt;Epiviz&lt;/code&gt; settings and add the new data provider:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;  epiviz.EpiViz.SETTINGS.dataProviders.push(&#39;epiviz.plugins.data.MyDataProvider&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;If using Epiviz on a remote server, plug in your scripts and settings file and start using them!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;
+  * &lt;code&gt;my-data-provider.js&lt;/code&gt; and &lt;code&gt;my-data-provider-settings-overrides.js&lt;/code&gt;: &lt;a href=&#34;http://gist.github.com/63dce2a92d80f57637c6&#34;&gt;http://gist.github.com/63dce2a92d80f57637c6&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In the measurement selection dialogs, notice the new data source, &lt;strong&gt;my_datasource&lt;/strong&gt; and the new measurement, &lt;strong&gt;My Measurement&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_mydataprovider_addblocks.png&#34; alt=&#34;The new data source&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_mydataprovider_addms.png&#34; alt=&#34;The new measurement&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A heatmap displaying data provided by &lt;strong&gt;My DataProvider&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_mydataprovider_heatmap.png&#34; alt=&#34;A heatmap with the new measurement&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A line track displaying data provided by &lt;strong&gt;My DataProvider&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_mydataprovider_line.png&#34; alt=&#34;Line Track with new measurement&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A blocks track displaying data provided by &lt;strong&gt;My DataProvider&lt;/strong&gt;
+  &lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_mydataprovider_blocks.png&#34; alt=&#34;Blocks Track with new measurement&#34; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=WRIOVgCREuu&amp;amp;gist[]=63dce2a92d80f57637c6&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/3/?ws=WRIOVgCREuu&amp;amp;gist[]=63dce2a92d80f57637c6&amp;amp;settings=default&#34;&gt;See it in Epiviz 3&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/2/?ws=IqvEuzLIiMd&amp;amp;gist[]=11026256&amp;amp;settings=default&#34;&gt;See it in Epiviz 2&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Websocket Tutorial</title>
+      <link>http://epiviz.github.io/tutorials/tutorials/websocket/</link>
+      <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
+      
+      <guid>http://epiviz.github.io/tutorials/tutorials/websocket/</guid>
+      <description>
+
+&lt;p&gt;The complete Python source code for this example can be found here: &lt;a href=&#34;https://github.com/epiviz/epivizpy&#34;&gt;https://github.com/epiviz/epivizpy&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;One of the key features of &lt;code&gt;Epiviz&lt;/code&gt; is allowing users to plug in new data on the fly, using &lt;a href=&#34;http://epiviz.github.io/tutorials/docs/plugins.html#new-data-provider-plugin&#34;&gt;Data Provider plugins&lt;/a&gt;. One powerful such plugin is the &lt;strong&gt;WebSocket data provider&lt;/strong&gt;. This data provider offers an interface between &lt;code&gt;Epiviz&lt;/code&gt; and any programming environment that supports &lt;a href=&#34;http://www.websocket.org/&#34;&gt;WebSocket&lt;/a&gt; connections. In R there is already &lt;a href=&#34;http://www.bioconductor.org/packages/release/bioc/html/epivizr.html&#34;&gt;a Bioconductor library&lt;/a&gt; that supports communication with &lt;code&gt;Epiviz&lt;/code&gt; through WebSockets, called &lt;a href=&#34;http://www.bioconductor.org/packages/release/bioc/html/epivizr.html&#34;&gt;Epivizr&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In this tutorial, we go over the essentials of creating a new WebSocket endpoint for Epiviz. We choose &lt;a href=&#34;https://www.python.org/&#34;&gt;Python&lt;/a&gt; as an example programming environment, to emphasize the flexibility and power of the Epiviz framework. We create a simple program with the same functionality as &lt;code&gt;epiviz.plugins.data.MyDataProvider&lt;/code&gt;, from the &lt;a href=&#34;plugins.html#new-data-provider-plugin&#34;&gt;Data Provider Plugin Tutorial&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;to-connect-to-epiviz-using-the-websocket-api&#34;&gt;To connect to Epiviz using the WebSocket API&lt;/h2&gt;
+
+&lt;p&gt;To connect to the Epiviz WebSocket API, you need a programming environment that supports the WebSocket protocol (like R,
+Python, Java EE, etc). In R, you can use the &lt;a href=&#34;http://www.bioconductor.org/packages/release/bioc/html/epivizr.html&#34;&gt;Epivizr Bioconductor package&lt;/a&gt;. For this demo, we create an example in Python (source code available &lt;a href=&#34;https://github.com/epiviz/epivizpy&#34;&gt;here&lt;/a&gt;). The same functionality can be replicated in any other language as long as the API is respected.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;In Python, one library that provides access to the WebSocket protocol is &lt;a href=&#34;http://www.tornadoweb.org/en/stable/&#34;&gt;tornado&lt;/a&gt;.
+First we implement a subclass of &lt;code&gt;tornado.websocket.WebSocketHandler&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;  import simplejson
+  import tornado.websocket
+
+  class EpiVizPyEndpoint(tornado.websocket.WebSocketHandler):
+
+      def __init__(self, *args, **kwargs):
+          super(EpiVizPyEndpoint, self).__init__(*args, **kwargs)
+
+      def open(self):
+          print &#39;new connection&#39;
+
+      def on_message(self, json_message):
+          print &#39;message received %s&#39; % json_message
+          message = simplejson.loads(json_message)
+
+      def on_close(self):
+          print &#39;connection closed&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a class that can parse request strings (this is optional, but will make our work a lot easier). As described
+in the &lt;a href=&#34;plugins.html#new-data-provider-plugin&#34;&gt;Data Provider Plugin Tutorial&lt;/a&gt;, there are two types of request actions in Epiviz: &lt;strong&gt;Server Actions&lt;/strong&gt; and &lt;strong&gt;UI Actions&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;  from enum import Enum
+
+  class Request(object):
+
+      class Action(Enum):
+          # Server actions
+          GET_ROWS = &#39;getRows&#39;
+          GET_VALUES = &#39;getValues&#39;
+          GET_MEASUREMENTS = &#39;getMeasurements&#39;
+          SEARCH = &#39;search&#39;
+          GET_SEQINFOS = &#39;getSeqInfos&#39;
+          SAVE_WORKSPACE = &#39;saveWorkspace&#39;
+          GET_WORKSPACES = &#39;getWorkspaces&#39;
+
+          # UI actions
+          ADD_MEASUREMENTS = &#39;addMeasurements&#39;
+          REMOVE_MEASUREMENTS = &#39;removeMeasurements&#39;
+          ADD_SEQINFOS = &#39;addSeqInfos&#39;
+          REMOVE_SEQNAMES = &#39;removeSeqNames&#39;
+          ADD_CHART = &#39;addChart&#39;
+          REMOVE_CHART = &#39;removeChart&#39;
+          CLEAR_DATASOURCE_GROUP_CACHE = &#39;clearDatasourceGroupCache&#39;
+          FLUSH_CACHE = &#39;flushCache&#39;
+          NAVIGATE = &#39;navigate&#39;
+
+      def __init__(self, request_id, args):
+          &#39;&#39;&#39;
+          :param request_id: number
+          :param args: map&amp;lt;string, string&amp;gt;
+          &#39;&#39;&#39;
+          self._id = request_id
+          self._args = args
+
+      def id(self):
+          return self._id
+
+      def get(self, arg):
+          if arg in self._args:
+              return self._args[arg]
+
+          return None
+
+      @staticmethod
+      def from_raw_object(o):
+          return Request(o[&#39;requestId&#39;], o[&#39;data&#39;])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;In our &lt;code&gt;EpivizPyEndpoint&lt;/code&gt; class, create a method to handle the Server actions. And methods for the actions. The
+functionality is that for any request, we return a set of blocks of fixed length of &lt;code&gt;100&lt;/code&gt; at every &lt;code&gt;1000&lt;/code&gt; base pairs.
+The value associated to them is generated randomly between &lt;code&gt;-5&lt;/code&gt; and &lt;code&gt;25&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Complete Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;  import simplejson
+  import math
+  import random
+
+  import tornado.websocket
+
+  from epiviz.websocket.Request import Request
+  from epiviz.websocket.Response import Response
+
+
+  class EpiVizPyEndpoint(tornado.websocket.WebSocketHandler):
+
+      def __init__(self, *args, **kwargs):
+          super(EpiVizPyEndpoint, self).__init__(*args, **kwargs)
+
+          self._mock_measurement = {
+            &#39;id&#39;: &#39;py_column&#39;,
+            &#39;name&#39;: &#39;Python Measurement&#39;,
+            &#39;type&#39;: &#39;feature&#39;,
+            &#39;datasourceId&#39;: &#39;py_datasource&#39;,
+            &#39;datasourceGroup&#39;: &#39;py_datasourcegroup&#39;,
+            &#39;defaultChartType&#39;: &#39;Line Track&#39;,
+            &#39;annotation&#39;: None,
+            &#39;minValue&#39;: -5,
+            &#39;maxValue&#39;: 25,
+            &#39;metadata&#39;: [&#39;py_metadata&#39;]
+          }
+
+      def open(self):
+          print &#39;new connection&#39;
+
+      def on_message(self, json_message):
+          print &#39;message received %s&#39; % json_message
+          message = simplejson.loads(json_message)
+
+          if message[&#39;type&#39;] == &#39;request&#39;:
+              request = Request.from_raw_object(message)
+              self._handle_request(request)
+
+      def on_close(self):
+          print &#39;connection closed&#39;
+
+      def _handle_request(self, request):
+          action = request.get(&#39;action&#39;)
+
+          # switch(action)
+          response = {
+              Request.Action.GET_MEASUREMENTS: lambda: self._get_measurements(request.id()),
+              Request.Action.GET_ROWS: lambda: self._get_rows(request.id(), request.get(&#39;datasource&#39;), request.get(&#39;chr&#39;), request.get(&#39;start&#39;), request.get(&#39;end&#39;), request.get(&#39;metadata&#39;)),
+              Request.Action.GET_VALUES: lambda: self._get_values(request.id(), request.get(&#39;measurement&#39;), request.get(&#39;datasource&#39;), request.get(&#39;chr&#39;), request.get(&#39;start&#39;), request.get(&#39;end&#39;)),
+              Request.Action.GET_SEQINFOS: lambda: self._get_seqinfos(request.id()),
+              Request.Action.SEARCH: lambda: self._search(request.id(), request.get(&#39;q&#39;), request.get(&#39;maxResults&#39;))
+          }[action]()
+
+
+          message = response.to_json()
+          print &#39;response %s&#39; % message
+          self.write_message(message)
+
+      # Request handlers
+
+      def _get_measurements(self, request_id):
+          &#39;&#39;&#39;
+          Returns Response
+          &#39;&#39;&#39;
+          return Response(request_id, {
+            &#39;id&#39;: [self._mock_measurement[&#39;id&#39;]],
+            &#39;name&#39;: [self._mock_measurement[&#39;name&#39;]],
+            &#39;type&#39;: [self._mock_measurement[&#39;type&#39;]],
+            &#39;datasourceId&#39;: [self._mock_measurement[&#39;datasourceId&#39;]],
+            &#39;datasourceGroup&#39;: [self._mock_measurement[&#39;datasourceGroup&#39;]],
+            &#39;defaultChartType&#39;: [self._mock_measurement[&#39;defaultChartType&#39;]],
+            &#39;annotation&#39;: [self._mock_measurement[&#39;annotation&#39;]],
+            &#39;minValue&#39;: [self._mock_measurement[&#39;minValue&#39;]],
+            &#39;maxValue&#39;: [self._mock_measurement[&#39;maxValue&#39;]],
+            &#39;metadata&#39;: [self._mock_measurement[&#39;metadata&#39;]]
+          })
+
+      def _get_rows(self, request_id, datasource, seq_name, start, end, metadata):
+          &#39;&#39;&#39;
+          :param datasource: string
+          :param seq_name: string
+          :param start: number
+          :param end: number
+          :param metadata: string[] A list of column names for which to retrieve the values
+          Returns response
+          &#39;&#39;&#39;
+          # Return a genomic range of 100 base pairs every 1000 base pairs
+          step, width = 1000, 100
+
+          globalStartIndex = math.floor((start - 1) / step) + 1
+          firstStart = globalStartIndex * step + 1
+          firstEnd = firstStart + width
+
+          if firstEnd &amp;lt; start:
+              firstStart += step
+              firstEnd += step
+
+          if firstStart &amp;gt;= end:
+              # Nothing to return
+              return Response(request_id, {
+                &#39;values&#39;: { &#39;id&#39;: [], &#39;start&#39;: [], &#39;end&#39;: [], &#39;strand&#39;: [], &#39;metadata&#39;: { &#39;py_metadata&#39;: [] } },
+                &#39;globalStartIndex&#39;: None,
+                &#39;useOffset&#39;: False
+              })
+
+          ids = []
+          starts = []
+          ends = []
+          strands = &#39;*&#39;
+          py_metadata = []
+
+          globalIndex = globalStartIndex
+          s = firstStart
+
+          while s &amp;lt; end:
+              ids.append(globalIndex)
+              starts.append(s)
+              ends.append(s + width)
+              py_metadata.append(self._random_str(5)) # Random string
+              globalIndex += 1
+              s += step
+
+          return Response(request_id, {
+            &#39;values&#39;: { &#39;id&#39;: ids, &#39;start&#39;: starts, &#39;end&#39;: ends, &#39;strand&#39;: strands, &#39;metadata&#39;:{ &#39;py_metadata&#39;: py_metadata } },
+            &#39;globalStartIndex&#39;: globalStartIndex,
+            &#39;useOffset&#39;: False
+          })
+
+      def _get_values(self, request_id, measurement, datasource, seq_name, start, end):
+          &#39;&#39;&#39;
+          :param measurement: string, column name in the datasource that contains requested values
+          :param datasource: string
+          :param seq_name: string
+          :param start: number
+          :param end: number
+          Returns response
+          &#39;&#39;&#39;
+          # Return a genomic range of 100 base pairs every 1000 base pairs
+          step, width = 1000, 100
+
+          globalStartIndex = math.floor((start - 1) / step) + 1
+          firstStart = globalStartIndex * step + 1
+          firstEnd = firstStart + width
+
+          if firstEnd &amp;lt; start:
+              firstStart += step
+              firstEnd += step
+
+          if firstStart &amp;gt;= end:
+              # Nothing to return
+              return Response(request_id, {
+                &#39;values&#39;: [],
+                &#39;globalStartIndex&#39;: None,
+              })
+
+          values = []
+          globalIndex = globalStartIndex
+          s = firstStart
+          m = self._mock_measurement
+          while s &amp;lt; end:
+              v = random.random() * (m[&#39;maxValue&#39;] - m[&#39;minValue&#39;]) + m[&#39;minValue&#39;]
+              values.append(v)
+              globalIndex += 1
+              s += step
+
+          return Response(request_id, {
+            &#39;values&#39;: values,
+            &#39;globalStartIndex&#39;: globalStartIndex
+          })
+
+      def _get_seqinfos(self, request_id):
+          &#39;&#39;&#39;
+          Returns response
+          &#39;&#39;&#39;
+          return Response(request_id, [[&#39;chr1&#39;, 1, 248956422], [&#39;pyChr&#39;, 1, 1000000000]])
+
+      def _search(self, request_id, query, max_results):
+          &#39;&#39;&#39;
+          :param query: string
+          :param max_results: number
+          Returns response
+          &#39;&#39;&#39;
+          return Response(request_id, [])
+
+
+      def _random_str(self, size):
+          chars = &#39;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;
+          result = &#39;&#39;
+
+          for _ in range(size):
+              result += chars[random.randint(0, len(chars) - 1)]
+
+          return result
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a class that instantiates the WebSocket endpoint in another thread so the main thread is kept unblocked.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;  import threading
+
+  import tornado.httpserver
+  import tornado.ioloop
+  import tornado.web
+
+  from epiviz.websocket.EpiVizPyEndpoint import EpiVizPyEndpoint
+
+
+  class EpiVizPy(object):
+      def __init__(self, server_path=r&#39;/ws&#39;):
+          self._thread = None
+          self._server = None
+          self._application = tornado.web.Application([(server_path, EpiVizPyEndpoint)])
+
+      def start(self, port=8888):
+          self.stop()
+          self._thread = threading.Thread(target=lambda: self._listen(port)).start()
+
+      def stop(self):
+          if self._server != None:
+              tornado.ioloop.IOLoop.instance().stop()
+              self._server = None
+              self._thread = None
+
+      def _listen(self, port):
+          self._server = tornado.httpserver.HTTPServer(self._application)
+          self._server.listen(port)
+          tornado.ioloop.IOLoop.instance().start()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Finally create a main program that runs the whole thing.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;   from sys import stdin
+
+   from epiviz.websocket.EpiVizPy import EpiVizPy
+
+   if __name__ == &#39;__main__&#39;:
+       epivizpy = EpiVizPy()
+       epivizpy.start()
+
+       print &#39;press enter to stop&#39;
+       userinput = stdin.readline()
+       epivizpy.stop()
+       print &#39;stopped&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Run it, and open an Epiviz instance, using the URL argument &lt;code&gt;websocket-host[]=ws://localhost:8888/ws&lt;/code&gt;: &lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?websocket-host[]=ws://localhost:8888/ws&#34;&gt;http://epiviz.cbcb.umd.edu/4/?websocket-host[]=ws://localhost:8888/ws&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Python console&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/pydev_console_websocket_connection.png&#34; alt=&#34;Python console&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;New measurement in menus&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_pywebsocket_add_linetrack.png&#34; alt=&#34;New measurements in menus&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Different charts showing the measurement defined in Python&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_pywebsocket_heatmap.png&#34; alt=&#34;Heatmap&#34; /&gt;
+  &lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_pywebsocket_line_blocks.png&#34; alt=&#34;Line Blocks&#34; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The complete Python source code for this example can be found here: &lt;a href=&#34;https://github.com/epiviz/epivizpy&#34;&gt;https://github.com/epiviz/epivizpy&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

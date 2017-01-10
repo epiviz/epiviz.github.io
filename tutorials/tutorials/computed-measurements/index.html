@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.17" />
+    <meta name="description" content="">
+
+
+    <link rel="shortcut icon" href="http://epiviz.github.io/tutorials/images/favicon.png" type="image/x-icon" />
+
+    
+    <title>Computed Measurements</title>
+    <link href="http://epiviz.github.io/tutorials/css/nucleus.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/hybrid.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/featherlight.min.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/horsey.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/theme.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/hugo-theme.css" rel="stylesheet">
+    <script src="http://epiviz.github.io/tutorials/js/jquery-2.x.min.js"></script>
+    <style type="text/css">:root #header + #content > #left > #rlblock_left
+    {display:none !important;}</style>
+    <link href="http://epiviz.github.io/tutorials/css/my_style.css" rel="stylesheet">
+  </head>
+  <body class="" data-url="/tutorials/computed-measurements/">
+    <nav id="sidebar">
+  <div id="header-wrapper">
+    <div id="header">
+      <a width="100%" height="100%" href="http://epiviz.github.io/tutorials"><img src="http://epiviz.github.io/tutorials/images/epiviz_logo.png"></a>
+    </div>
+    
+</div>
+
+
+  <div class="highlightable">
+    <ul class="topics">
+      
+      
+        
+      
+      
+      
+      
+
+      
+        
+      
+      
+      
+
+      <li class="dd-item  parent" data-nav-id="/tutorials/">
+        <a href="http://epiviz.github.io/tutorials/tutorials/">
+          <span>
+            
+              <b>X. </b>
+            
+             Tutorials
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/timp2014/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/timp2014/">
+                <span>450k Illumina Human Methylation data for multiple solid tumors     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/charts/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/charts/">
+                <span>Chart Tutorial     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item active" data-nav-id="/tutorials/computed-measurements/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/computed-measurements/">
+                <span>Computed Measurements     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/epivizr/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/epivizr/">
+                <span>Epivizr     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/plugins/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/plugins/">
+                <span>External Scripts and Plugins     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/websocket/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/websocket/">
+                <span>Websocket Tutorial     </i></span>
+              </a>
+            </li>
+          
+          
+        </ul>
+        
+      </li>
+      
+      
+    </ul>
+    <hr>
+     
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+    </section>
+  </div>
+</nav>
+
+        <section id="body">
+        <div id="overlay"></div>
+
+        <div class="padding highlightable">
+
+            <div id="top-bar">
+              
+              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                  <span id="sidebar-toggle-span">
+                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                        <i class="fa fa-bars"></i>
+                      </a>
+                  </span>
+                
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
+                
+                
+                
+                  
+                    
+                    
+                <a href="http://epiviz.github.io/tutorials/tutorials/" itemprop="url"><span itemprop="title">Tutorials</span></a> <i class="fa fa-angle-right"></i>
+                    
+                  
+                
+                <span itemprop="title"> Computed Measurements</span>
+              </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#how-to-create-computed-measurements">How to create computed measurements</a></li>
+<li><a href="#expression-language-reference">Expression language reference</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+              
+
+            </div>
+            
+    	        <div id="body-inner">
+                
+                <h1>Computed Measurements</h1>
+                
+
+
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+<li><a href="#create-computed-measurements">How to create computed measurements</a></li>
+<li><a href="#expression-language-reference">Expression language reference</a>
+&mdash;</li>
+</ul>
+
+<p><a name="create-computed-measurements"></p>
+
+<h2 id="how-to-create-computed-measurements">How to create computed measurements</h2>
+
+<p></a></p>
+
+<p><strong><a href="http://epiviz.cbcb.umd.edu/4/?ws=k5jQbrYsbPb&amp;settings=default">See it in Epiviz 4</a></strong></p>
+
+<p><strong>Epiviz</strong> exposes a simple expression language that allows users to define new measurements as combinations of existing
+ones. The expression language is implemented using <em><a href="http://silentmatt.com/javascript-expression-evaluator/">a JavaScript expression evaluator</a></em>.
+This feature can be extremely handy in making simple tweaks in data analysis on the fly, without having to go back and
+forth to a programming environment.</p>
+
+<p>In the following example we show how to create a couple of simple computed measurements, in order to display the popular
+<em><a href="http://bioinfo.cipf.es/babelomicstutorial/maplot">MA Plot</a></em> for <em>colon gene expression</em> of <em>normal</em> vs <em>cancer</em> tissues.</p>
+
+<ol>
+<li>Click the <strong>Computed Measurements</strong> button in the Epiviz toolbar. In the <strong>Computed Measurements Dialog</strong>, select the
+<em>data source group</em> whose measurements will be used in creating the new one. Then click on <strong>Next</strong> to go to the
+<strong>Expression tab</strong>. For our example, we choose the <code>affymetrix_probeset</code> data source group.</li>
+</ol>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_comp_ms_dialog_dsgroup.png" alt="Computed measurements data source group" /></p>
+
+<ol>
+<li>Fill in the expression, using either the <code>+</code> buttons or just writing in the expression text box. Use the measurement
+identifier next to the measurement name to refer a particular measurement.  Here are some example valid expressions:
+
+<ul>
+<li><code>{2} - {3}</code></li>
+<li><code>({6} + {7}) * 0.5</code></li>
+<li><code>({0} + {1}) / 2</code></li>
+<li><code>{1} + random(10) – 5</code></li>
+<li><code>sin({2})</code></li>
+<li><code>log({1} - {2})</code></li>
+<li><code>sqrt({3})</code></li>
+</ul></li>
+</ol>
+
+<p>For our <em>MA Plot Example</em>, we compute two measurements: <code>M (Colon Expression)</code> (the difference between <code>Expression
+  Colon Cancer</code> and <code>Expression Colon Normal</code>) and <code>A (Colon Expression)</code> (the average between the two):</p>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_compms_dialog_m.png" alt="M (Colon Expression)" />
+ <img src="http://epiviz.github.io/tutorials/images/scr_compms_dialog_a.png" alt="A (Colon Expression)" /></p>
+
+<ol>
+<li><p>For each computed measurement, fill in <code>Name</code>, <code>Min</code> ( <em>optional</em> ) and <code>Max</code>
+( <em>optional</em> ), and then click <strong>Add</strong>. When done, click <strong>Close</strong>.</p></li>
+
+<li><p>Now add a chart using the newly computed measurement(s). In our example, we choose the <strong>Scatter Plot</strong>.</p></li>
+</ol>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_compms_newscatter.png" alt="New scatter plot" /><br/>
+ <img src="http://epiviz.github.io/tutorials/images/scr_compms_maplot.png" alt="MA Plot" /></p>
+
+<p><strong><a href="http://epiviz.cbcb.umd.edu/4/?ws=k5jQbrYsbPb&amp;settings=default">See it in Epiviz 4</a></strong></p>
+
+<p><a name="expression-language-reference"></p>
+
+<h2 id="expression-language-reference">Expression language reference</h2>
+
+<p></a></p>
+
+<p><em>Description copied from <b><a href="http://silentmatt.com/javascript-expression-evaluator/">JavaScript Expression Evaluator</a></b>.</em></p>
+
+<p><strong>Expression Syntax</strong></p>
+
+<p>The parser accepts a pretty basic grammar. Operators have the normal precidence - <code>f(x,y,z)</code> (function calls), <code>^</code>
+(exponentiation), <code>*</code>, <code>/</code>, and <code>%</code> (multiplication, division, and remainder), and finally <code>+</code>, <code>-</code>, and <code>||</code> (addition,
+subtraction, and string concatenation) - and bind from left to right (yes, even exponentiation it&rsquo;s simpler that way).</p>
+
+<p>There&rsquo;s also a <code>,</code> (comma) operator that concatenates values into an array. It&rsquo;s mostly useful for passing arguments
+to functions, since it doesn&rsquo;t always behave like you would think with regards to multi-dimensional arrays. If the left
+value is an array, it pushes the right value onto the end of the array, otherwise, it creates a new array <code>[left, right]</code>.
+This makes it impossible to create an array with another array as it&rsquo;s first element.</p>
+
+<p><strong>Function operators</strong></p>
+
+<p>The parser has several built-in <code>functions</code> that are actually operators. The only difference from an outside point of
+view, is that they cannot be called with multiple arguments and they are evaluated by the simplify method if their
+arguments are constant.</p>
+
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>sin(x)</code></td>
+<td>Sine of x (x is in radians)</td>
+</tr>
+
+<tr>
+<td><code>cos(x)</code></td>
+<td>Cosine of x (x is in radians)</td>
+</tr>
+
+<tr>
+<td><code>tan(x)</code></td>
+<td>Tangent of x (x is&hellip; well, you know)</td>
+</tr>
+
+<tr>
+<td><code>asin(x)</code></td>
+<td>Arc sine of x (in radians)</td>
+</tr>
+
+<tr>
+<td><code>acos(x)</code></td>
+<td>Arc cosine of x (in radians)</td>
+</tr>
+
+<tr>
+<td><code>atan(x)</code></td>
+<td>Arc tangent of x (in radians)</td>
+</tr>
+
+<tr>
+<td><code>sqrt(x)</code></td>
+<td>Square root of x. Result is NaN (Not a Number) if x is negative.</td>
+</tr>
+
+<tr>
+<td><code>log(x)</code></td>
+<td>Natural logarithm of x (not base-10). It&rsquo;s log instead of ln because that&rsquo;s what JavaScript calls it.</td>
+</tr>
+
+<tr>
+<td><code>abs(x)</code></td>
+<td>Absolute value (magnatude) of x</td>
+</tr>
+
+<tr>
+<td><code>ceil(x)</code></td>
+<td>Ceiling of x - the smallest integer that&rsquo;s &gt;= x.</td>
+</tr>
+
+<tr>
+<td><code>floor(x)</code></td>
+<td>Floor of x - the largest integer that&rsquo;s &lt;= x</td>
+</tr>
+
+<tr>
+<td><code>round(x)</code></td>
+<td>X, rounded to the nearest integer, using &ldquo;gradeschool rounding&rdquo;.</td>
+</tr>
+
+<tr>
+<td><code>exp(x)</code></td>
+<td>e^x (exponential/antilogarithm function with base e)</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Pre-defined functions</strong></p>
+
+<p>Besides the &ldquo;operator&rdquo; functions, there are several pre-defined functions.</p>
+
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>random(n)</code></td>
+<td>Get a random number in the range [0, n). If n is zero, or not provided, it defaults to 1.</td>
+</tr>
+
+<tr>
+<td><code>fac(n)</code></td>
+<td>n! (factorial of n: &ldquo;n * (n-1) * (n-2) * &hellip; * 2 * 1″)</td>
+</tr>
+
+<tr>
+<td><code>min(a,b,...)</code></td>
+<td>Get the smallest (&ldquo;minimum&rdquo;) number in the list</td>
+</tr>
+
+<tr>
+<td><code>max(a,b,...)</code></td>
+<td>Get the largest (&ldquo;maximum&rdquo;) number in the list</td>
+</tr>
+
+<tr>
+<td><code>pyt(a, b)</code></td>
+<td>Pythagorean function, i.e. the c in &ldquo;c2 = a2 + b2&rdquo;</td>
+</tr>
+
+<tr>
+<td><code>pow(x, y)</code></td>
+<td>x^y. This is exactly the same as &ldquo;x^y&rdquo;. It&rsquo;s just provided since it&rsquo;s in the Math object from JavaScript</td>
+</tr>
+
+<tr>
+<td><code>atan2(y, x)</code></td>
+<td>arc tangent of x/y. i.e. the angle between (0, 0) and (x, y) in radians.</td>
+</tr>
+</tbody>
+</table>
+
+
+      
+      </div>
+    </div>
+
+    <div id="navigation">
+        
+        
+        
+    </div>
+
+    </section>
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="http://epiviz.github.io/tutorials/js/clipboard.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/perfect-scrollbar.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/jquery.sticky-kit.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/featherlight.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/html5shiv-printshiv.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="http://epiviz.github.io/tutorials/js/modernizr.custom.71422.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/learn.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/hugo-learn.js"></script>
+    
+
+  </body>
+</html>
+

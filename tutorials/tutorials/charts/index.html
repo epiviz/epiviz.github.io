@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.17" />
+    <meta name="description" content="">
+
+
+    <link rel="shortcut icon" href="http://epiviz.github.io/tutorials/images/favicon.png" type="image/x-icon" />
+
+    
+    <title>Chart Tutorial</title>
+    <link href="http://epiviz.github.io/tutorials/css/nucleus.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/hybrid.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/featherlight.min.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/horsey.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/theme.css" rel="stylesheet">
+    <link href="http://epiviz.github.io/tutorials/css/hugo-theme.css" rel="stylesheet">
+    <script src="http://epiviz.github.io/tutorials/js/jquery-2.x.min.js"></script>
+    <style type="text/css">:root #header + #content > #left > #rlblock_left
+    {display:none !important;}</style>
+    <link href="http://epiviz.github.io/tutorials/css/my_style.css" rel="stylesheet">
+  </head>
+  <body class="" data-url="/tutorials/charts/">
+    <nav id="sidebar">
+  <div id="header-wrapper">
+    <div id="header">
+      <a width="100%" height="100%" href="http://epiviz.github.io/tutorials"><img src="http://epiviz.github.io/tutorials/images/epiviz_logo.png"></a>
+    </div>
+    
+</div>
+
+
+  <div class="highlightable">
+    <ul class="topics">
+      
+      
+        
+      
+      
+      
+      
+
+      
+        
+      
+      
+      
+
+      <li class="dd-item  parent" data-nav-id="/tutorials/">
+        <a href="http://epiviz.github.io/tutorials/tutorials/">
+          <span>
+            
+              <b>X. </b>
+            
+             Tutorials
+            
+           </span>
+        </a>
+        
+        <ul>
+          
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/timp2014/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/timp2014/">
+                <span>450k Illumina Human Methylation data for multiple solid tumors     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item active" data-nav-id="/tutorials/charts/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/charts/">
+                <span>Chart Tutorial     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/computed-measurements/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/computed-measurements/">
+                <span>Computed Measurements     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/epivizr/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/epivizr/">
+                <span>Epivizr     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/plugins/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/plugins/">
+                <span>External Scripts and Plugins     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/tutorials/websocket/">
+              <a href="http://epiviz.github.io/tutorials/tutorials/websocket/">
+                <span>Websocket Tutorial     </i></span>
+              </a>
+            </li>
+          
+          
+        </ul>
+        
+      </li>
+      
+      
+    </ul>
+    <hr>
+     
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+    </section>
+  </div>
+</nav>
+
+        <section id="body">
+        <div id="overlay"></div>
+
+        <div class="padding highlightable">
+
+            <div id="top-bar">
+              
+              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                  <span id="sidebar-toggle-span">
+                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                        <i class="fa fa-bars"></i>
+                      </a>
+                  </span>
+                
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
+                
+                
+                
+                  
+                    
+                    
+                <a href="http://epiviz.github.io/tutorials/tutorials/" itemprop="url"><span itemprop="title">Tutorials</span></a> <i class="fa fa-angle-right"></i>
+                    
+                  
+                
+                <span itemprop="title"> Chart Tutorial</span>
+              </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#adding-a-chart-to-the-workspace">Adding a chart to the workspace</a></li>
+<li><a href="#manipulating-charts">Manipulating charts</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+              
+
+            </div>
+            
+    	        <div id="body-inner">
+                
+                <h1>Chart Tutorial</h1>
+                
+
+
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+<li><a href="#add-chart">Adding a chart to the workspace</a></li>
+<li><a href="#manipulating-charts">Manipulating charts</a></li>
+<li><strong>More about charts</strong>
+
+<ul>
+<li><a href="plugins.html#new-chart-plugin">Creating a new chart plugin</a></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<p><a name="add-chart"></p>
+
+<h2 id="adding-a-chart-to-the-workspace">Adding a chart to the workspace</h2>
+
+<p></a></p>
+
+<ol>
+<li>Epiviz has two types of charts: <em>Plots</em>, that display data by feature, and <em>Tracks</em>, that display data by location.
+For each of the two, it has a separate menu. Whether you want to add a <em>Plot</em> or a <em>Track</em>, open the corresponding menu,
+and select the chart you want to add. These menus expand dynamically, as the user adds more chart plugins.</li>
+</ol>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_add_chart_menu.png" alt="Plots Menu" /></p>
+
+<ol>
+<li>Select the appropriate data source group from the list. Only one row can be selected. Click <em>Next</em>.</li>
+</ol>
+
+<p>Some charts require measurements to belong to the same <em>data source group</em>, like <em>Scatter Plots</em>. Measurements with
+  the same <em>data source group</em> have the same genomic ranges associated to each item in the data, and what differentiates
+  them are their values. For example, all measurements that measure the expression of genes for different tissue types
+  belong to the same <em>data source group</em>, <code>affymetrix_probeset</code>. The same applies for the <em>Gene Expression Barcode</em> samples, which all belong
+  to the <em>data source group</em> called <code>gexp_barcode</code>.</p>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_add_chart_dialog_dsgroup.png" alt="Select Data Source Group" /></p>
+
+<ol>
+<li><p><span class="optional">optional</span> Filter the displayed measurements to a subset you’re interested in. In the
+search boxes you can use regular expressions. For example applying the filter <code>(colon (normal|tumor))</code> to the name of
+the measurements in the heatmap measurements dialog will filter to: <code>colon normal</code>, <code>colon tumor</code>, <code>sigmoid_colon normal</code>,
+<code>sigmoid_colon tumor</code>, <code>sigmoid_colon_mucosa tumor</code>.</p></li>
+
+<li><p>Select the measurements you want to use for the newly created chart. You can use the <code>Shift</code> or <code>Ctrl</code> (<strong>Mac</strong>:
+<code>Command</code>) keys to select multiple measurements. Click <em>Finish</em>.</p></li>
+</ol>
+
+<p>Some charts require a minimum number of measurements selected. For example, the <em>Scatter Plot</em> requires two. The order
+  in which you select the measurements is also important! For example, the <em>Scatter Plot</em> will display the first selected
+  measurement on the <code>X</code> axis and the second on <code>Y</code>.</p>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_add_chart_dialog_measurements.png" alt="Select Measurements" /></p>
+
+<ol>
+<li>The new chart is displayed on the screen.</li>
+</ol>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_add_chart_heatmap.png" alt="A New Heatmap Plot" /></p>
+
+<p><a name="manipulating-charts"></p>
+
+<h2 id="manipulating-charts">Manipulating charts</h2>
+
+<p></a></p>
+
+<p>The charts in {{ site.epiviz }} are all resizable, and all feature a number of options, some specific to the chart, some general.
+In this section we go over a few of them.</p>
+
+<ol>
+<li><strong>Toggle Tooltip.</strong> This button allows the user to toggle between showing and hiding tooltips on chart object hover.</li>
+</ol>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_tooltip_button.png" alt="Toggle Tooltip" /></p>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_tooltip.png" alt="Tooltip" /></p>
+
+<ol>
+<li><p><strong>Colors.</strong> In {{ site.epiviz }}, colors in all charts can be customized.</p>
+
+<ul>
+<li>Take, for example, a line track with two measurements: <code>Methylation Colon Cancer</code>, and <code>Methylation Colon Normal</code>.
+Initially, the first measurement is colored blue, and the second, red.<br/><br />
+<img src="http://epiviz.github.io/tutorials/images/scr_line_met_cancer_normal_red_blue.png" alt="Line Track" /></li>
+<li>In this case, the default chosen colors are counter-intuitive, so we choose to change <code>Methylation Colon Cancer</code> to
+<code>red</code>, and <code>Methylation Colon Normal</code> to <code>green</code>. Open the <em>Colors</em> dialog, and select the first color, assigned to
+<code>Methylation Colon Cancer</code>; pick a shade of red for it. Then select the second color, assigned to the second
+measurement; pick green. Click <em>Ok</em>.<br/>
+<img src="http://epiviz.github.io/tutorials/images/scr_color_picker.png" alt="Color Picker Dialog" />
+<img src="http://epiviz.github.io/tutorials/images/scr_line_met_cancer_normal_green_red.png" alt="Line Track" /></li>
+</ul></li>
+
+<li><p><strong>Save Chart.</strong> All charts in {{ site.epiviz }} are represented as <a href="http://en.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a>,
+and can be saved to the local computer in various file formats: <em>PDF</em>, <em>PS</em>, <em>PNG</em>, <em>SVG</em>, and <em>EPS</em>. Click the <em>Save</em>
+button; in the dialog, choose the desired file format, and click <em>Ok</em>.</p></li>
+</ol>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_save_chart_button.png" alt="Save Chart Button" /></p>
+
+<p><img src="http://epiviz.github.io/tutorials/images/scr_save_chart_dialog.png" alt="Save Chart Dialog" /></p>
+
+<ol>
+<li><strong>Custom Settings.</strong> Charts in {{ site.epiviz }} also have settings specific to the visualization type, allowing to customize
+how many objects are displayed at a time, their size, axis boundaries, margins. Each chart has a <em>Custom settings</em>
+button that opens the options for that particular chart type.</li>
+</ol>
+
+
+      
+      </div>
+    </div>
+
+    <div id="navigation">
+        
+        
+        
+    </div>
+
+    </section>
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="http://epiviz.github.io/tutorials/js/clipboard.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/perfect-scrollbar.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/jquery.sticky-kit.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/featherlight.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/html5shiv-printshiv.min.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="http://epiviz.github.io/tutorials/js/modernizr.custom.71422.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/learn.js"></script>
+    <script src="http://epiviz.github.io/tutorials/js/hugo-learn.js"></script>
+    
+
+  </body>
+</html>
+

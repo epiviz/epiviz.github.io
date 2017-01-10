@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: plugins/charts/genes-track.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: plugins/charts/genes-track.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Created by Florin Chelaru ( florinc [at] umd [dot] edu )
+ * Date: 11/18/13
+ * Time: 7:33 PM
+ */
+
+goog.provide('epiviz.plugins.charts.GenesTrack');
+
+/**
+ * @param {string} id
+ * @param {jQuery} container
+ * @param {epiviz.ui.charts.VisualizationProperties} properties
+ * @extends {epiviz.ui.charts.Track}
+ * @constructor
+ */
+epiviz.plugins.charts.GenesTrack = function(id, container, properties) {
+  // Call superclass constructor
+  epiviz.ui.charts.Track.call(this, id, container, properties);
+
+  this._initialize();
+};
+
+/*
+ * Copy methods from upper class
+ */
+epiviz.plugins.charts.GenesTrack.prototype = epiviz.utils.mapCopy(epiviz.ui.charts.Track.prototype);
+epiviz.plugins.charts.GenesTrack.constructor = epiviz.plugins.charts.GenesTrack;
+
+/**
+ * @protected
+ */
+epiviz.plugins.charts.GenesTrack.prototype._initialize = function() {
+  // Call super
+  epiviz.ui.charts.Track.prototype._initialize.call(this);
+
+  this._svg.classed('genes-track', true);
+};
+
+/**
+ * @param {epiviz.datatypes.GenomicRange} [range]
+ * @param {epiviz.datatypes.GenomicData} [data]
+ * @param {number} [slide]
+ * @param {number} [zoom]
+ * @returns {Array.&lt;epiviz.ui.charts.ChartObject>} The objects drawn
+ */
+epiviz.plugins.charts.GenesTrack.prototype.draw = function(range, data, slide, zoom) {
+  epiviz.ui.charts.Track.prototype.draw.call(this, range, data, slide, zoom);
+
+  // If data is defined, then the base class sets this._lastData to data.
+  // If it isn't, then we'll use the data from the last draw call
+  data = this._lastData;
+  range = this._lastRange;
+
+  // If data is not defined, there is nothing to draw
+  if (!data || !range) { return []; }
+
+  slide = slide || this._slide;
+  zoom = zoom || this._zoom;
+  this._slide = 0;
+  this._zoom = 1;
+
+  return this._drawGenes(range, data, slide || 0, zoom || 1);
+};
+
+/**
+ * @param {epiviz.datatypes.GenomicRange} range
+ * @param {epiviz.datatypes.GenomicData} data
+ * @param {number} slide
+ * @param {number} zoom
+ * @returns {Array.&lt;epiviz.ui.charts.ChartObject>} The objects drawn
+ * @private
+ */
+epiviz.plugins.charts.GenesTrack.prototype._drawGenes = function(range, data, slide, zoom) {
+  var Axis = epiviz.ui.charts.Axis;
+
+  /** @type {number} */
+  var start = range.start();
+
+  /** @type {number} */
+  var end = range.end();
+
+  /** @type {number} */
+  var width = this.width();
+
+  /** @type {number} */
+  var height = this.height();
+
+  /** @type {epiviz.ui.charts.Margins} */
+  var margins = this.margins();
+
+  var xScale = d3.scale.linear()
+    .domain([start, end])
+    .range([0, width - margins.sumAxis(Axis.X)]);
+  var delta = slide * (width - margins.sumAxis(Axis.X)) / (end - start);
+
+  this._clearAxes();
+  this._drawAxes(xScale, null, 10, 5);
+
+  var self = this;
+  /** @type {epiviz.datatypes.MeasurementGenomicData} */
+  var series = data.firstSeries();
+
+  var indices = epiviz.utils.range(series.size());
+
+  /** @type {Array.&lt;epiviz.ui.charts.ChartObject>} */
+  var dataItems = indices
+    .map(function(i) {
+    var cell = series.get(i);
+    var item = cell.rowItem;
+    var classes = sprintf('item gene-%s', item.metadata('gene'));
+
+    return new epiviz.ui.charts.ChartObject(
+      item.metadata('gene'),
+      item.start(),
+      item.end(),
+      null,
+      0,
+      [[cell]],
+      [series.measurement()],
+      classes);
+  });
+
+  if (zoom) {
+    this._svg.select('.items').remove();
+    this._svg.select('defs').select('#clip-' + this.id()).remove();
+  }
+
+  var items = this._svg.select('.items');
+  var selected = items.select('.selected');
+
+  if (items.empty()) {
+    var defs = this._svg.select('defs');
+    defs.append('clipPath')
+      .attr('id', 'clip-' + this.id())
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', width - margins.sumAxis(Axis.X))
+      .attr('height', height - margins.sumAxis(Axis.Y));
+
+    items = this._svg.append('g')
+      .attr('class', 'items')
+      .attr('transform', 'translate(' + margins.left() + ', ' + margins.top() + ')')
+      .attr('id', this.id() + '-gene-content')
+      .attr('clip-path', 'url(#clip-' + this.id() + ')');
+
+    selected = items.append('g').attr('class', 'selected');
+    items.append('g').attr('class', 'hovered');
+    selected.append('g').attr('class', 'hovered');
+  }
+
+  var selection = items.selectAll('.item')
+    .data(dataItems, function(d) { return d.id; });
+
+  selection
+    .enter()
+    .insert('g', ':first-child')
+    .on('mouseout', function () {
+      self._unhover.notify(new epiviz.ui.charts.VisEventArgs(self.id()));
+    })
+    .on('mouseover', function (d) {
+      self._hover.notify(new epiviz.ui.charts.VisEventArgs(self.id(), d));
+    })
+    .on('click', function(d) {
+      self._deselect.notify(new epiviz.ui.charts.VisEventArgs(self.id()));
+      self._select.notify(new epiviz.ui.charts.VisEventArgs(self.id(), d));
+      d3.event.stopPropagation();
+    })
+    .attr('transform', 'translate(' + (delta) + ', 0) scale(1, 1)')
+    .each(function(d) {
+      self._drawGene(this, d, xScale);
+    });
+
+  if (delta) {
+    selection.each(function(d) {
+      self._translateGene(this, d, delta);
+    });
+  }
+
+  selection
+    .exit()
+    .transition()
+    .duration(500)
+    .style('opacity', 0)
+    .remove();
+
+  return dataItems;
+};
+
+/**
+ * @param elem
+ * @param {epiviz.ui.charts.ChartObject} d
+ * @param delta
+ * @private
+ */
+epiviz.plugins.charts.GenesTrack.prototype._translateGene = function(elem, d, delta) {
+  var gene = d3.select(elem);
+  var transform = gene.attr('transform');
+  var translateRx = new RegExp('translate\\\([\\\d\\\.\\\-]+[\\\,\\\s]+[\\\d\\\.\\\-]+\\\)', 'g');
+  var numberRx = new RegExp('[\\\d\\\.\\\-]+', 'g');
+  var translate = transform.match(translateRx)[0];
+  var x = parseFloat(translate.match(numberRx)[0]);
+
+  transform = transform.replace(translateRx, 'translate(' + (x-delta) + ', 0)');
+  gene
+    .transition()
+    .duration(500)
+    .attr('transform', transform);
+};
+
+/**
+ * @param elem
+ * @param {epiviz.ui.charts.ChartObject} d
+ * @param {function(number): number} xScale
+ * @private
+ */
+epiviz.plugins.charts.GenesTrack.prototype._drawGene = function(elem, d, xScale) {
+  var Axis = epiviz.ui.charts.Axis;
+  var self = this;
+  var rowItem = d.valueItems[0][0].rowItem;
+  var geneStart = xScale(d.start);
+  var geneEnd = xScale(d.end);
+  var or = (rowItem.strand() == '+') ? 1 : -1;
+  var offset = - or * (this.height() - this.margins().sumAxis(Axis.Y)) * 0.25;
+
+  var exonStarts = rowItem.metadata('exon_starts').split(',').map(function(s) { return parseInt(s); });
+  var exonEnds = rowItem.metadata('exon_ends').split(',').map(function(s) { return parseInt(s); });
+  var exonCount = exonStarts.length;
+  var exonIndices = d3.range(0, exonCount);
+
+  var geneHeight = this.height() * 0.08;
+  var exonHeight = this.height() * 0.16;
+  var h = geneHeight * Math.sqrt(3) * 0.5;
+
+  var gene = d3.select(elem);
+  gene.attr('class', d.cssClasses);
+
+  gene.append('polygon')
+    .attr('class', 'gene-body')
+    .style('fill', this.colors().get(0))
+    .attr('points', function() {
+      var xs = null, ys;
+      var y0 = (self.height() - self.margins().sumAxis(Axis.Y) - geneHeight) * 0.5 + offset;
+      ys = [y0, y0, y0 + geneHeight * 0.5, y0 + geneHeight, y0 + geneHeight];
+      if (rowItem.strand() == '+') {
+        xs = [geneStart, geneEnd, geneEnd + h, geneEnd, geneStart];
+      } else {
+        xs = [geneEnd, geneStart, geneStart - h, geneStart, geneEnd];
+      }
+
+      return sprintf('%s,%s %s,%s %s,%s %s,%s %s,%s', xs[0], ys[0], xs[1], ys[1], xs[2], ys[2], xs[3], ys[3], xs[4], ys[4]);
+    });
+
+  var exons = gene.append('g')
+    .attr('class', 'exons')
+    .style('fill', this.colors().get(1));
+
+  exons.selectAll('rect')
+    .data(exonIndices)
+    .enter()
+    .append('rect')
+    .attr('x', function(j) {
+      return xScale(exonStarts[j]);
+    })
+    .attr('y', (self.height() - exonHeight - self.margins().sumAxis(Axis.Y)) * 0.5 + offset)
+    .attr('width', function(j) {
+      return xScale(exonEnds[j]) - xScale(exonStarts[j]);
+    })
+    .attr('height', exonHeight);
+
+  gene
+    .append('text')
+    .attr('class', 'gene-name')
+    .attr('x', geneStart + 2)
+    .attr('y', (self.height() - self.margins().sumAxis(Axis.Y)) * 0.5 + offset - or * (geneHeight + 2))
+    .style('dominant-baseline', 'central')
+    .text(d.id); //Gene
+};
+
+/**
+ * @returns {Array.&lt;{name: string, color: string}>}
+ */
+epiviz.plugins.charts.GenesTrack.prototype.colorLabels = function() {
+  return ['Genes', 'Exons'];
+};
+
+/**
+ * @param xScale D3 linear scale for the x axis
+ * @param yScale D3 linear scale for the y axis
+ * @param {number} [xTicks]
+ * @param {number} [yTicks]
+ * @param [svg] D3 svg container for the axes
+ * @param {number} [width]
+ * @param {number} [height]
+ * @param {epiviz.ui.charts.Margins} [margins]
+ * @protected
+ */
+epiviz.plugins.charts.GenesTrack.prototype._drawAxes = function(xScale, yScale, xTicks, yTicks, svg, width, height, margins) {
+  epiviz.ui.charts.Track.prototype._drawAxes.call(this, xScale, yScale, xTicks, yTicks, svg, width, height, margins);
+
+  var Axis = epiviz.ui.charts.Axis;
+  var axesGroup = this._svg.select('.axes');
+  axesGroup
+    .append('g')
+    .attr('class', 'xAxis')
+    .append('line')
+    .attr('x1', this.margins().left())
+    .attr('x2', this.width() - this.margins().left())
+    .attr('y1', this.margins().top() + (this.height() - this.margins().sumAxis(Axis.Y)) * 0.5)
+    .attr('y2', this.margins().top() + (this.height() - this.margins().sumAxis(Axis.Y)) * 0.5)
+    .style('stroke', '#555555')
+    .style('shape-rendering', 'crispEdges');
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="epiviz.Config.html">epiviz.Config</a></li><li><a href="epiviz.data.Cache.html">epiviz.data.Cache</a></li><li><a href="epiviz.data.DataManager.html">epiviz.data.DataManager</a></li><li><a href="epiviz.data.DataProvider.html">epiviz.data.DataProvider</a></li><li><a href="epiviz.data.DataProviderFactory.html">epiviz.data.DataProviderFactory</a></li><li><a href="epiviz.data.EmptyResponseDataProvider.html">epiviz.data.EmptyResponseDataProvider</a></li><li><a href="epiviz.data.EpivizApiDataProvider.html">epiviz.data.EpivizApiDataProvider</a></li><li><a href="epiviz.data.EpivizApiDataProvider.Request.html">epiviz.data.EpivizApiDataProvider.Request</a></li><li><a href="epiviz.data.EpivizApiDataProvider.Response.html">epiviz.data.EpivizApiDataProvider.Response</a></li><li><a href="epiviz.data.MetagenomicsDataProvider.html">epiviz.data.MetagenomicsDataProvider</a></li><li><a href="epiviz.data.MockDataProvider.html">epiviz.data.MockDataProvider</a></li><li><a href="epiviz.data.Request.html">epiviz.data.Request</a></li><li><a href="epiviz.data.RequestStack.html">epiviz.data.RequestStack</a></li><li><a href="epiviz.data.Response.html">epiviz.data.Response</a></li><li><a href="epiviz.data.Response.fromRawObject.html">epiviz.data.Response.fromRawObject</a></li><li><a href="epiviz.data.WebServerDataProvider.html">epiviz.data.WebServerDataProvider</a></li><li><a href="epiviz.data.WebsocketDataProvider.html">epiviz.data.WebsocketDataProvider</a></li><li><a href="epiviz.datatypes.deprecated.GenomicRanges.html">epiviz.datatypes.deprecated.GenomicRanges</a></li><li><a href="epiviz.datatypes.deprecated.GenomicRanges.Hits.html">epiviz.datatypes.deprecated.GenomicRanges.Hits</a></li><li><a href="epiviz.datatypes.deprecated.GenomicRanges.Row.html">epiviz.datatypes.deprecated.GenomicRanges.Row</a></li><li><a href="epiviz.datatypes.deprecated.GenomicRanges.Subset.html">epiviz.datatypes.deprecated.GenomicRanges.Subset</a></li><li><a href="epiviz.datatypes.deprecated.SeqInfo.html">epiviz.datatypes.deprecated.SeqInfo</a></li><li><a href="epiviz.datatypes.FeatureValueArray.html">epiviz.datatypes.FeatureValueArray</a></li><li><a href="epiviz.datatypes.GenomicArray.html">epiviz.datatypes.GenomicArray</a></li><li><a href="epiviz.datatypes.GenomicData.ValueItem.html">epiviz.datatypes.GenomicData.ValueItem</a></li><li><a href="epiviz.datatypes.GenomicRange.html">epiviz.datatypes.GenomicRange</a></li><li><a href="epiviz.datatypes.GenomicRangeArray.html">epiviz.datatypes.GenomicRangeArray</a></li><li><a href="epiviz.datatypes.GenomicRangeArray.RowItemWrapper.html">epiviz.datatypes.GenomicRangeArray.RowItemWrapper</a></li><li><a href="epiviz.datatypes.ItemFilteredGenomicData.html">epiviz.datatypes.ItemFilteredGenomicData</a></li><li><a href="epiviz.datatypes.MapGenomicData.html">epiviz.datatypes.MapGenomicData</a></li><li><a href="epiviz.datatypes.MeasurementAggregatedGenomicData.html">epiviz.datatypes.MeasurementAggregatedGenomicData</a></li><li><a href="epiviz.datatypes.MeasurementGenomicDataArrayWrapper.html">epiviz.datatypes.MeasurementGenomicDataArrayWrapper</a></li><li><a href="epiviz.datatypes.MeasurementGenomicDataWrapper.html">epiviz.datatypes.MeasurementGenomicDataWrapper</a></li><li><a href="epiviz.datatypes.MeasurementOrderedGenomicData.html">epiviz.datatypes.MeasurementOrderedGenomicData</a></li><li><a href="epiviz.datatypes.PartialSummarizedExperiment.html">epiviz.datatypes.PartialSummarizedExperiment</a></li><li><a href="epiviz.datatypes.RowItemImpl.html">epiviz.datatypes.RowItemImpl</a></li><li><a href="epiviz.datatypes.SeqInfo.html">epiviz.datatypes.SeqInfo</a></li><li><a href="epiviz.deferred.Deferred.html">epiviz.deferred.Deferred</a></li><li><a href="epiviz.deferred.Promise.html">epiviz.deferred.Promise</a></li><li><a href="epiviz.EpiViz.html">epiviz.EpiViz</a></li><li><a href="epiviz.events.Event.html">epiviz.events.Event</a></li><li><a href="epiviz.events.EventListener.html">epiviz.events.EventListener</a></li><li><a href="epiviz.events.EventResult.html">epiviz.events.EventResult</a></li><li><a href="epiviz.localstorage.LocalStorageManager.html">epiviz.localstorage.LocalStorageManager</a></li><li><a href="epiviz.measurements.Measurement.html">epiviz.measurements.Measurement</a></li><li><a href="epiviz.measurements.MeasurementHashtable.html">epiviz.measurements.MeasurementHashtable</a></li><li><a href="epiviz.measurements.MeasurementHashtable.Iterator.html">epiviz.measurements.MeasurementHashtable.Iterator</a></li><li><a href="epiviz.measurements.MeasurementSet.html">epiviz.measurements.MeasurementSet</a></li><li><a href="epiviz.measurements.MeasurementSet.Iterator.html">epiviz.measurements.MeasurementSet.Iterator</a></li><li><a href="epiviz.measurements.MeasurementsManager.html">epiviz.measurements.MeasurementsManager</a></li><li><a href="epiviz.plugins.charts.BlocksTrack.html">epiviz.plugins.charts.BlocksTrack</a></li><li><a href="epiviz.plugins.charts.BlocksTrackType.html">epiviz.plugins.charts.BlocksTrackType</a></li><li><a href="epiviz.plugins.charts.GenesTrack.html">epiviz.plugins.charts.GenesTrack</a></li><li><a href="epiviz.plugins.charts.GenesTrackType.html">epiviz.plugins.charts.GenesTrackType</a></li><li><a href="epiviz.plugins.charts.HeatmapPlot.html">epiviz.plugins.charts.HeatmapPlot</a></li><li><a href="epiviz.plugins.charts.HeatmapPlotType.html">epiviz.plugins.charts.HeatmapPlotType</a></li><li><a href="epiviz.plugins.charts.LinePlot.html">epiviz.plugins.charts.LinePlot</a></li><li><a href="epiviz.plugins.charts.LinePlotType.html">epiviz.plugins.charts.LinePlotType</a></li><li><a href="epiviz.plugins.charts.LineTrack.html">epiviz.plugins.charts.LineTrack</a></li><li><a href="epiviz.plugins.charts.LineTrackCustom.html">epiviz.plugins.charts.LineTrackCustom</a></li><li><a href="epiviz.plugins.charts.LineTrackType.html">epiviz.plugins.charts.LineTrackType</a></li><li><a href="epiviz.plugins.charts.LineTrackTypeCustom.html">epiviz.plugins.charts.LineTrackTypeCustom</a></li><li><a href="epiviz.plugins.charts.ScatterPlot.html">epiviz.plugins.charts.ScatterPlot</a></li><li><a href="epiviz.plugins.charts.ScatterPlotType.html">epiviz.plugins.charts.ScatterPlotType</a></li><li><a href="epiviz.plugins.charts.StackedLinePlot.html">epiviz.plugins.charts.StackedLinePlot</a></li><li><a href="epiviz.plugins.charts.StackedLinePlotType.html">epiviz.plugins.charts.StackedLinePlotType</a></li><li><a href="epiviz.plugins.charts.StackedLineTrack.html">epiviz.plugins.charts.StackedLineTrack</a></li><li><a href="epiviz.plugins.charts.StackedLineTrackType.html">epiviz.plugins.charts.StackedLineTrackType</a></li><li><a href="epiviz.ui.charts.Chart.html">epiviz.ui.charts.Chart</a></li><li><a href="epiviz.ui.charts.ChartFactory.html">epiviz.ui.charts.ChartFactory</a></li><li><a href="epiviz.ui.charts.ChartManager.html">epiviz.ui.charts.ChartManager</a></li><li><a href="epiviz.ui.charts.ChartObject.html">epiviz.ui.charts.ChartObject</a></li><li><a href="epiviz.ui.charts.ChartType.html">epiviz.ui.charts.ChartType</a></li><li><a href="epiviz.ui.charts.ColorPalette.html">epiviz.ui.charts.ColorPalette</a></li><li><a href="epiviz.ui.charts.CustomSetting.html">epiviz.ui.charts.CustomSetting</a></li><li><a href="epiviz.ui.charts.DataStructureVisualization.html">epiviz.ui.charts.DataStructureVisualization</a></li><li><a href="epiviz.ui.charts.DataStructureVisualizationType.html">epiviz.ui.charts.DataStructureVisualizationType</a></li><li><a href="epiviz.ui.charts.decoration.ChartColorByMeasurementsCodeButton.html">epiviz.ui.charts.decoration.ChartColorByMeasurementsCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartColorByRowCodeButton.html">epiviz.ui.charts.decoration.ChartColorByRowCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartColorsButton.html">epiviz.ui.charts.decoration.ChartColorsButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartFilterCodeButton.html">epiviz.ui.charts.decoration.ChartFilterCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartGroupByMeasurementsCodeButton.html">epiviz.ui.charts.decoration.ChartGroupByMeasurementsCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartLoaderAnimation.html">epiviz.ui.charts.decoration.ChartLoaderAnimation</a></li><li><a href="epiviz.ui.charts.decoration.ChartOptionButton.html">epiviz.ui.charts.decoration.ChartOptionButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartOrderByMeasurementsCodeButton.html">epiviz.ui.charts.decoration.ChartOrderByMeasurementsCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartResize.html">epiviz.ui.charts.decoration.ChartResize</a></li><li><a href="epiviz.ui.charts.decoration.ChartTooltip.html">epiviz.ui.charts.decoration.ChartTooltip</a></li><li><a href="epiviz.ui.charts.decoration.CodeButton.html">epiviz.ui.charts.decoration.CodeButton</a></li><li><a href="epiviz.ui.charts.decoration.CustomSettingsButton.html">epiviz.ui.charts.decoration.CustomSettingsButton</a></li><li><a href="epiviz.ui.charts.decoration.EditCodeButton.html">epiviz.ui.charts.decoration.EditCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.HierarchyFilterCodeButton.html">epiviz.ui.charts.decoration.HierarchyFilterCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.MarkerCodeButton.html">epiviz.ui.charts.decoration.MarkerCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.RemoveChartButton.html">epiviz.ui.charts.decoration.RemoveChartButton</a></li><li><a href="epiviz.ui.charts.decoration.SaveChartButton.html">epiviz.ui.charts.decoration.SaveChartButton</a></li><li><a href="epiviz.ui.charts.decoration.ToggleTooltipButton.html">epiviz.ui.charts.decoration.ToggleTooltipButton</a></li><li><a href="epiviz.ui.charts.decoration.VisualizationDecoration.html">epiviz.ui.charts.decoration.VisualizationDecoration</a></li><li><a href="epiviz.ui.charts.Margins.html">epiviz.ui.charts.Margins</a></li><li><a href="epiviz.ui.charts.markers.MeasurementAggregator.html">epiviz.ui.charts.markers.MeasurementAggregator</a></li><li><a href="epiviz.ui.charts.markers.VisualizationMarker.html">epiviz.ui.charts.markers.VisualizationMarker</a></li><li><a href="epiviz.ui.charts.Plot.html">epiviz.ui.charts.Plot</a></li><li><a href="epiviz.ui.charts.PlotType.html">epiviz.ui.charts.PlotType</a></li><li><a href="epiviz.ui.charts.Track.html">epiviz.ui.charts.Track</a></li><li><a href="epiviz.ui.charts.TrackType.html">epiviz.ui.charts.TrackType</a></li><li><a href="epiviz.ui.charts.transform.clustering.AgglomerativeClustering.html">epiviz.ui.charts.transform.clustering.AgglomerativeClustering</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusteringAlgorithmFactory.html">epiviz.ui.charts.transform.clustering.ClusteringAlgorithmFactory</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusterLeaf.html">epiviz.ui.charts.transform.clustering.ClusterLeaf</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusterSubtree.html">epiviz.ui.charts.transform.clustering.ClusterSubtree</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusterTree.html">epiviz.ui.charts.transform.clustering.ClusterTree</a></li><li><a href="epiviz.ui.charts.transform.clustering.CompleteLinkage.html">epiviz.ui.charts.transform.clustering.CompleteLinkage</a></li><li><a href="epiviz.ui.charts.transform.clustering.EuclideanMetric.html">epiviz.ui.charts.transform.clustering.EuclideanMetric</a></li><li><a href="epiviz.ui.charts.transform.clustering.NoneClustering.html">epiviz.ui.charts.transform.clustering.NoneClustering</a></li><li><a href="epiviz.ui.charts.tree.decoration.TogglePropagateSelectionButton.html">epiviz.ui.charts.tree.decoration.TogglePropagateSelectionButton</a></li><li><a href="epiviz.ui.charts.tree.HierarchyVisualization.html">epiviz.ui.charts.tree.HierarchyVisualization</a></li><li><a href="epiviz.ui.charts.tree.HierarchyVisualizationType.html">epiviz.ui.charts.tree.HierarchyVisualizationType</a></li><li><a href="epiviz.ui.charts.tree.Icicle.html">epiviz.ui.charts.tree.Icicle</a></li><li><a href="epiviz.ui.charts.tree.IcicleType.html">epiviz.ui.charts.tree.IcicleType</a></li><li><a href="epiviz.ui.charts.tree.Node.html">epiviz.ui.charts.tree.Node</a></li><li><a href="epiviz.ui.charts.tree.Sunburst.html">epiviz.ui.charts.tree.Sunburst</a></li><li><a href="epiviz.ui.charts.tree.UiNode.html">epiviz.ui.charts.tree.UiNode</a></li><li><a href="epiviz.ui.charts.VisEventArgs.html">epiviz.ui.charts.VisEventArgs</a></li><li><a href="epiviz.ui.charts.VisObject.html">epiviz.ui.charts.VisObject</a></li><li><a href="epiviz.ui.charts.Visualization.html">epiviz.ui.charts.Visualization</a></li><li><a href="epiviz.ui.charts.VisualizationProperties.html">epiviz.ui.charts.VisualizationProperties</a></li><li><a href="epiviz.ui.charts.VisualizationType.html">epiviz.ui.charts.VisualizationType</a></li><li><a href="epiviz.ui.ControlManager.html">epiviz.ui.ControlManager</a></li><li><a href="epiviz.ui.controls.CodeControl.html">epiviz.ui.controls.CodeControl</a></li><li><a href="epiviz.ui.controls.CodeDialog.html">epiviz.ui.controls.CodeDialog</a></li><li><a href="epiviz.ui.controls.ColorPickerDialog.html">epiviz.ui.controls.ColorPickerDialog</a></li><li><a href="epiviz.ui.controls.ComputedMeasurementsDialog.html">epiviz.ui.controls.ComputedMeasurementsDialog</a></li><li><a href="epiviz.ui.controls.Control.html">epiviz.ui.controls.Control</a></li><li><a href="epiviz.ui.controls.CustomSettingsDialog.html">epiviz.ui.controls.CustomSettingsDialog</a></li><li><a href="epiviz.ui.controls.DatasourceGroupWizardStep.html">epiviz.ui.controls.DatasourceGroupWizardStep</a></li><li><a href="epiviz.ui.controls.DataTable.html">epiviz.ui.controls.DataTable</a></li><li><a href="epiviz.ui.controls.DataTable.Column.html">epiviz.ui.controls.DataTable.Column</a></li><li><a href="epiviz.ui.controls.Dialog.html">epiviz.ui.controls.Dialog</a></li><li><a href="epiviz.ui.controls.EditCodeControl.html">epiviz.ui.controls.EditCodeControl</a></li><li><a href="epiviz.ui.controls.MarkerCodeControl.html">epiviz.ui.controls.MarkerCodeControl</a></li><li><a href="epiviz.ui.controls.MeaurementsWizardStep.html">epiviz.ui.controls.MeaurementsWizardStep</a></li><li><a href="epiviz.ui.controls.MessageDialog.html">epiviz.ui.controls.MessageDialog</a></li><li><a href="epiviz.ui.controls.SaveSvgAsImageDialog.html">epiviz.ui.controls.SaveSvgAsImageDialog</a></li><li><a href="epiviz.ui.controls.VisConfigSelection.html">epiviz.ui.controls.VisConfigSelection</a></li><li><a href="epiviz.ui.controls.Wizard.html">epiviz.ui.controls.Wizard</a></li><li><a href="epiviz.ui.LocationManager.html">epiviz.ui.LocationManager</a></li><li><a href="epiviz.ui.WebArgsManager.html">epiviz.ui.WebArgsManager</a></li><li><a href="epiviz.utils.IterableArray.html">epiviz.utils.IterableArray</a></li><li><a href="epiviz.workspaces.UserManager.html">epiviz.workspaces.UserManager</a></li><li><a href="epiviz.workspaces.Workspace.html">epiviz.workspaces.Workspace</a></li><li><a href="epiviz.workspaces.WorkspaceManager.html">epiviz.workspaces.WorkspaceManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="epiviz.datatypes.deprecated.GenomicData.html">epiviz.datatypes.deprecated.GenomicData</a></li><li><a href="epiviz.datatypes.GenomicData.html">epiviz.datatypes.GenomicData</a></li><li><a href="epiviz.datatypes.GenomicData.RowItem.html">epiviz.datatypes.GenomicData.RowItem</a></li><li><a href="epiviz.datatypes.MeasurementGenomicData.html">epiviz.datatypes.MeasurementGenomicData</a></li><li><a href="epiviz.datatypes.Range.html">epiviz.datatypes.Range</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusteringLinkage.html">epiviz.ui.charts.transform.clustering.ClusteringLinkage</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusteringMetric.html">epiviz.ui.charts.transform.clustering.ClusteringMetric</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusterNode.html">epiviz.ui.charts.transform.clustering.ClusterNode</a></li><li><a href="epiviz.ui.charts.transform.clustering.HierarchicalClusteringAlgorithm.html">epiviz.ui.charts.transform.clustering.HierarchicalClusteringAlgorithm</a></li><li><a href="epiviz.ui.controls.Wizard.Step.html">epiviz.ui.controls.Wizard.Step</a></li><li><a href="epiviz.utils.Iterable.html">epiviz.utils.Iterable</a></li><li><a href="epiviz.utils.Iterator.html">epiviz.utils.Iterator</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed May 11 2016 13:52:40 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

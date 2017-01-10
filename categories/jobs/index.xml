@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Epiviz</title>
+    <link>http://epiviz.github.io/categories/jobs/index.xml</link>
+    <description>Recent content on Epiviz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>2016 ~ epiviz</copyright>
+    <atom:link href="/categories/jobs/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>ISO: Data Scientist/Programmer</title>
+            <link>http://epiviz.github.io/post/2015-09-15-hiring/</link>
+            <pubDate>Tue, 15 Sep 2015 10:52:12 -0500</pubDate>
+            
+            <guid>http://epiviz.github.io/post/2015-09-15-hiring/</guid>
+            <description>&lt;p&gt;&lt;strong&gt;UPDATED: This position is now filled&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;re looking for a Data Scientist to make Epiviz better, stronger and faster! This is a full-time
+position (officially Faculty Research Assistant) within the &lt;a href=&#34;http://cbcb.umd.edu&#34;&gt;Center for Bioinformatics and Computational Biology (CBCB)&lt;/a&gt; at the University of Maryland in College Park. You will work along faculty in CBCB and the &lt;a href=&#34;http://www.cs.umd.edu/hcil/&#34;&gt;Human-Computer Interaction Lab&lt;/a&gt; in developing state-of-the-art genomic data visual analytics software tools.&lt;/p&gt;
+
+&lt;p&gt;##What you will do:&lt;/p&gt;
+
+&lt;p&gt;1) &lt;em&gt;Develop Software&lt;/em&gt;: design, implement, test and deploy code for the &lt;a href=&#34;http://epiviz.cbcb.umd.edu/help&#34;&gt;Epiviz&lt;/a&gt; project. Javascript, d3.js and R have been our tools of choice.&lt;br /&gt;
+2) &lt;em&gt;Do Research&lt;/em&gt;: apply interactive visualization tools as part of collaborative projects in genomics. Design and implement new visual analytics methods along with faculty, graduate and undergraduate students at UMD.&lt;br /&gt;
+3) &lt;em&gt;Share your work&lt;/em&gt;: provide support for users, participate in interactive visualization efforts of the &lt;a href=&#34;http://bioconductor.org&#34;&gt;Bioconductor&lt;/a&gt; project.&lt;/p&gt;
+
+&lt;p&gt;Check out what we&amp;rsquo;ve been working on &lt;a href=&#34;http://github.com/epiviz&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;##Who you are:&lt;/p&gt;
+
+&lt;p&gt;1) MS or BS in Computer Science, Statistics, Bioinformatics, Computational Biology or other relevant field required.&lt;br /&gt;
+2) Strong programming skills, either in OOP (e.g., Java, C#, C++), or functional languages (e.g, R, Clojure, ML) required. Good knowledge of design patterns strongly preferred.&lt;br /&gt;
+3) Familiarity with web technologies preferred (HTML5, Javascript, d3.js).&lt;br /&gt;
+4) Verifiable track record in open source software development preferred.&lt;br /&gt;
+5) No strong previous knowledge of biology/genomics required.&lt;/p&gt;
+
+&lt;p&gt;##Salary:&lt;/p&gt;
+
+&lt;p&gt;Approximately $75,000 for qualified candidates. The University of Maryland offers a competitive benefits package.&lt;/p&gt;
+
+&lt;p&gt;##To apply:&lt;/p&gt;
+
+&lt;p&gt;Send resume and short letter of intent to &lt;a href=&#34;mailto:hcorrada@umiacs.umd.edu?subject=Data%20Scientist%20Position&#34;&gt;hcorrada@umiacs.umd.edu&lt;/a&gt; with subject &amp;ldquo;Data Scientist Position&amp;rdquo;.&lt;br /&gt;
+Please include in resume (a) contact information for 2 references and (b) links to code repositories if appropriate.&lt;/p&gt;
+
+&lt;p&gt;For best consideration, apply by &lt;strong&gt;October 15, 2015&lt;/strong&gt;.&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>

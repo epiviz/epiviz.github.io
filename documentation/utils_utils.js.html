@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: utils/utils.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: utils/utils.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Created by: Florin Chelaru
+ * Date: 10/4/13
+ * Time: 11:19 AM
+ */
+
+goog.provide('epiviz.utils.capitalizeFirstLetter');
+goog.provide('epiviz.utils.fillArray');
+goog.provide('epiviz.utils.mapCopy');
+goog.provide('epiviz.utils.evaluateFullyQualifiedTypeName');
+goog.provide('epiviz.utils.generatePseudoGUID');
+
+// String
+
+/**
+ * @param {string} str
+ * @returns {string}
+ */
+epiviz.utils.capitalizeFirstLetter = function(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+/**
+ * @param {string} str
+ * @param {string} substr
+ * @returns {boolean}
+ */
+epiviz.utils.stringContains = function(str, substr) {
+  return str.indexOf(substr) != -1;
+};
+
+/**
+ * @param {string} str
+ * @param {string} prefix
+ * @returns {boolean}
+ */
+epiviz.utils.stringStartsWith = function(str, prefix) {
+  return str.indexOf(prefix) == 0;
+};
+
+/**
+ * @param {string} str
+ * @param {string} suffix
+ * @returns {boolean}
+ */
+epiviz.utils.stringEndsWith = function(str, suffix) {
+  return str.lastIndexOf(suffix) == str.length - suffix.length;
+};
+
+// Array
+
+/**
+ * Creates an array of length n filled with value
+ * @param {number} n
+ * @param {T} value
+ * @returns {Array.&lt;T>}
+ * @template T
+ */
+epiviz.utils.fillArray = function(n, value) {
+  n = n || 0;
+  var result = new Array(n);
+  for (var i = 0; i &lt; n; ++i) {
+    result[i] = value;
+  }
+  return result;
+};
+
+/**
+ * @param {Array.&lt;T>} arr
+ * @param {function(T): boolean} predicate
+ * @returns {number}
+ * @template T
+ */
+epiviz.utils.indexOf = function(arr, predicate) {
+  for (var i = 0; i &lt; arr.length; ++i) {
+    if (predicate(arr[i])) { return i; }
+  }
+  return -1;
+};
+
+/**
+ * @param {Array} arr1
+ * @param {Array} arr2
+ * @returns {boolean}
+ */
+epiviz.utils.arraysEqual = function(arr1, arr2) {
+  if (arr1 == arr2) { return true; }
+
+  if (!arr1 || !arr2) { return false; }
+
+  if (arr1.length != arr2.length) { return false; }
+
+  if (arr1 &lt; arr2 || arr2 &lt; arr1) { return false; }
+
+  // The previous check doesn't work when the elements of the array are complex objects
+  for (var i = 0; i &lt; arr1.length; ++i) {
+    if (arr1[i] != arr2[i]) { return false; }
+  }
+  return true;
+};
+
+/**
+ * Compares the two given arrays ignoring the order of their elements;
+ * for example [1, 2, 1, 3] and [2, 1, 1, 3] will be considered equal.
+ * @param {Array.&lt;string|number>} arr1
+ * @param {Array.&lt;string|number>} arr2
+ * @returns {boolean}
+ */
+epiviz.utils.elementsEqual = function(arr1, arr2) {
+  if (arr1 == arr2) { return true; }
+
+  if (!arr1 || !arr2) { return false; }
+
+  if (arr1.length != arr2.length) { return false; }
+
+  var valueMap = {};
+
+  var i;
+  for (i = 0; i &lt; arr1.length; ++i) {
+    if (!(arr1[i] in valueMap)) { valueMap[arr1[i]] = 0; }
+    ++valueMap[arr1[i]];
+  }
+
+  for (i = 0; i &lt; arr2.length; ++i) {
+    if (!valueMap[arr2[i]]) { return false; }
+    --valueMap[arr2[i]];
+  }
+
+  return true;
+};
+
+/**
+ * Generates an array of consecutive numbers starting from startIndex
+ * (or 0 if it's not defined)
+ * @param {number} n
+ * @param {number} [startIndex]
+ */
+epiviz.utils.range = function(n, startIndex) {
+  startIndex = startIndex || 0;
+  n = n || 0;
+
+  var result = new Array(n);
+  for (var i = 0; i &lt; n; ++i) {
+    result[i] = i + startIndex;
+  }
+
+  return result;
+};
+
+/**
+ * Append an array to another in place
+ * @param {Array} self
+ * @param {Array} arr
+ */
+epiviz.utils.arrayAppend = function(self, arr) {
+  self.push.apply(self, arr);
+};
+
+/**
+ * @param {Array.&lt;string|number>} arr
+ * @returns {Object.&lt;string|number, number>}
+ */
+epiviz.utils.arrayFlip = function(arr) {
+  var result = {};
+  for (var i = 0; i &lt; arr.length; ++i) {
+    result[arr[i]] = i;
+  }
+
+  return result;
+};
+
+/**
+ * Gets the minimum value in the matrix, along with the i, j indices where this value is located
+ * @param {Array.&lt;Array.&lt;number>>} matrix
+ * @param {boolean} [isSymmetrical]
+ * @returns {{min: number, index: Array}}
+ */
+epiviz.utils.indexOfMin = function(matrix, isSymmetrical) {
+  var ret = null;
+  var min = null;
+  for (var i = 0; i &lt; matrix.length; ++i) {
+    for (var j = isSymmetrical ? (i + 1) : 0; j &lt; matrix[i].length; ++j) {
+      if (min == null || matrix[i][j] &lt; min) {
+        min = matrix[i][j];
+        ret = [i, j];
+      }
+    }
+  }
+
+  return {min: min, index: ret};
+};
+
+/**
+ * @param {Array.&lt;number|string>} arr1
+ * @param {Array.&lt;number|string>} arr2
+ * @returns {Array.&lt;number|string>}
+ */
+epiviz.utils.arrayIntersection = function(arr1, arr2) {
+  var arr1Map = {};
+  arr1.forEach(function(e) { arr1Map[e] = e; });
+
+  var ret = [];
+  arr2.forEach(function(e) { if (e in arr1Map) { ret.push(e); }});
+
+  return ret;
+};
+
+/**
+ * @param {number} n
+ * @param {function(number, function(boolean))} iterationCallback The callback parameter will be true if should break
+ * @param {function} finishedCallback
+ */
+epiviz.utils.asyncFor = function(n, iterationCallback, finishedCallback) {
+  if (!n) {
+    if (finishedCallback) { finishedCallback(); }
+    return;
+  }
+
+  var iteration = function(i) {
+    if (i >= n) {
+      if (finishedCallback) { finishedCallback(); }
+      return;
+    }
+
+    iterationCallback(i, function(result) {
+      if (result) {
+        if (finishedCallback) { finishedCallback(); }
+      }
+      else {
+        iteration(i + 1);
+      }
+    });
+  };
+
+  iteration(0);
+};
+
+/**
+ * @param {number} n
+ * @param {function(number): epiviz.deferred.Deferred} deferredIteration
+ * @returns {epiviz.deferred.Deferred}
+ */
+epiviz.utils.deferredFor = function(n, deferredIteration) {
+  var initial = new epiviz.deferred.Deferred();
+  var ret = new epiviz.deferred.Deferred();
+  var p = initial.promise();
+  for (var i = 0; i &lt; n; ++i) {
+    (function(i) {
+      p = p.then(function () {
+        var promise = deferredIteration(i);
+        if (i == n - 1) {
+          promise.then(function () { ret.resolve(); });
+        }
+        return promise;
+      });
+    })(i);
+  }
+
+  initial.resolve();
+  return ret;
+};
+
+// Object (Hashtable)
+
+/**
+ * Creates a copy of the given map
+ * @param {Object.&lt;K, V>} map
+ * @returns {Object.&lt;K, V>}
+ * @template K, V
+ */
+epiviz.utils.mapCopy = function(map) {
+  var result = {};
+  for (var key in map) {
+    if (!map.hasOwnProperty(key)) { continue; }
+    result[key] = map[key];
+  }
+
+  return result;
+};
+
+/**
+ * @param {Object.&lt;K, V>} m1
+ * @param {Object.&lt;K, V>} m2
+ * @returns {boolean}
+ * @template K, V
+ */
+epiviz.utils.mapEquals = function(m1, m2) {
+  if (m1 == m2) { return true; }
+  if (!m1 || !m2) { return false; }
+
+  var k;
+  for (k in m1) {
+    if (!m1.hasOwnProperty(k)) { continue; }
+    if (!m2.hasOwnProperty(k)) { return false; }
+    if (m1[k] != m2[k]) { return false; }
+  }
+
+  for (k in m2) {
+    if (!m2.hasOwnProperty(k)) { continue; }
+    if (!m1.hasOwnProperty(k)) { return false; }
+  }
+
+  return true;
+};
+
+/**
+ * Creates a new map that contains the keys of both m1 and m2.
+ * If one key is in both maps, then the value from m1 will be used.
+ * @param {Object&lt;*,*>} m1
+ * @param {Object&lt;*,*>} m2
+ * @param {boolean} [combineArrayVals] specifies that array values should also be combined
+ * @returns {Object&lt;*,*>}
+ */
+epiviz.utils.mapCombine = function(m1, m2, combineArrayVals) {
+  var result = {};
+
+  var key;
+
+  if (m2) {
+    for (key in m2) {
+      if (!m2.hasOwnProperty(key)) { continue; }
+      result[key] = m2[key];
+    }
+  }
+
+  if (m1) {
+    for (key in m1) {
+      if (!m1.hasOwnProperty(key)) { continue; }
+      if (combineArrayVals &amp;&amp;
+        result[key] &amp;&amp; $.isArray(result[key]) &amp;&amp;
+        m1[key] &amp;&amp; $.isArray(m1[key])) {
+        result[key] = result[key].concat(m1[key]);
+      } else {
+        result[key] = m1[key];
+      }
+    }
+  }
+
+  return result;
+};
+
+/**
+ * @param {Object.&lt;*, *>} map
+ * @param {string} [keyValueSep] Default: ':'
+ * @param {string} [separator] Default: ','
+ */
+epiviz.utils.mapJoin = function(map, keyValueSep, separator) {
+  if (!keyValueSep &amp;&amp; keyValueSep !== '') { keyValueSep = ':'; }
+  if (!separator &amp;&amp; separator !== '') { separator = ','; }
+  var result = '';
+  for (var key in map) {
+    if (!map.hasOwnProperty(key)) { continue; }
+    if (result) { result += separator; }
+    result += key + keyValueSep + map[key];
+  }
+
+  return result;
+};
+
+/**
+ * Gets the keys that are in both maps
+ * @param {Object.&lt;*, *>} m1
+ * @param {Object.&lt;*, *>} m2
+ * @returns {Array.&lt;*>}
+ */
+epiviz.utils.mapKeyIntersection = function(m1, m2) {
+  var result = [];
+
+  if (!m1 || !m2) { return result; }
+
+  for (var key in m1) {
+    if (!m1.hasOwnProperty(key)) { continue; }
+    if (key in m2) { result.push(key); }
+  }
+
+  return result;
+};
+
+/**
+ * Loops through all the elements of an object or until callback returns something that evaluates to true
+ * @param {Object.&lt;string|number, T>} obj
+ * @param {function(T=, string|number=, Object.&lt;string|number, T>=)} callback
+ * @template T
+ */
+epiviz.utils.forEach = function(obj, callback) {
+  for (var key in obj) {
+    if (!obj.hasOwnProperty(key)) { continue; }
+    if (callback(obj[key], key, obj)) { break; }
+  }
+};
+
+// Reflection
+
+/**
+ * Evaluates the given string into a constructor for a type
+ * @param {string} typeName
+ * @returns {?function(new: T)}
+ * @template T
+ */
+epiviz.utils.evaluateFullyQualifiedTypeName = function(typeName) {
+  try {
+    var namespaces = typeName.split('.');
+    var func = namespaces.pop();
+    var context = window;
+    for (var i = 0; i &lt; namespaces.length; ++i) {
+      context = context[namespaces[i]];
+    }
+
+    var result = context[func];
+    if (typeof(result) !== 'function') {
+      console.error('Unknown type name: ' + typeName);
+      return null;
+    }
+
+    return result;
+  } catch (error) {
+    console.error('Unknown type name: ' + typeName);
+    return null;
+  }
+};
+
+/**
+ * Applies the given constructor to the given parameters and creates
+ * a new instance of the class it defines
+ * @param {function(new: T)} ctor
+ * @param {Array} params
+ * @returns {T}
+ * @template T
+ */
+epiviz.utils.applyConstructor = function(ctor, params) {
+  var obj;
+
+  // Use a fake constructor function with the target constructor's
+  // `prototype` property to create the object with the right prototype
+  var fakeCtor = function() {};
+  fakeCtor.prototype = ctor.prototype;
+
+  /** @type {T} */
+  obj = new fakeCtor();
+
+  // Set the object's `constructor`
+  obj.constructor = ctor;
+
+  // Call the constructor function
+  ctor.apply(obj, params);
+
+  return obj;
+};
+
+// Misc
+
+/**
+ * @const
+ * @type {number}
+ */
+epiviz.utils.RAD_TO_DEG = 180 / Math.PI;
+
+/**
+ * @const
+ * @type {number}
+ */
+epiviz.utils.DEG_TO_RAD = Math.PI / 180;
+
+/**
+ * @returns {number} The version of Internet Explorer or -1 (indicating the use of another browser).
+ */
+epiviz.utils.getInternetExplorerVersion = function() {
+  var rv = -1; // Return value assumes failure.
+  if (navigator.appName == 'Microsoft Internet Explorer') {
+    var ua = navigator.userAgent;
+    var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+    var match = re.exec(ua);
+    if (match != null)
+      rv = parseFloat(match[1]);
+  }
+  return rv;
+};
+
+/**
+ * @param {number} size
+ * @returns {string}
+ */
+epiviz.utils.generatePseudoGUID = function(size) {
+  var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var result = '';
+
+  for (var i = 0; i &lt; size; ++i) {
+    result += chars[Math.round(Math.random() * (chars.length - 1))];
+  }
+
+  return result;
+};
+
+/**
+ * This function will take a set of 3 "increasing" colors and
+ * return a color scale that fills in intensities between the
+ * colors. For use in turning each column of the observation
+ * matrix into a heatmap.
+ * @param {number} min
+ * @param {number} max
+ * @param {number} median
+ * @param {string} colorMin
+ * @param {string} colorMax
+ * @param {string} colorMedian
+ * @returns {function(number): string} A function that takes in a number and returns a color
+ */
+epiviz.utils.colorize = function(min, max, median, colorMin, colorMax, colorMedian){
+  return d3.scale.linear()
+    .domain([min, median, max])
+    .range([colorMin, colorMedian, colorMax]);
+};
+
+/**
+ * @param {number} min
+ * @param {number} max
+ * @param {string} colorMin
+ * @param {string} colorMax
+ * @returns {function(number): string}
+ */
+epiviz.utils.colorizeBinary = function(min, max, colorMin, colorMax){
+  return d3.scale.linear()
+    .domain([min, max])
+    .range([colorMin, colorMax]);
+};
+
+// Math
+
+/**
+ * @param {number} val
+ * @returns {number}
+ */
+epiviz.utils.sign = function(val) { return val &lt; 0 ? -1 : (val == 0 ? 0 : 1); };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="epiviz.Config.html">epiviz.Config</a></li><li><a href="epiviz.data.Cache.html">epiviz.data.Cache</a></li><li><a href="epiviz.data.DataManager.html">epiviz.data.DataManager</a></li><li><a href="epiviz.data.DataProvider.html">epiviz.data.DataProvider</a></li><li><a href="epiviz.data.DataProviderFactory.html">epiviz.data.DataProviderFactory</a></li><li><a href="epiviz.data.EmptyResponseDataProvider.html">epiviz.data.EmptyResponseDataProvider</a></li><li><a href="epiviz.data.EpivizApiDataProvider.html">epiviz.data.EpivizApiDataProvider</a></li><li><a href="epiviz.data.EpivizApiDataProvider.Request.html">epiviz.data.EpivizApiDataProvider.Request</a></li><li><a href="epiviz.data.EpivizApiDataProvider.Response.html">epiviz.data.EpivizApiDataProvider.Response</a></li><li><a href="epiviz.data.MetagenomicsDataProvider.html">epiviz.data.MetagenomicsDataProvider</a></li><li><a href="epiviz.data.MockDataProvider.html">epiviz.data.MockDataProvider</a></li><li><a href="epiviz.data.Request.html">epiviz.data.Request</a></li><li><a href="epiviz.data.RequestStack.html">epiviz.data.RequestStack</a></li><li><a href="epiviz.data.Response.html">epiviz.data.Response</a></li><li><a href="epiviz.data.Response.fromRawObject.html">epiviz.data.Response.fromRawObject</a></li><li><a href="epiviz.data.WebServerDataProvider.html">epiviz.data.WebServerDataProvider</a></li><li><a href="epiviz.data.WebsocketDataProvider.html">epiviz.data.WebsocketDataProvider</a></li><li><a href="epiviz.datatypes.deprecated.GenomicRanges.html">epiviz.datatypes.deprecated.GenomicRanges</a></li><li><a href="epiviz.datatypes.deprecated.GenomicRanges.Hits.html">epiviz.datatypes.deprecated.GenomicRanges.Hits</a></li><li><a href="epiviz.datatypes.deprecated.GenomicRanges.Row.html">epiviz.datatypes.deprecated.GenomicRanges.Row</a></li><li><a href="epiviz.datatypes.deprecated.GenomicRanges.Subset.html">epiviz.datatypes.deprecated.GenomicRanges.Subset</a></li><li><a href="epiviz.datatypes.deprecated.SeqInfo.html">epiviz.datatypes.deprecated.SeqInfo</a></li><li><a href="epiviz.datatypes.FeatureValueArray.html">epiviz.datatypes.FeatureValueArray</a></li><li><a href="epiviz.datatypes.GenomicArray.html">epiviz.datatypes.GenomicArray</a></li><li><a href="epiviz.datatypes.GenomicData.ValueItem.html">epiviz.datatypes.GenomicData.ValueItem</a></li><li><a href="epiviz.datatypes.GenomicRange.html">epiviz.datatypes.GenomicRange</a></li><li><a href="epiviz.datatypes.GenomicRangeArray.html">epiviz.datatypes.GenomicRangeArray</a></li><li><a href="epiviz.datatypes.GenomicRangeArray.RowItemWrapper.html">epiviz.datatypes.GenomicRangeArray.RowItemWrapper</a></li><li><a href="epiviz.datatypes.ItemFilteredGenomicData.html">epiviz.datatypes.ItemFilteredGenomicData</a></li><li><a href="epiviz.datatypes.MapGenomicData.html">epiviz.datatypes.MapGenomicData</a></li><li><a href="epiviz.datatypes.MeasurementAggregatedGenomicData.html">epiviz.datatypes.MeasurementAggregatedGenomicData</a></li><li><a href="epiviz.datatypes.MeasurementGenomicDataArrayWrapper.html">epiviz.datatypes.MeasurementGenomicDataArrayWrapper</a></li><li><a href="epiviz.datatypes.MeasurementGenomicDataWrapper.html">epiviz.datatypes.MeasurementGenomicDataWrapper</a></li><li><a href="epiviz.datatypes.MeasurementOrderedGenomicData.html">epiviz.datatypes.MeasurementOrderedGenomicData</a></li><li><a href="epiviz.datatypes.PartialSummarizedExperiment.html">epiviz.datatypes.PartialSummarizedExperiment</a></li><li><a href="epiviz.datatypes.RowItemImpl.html">epiviz.datatypes.RowItemImpl</a></li><li><a href="epiviz.datatypes.SeqInfo.html">epiviz.datatypes.SeqInfo</a></li><li><a href="epiviz.deferred.Deferred.html">epiviz.deferred.Deferred</a></li><li><a href="epiviz.deferred.Promise.html">epiviz.deferred.Promise</a></li><li><a href="epiviz.EpiViz.html">epiviz.EpiViz</a></li><li><a href="epiviz.events.Event.html">epiviz.events.Event</a></li><li><a href="epiviz.events.EventListener.html">epiviz.events.EventListener</a></li><li><a href="epiviz.events.EventResult.html">epiviz.events.EventResult</a></li><li><a href="epiviz.localstorage.LocalStorageManager.html">epiviz.localstorage.LocalStorageManager</a></li><li><a href="epiviz.measurements.Measurement.html">epiviz.measurements.Measurement</a></li><li><a href="epiviz.measurements.MeasurementHashtable.html">epiviz.measurements.MeasurementHashtable</a></li><li><a href="epiviz.measurements.MeasurementHashtable.Iterator.html">epiviz.measurements.MeasurementHashtable.Iterator</a></li><li><a href="epiviz.measurements.MeasurementSet.html">epiviz.measurements.MeasurementSet</a></li><li><a href="epiviz.measurements.MeasurementSet.Iterator.html">epiviz.measurements.MeasurementSet.Iterator</a></li><li><a href="epiviz.measurements.MeasurementsManager.html">epiviz.measurements.MeasurementsManager</a></li><li><a href="epiviz.plugins.charts.BlocksTrack.html">epiviz.plugins.charts.BlocksTrack</a></li><li><a href="epiviz.plugins.charts.BlocksTrackType.html">epiviz.plugins.charts.BlocksTrackType</a></li><li><a href="epiviz.plugins.charts.GenesTrack.html">epiviz.plugins.charts.GenesTrack</a></li><li><a href="epiviz.plugins.charts.GenesTrackType.html">epiviz.plugins.charts.GenesTrackType</a></li><li><a href="epiviz.plugins.charts.HeatmapPlot.html">epiviz.plugins.charts.HeatmapPlot</a></li><li><a href="epiviz.plugins.charts.HeatmapPlotType.html">epiviz.plugins.charts.HeatmapPlotType</a></li><li><a href="epiviz.plugins.charts.LinePlot.html">epiviz.plugins.charts.LinePlot</a></li><li><a href="epiviz.plugins.charts.LinePlotType.html">epiviz.plugins.charts.LinePlotType</a></li><li><a href="epiviz.plugins.charts.LineTrack.html">epiviz.plugins.charts.LineTrack</a></li><li><a href="epiviz.plugins.charts.LineTrackCustom.html">epiviz.plugins.charts.LineTrackCustom</a></li><li><a href="epiviz.plugins.charts.LineTrackType.html">epiviz.plugins.charts.LineTrackType</a></li><li><a href="epiviz.plugins.charts.LineTrackTypeCustom.html">epiviz.plugins.charts.LineTrackTypeCustom</a></li><li><a href="epiviz.plugins.charts.ScatterPlot.html">epiviz.plugins.charts.ScatterPlot</a></li><li><a href="epiviz.plugins.charts.ScatterPlotType.html">epiviz.plugins.charts.ScatterPlotType</a></li><li><a href="epiviz.plugins.charts.StackedLinePlot.html">epiviz.plugins.charts.StackedLinePlot</a></li><li><a href="epiviz.plugins.charts.StackedLinePlotType.html">epiviz.plugins.charts.StackedLinePlotType</a></li><li><a href="epiviz.plugins.charts.StackedLineTrack.html">epiviz.plugins.charts.StackedLineTrack</a></li><li><a href="epiviz.plugins.charts.StackedLineTrackType.html">epiviz.plugins.charts.StackedLineTrackType</a></li><li><a href="epiviz.ui.charts.Chart.html">epiviz.ui.charts.Chart</a></li><li><a href="epiviz.ui.charts.ChartFactory.html">epiviz.ui.charts.ChartFactory</a></li><li><a href="epiviz.ui.charts.ChartManager.html">epiviz.ui.charts.ChartManager</a></li><li><a href="epiviz.ui.charts.ChartObject.html">epiviz.ui.charts.ChartObject</a></li><li><a href="epiviz.ui.charts.ChartType.html">epiviz.ui.charts.ChartType</a></li><li><a href="epiviz.ui.charts.ColorPalette.html">epiviz.ui.charts.ColorPalette</a></li><li><a href="epiviz.ui.charts.CustomSetting.html">epiviz.ui.charts.CustomSetting</a></li><li><a href="epiviz.ui.charts.DataStructureVisualization.html">epiviz.ui.charts.DataStructureVisualization</a></li><li><a href="epiviz.ui.charts.DataStructureVisualizationType.html">epiviz.ui.charts.DataStructureVisualizationType</a></li><li><a href="epiviz.ui.charts.decoration.ChartColorByMeasurementsCodeButton.html">epiviz.ui.charts.decoration.ChartColorByMeasurementsCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartColorByRowCodeButton.html">epiviz.ui.charts.decoration.ChartColorByRowCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartColorsButton.html">epiviz.ui.charts.decoration.ChartColorsButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartFilterCodeButton.html">epiviz.ui.charts.decoration.ChartFilterCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartGroupByMeasurementsCodeButton.html">epiviz.ui.charts.decoration.ChartGroupByMeasurementsCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartLoaderAnimation.html">epiviz.ui.charts.decoration.ChartLoaderAnimation</a></li><li><a href="epiviz.ui.charts.decoration.ChartOptionButton.html">epiviz.ui.charts.decoration.ChartOptionButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartOrderByMeasurementsCodeButton.html">epiviz.ui.charts.decoration.ChartOrderByMeasurementsCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.ChartResize.html">epiviz.ui.charts.decoration.ChartResize</a></li><li><a href="epiviz.ui.charts.decoration.ChartTooltip.html">epiviz.ui.charts.decoration.ChartTooltip</a></li><li><a href="epiviz.ui.charts.decoration.CodeButton.html">epiviz.ui.charts.decoration.CodeButton</a></li><li><a href="epiviz.ui.charts.decoration.CustomSettingsButton.html">epiviz.ui.charts.decoration.CustomSettingsButton</a></li><li><a href="epiviz.ui.charts.decoration.EditCodeButton.html">epiviz.ui.charts.decoration.EditCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.HierarchyFilterCodeButton.html">epiviz.ui.charts.decoration.HierarchyFilterCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.MarkerCodeButton.html">epiviz.ui.charts.decoration.MarkerCodeButton</a></li><li><a href="epiviz.ui.charts.decoration.RemoveChartButton.html">epiviz.ui.charts.decoration.RemoveChartButton</a></li><li><a href="epiviz.ui.charts.decoration.SaveChartButton.html">epiviz.ui.charts.decoration.SaveChartButton</a></li><li><a href="epiviz.ui.charts.decoration.ToggleTooltipButton.html">epiviz.ui.charts.decoration.ToggleTooltipButton</a></li><li><a href="epiviz.ui.charts.decoration.VisualizationDecoration.html">epiviz.ui.charts.decoration.VisualizationDecoration</a></li><li><a href="epiviz.ui.charts.Margins.html">epiviz.ui.charts.Margins</a></li><li><a href="epiviz.ui.charts.markers.MeasurementAggregator.html">epiviz.ui.charts.markers.MeasurementAggregator</a></li><li><a href="epiviz.ui.charts.markers.VisualizationMarker.html">epiviz.ui.charts.markers.VisualizationMarker</a></li><li><a href="epiviz.ui.charts.Plot.html">epiviz.ui.charts.Plot</a></li><li><a href="epiviz.ui.charts.PlotType.html">epiviz.ui.charts.PlotType</a></li><li><a href="epiviz.ui.charts.Track.html">epiviz.ui.charts.Track</a></li><li><a href="epiviz.ui.charts.TrackType.html">epiviz.ui.charts.TrackType</a></li><li><a href="epiviz.ui.charts.transform.clustering.AgglomerativeClustering.html">epiviz.ui.charts.transform.clustering.AgglomerativeClustering</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusteringAlgorithmFactory.html">epiviz.ui.charts.transform.clustering.ClusteringAlgorithmFactory</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusterLeaf.html">epiviz.ui.charts.transform.clustering.ClusterLeaf</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusterSubtree.html">epiviz.ui.charts.transform.clustering.ClusterSubtree</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusterTree.html">epiviz.ui.charts.transform.clustering.ClusterTree</a></li><li><a href="epiviz.ui.charts.transform.clustering.CompleteLinkage.html">epiviz.ui.charts.transform.clustering.CompleteLinkage</a></li><li><a href="epiviz.ui.charts.transform.clustering.EuclideanMetric.html">epiviz.ui.charts.transform.clustering.EuclideanMetric</a></li><li><a href="epiviz.ui.charts.transform.clustering.NoneClustering.html">epiviz.ui.charts.transform.clustering.NoneClustering</a></li><li><a href="epiviz.ui.charts.tree.decoration.TogglePropagateSelectionButton.html">epiviz.ui.charts.tree.decoration.TogglePropagateSelectionButton</a></li><li><a href="epiviz.ui.charts.tree.HierarchyVisualization.html">epiviz.ui.charts.tree.HierarchyVisualization</a></li><li><a href="epiviz.ui.charts.tree.HierarchyVisualizationType.html">epiviz.ui.charts.tree.HierarchyVisualizationType</a></li><li><a href="epiviz.ui.charts.tree.Icicle.html">epiviz.ui.charts.tree.Icicle</a></li><li><a href="epiviz.ui.charts.tree.IcicleType.html">epiviz.ui.charts.tree.IcicleType</a></li><li><a href="epiviz.ui.charts.tree.Node.html">epiviz.ui.charts.tree.Node</a></li><li><a href="epiviz.ui.charts.tree.Sunburst.html">epiviz.ui.charts.tree.Sunburst</a></li><li><a href="epiviz.ui.charts.tree.UiNode.html">epiviz.ui.charts.tree.UiNode</a></li><li><a href="epiviz.ui.charts.VisEventArgs.html">epiviz.ui.charts.VisEventArgs</a></li><li><a href="epiviz.ui.charts.VisObject.html">epiviz.ui.charts.VisObject</a></li><li><a href="epiviz.ui.charts.Visualization.html">epiviz.ui.charts.Visualization</a></li><li><a href="epiviz.ui.charts.VisualizationProperties.html">epiviz.ui.charts.VisualizationProperties</a></li><li><a href="epiviz.ui.charts.VisualizationType.html">epiviz.ui.charts.VisualizationType</a></li><li><a href="epiviz.ui.ControlManager.html">epiviz.ui.ControlManager</a></li><li><a href="epiviz.ui.controls.CodeControl.html">epiviz.ui.controls.CodeControl</a></li><li><a href="epiviz.ui.controls.CodeDialog.html">epiviz.ui.controls.CodeDialog</a></li><li><a href="epiviz.ui.controls.ColorPickerDialog.html">epiviz.ui.controls.ColorPickerDialog</a></li><li><a href="epiviz.ui.controls.ComputedMeasurementsDialog.html">epiviz.ui.controls.ComputedMeasurementsDialog</a></li><li><a href="epiviz.ui.controls.Control.html">epiviz.ui.controls.Control</a></li><li><a href="epiviz.ui.controls.CustomSettingsDialog.html">epiviz.ui.controls.CustomSettingsDialog</a></li><li><a href="epiviz.ui.controls.DatasourceGroupWizardStep.html">epiviz.ui.controls.DatasourceGroupWizardStep</a></li><li><a href="epiviz.ui.controls.DataTable.html">epiviz.ui.controls.DataTable</a></li><li><a href="epiviz.ui.controls.DataTable.Column.html">epiviz.ui.controls.DataTable.Column</a></li><li><a href="epiviz.ui.controls.Dialog.html">epiviz.ui.controls.Dialog</a></li><li><a href="epiviz.ui.controls.EditCodeControl.html">epiviz.ui.controls.EditCodeControl</a></li><li><a href="epiviz.ui.controls.MarkerCodeControl.html">epiviz.ui.controls.MarkerCodeControl</a></li><li><a href="epiviz.ui.controls.MeaurementsWizardStep.html">epiviz.ui.controls.MeaurementsWizardStep</a></li><li><a href="epiviz.ui.controls.MessageDialog.html">epiviz.ui.controls.MessageDialog</a></li><li><a href="epiviz.ui.controls.SaveSvgAsImageDialog.html">epiviz.ui.controls.SaveSvgAsImageDialog</a></li><li><a href="epiviz.ui.controls.VisConfigSelection.html">epiviz.ui.controls.VisConfigSelection</a></li><li><a href="epiviz.ui.controls.Wizard.html">epiviz.ui.controls.Wizard</a></li><li><a href="epiviz.ui.LocationManager.html">epiviz.ui.LocationManager</a></li><li><a href="epiviz.ui.WebArgsManager.html">epiviz.ui.WebArgsManager</a></li><li><a href="epiviz.utils.IterableArray.html">epiviz.utils.IterableArray</a></li><li><a href="epiviz.workspaces.UserManager.html">epiviz.workspaces.UserManager</a></li><li><a href="epiviz.workspaces.Workspace.html">epiviz.workspaces.Workspace</a></li><li><a href="epiviz.workspaces.WorkspaceManager.html">epiviz.workspaces.WorkspaceManager</a></li></ul><h3>Interfaces</h3><ul><li><a href="epiviz.datatypes.deprecated.GenomicData.html">epiviz.datatypes.deprecated.GenomicData</a></li><li><a href="epiviz.datatypes.GenomicData.html">epiviz.datatypes.GenomicData</a></li><li><a href="epiviz.datatypes.GenomicData.RowItem.html">epiviz.datatypes.GenomicData.RowItem</a></li><li><a href="epiviz.datatypes.MeasurementGenomicData.html">epiviz.datatypes.MeasurementGenomicData</a></li><li><a href="epiviz.datatypes.Range.html">epiviz.datatypes.Range</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusteringLinkage.html">epiviz.ui.charts.transform.clustering.ClusteringLinkage</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusteringMetric.html">epiviz.ui.charts.transform.clustering.ClusteringMetric</a></li><li><a href="epiviz.ui.charts.transform.clustering.ClusterNode.html">epiviz.ui.charts.transform.clustering.ClusterNode</a></li><li><a href="epiviz.ui.charts.transform.clustering.HierarchicalClusteringAlgorithm.html">epiviz.ui.charts.transform.clustering.HierarchicalClusteringAlgorithm</a></li><li><a href="epiviz.ui.controls.Wizard.Step.html">epiviz.ui.controls.Wizard.Step</a></li><li><a href="epiviz.utils.Iterable.html">epiviz.utils.Iterable</a></li><li><a href="epiviz.utils.Iterator.html">epiviz.utils.Iterator</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed May 11 2016 13:52:40 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
