@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Epiviz</title>
-    <link>http://epiviz.github.io/tags/papers/index.xml</link>
+    <link>https://epiviz.github.io/tags/papers/index.xml</link>
     <description>Recent content on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -13,10 +13,10 @@
         
           <item>
             <title>Epiviz published in Nature Methods</title>
-            <link>http://epiviz.github.io/post/2014-08-03-epiviz-paper-published/</link>
+            <link>https://epiviz.github.io/post/2014-08-03-epiviz-paper-published/</link>
             <pubDate>Sun, 03 Aug 2014 19:46:32 -0500</pubDate>
             
-            <guid>http://epiviz.github.io/post/2014-08-03-epiviz-paper-published/</guid>
+            <guid>https://epiviz.github.io/post/2014-08-03-epiviz-paper-published/</guid>
             <description>&lt;p&gt;Our first paper describing the {{ site.epiviz }} system was published today in
 &lt;a href=&#34;http://www.nature.com/nmeth/journal/v11/n9/full/nmeth.3038.html&#34;&gt;Nature Methods&lt;/a&gt;.
 From the abstract:&lt;/p&gt;

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Epiviz</title>
-    <link>http://epiviz.github.io/tutorials/index.xml</link>
+    <link>https://epiviz.github.io/tutorials/index.xml</link>
     <description>Recent content on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Nov 2016 14:12:05 -0500</lastBuildDate>
-    <atom:link href="http://epiviz.github.io/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://epiviz.github.io/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Tutorials</title>
-      <link>http://epiviz.github.io/tutorials/tutorials/</link>
+      <link>https://epiviz.github.io/tutorials/tutorials/</link>
       <pubDate>Tue, 22 Nov 2016 14:12:05 -0500</pubDate>
       
-      <guid>http://epiviz.github.io/tutorials/tutorials/</guid>
+      <guid>https://epiviz.github.io/tutorials/tutorials/</guid>
       <description>
 
 &lt;h3 id=&#34;tutorials&#34;&gt;Tutorials&lt;/h3&gt;
@@ -45,10 +45,10 @@
     
     <item>
       <title>450k Illumina Human Methylation data for multiple solid tumors</title>
-      <link>http://epiviz.github.io/tutorials/tutorials/timp2014/</link>
+      <link>https://epiviz.github.io/tutorials/tutorials/timp2014/</link>
       <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
       
-      <guid>http://epiviz.github.io/tutorials/tutorials/timp2014/</guid>
+      <guid>https://epiviz.github.io/tutorials/tutorials/timp2014/</guid>
       <description>
 
 &lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
@@ -87,26 +87,26 @@ M. Zieger, A.P. Feinberg, R.A. Irizarry (2014). &lt;em&gt;Genome Medicine&lt;/em
 collapsed methylation difference between cancer and normal,
 and cancer blocks in each tissue type.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/breast_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/timp2014/breast_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
 &lt;a href=&#34;http://epiviz.cbcb.umd.edu/?settings=default&amp;ws=WZCPGTd7Duv&amp;seqName=chr11&amp;start=130099272&amp;end=133637378&amp;&#34;
 target=&#34;_blank&#34;&gt;Breast&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/colon_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/timp2014/colon_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
 &lt;a
 href=&#34;http://epiviz.cbcb.umd.edu/?ws=Gx3GEFT4iti&amp;seqName=chr11&amp;start=3947953&amp;end=7164991&amp;settings=default&amp;&#34;
 target=&#34;_blank&#34;&gt;Colon&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/lung_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/timp2014/lung_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
 &lt;a
 href=&#34;http://epiviz.cbcb.umd.edu/?ws=MCnnZYS0czp&amp;seqName=chr11&amp;start=3947953&amp;end=7164991&amp;settings=default&amp;&#34;
 target=&#34;__blank&#34;&gt;Lung&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/pancreas_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/timp2014/pancreas_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
 &lt;a
 href=&#34;http://epiviz.cbcb.umd.edu/?settings=default&amp;ws=KHUT287HDLv&amp;seqName=chr10&amp;start=53056841&amp;end=54307111&amp;&#34;
 target=&#34;_blank&#34;&gt;Pancreas&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/thyroid_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/timp2014/thyroid_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
 &lt;a
 href=&#34;http://epiviz.cbcb.umd.edu/?ws=iOxsV4P5CPv&amp;seqName=chr12&amp;start=33889924&amp;end=35322471&amp;settings=default&amp;&#34;
 target=&#34;_blank&#34;&gt;Thyroid&lt;/a&gt;&lt;/p&gt;
@@ -120,7 +120,7 @@ target=&#34;_blank&#34;&gt;Thyroid&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This workspace contains collapsed methylation difference between
 cancer and normal along with hypo-methylation blocks for all tumor types.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/multiblocks_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/timp2014/multiblocks_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
 &lt;a
 href=&#34;http://epiviz.cbcb.umd.edu/?settings=default&amp;ws=Ago25FdPLVb&amp;seqName=chr2&amp;start=78560000&amp;end=81440000&amp;&#34;
 target=&#34;_blank&#34;&gt;Multiple tumor blocks&lt;/a&gt;&lt;/p&gt;
@@ -134,13 +134,13 @@ target=&#34;_blank&#34;&gt;Multiple tumor blocks&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;These workspaces include collapsed methylation difference and hypo-methylation blocks across multiple
 stages of tumor progression.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/colonprog_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/timp2014/colonprog_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;&lt;br /&gt;
 &lt;a
 href=&#34;http://epiviz.cbcb.umd.edu/?settings=default&amp;ws=0TzurAoRxi&amp;seqName=chr5&amp;start=82000000&amp;end=85000000&amp;&#34;
 target=&#34;_blank&#34;&gt;Colon Progression&lt;/a&gt;&lt;/p&gt;
 
 &lt;!--
-&lt;img src=&#34;http://epiviz.github.io/tutorials/images/timp2014/thyroidprog_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;  
+&lt;img src=&#34;https://epiviz.github.io/tutorials/images/timp2014/thyroidprog_screen.png&#34; width=&#34;256&#34; height=&#34;256&#34;/&gt;  
 &lt;a
 href=&#34;http://epiviz.cbcb.umd.edu/?settings=default&amp;ws=g3PRJMCD1Ei&amp;seqName=chr12&amp;start=125722840&amp;end=127681259&amp;&#34;
 target=&#34;_blank&#34;&gt;Thyroid Progression&lt;/a&gt;
@@ -158,10 +158,10 @@ target=&#34;_blank&#34;&gt;Thyroid Progression&lt;/a&gt;
     
     <item>
       <title>Chart Tutorial</title>
-      <link>http://epiviz.github.io/tutorials/tutorials/charts/</link>
+      <link>https://epiviz.github.io/tutorials/tutorials/charts/</link>
       <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
       
-      <guid>http://epiviz.github.io/tutorials/tutorials/charts/</guid>
+      <guid>https://epiviz.github.io/tutorials/tutorials/charts/</guid>
       <description>
 
 &lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
@@ -190,7 +190,7 @@ For each of the two, it has a separate menu. Whether you want to add a &lt;em&gt
 and select the chart you want to add. These menus expand dynamically, as the user adds more chart plugins.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_add_chart_menu.png&#34; alt=&#34;Plots Menu&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_add_chart_menu.png&#34; alt=&#34;Plots Menu&#34; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Select the appropriate data source group from the list. Only one row can be selected. Click &lt;em&gt;Next&lt;/em&gt;.&lt;/li&gt;
@@ -202,7 +202,7 @@ and select the chart you want to add. These menus expand dynamically, as the use
   belong to the same &lt;em&gt;data source group&lt;/em&gt;, &lt;code&gt;affymetrix_probeset&lt;/code&gt;. The same applies for the &lt;em&gt;Gene Expression Barcode&lt;/em&gt; samples, which all belong
   to the &lt;em&gt;data source group&lt;/em&gt; called &lt;code&gt;gexp_barcode&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_add_chart_dialog_dsgroup.png&#34; alt=&#34;Select Data Source Group&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_add_chart_dialog_dsgroup.png&#34; alt=&#34;Select Data Source Group&#34; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;&lt;span class=&#34;optional&#34;&gt;optional&lt;/span&gt; Filter the displayed measurements to a subset you’re interested in. In the
@@ -218,13 +218,13 @@ the measurements in the heatmap measurements dialog will filter to: &lt;code&gt;
   in which you select the measurements is also important! For example, the &lt;em&gt;Scatter Plot&lt;/em&gt; will display the first selected
   measurement on the &lt;code&gt;X&lt;/code&gt; axis and the second on &lt;code&gt;Y&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_add_chart_dialog_measurements.png&#34; alt=&#34;Select Measurements&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_add_chart_dialog_measurements.png&#34; alt=&#34;Select Measurements&#34; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;The new chart is displayed on the screen.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_add_chart_heatmap.png&#34; alt=&#34;A New Heatmap Plot&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_add_chart_heatmap.png&#34; alt=&#34;A New Heatmap Plot&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;manipulating-charts&#34;&gt;&lt;/p&gt;
 
@@ -239,9 +239,9 @@ In this section we go over a few of them.&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Toggle Tooltip.&lt;/strong&gt; This button allows the user to toggle between showing and hiding tooltips on chart object hover.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_tooltip_button.png&#34; alt=&#34;Toggle Tooltip&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_tooltip_button.png&#34; alt=&#34;Toggle Tooltip&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_tooltip.png&#34; alt=&#34;Tooltip&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_tooltip.png&#34; alt=&#34;Tooltip&#34; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Colors.&lt;/strong&gt; In {{ site.epiviz }}, colors in all charts can be customized.&lt;/p&gt;
@@ -249,13 +249,13 @@ In this section we go over a few of them.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Take, for example, a line track with two measurements: &lt;code&gt;Methylation Colon Cancer&lt;/code&gt;, and &lt;code&gt;Methylation Colon Normal&lt;/code&gt;.
 Initially, the first measurement is colored blue, and the second, red.&lt;br/&gt;&lt;br /&gt;
-&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_line_met_cancer_normal_red_blue.png&#34; alt=&#34;Line Track&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_line_met_cancer_normal_red_blue.png&#34; alt=&#34;Line Track&#34; /&gt;&lt;/li&gt;
 &lt;li&gt;In this case, the default chosen colors are counter-intuitive, so we choose to change &lt;code&gt;Methylation Colon Cancer&lt;/code&gt; to
 &lt;code&gt;red&lt;/code&gt;, and &lt;code&gt;Methylation Colon Normal&lt;/code&gt; to &lt;code&gt;green&lt;/code&gt;. Open the &lt;em&gt;Colors&lt;/em&gt; dialog, and select the first color, assigned to
 &lt;code&gt;Methylation Colon Cancer&lt;/code&gt;; pick a shade of red for it. Then select the second color, assigned to the second
 measurement; pick green. Click &lt;em&gt;Ok&lt;/em&gt;.&lt;br/&gt;
-&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_color_picker.png&#34; alt=&#34;Color Picker Dialog&#34; /&gt;
-&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_line_met_cancer_normal_green_red.png&#34; alt=&#34;Line Track&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_color_picker.png&#34; alt=&#34;Color Picker Dialog&#34; /&gt;
+&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_line_met_cancer_normal_green_red.png&#34; alt=&#34;Line Track&#34; /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Save Chart.&lt;/strong&gt; All charts in {{ site.epiviz }} are represented as &lt;a href=&#34;http://en.wikipedia.org/wiki/Scalable_Vector_Graphics&#34;&gt;SVG&lt;/a&gt;,
@@ -263,9 +263,9 @@ and can be saved to the local computer in various file formats: &lt;em&gt;PDF&lt
 button; in the dialog, choose the desired file format, and click &lt;em&gt;Ok&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_save_chart_button.png&#34; alt=&#34;Save Chart Button&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_save_chart_button.png&#34; alt=&#34;Save Chart Button&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_save_chart_dialog.png&#34; alt=&#34;Save Chart Dialog&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_save_chart_dialog.png&#34; alt=&#34;Save Chart Dialog&#34; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Custom Settings.&lt;/strong&gt; Charts in {{ site.epiviz }} also have settings specific to the visualization type, allowing to customize
@@ -277,10 +277,10 @@ button that opens the options for that particular chart type.&lt;/li&gt;
     
     <item>
       <title>Computed Measurements</title>
-      <link>http://epiviz.github.io/tutorials/tutorials/computed-measurements/</link>
+      <link>https://epiviz.github.io/tutorials/tutorials/computed-measurements/</link>
       <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
       
-      <guid>http://epiviz.github.io/tutorials/tutorials/computed-measurements/</guid>
+      <guid>https://epiviz.github.io/tutorials/tutorials/computed-measurements/</guid>
       <description>
 
 &lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
@@ -313,7 +313,7 @@ forth to a programming environment.&lt;/p&gt;
 &lt;strong&gt;Expression tab&lt;/strong&gt;. For our example, we choose the &lt;code&gt;affymetrix_probeset&lt;/code&gt; data source group.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_comp_ms_dialog_dsgroup.png&#34; alt=&#34;Computed measurements data source group&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_comp_ms_dialog_dsgroup.png&#34; alt=&#34;Computed measurements data source group&#34; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Fill in the expression, using either the &lt;code&gt;+&lt;/code&gt; buttons or just writing in the expression text box. Use the measurement
@@ -333,8 +333,8 @@ identifier next to the measurement name to refer a particular measurement.  Here
 &lt;p&gt;For our &lt;em&gt;MA Plot Example&lt;/em&gt;, we compute two measurements: &lt;code&gt;M (Colon Expression)&lt;/code&gt; (the difference between &lt;code&gt;Expression
   Colon Cancer&lt;/code&gt; and &lt;code&gt;Expression Colon Normal&lt;/code&gt;) and &lt;code&gt;A (Colon Expression)&lt;/code&gt; (the average between the two):&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_compms_dialog_m.png&#34; alt=&#34;M (Colon Expression)&#34; /&gt;
- &lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_compms_dialog_a.png&#34; alt=&#34;A (Colon Expression)&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_compms_dialog_m.png&#34; alt=&#34;M (Colon Expression)&#34; /&gt;
+ &lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_compms_dialog_a.png&#34; alt=&#34;A (Colon Expression)&#34; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;For each computed measurement, fill in &lt;code&gt;Name&lt;/code&gt;, &lt;code&gt;Min&lt;/code&gt; ( &lt;em&gt;optional&lt;/em&gt; ) and &lt;code&gt;Max&lt;/code&gt;
@@ -343,8 +343,8 @@ identifier next to the measurement name to refer a particular measurement.  Here
 &lt;li&gt;&lt;p&gt;Now add a chart using the newly computed measurement(s). In our example, we choose the &lt;strong&gt;Scatter Plot&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_compms_newscatter.png&#34; alt=&#34;New scatter plot&#34; /&gt;&lt;br/&gt;
- &lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_compms_maplot.png&#34; alt=&#34;MA Plot&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_compms_newscatter.png&#34; alt=&#34;New scatter plot&#34; /&gt;&lt;br/&gt;
+ &lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_compms_maplot.png&#34; alt=&#34;MA Plot&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://epiviz.cbcb.umd.edu/4/?ws=k5jQbrYsbPb&amp;amp;settings=default&#34;&gt;See it in Epiviz 4&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -503,10 +503,10 @@ arguments are constant.&lt;/p&gt;
     
     <item>
       <title>Epivizr</title>
-      <link>http://epiviz.github.io/tutorials/tutorials/epivizr/</link>
+      <link>https://epiviz.github.io/tutorials/tutorials/epivizr/</link>
       <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
       
-      <guid>http://epiviz.github.io/tutorials/tutorials/epivizr/</guid>
+      <guid>https://epiviz.github.io/tutorials/tutorials/epivizr/</guid>
       <description>
 
 &lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
@@ -525,7 +525,7 @@ environment and &lt;strong&gt;{% link Epiviz &lt;a href=&#34;http://epiviz.cbbc.
 &lt;a href=&#34;{{ site.baseurl }}/websocket.html&#34;&gt;Websocket data provider API&lt;/a&gt; for communication between the browser Javascript client
 and the R environment.&lt;/p&gt;
 
-&lt;p&gt;To use &lt;code&gt;epivizr&lt;/code&gt; with the &lt;code&gt;epiviz&lt;/code&gt; APIs described &lt;a href=&#34;http://epiviz.github.io/tutorials/docs/&#34;&gt;here&lt;/a&gt;, you must use its &lt;a href=&#34;#development-version&#34;&gt;development branch&lt;/a&gt; (version 1.3.3 or higher)&lt;/p&gt;
+&lt;p&gt;To use &lt;code&gt;epivizr&lt;/code&gt; with the &lt;code&gt;epiviz&lt;/code&gt; APIs described &lt;a href=&#34;https://epiviz.github.io/tutorials/docs/&#34;&gt;here&lt;/a&gt;, you must use its &lt;a href=&#34;#development-version&#34;&gt;development branch&lt;/a&gt; (version 1.3.3 or higher)&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&#34;installation-and-requirements&#34;&gt;&lt;/p&gt;
 
@@ -572,10 +572,10 @@ browseVignettes(&amp;quot;epivizr&amp;quot;)
     
     <item>
       <title>External Scripts and Plugins</title>
-      <link>http://epiviz.github.io/tutorials/tutorials/plugins/</link>
+      <link>https://epiviz.github.io/tutorials/tutorials/plugins/</link>
       <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
       
-      <guid>http://epiviz.github.io/tutorials/tutorials/plugins/</guid>
+      <guid>https://epiviz.github.io/tutorials/tutorials/plugins/</guid>
       <description>
 
 &lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
@@ -960,8 +960,8 @@ examples of plugging in various scripts and settings.&lt;/p&gt;
 
 &lt;p&gt;In the Track Menu, notice the new type of visualization, called &lt;strong&gt;My Track&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_add_mytrack.png&#34; alt=&#34;The new track in the Track Menu&#34; /&gt;
-  &lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_mytrack.png&#34; alt=&#34;New Track&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_add_mytrack.png&#34; alt=&#34;The new track in the Track Menu&#34; /&gt;
+  &lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_mytrack.png&#34; alt=&#34;New Track&#34; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -1040,7 +1040,7 @@ However, through &lt;code&gt;Epiviz&lt;/code&gt; plugin mechanism, users can add
 &lt;li&gt;&lt;p&gt;&lt;code&gt;data&lt;/code&gt; is a map of key-value pairs of request/response arguments.&lt;/p&gt;
 
 &lt;p&gt;For requests, &lt;code&gt;data&lt;/code&gt; always has an &lt;code&gt;&#39;action&#39;&lt;/code&gt; key, identifying the request type. The possible values for &lt;code&gt;&#39;action&#39;&lt;/code&gt;
-are defined in the Epiviz API in the enum type &lt;a href=&#34;http://epiviz.github.io/tutorials/docs/epiviz.data.Request.html#Action&#34;&gt;&lt;code&gt;epiviz.data.Request.Action&lt;/code&gt;&lt;/a&gt;.
+are defined in the Epiviz API in the enum type &lt;a href=&#34;https://epiviz.github.io/tutorials/docs/epiviz.data.Request.html#Action&#34;&gt;&lt;code&gt;epiviz.data.Request.Action&lt;/code&gt;&lt;/a&gt;.
 The other request keys and values vary depending on the action.&lt;/p&gt;
 
 &lt;p&gt;Actions are grouped in two categories - &lt;strong&gt;&lt;em&gt;Server Actions&lt;/em&gt;&lt;/strong&gt;  (requests from the UI to the Data Provider) and &lt;strong&gt;&lt;em&gt;UI Actions&lt;/em&gt;&lt;/strong&gt; (requests from the Data Provider to the UI).&lt;/p&gt;
@@ -1430,20 +1430,20 @@ The other request keys and values vary depending on the action.&lt;/p&gt;
 
 &lt;p&gt;In the measurement selection dialogs, notice the new data source, &lt;strong&gt;my_datasource&lt;/strong&gt; and the new measurement, &lt;strong&gt;My Measurement&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_mydataprovider_addblocks.png&#34; alt=&#34;The new data source&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_mydataprovider_addblocks.png&#34; alt=&#34;The new data source&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_mydataprovider_addms.png&#34; alt=&#34;The new measurement&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_mydataprovider_addms.png&#34; alt=&#34;The new measurement&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;A heatmap displaying data provided by &lt;strong&gt;My DataProvider&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_mydataprovider_heatmap.png&#34; alt=&#34;A heatmap with the new measurement&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_mydataprovider_heatmap.png&#34; alt=&#34;A heatmap with the new measurement&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;A line track displaying data provided by &lt;strong&gt;My DataProvider&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_mydataprovider_line.png&#34; alt=&#34;Line Track with new measurement&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_mydataprovider_line.png&#34; alt=&#34;Line Track with new measurement&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;A blocks track displaying data provided by &lt;strong&gt;My DataProvider&lt;/strong&gt;
-  &lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_mydataprovider_blocks.png&#34; alt=&#34;Blocks Track with new measurement&#34; /&gt;&lt;/p&gt;
+  &lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_mydataprovider_blocks.png&#34; alt=&#34;Blocks Track with new measurement&#34; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -1457,17 +1457,17 @@ The other request keys and values vary depending on the action.&lt;/p&gt;
     
     <item>
       <title>Websocket Tutorial</title>
-      <link>http://epiviz.github.io/tutorials/tutorials/websocket/</link>
+      <link>https://epiviz.github.io/tutorials/tutorials/websocket/</link>
       <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
       
-      <guid>http://epiviz.github.io/tutorials/tutorials/websocket/</guid>
+      <guid>https://epiviz.github.io/tutorials/tutorials/websocket/</guid>
       <description>
 
 &lt;p&gt;The complete Python source code for this example can be found here: &lt;a href=&#34;https://github.com/epiviz/epivizpy&#34;&gt;https://github.com/epiviz/epivizpy&lt;/a&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;One of the key features of &lt;code&gt;Epiviz&lt;/code&gt; is allowing users to plug in new data on the fly, using &lt;a href=&#34;http://epiviz.github.io/tutorials/docs/plugins.html#new-data-provider-plugin&#34;&gt;Data Provider plugins&lt;/a&gt;. One powerful such plugin is the &lt;strong&gt;WebSocket data provider&lt;/strong&gt;. This data provider offers an interface between &lt;code&gt;Epiviz&lt;/code&gt; and any programming environment that supports &lt;a href=&#34;http://www.websocket.org/&#34;&gt;WebSocket&lt;/a&gt; connections. In R there is already &lt;a href=&#34;http://www.bioconductor.org/packages/release/bioc/html/epivizr.html&#34;&gt;a Bioconductor library&lt;/a&gt; that supports communication with &lt;code&gt;Epiviz&lt;/code&gt; through WebSockets, called &lt;a href=&#34;http://www.bioconductor.org/packages/release/bioc/html/epivizr.html&#34;&gt;Epivizr&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;One of the key features of &lt;code&gt;Epiviz&lt;/code&gt; is allowing users to plug in new data on the fly, using &lt;a href=&#34;https://epiviz.github.io/tutorials/docs/plugins.html#new-data-provider-plugin&#34;&gt;Data Provider plugins&lt;/a&gt;. One powerful such plugin is the &lt;strong&gt;WebSocket data provider&lt;/strong&gt;. This data provider offers an interface between &lt;code&gt;Epiviz&lt;/code&gt; and any programming environment that supports &lt;a href=&#34;http://www.websocket.org/&#34;&gt;WebSocket&lt;/a&gt; connections. In R there is already &lt;a href=&#34;http://www.bioconductor.org/packages/release/bioc/html/epivizr.html&#34;&gt;a Bioconductor library&lt;/a&gt; that supports communication with &lt;code&gt;Epiviz&lt;/code&gt; through WebSockets, called &lt;a href=&#34;http://www.bioconductor.org/packages/release/bioc/html/epivizr.html&#34;&gt;Epivizr&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;In this tutorial, we go over the essentials of creating a new WebSocket endpoint for Epiviz. We choose &lt;a href=&#34;https://www.python.org/&#34;&gt;Python&lt;/a&gt; as an example programming environment, to emphasize the flexibility and power of the Epiviz framework. We create a simple program with the same functionality as &lt;code&gt;epiviz.plugins.data.MyDataProvider&lt;/code&gt;, from the &lt;a href=&#34;plugins.html#new-data-provider-plugin&#34;&gt;Data Provider Plugin Tutorial&lt;/a&gt;.&lt;/p&gt;
 
@@ -1823,16 +1823,16 @@ The value associated to them is generated randomly between &lt;code&gt;-5&lt;/co
 
 &lt;p&gt;&lt;strong&gt;Python console&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/pydev_console_websocket_connection.png&#34; alt=&#34;Python console&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/pydev_console_websocket_connection.png&#34; alt=&#34;Python console&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;New measurement in menus&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_pywebsocket_add_linetrack.png&#34; alt=&#34;New measurements in menus&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_pywebsocket_add_linetrack.png&#34; alt=&#34;New measurements in menus&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Different charts showing the measurement defined in Python&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_pywebsocket_heatmap.png&#34; alt=&#34;Heatmap&#34; /&gt;
-  &lt;img src=&#34;http://epiviz.github.io/tutorials/images/scr_pywebsocket_line_blocks.png&#34; alt=&#34;Line Blocks&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_pywebsocket_heatmap.png&#34; alt=&#34;Heatmap&#34; /&gt;
+  &lt;img src=&#34;https://epiviz.github.io/tutorials/images/scr_pywebsocket_line_blocks.png&#34; alt=&#34;Line Blocks&#34; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 

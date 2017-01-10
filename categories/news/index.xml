@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Epiviz</title>
-    <link>http://epiviz.github.io/categories/news/index.xml</link>
+    <link>https://epiviz.github.io/categories/news/index.xml</link>
     <description>Recent content on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -13,10 +13,10 @@
         
           <item>
             <title>Epigenomic visualization in Nature Methods News and Comment</title>
-            <link>http://epiviz.github.io/post/2015-08-17-natmethods_news/</link>
+            <link>https://epiviz.github.io/post/2015-08-17-natmethods_news/</link>
             <pubDate>Mon, 17 Aug 2015 10:52:12 -0500</pubDate>
             
-            <guid>http://epiviz.github.io/post/2015-08-17-natmethods_news/</guid>
+            <guid>https://epiviz.github.io/post/2015-08-17-natmethods_news/</guid>
             <description>&lt;p&gt;Epiviz was highlighted in a recent &lt;a href=&#34;http://www.nature.com/nmeth/journal/v12/n6/full/nmeth.3409.html&#34;&gt;Nature Methods News and Comment piece&lt;/a&gt; on visualization of epigenomic data.&lt;/p&gt;
 </description>
           </item>
