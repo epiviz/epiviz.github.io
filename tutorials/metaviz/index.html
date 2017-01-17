@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://epiviz.github.io/tutorials/images/favicon.png" type="image/x-icon" />
 
     
-    <title>Epivizr</title>
+    <title>Metaviz Tutorials</title>
     <link href="https://epiviz.github.io/tutorials/css/nucleus.css" rel="stylesheet">
     <link href="https://epiviz.github.io/tutorials/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://epiviz.github.io/tutorials/css/hybrid.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     {display:none !important;}</style>
     <link href="https://epiviz.github.io/tutorials/css/my_style.css" rel="stylesheet">
   </head>
-  <body class="" data-url="/tutorials/epivizr/">
+  <body class="" data-url="/metaviz/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -50,7 +50,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/metaviz/">
+      <li class="dd-item active parent" data-nav-id="/metaviz/">
         <a href="https://epiviz.github.io/tutorials/metaviz/">
           <span>
             
@@ -72,7 +72,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/tutorials/">
+      <li class="dd-item  " data-nav-id="/tutorials/">
         <a href="https://epiviz.github.io/tutorials/tutorials/">
           <span>
             
@@ -112,7 +112,7 @@
           
           
           
-            <li class="dd-item active" data-nav-id="/tutorials/epivizr/">
+            <li class="dd-item " data-nav-id="/tutorials/epivizr/">
               <a href="https://epiviz.github.io/tutorials/tutorials/epivizr/">
                 <span>Epivizr     </i></span>
               </a>
@@ -163,111 +163,42 @@
                       </a>
                   </span>
                 
-                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
-                
                 
                 
                 
                   
-                
-                  
                     
-                    
-                <a href="https://epiviz.github.io/tutorials/tutorials/" itemprop="url"><span itemprop="title">Epiviz Tutorials</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
-                <span itemprop="title"> Epivizr</span>
+                  
+                
+                <span itemprop="title"> Metaviz Tutorials</span>
               </div>
-              
-                  <div class="progress">
-    <div class="wrapper">
-<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#table-of-contents">Table of Contents</a></li>
-<li><a href="#installation-and-requirements">Installation and requirements</a></li>
-<li><a href="#try-it-out">Try it out</a></li>
-<li><a href="#development-version">Development version</a></li>
-<li><a href="#non-blocking">Non-blocking</a></li>
-</ul></li>
-</ul>
-</nav>
-    </div>
-</div>
-
               
 
             </div>
             
+              <div id="chapter">
+            
     	        <div id="body-inner">
                 
-                <h1>Epivizr</h1>
-                
 
 
 
-<h2 id="table-of-contents">Table of Contents</h2>
+<h3 id="tutorials">Tutorials</h3>
 
 <ul>
-<li><a href="#installation-and-requirements">Installation and requirements</a></li>
-<li><a href="#try-it-out">Try it out</a></li>
-<li><a href="#development-version">Development version</a></li>
-<li><a href="#non-blocking">Non-blocking</a></li>
+<li><a href="tutorialUI">post 1: Visualize MSD16s dataset</a></li>
+<li><a href="metagenomeSeq">post 2: MetagenomeSeq Walkthrough</a></li>
+<li><a href="spline">post 3: Longitudinal Data analysis using etec16s</a></li>
+<li><a href="usingDocker">post 4: Using Docker &amp; self hosting</a></li>
+<li>[post 5: We host your data]()</li>
 </ul>
 
-<hr />
 
-<p>The <code>epivizr</code> Bioconductor package implements two-way communication between the <a href="http://bioconductor.org">R/Bioconductor</a>
-environment and <strong>{% link Epiviz <a href="http://epiviz.cbbc.umd.edu/4">http://epiviz.cbbc.umd.edu/4</a> %}</strong>. Objects in the R environment can be displayed as tracks or plots on <strong>{% link Epiviz <a href="http://epiviz.cbbc.umd.edu/4">http://epiviz.cbbc.umd.edu/4</a> %}</strong>. Epivizr uses the
-<a href="{{ site.baseurl }}/websocket.html">Websocket data provider API</a> for communication between the browser Javascript client
-and the R environment.</p>
-
-<p>To use <code>epivizr</code> with the <code>epiviz</code> APIs described <a href="https://epiviz.github.io/tutorials/docs/">here</a>, you must use its <a href="#development-version">development branch</a> (version 1.3.3 or higher)</p>
-
-<p><a name="installation-and-requirements"></p>
-
-<h2 id="installation-and-requirements">Installation and requirements</h2>
-
-<p></a></p>
-
-<p>Epivizr is available as part of the <a href="http://bioconductor.org">Bioconductor</a> project as of version 2.13. To install the
-release version of <code>epivizr</code>:</p>
-
-<pre><code class="language-r">source(&quot;http://bioconductor.org/biocLite.R&quot;)
-biocLite(&quot;epivizr&quot;)
-</code></pre>
-
-<p><a name="try-it-out"></p>
-
-<h2 id="try-it-out">Try it out</h2>
-
-<p></a></p>
-
-<p>The easiest way to try <code>epivizr</code> out is to <a href="http://bioconductor.org/packages/release/bioc/vignettes/epivizr/inst/doc/IntroToEpivizr.html">follow the package vignette</a>:</p>
-
-<pre><code class="language-r">require(epivizr)
-browseVignettes(&quot;epivizr&quot;)
-</code></pre>
-
-<p><a name="development-version"></p>
-
-<h2 id="development-version">Development version</h2>
-
-<p></a></p>
-
-<p>The <a href="http://github.com/epiviz/epivizr"><code>epivizr</code> github repository</a> contains the latest and greatest version of <code>epivizr</code> and is tracked by the devel version in Bioconductor (see <a href="http://bioconductor.org/developers/how-to/useDevel/">http://bioconductor.org/developers/how-to/useDevel/</a> for more info. In summary, if you install R-devel, you&rsquo;ll be set.</p>
-
-<p><a name="non-blocking"></p>
-
-<h2 id="non-blocking">Non-blocking</h2>
-
-<p></a></p>
-
-<p>Epivizr (as of version 1.2) supports a non-blocking workflow on both UNIX-like and Windows systems where data is served to the webapp without blocking the R/bioc interactive session. Make sure you are using the latest version of the <a href="http://cran.r-project.org/web/packages/httpuv/index.html">httpuv package</a> (version 1.3 or greater to use this. (Thanks to the <a href="http://rstudio.org">Rstudio</a> folks for folding our daemonizing code into the main httpuv release).</p>
-
-
+      
+        </div> 
       
       </div>
     </div>

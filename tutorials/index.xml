@@ -10,7 +10,7 @@
     <atom:link href="https://epiviz.github.io/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Tutorials</title>
+      <title>Epiviz Tutorials</title>
       <link>https://epiviz.github.io/tutorials/tutorials/</link>
       <pubDate>Tue, 22 Nov 2016 14:12:05 -0500</pubDate>
       
@@ -39,6 +39,26 @@
 &lt;li&gt;&lt;a href=&#34;plugins/&#34;&gt;Create new Plugins for Epiviz - External Scripts, Charts and Data Providers&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;websocket/&#34;&gt;Websocket Tutorial&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Metaviz Tutorials</title>
+      <link>https://epiviz.github.io/tutorials/metaviz/</link>
+      <pubDate>Tue, 22 Nov 2016 14:12:05 -0500</pubDate>
+      
+      <guid>https://epiviz.github.io/tutorials/metaviz/</guid>
+      <description>
+
+&lt;h3 id=&#34;tutorials&#34;&gt;Tutorials&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;tutorialUI&#34;&gt;post 1: Visualize MSD16s dataset&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;metagenomeSeq&#34;&gt;post 2: MetagenomeSeq Walkthrough&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;spline&#34;&gt;post 3: Longitudinal Data analysis using etec16s&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;usingDocker&#34;&gt;post 4: Using Docker &amp;amp; self hosting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[post 5: We host your data]()&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
