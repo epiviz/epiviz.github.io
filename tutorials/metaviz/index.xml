@@ -49,9 +49,8 @@
 
 &lt;p&gt;Choose &amp;lsquo;Firmucutes&amp;rsquo;, &amp;lsquo;phylum&amp;rsquo; from the drop down menu. This will move the navigation bar to encompass that item.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/TextSearchFirmicutesComplete.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Beyond text-based search, the navigation bar can be moved, expanded, and reduced by using either the controls in the left-hand corner of the FacetZoom object or by dragging the red ends of the navigation bar.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/TextSearchTypingFirmicutes.png&#34; alt=&#34;&#34; /&gt;
+Beyond text-based search, the navigation bar can be moved, expanded, and reduced by using either the controls in the left-hand corner of the FacetZoom object or by dragging the red ends of the navigation bar.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetNavBarExpandAll.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
