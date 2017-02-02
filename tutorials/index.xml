@@ -44,6 +44,74 @@
     </item>
     
     <item>
+      <title>Metaviz Quick Hits</title>
+      <link>https://epiviz.github.io/tutorials/metaviz/quickHits/</link>
+      <pubDate>Tue, 24 Jan 2017 14:08:04 -0500</pubDate>
+      
+      <guid>https://epiviz.github.io/tutorials/metaviz/quickHits/</guid>
+      <description>
+
+&lt;p&gt;This post introduces the most compelling User Interface features of Metaviz.  An in-depth overview of an entire visual analysis will be posted in the next few days.&lt;/p&gt;
+
+&lt;h2 id=&#34;novel-navigation-utility-for-exploring-taxonomic-hierarchies&#34;&gt;Novel Navigation Utility for Exploring Taxonomic Hierarchies&lt;/h2&gt;
+
+&lt;p&gt;Effectively navigating the hierarchical space of features for metagenomic data is challenging. Metaviz is designed specifically to address this. The Metaviz workspace displayed below includes a &amp;lsquo;FacetZoom&amp;rsquo; object that shows a limited section of the taxonomic hierarchy at one time.  A &amp;lsquo;FacetZoom&amp;rsquo; object can be used to explore the observed features in the dataset and aggregate counts to specific nodes or levels in the taxonomic hierarchy.  We will introduce &amp;lsquo;FacetZoom&amp;rsquo; functionality as needed throughout this workflow.  A &amp;lsquo;FacetZoom&amp;rsquo; object controls the views of data visualizations we will add in the next sections.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/FacetZoomInitial.png&#34; alt=&#34;Facet Zoom Initial View&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;heatmap-linked-to-taxonomic-hierarchy&#34;&gt;Heatmap Linked to Taxonomic Hierarchy&lt;/h2&gt;
+
+&lt;p&gt;The next feature is linked charts that update on exploration with the ‘FacetZoom’ navigation object.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/HeatmapFacetZoomColorsCompleted.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;pca-plots&#34;&gt;PCA Plots&lt;/h2&gt;
+
+&lt;p&gt;Metaviz also provides PCA ordination plots with the samples colored by a selected attribute.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/PCASettingsSelected.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;stacked-bar-plots&#34;&gt;Stacked Bar Plots&lt;/h2&gt;
+
+&lt;p&gt;With Metaviz, a user can create Stacked Bar Plots and group by or order by a given attribute. A user can also make separate charts for case and control samples for comparison.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/StackedPlotCaseGroupBy.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;text-search&#34;&gt;Text Search&lt;/h2&gt;
+
+&lt;p&gt;Complementary to the ‘FacetZoom’ object, Metaviz provides text-based search which can be used by typing in the text box in the menu bar &amp;lsquo;Text Based Search&amp;rsquo; to search for specific taxonomic features.&lt;/p&gt;
+
+&lt;p&gt;Choose &amp;lsquo;Firmucutes&amp;rsquo;, &amp;lsquo;phylum&amp;rsquo; from the drop down menu. This will move the navigation bar to encompass that item.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/TextSearchFirmicutesComplete.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Beyond text-based search, the navigation bar can be moved, expanded, and reduced by using either the controls in the left-hand corner of the FacetZoom object or by dragging the red ends of the navigation bar.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetNavBarExpandAll.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;aggregation-at-any-set-of-nodes-in-hierarchy&#34;&gt;Aggregation at any set of nodes in hierarchy&lt;/h2&gt;
+
+&lt;p&gt;Now we will navigate the FacetZoom object to see selections update the heatmap and stacked line plots.&lt;/p&gt;
+
+&lt;p&gt;You can interact with the FacetZoom object by clicking on any node.  Clicking on a node at a lower level than the root of the hierarchy will render a new subtree.  Each node can is in one of three states: (1) expanded, which means that the children of the node are shown in visualizations, (2) aggregated, which means that the counts for all children nodes are summed to that node, or (3) removed, which means that the node and all of its children are removed from visualizations.&lt;/p&gt;
+
+&lt;p&gt;To show the states, we click through on the first node of the second row &amp;lsquo;Proteobacteria&amp;rsquo; and then we also click directly on the node to show a new subtree and explore the feature hierarchy. To set aggregation for an entire level, adjust the row control to set the aggregation to another level.  Click on the fourth item, with an &amp;lsquo;F&amp;rsquo; standing for &amp;lsquo;Family&amp;rsquo; and now all counts are summed to the Family level nodes across the samples in the charts.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetTraverseHierarchySetFamily.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, we change the aggregation level back to Order and navigate to have &amp;lsquo;Bacteria&amp;rsquo; as the root of the FacetZoom.  We then set some nodes to &amp;lsquo;expanded&amp;rsquo;, &amp;lsquo;removed&amp;rsquo;, and &amp;lsquo;aggregated&amp;rsquo;. We made the following selections based on the appearance of the heatmap.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/NavigationBarRemovingAggregatingNodes.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, we see the highlight of the path in the hierarchy and across the heatmaps and stacked plots.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/NavigationBarHighlightingPath.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In upcoming posts we will include a more detailed example of the usage of Metaviz, including how to integrate with R/Bioconductor for statistical analysis of metagenomic datasets.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>450k Illumina Human Methylation data for multiple solid tumors</title>
       <link>https://epiviz.github.io/tutorials/tutorials/timp2014/</link>
       <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>

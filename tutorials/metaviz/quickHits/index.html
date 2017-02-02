@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://epiviz.github.io/tutorials/images/favicon.png" type="image/x-icon" />
 
     
-    <title>450k Illumina Human Methylation data for multiple solid tumors</title>
+    <title>Metaviz Quick Hits</title>
     <link href="https://epiviz.github.io/tutorials/css/nucleus.css" rel="stylesheet">
     <link href="https://epiviz.github.io/tutorials/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://epiviz.github.io/tutorials/css/hybrid.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     {display:none !important;}</style>
     <link href="https://epiviz.github.io/tutorials/css/my_style.css" rel="stylesheet">
   </head>
-  <body class="" data-url="/tutorials/timp2014/">
+  <body class="" data-url="/metaviz/quickHits/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -50,7 +50,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/metaviz/quickHits/">
+      <li class="dd-item active parent" data-nav-id="/metaviz/quickHits/">
         <a href="https://epiviz.github.io/tutorials/metaviz/quickHits/">
           <span>
             
@@ -70,7 +70,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/tutorials/">
+      <li class="dd-item  " data-nav-id="/tutorials/">
         <a href="https://epiviz.github.io/tutorials/tutorials/">
           <span>
             
@@ -86,7 +86,7 @@
           
           
           
-            <li class="dd-item active" data-nav-id="/tutorials/timp2014/">
+            <li class="dd-item " data-nav-id="/tutorials/timp2014/">
               <a href="https://epiviz.github.io/tutorials/tutorials/timp2014/">
                 <span>450k Illumina Human Methylation data for multiple solid tumors     </i></span>
               </a>
@@ -167,15 +167,13 @@
                 
                 
                   
-                
-                  
                     
-                    
-                <a href="https://epiviz.github.io/tutorials/tutorials/" itemprop="url"><span itemprop="title">Epiviz Tutorials</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
-                <span itemprop="title"> 450k Illumina Human Methylation data for multiple solid tumors</span>
+                  
+                
+                <span itemprop="title"> Metaviz Quick Hits</span>
               </div>
               
                   <div class="progress">
@@ -184,13 +182,12 @@
 <ul>
 <li>
 <ul>
-<li><a href="#table-of-contents">Table of Contents</a></li>
-<li><a href="#how-to-use-this-data-in-epiviz-howto"><a href="#howto">How to use this data in epiviz</a></a></li>
-<li><a href="#background">Background</a></li>
-<li><a href="#tissue-data">Tissue data</a></li>
-<li><a href="#blocks-in-multiple-tumors">Blocks in multiple tumors</a></li>
-<li><a href="#blocks-in-tumor-progression">Blocks in tumor progression</a></li>
-<li><a href="#how-to-use-this-data-in-epiviz">How to use this data in epiviz</a></li>
+<li><a href="#novel-navigation-utility-for-exploring-taxonomic-hierarchies">Novel Navigation Utility for Exploring Taxonomic Hierarchies</a></li>
+<li><a href="#heatmap-linked-to-taxonomic-hierarchy">Heatmap Linked to Taxonomic Hierarchy</a></li>
+<li><a href="#pca-plots">PCA Plots</a></li>
+<li><a href="#stacked-bar-plots">Stacked Bar Plots</a></li>
+<li><a href="#text-search">Text Search</a></li>
+<li><a href="#aggregation-at-any-set-of-nodes-in-hierarchy">Aggregation at any set of nodes in hierarchy</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -203,113 +200,68 @@
             
     	        <div id="body-inner">
                 
-                <h1>450k Illumina Human Methylation data for multiple solid tumors</h1>
+                <h1>Metaviz Quick Hits</h1>
                 
 
 
 
-<h2 id="table-of-contents">Table of Contents</h2>
+<p>This post introduces the most compelling User Interface features of Metaviz.  An in-depth overview of an entire visual analysis will be posted in the next few days.</p>
 
-<ul>
-<li><a href="#background">Background</a></li>
-<li><a href="#tissuedata">Tissue data</a></li>
-<li><a href="#multiblocks">Blocks in multiple tumors</a></li>
-<li><a href="#progression">Blocks in tumor progression</a></li>
+<h2 id="novel-navigation-utility-for-exploring-taxonomic-hierarchies">Novel Navigation Utility for Exploring Taxonomic Hierarchies</h2>
 
-<li><h2 id="how-to-use-this-data-in-epiviz-howto"><a href="#howto">How to use this data in epiviz</a></h2>
+<p>Effectively navigating the hierarchical space of features for metagenomic data is challenging. Metaviz is designed specifically to address this. The Metaviz workspace displayed below includes a &lsquo;FacetZoom&rsquo; object that shows a limited section of the taxonomic hierarchy at one time.  A &lsquo;FacetZoom&rsquo; object can be used to explore the observed features in the dataset and aggregate counts to specific nodes or levels in the taxonomic hierarchy.  We will introduce &lsquo;FacetZoom&rsquo; functionality as needed throughout this workflow.  A &lsquo;FacetZoom&rsquo; object controls the views of data visualizations we will add in the next sections.</p>
 
-<p><a name="background"></p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/FacetZoomInitial.png" alt="Facet Zoom Initial View" /></p>
 
-<h2 id="background">Background</h2>
+<h2 id="heatmap-linked-to-taxonomic-hierarchy">Heatmap Linked to Taxonomic Hierarchy</h2>
 
-<p></a></p></li>
-</ul>
+<p>The next feature is linked charts that update on exploration with the ‘FacetZoom’ navigation object.</p>
 
-<p>This page contains links to epiviz workspaces containing data from
-the following paper:</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/HeatmapFacetZoomColorsCompleted.png" alt="" /></p>
 
-<blockquote>
-<p>W. Timp, H. Corrada Bravo, O.G. McDonald, M. Goggins, C.Umbricht
-M. Zieger, A.P. Feinberg, R.A. Irizarry (2014). <em>Genome Medicine</em>,
-<em>in press</em>.</p>
-</blockquote>
+<h2 id="pca-plots">PCA Plots</h2>
 
-<p><a name="tissuedata"></p>
+<p>Metaviz also provides PCA ordination plots with the samples colored by a selected attribute.</p>
 
-<h2 id="tissue-data">Tissue data</h2>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/PCASettingsSelected.png" alt="" /></p>
 
-<p></a></p>
+<h2 id="stacked-bar-plots">Stacked Bar Plots</h2>
 
-<p>The following workspaces contain probe-level methylation values,
-collapsed methylation difference between cancer and normal,
-and cancer blocks in each tissue type.</p>
+<p>With Metaviz, a user can create Stacked Bar Plots and group by or order by a given attribute. A user can also make separate charts for case and control samples for comparison.</p>
 
-<p><img src="https://epiviz.github.io/tutorials/images/timp2014/breast_screen.png" width="256" height="256"/><br />
-<a href="http://epiviz.cbcb.umd.edu/?settings=default&ws=WZCPGTd7Duv&seqName=chr11&start=130099272&end=133637378&"
-target="_blank">Breast</a></p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/StackedPlotCaseGroupBy.png" alt="" /></p>
 
-<p><img src="https://epiviz.github.io/tutorials/images/timp2014/colon_screen.png" width="256" height="256"/><br />
-<a
-href="http://epiviz.cbcb.umd.edu/?ws=Gx3GEFT4iti&seqName=chr11&start=3947953&end=7164991&settings=default&"
-target="_blank">Colon</a></p>
+<h2 id="text-search">Text Search</h2>
 
-<p><img src="https://epiviz.github.io/tutorials/images/timp2014/lung_screen.png" width="256" height="256"/><br />
-<a
-href="http://epiviz.cbcb.umd.edu/?ws=MCnnZYS0czp&seqName=chr11&start=3947953&end=7164991&settings=default&"
-target="__blank">Lung</a></p>
+<p>Complementary to the ‘FacetZoom’ object, Metaviz provides text-based search which can be used by typing in the text box in the menu bar &lsquo;Text Based Search&rsquo; to search for specific taxonomic features.</p>
 
-<p><img src="https://epiviz.github.io/tutorials/images/timp2014/pancreas_screen.png" width="256" height="256"/><br />
-<a
-href="http://epiviz.cbcb.umd.edu/?settings=default&ws=KHUT287HDLv&seqName=chr10&start=53056841&end=54307111&"
-target="_blank">Pancreas</a></p>
+<p>Choose &lsquo;Firmucutes&rsquo;, &lsquo;phylum&rsquo; from the drop down menu. This will move the navigation bar to encompass that item.</p>
 
-<p><img src="https://epiviz.github.io/tutorials/images/timp2014/thyroid_screen.png" width="256" height="256"/><br />
-<a
-href="http://epiviz.cbcb.umd.edu/?ws=iOxsV4P5CPv&seqName=chr12&start=33889924&end=35322471&settings=default&"
-target="_blank">Thyroid</a></p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/TextSearchFirmicutesComplete.png" alt="" /></p>
 
-<p><a name="multiblocks"></p>
+<p>Beyond text-based search, the navigation bar can be moved, expanded, and reduced by using either the controls in the left-hand corner of the FacetZoom object or by dragging the red ends of the navigation bar.</p>
 
-<h2 id="blocks-in-multiple-tumors">Blocks in multiple tumors</h2>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetNavBarExpandAll.png" alt="" /></p>
 
-<p></a></p>
+<h2 id="aggregation-at-any-set-of-nodes-in-hierarchy">Aggregation at any set of nodes in hierarchy</h2>
 
-<p>This workspace contains collapsed methylation difference between
-cancer and normal along with hypo-methylation blocks for all tumor types.</p>
+<p>Now we will navigate the FacetZoom object to see selections update the heatmap and stacked line plots.</p>
 
-<p><img src="https://epiviz.github.io/tutorials/images/timp2014/multiblocks_screen.png" width="256" height="256"/><br />
-<a
-href="http://epiviz.cbcb.umd.edu/?settings=default&ws=Ago25FdPLVb&seqName=chr2&start=78560000&end=81440000&"
-target="_blank">Multiple tumor blocks</a></p>
+<p>You can interact with the FacetZoom object by clicking on any node.  Clicking on a node at a lower level than the root of the hierarchy will render a new subtree.  Each node can is in one of three states: (1) expanded, which means that the children of the node are shown in visualizations, (2) aggregated, which means that the counts for all children nodes are summed to that node, or (3) removed, which means that the node and all of its children are removed from visualizations.</p>
 
-<p><a name="progression"></p>
+<p>To show the states, we click through on the first node of the second row &lsquo;Proteobacteria&rsquo; and then we also click directly on the node to show a new subtree and explore the feature hierarchy. To set aggregation for an entire level, adjust the row control to set the aggregation to another level.  Click on the fourth item, with an &lsquo;F&rsquo; standing for &lsquo;Family&rsquo; and now all counts are summed to the Family level nodes across the samples in the charts.</p>
 
-<h2 id="blocks-in-tumor-progression">Blocks in tumor progression</h2>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetTraverseHierarchySetFamily.png" alt="" /></p>
 
-<p></a></p>
+<p>Next, we change the aggregation level back to Order and navigate to have &lsquo;Bacteria&rsquo; as the root of the FacetZoom.  We then set some nodes to &lsquo;expanded&rsquo;, &lsquo;removed&rsquo;, and &lsquo;aggregated&rsquo;. We made the following selections based on the appearance of the heatmap.</p>
 
-<p>These workspaces include collapsed methylation difference and hypo-methylation blocks across multiple
-stages of tumor progression.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/NavigationBarRemovingAggregatingNodes.png" alt="" /></p>
 
-<p><img src="https://epiviz.github.io/tutorials/images/timp2014/colonprog_screen.png" width="256" height="256"/><br />
-<a
-href="http://epiviz.cbcb.umd.edu/?settings=default&ws=0TzurAoRxi&seqName=chr5&start=82000000&end=85000000&"
-target="_blank">Colon Progression</a></p>
+<p>Finally, we see the highlight of the path in the hierarchy and across the heatmaps and stacked plots.</p>
 
-<!--
-<img src="https://epiviz.github.io/tutorials/images/timp2014/thyroidprog_screen.png" width="256" height="256"/>  
-<a
-href="http://epiviz.cbcb.umd.edu/?settings=default&ws=g3PRJMCD1Ei&seqName=chr12&start=125722840&end=127681259&"
-target="_blank">Thyroid Progression</a>
--->
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/NavigationBarHighlightingPath.png" alt="" /></p>
 
-<p><a name="howto"></p>
-
-<h2 id="how-to-use-this-data-in-epiviz">How to use this data in epiviz</h2>
-
-<p></a></p>
-
-<p>Coming soon&hellip;</p>
+<p>In upcoming posts we will include a more detailed example of the usage of Metaviz, including how to integrate with R/Bioconductor for statistical analysis of metagenomic datasets.</p>
 
 
       
