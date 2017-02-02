@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Epiviz</title>
-    <link>http://epiviz.github.io/categories/jobs/index.xml</link>
+    <link>https://epiviz.github.io/categories/jobs/index.xml</link>
     <description>Recent content on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -13,10 +13,10 @@
         
           <item>
             <title>ISO: Data Scientist/Programmer</title>
-            <link>http://epiviz.github.io/post/2015-09-15-hiring/</link>
+            <link>https://epiviz.github.io/post/2015-09-15-hiring/</link>
             <pubDate>Tue, 15 Sep 2015 10:52:12 -0500</pubDate>
             
-            <guid>http://epiviz.github.io/post/2015-09-15-hiring/</guid>
+            <guid>https://epiviz.github.io/post/2015-09-15-hiring/</guid>
             <description>&lt;p&gt;&lt;strong&gt;UPDATED: This position is now filled&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;We&amp;rsquo;re looking for a Data Scientist to make Epiviz better, stronger and faster! This is a full-time

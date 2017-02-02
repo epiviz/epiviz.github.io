@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Epiviz</title>
-    <link>http://epiviz.github.io/categories/epivizr/index.xml</link>
+    <link>https://epiviz.github.io/categories/epivizr/index.xml</link>
     <description>Recent content on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -13,10 +13,10 @@
         
           <item>
             <title>Using BED files with epiviz</title>
-            <link>http://epiviz.github.io/post/2014-12-18-bedtools/</link>
+            <link>https://epiviz.github.io/post/2014-12-18-bedtools/</link>
             <pubDate>Thu, 18 Dec 2014 10:52:12 -0500</pubDate>
             
-            <guid>http://epiviz.github.io/post/2014-12-18-bedtools/</guid>
+            <guid>https://epiviz.github.io/post/2014-12-18-bedtools/</guid>
             <description>&lt;p&gt;On &lt;a href=&#34;https://twitter.com/aaronquinlan/status/545559723853246464&#34;&gt;a twitter exchange&lt;/a&gt; I showed &lt;a href=&#34;https://twitter.com/aaronquinlan&#34;&gt;A. Quinlan&lt;/a&gt; how to use &lt;code&gt;epivizr&lt;/code&gt; to load data from a custom &lt;code&gt;bed&lt;/code&gt; file. Here is the code I gave him:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(epivizr)
@@ -55,10 +55,10 @@ mgr$stopServer()
         
           <item>
             <title>New epivizr release</title>
-            <link>http://epiviz.github.io/post/2014-10-31-new-epivizr-release/</link>
+            <link>https://epiviz.github.io/post/2014-10-31-new-epivizr-release/</link>
             <pubDate>Fri, 31 Oct 2014 10:52:12 -0500</pubDate>
             
-            <guid>http://epiviz.github.io/post/2014-10-31-new-epivizr-release/</guid>
+            <guid>https://epiviz.github.io/post/2014-10-31-new-epivizr-release/</guid>
             <description>
 
 &lt;p&gt;Version 1.4 of &lt;a href=&#34;http://www.bioconductor.org/packages/release/bioc/html/epivizr.html&#34;&gt;&lt;code&gt;epivizr&lt;/code&gt;&lt;/a&gt; was released as part of the new &lt;a href=&#34;http://master.bioconductor.org/news/bioc_3_0_release/&#34;&gt;Bioconductor 3.0 release&lt;/a&gt;. There are a good number of new features in &lt;code&gt;epivizr&lt;/code&gt; in this release, including the ability of running the Epiviz UI &lt;em&gt;within R&lt;/em&gt;, making R/Bioconductor capable of running it&amp;rsquo;s own genome browser!&lt;/p&gt;

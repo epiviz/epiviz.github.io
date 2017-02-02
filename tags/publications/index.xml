@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Epiviz</title>
-    <link>http://epiviz.github.io/tags/publications/index.xml</link>
+    <link>https://epiviz.github.io/tags/publications/index.xml</link>
     <description>Recent content on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -13,10 +13,10 @@
         
           <item>
             <title>Architecture and design paper in Biovis &#39;15</title>
-            <link>http://epiviz.github.io/post/2015-08-17-biovis15/</link>
+            <link>https://epiviz.github.io/post/2015-08-17-biovis15/</link>
             <pubDate>Mon, 17 Aug 2015 10:52:12 -0500</pubDate>
             
-            <guid>http://epiviz.github.io/post/2015-08-17-biovis15/</guid>
+            <guid>https://epiviz.github.io/post/2015-08-17-biovis15/</guid>
             <description>&lt;p&gt;Our paper detailing the architecture and design of Epiviz is now available on the &lt;a href=&#34;http://www.biomedcentral.com/1471-2105/16/S11/S4&#34;&gt;BMC Bioinformatics site&lt;/a&gt;. It is published in a &lt;a href=&#34;http://www.biomedcentral.com/bmcbioinformatics/supplements/16/S11&#34;&gt;supplement&lt;/a&gt; containing a good number of interesting papers from the &lt;a href=&#34;http://www.biovis.net/&#34;&gt;Biovis &amp;lsquo;15&lt;/a&gt; conference held as a satellite meeting of the &lt;a href=&#34;http://www.iscb.org/ismbeccb2015&#34;&gt;ISMB 2015 conference&lt;/a&gt;. We also presented our &lt;a href=&#34;http://www.nature.com/nmeth/journal/v11/n9/full/nmeth.3038.html&#34;&gt;Nature Methods&lt;/a&gt; paper on Epiviz in the highlights track at ISMB. Slides for that talk are &lt;a href=&#34;http://hcorrada.github.io/ismb2015/&#34;&gt;available on github&lt;/a&gt;.&lt;/p&gt;
 </description>
           </item>
