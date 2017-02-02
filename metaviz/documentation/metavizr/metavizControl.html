@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: metavizr settings</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for metavizControl"><tr><td>metavizControl</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>metavizr settings</h2>
+
+<h3>Description</h3>
+
+<p>Default settings for the various plotting functions in metavizr.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+metavizControl(aggregateAtDepth = 3, aggregateFun = function(x) colSums(x),
+  valuesAnnotationFuns = NULL, maxDepth = 4, maxHistory = 3,
+  maxValue = NULL, minValue = NULL, title = "", n = 10000,
+  rankFun = stats::sd, norm = TRUE, log = FALSE,
+  featureSelection = NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>aggregateAtDepth</code></td>
+<td>
+<p>Level of the tree to aggregate counts at by default.</p>
+</td></tr>
+<tr valign="top"><td><code>aggregateFun</code></td>
+<td>
+<p>Function to aggregate counts by at the aggregateAtDepth level.</p>
+</td></tr>
+<tr valign="top"><td><code>valuesAnnotationFuns</code></td>
+<td>
+<p>Function for error bars.</p>
+</td></tr>
+<tr valign="top"><td><code>maxDepth</code></td>
+<td>
+<p>Level of the tree to display by default in icicle view.</p>
+</td></tr>
+<tr valign="top"><td><code>maxHistory</code></td>
+<td>
+<p>Value for caching.</p>
+</td></tr>
+<tr valign="top"><td><code>maxValue</code></td>
+<td>
+<p>Maximum value to display.</p>
+</td></tr>
+<tr valign="top"><td><code>minValue</code></td>
+<td>
+<p>Minimum value to display.</p>
+</td></tr>
+<tr valign="top"><td><code>title</code></td>
+<td>
+<p>title.</p>
+</td></tr>
+<tr valign="top"><td><code>n</code></td>
+<td>
+<p>Number of OTUs to include in ranking.</p>
+</td></tr>
+<tr valign="top"><td><code>rankFun</code></td>
+<td>
+<p>Ranking function - single vector function.</p>
+</td></tr>
+<tr valign="top"><td><code>norm</code></td>
+<td>
+<p>Normalize MRexperiment object.</p>
+</td></tr>
+<tr valign="top"><td><code>log</code></td>
+<td>
+<p>Log tranformation of MRexperiment object.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>List of setting parameters.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+settings = metavizControl()
+
+</pre>
+
+
+</body></html>

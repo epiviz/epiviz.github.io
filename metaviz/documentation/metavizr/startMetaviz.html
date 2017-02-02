@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Start metaviz app and create 'MetavizApp' object to manage...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for startMetaviz"><tr><td>startMetaviz</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Start metaviz app and create <code>MetavizApp</code> object to manage connection.</h2>
+
+<h3>Description</h3>
+
+<p>Start metaviz app and create <code>MetavizApp</code> object to manage connection.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+startMetaviz(host = "http://metaviz.cbcb.umd.edu",
+  register_function = .register_all_metaviz_things, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>host</code></td>
+<td>
+<p>(character) host address to launch.</p>
+</td></tr>
+<tr valign="top"><td><code>register_function</code></td>
+<td>
+<p>(function) function used to register actions and charts on the metaviz app.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>additional parameters passed to <code>startEpiviz</code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>An object of class <code>MetavizApp</code>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>MetavizApp</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# see package vignette for example usage
+app &lt;- startMetaviz(non_interactive=TRUE, open_browser=TRUE)
+app$stop_app()
+
+</pre>
+
+
+</body></html>

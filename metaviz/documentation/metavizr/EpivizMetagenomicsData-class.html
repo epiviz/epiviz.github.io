@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Data container for MRexperiment objects</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for EpivizMetagenomicsData-class"><tr><td>EpivizMetagenomicsData-class</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Data container for MRexperiment objects</h2>
+
+<h3>Description</h3>
+
+<p>Used to serve metagenomic data (used in e.g., icicle plots and heatmaps). Wraps
+<code>MRexperiment-class</code> objects.
+</p>
+
+
+<h3>Methods</h3>
+
+
+<dl>
+<dt><code>get_default_chart_type()</code></dt><dd><p>Get name of default chart type for this data type</p>
+</dd>
+<dt><code>get_measurements()</code></dt><dd><p>Get description of measurements served by this object</p>
+</dd>
+<dt><code>toMySQLDb(con, colLabel = NULL)</code></dt><dd><p>Save an MRexperiment object to a MySQL database.</p>
+</dd>
+<dt><code>toNEO4JDb(graph)</code></dt><dd><p>Save an MRexperiment object to a Neo4j Graph database.</p>
+</dd>
+<dt><code>toNEO4JDbHTTP(batch_url, neo4juser, neo4jpass, datasource, colLabel = NULL)</code></dt><dd><p>Save an MRexperiment object to a Neo4j Graph database.</p>
+</dd>
+<dt><code>toNEO4jDump(filePath = "~/", fileName = "neo4j_dump.cypher")</code></dt><dd><p>Save an MRexperiment object to a Neo4j Graph database. set the location of the output file with fileName and filePath.</p>
+</dd>
+<dt><code>update(new_object, send_request = TRUE)</code></dt><dd><p>Update underlying data object with new object</p>
+</dd>
+</dl>
+
+
+</body></html>
