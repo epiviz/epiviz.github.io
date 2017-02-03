@@ -54,17 +54,17 @@
 &lt;h3 id=&#34;tutorials&#34;&gt;Tutorials&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;quickHits&#34;&gt;post 1: Metaviz Quick Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;overview&#34;&gt;post 1: Metaviz Quick Overview&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
-      <title>Metaviz Quick Hits</title>
-      <link>https://epiviz.github.io/tutorials/metaviz/quickHits/</link>
+      <title>Metaviz Quick Overview</title>
+      <link>https://epiviz.github.io/tutorials/metaviz/overview/</link>
       <pubDate>Tue, 24 Jan 2017 14:08:04 -0500</pubDate>
       
-      <guid>https://epiviz.github.io/tutorials/metaviz/quickHits/</guid>
+      <guid>https://epiviz.github.io/tutorials/metaviz/overview/</guid>
       <description>
 
 &lt;p&gt;This post introduces the most compelling User Interface features of Metaviz.  An in-depth overview of an entire visual analysis will be posted in the next few days.&lt;/p&gt;
