@@ -127,6 +127,140 @@ Beyond text-based search, the navigation bar can be moved, expanded, and reduced
     </item>
     
     <item>
+      <title>Differential Analysis with MetagenomeSeq and Metaviz</title>
+      <link>https://epiviz.github.io/tutorials/metaviz/metagenomeSeq/</link>
+      <pubDate>Tue, 17 Jan 2017 14:08:04 -0500</pubDate>
+      
+      <guid>https://epiviz.github.io/tutorials/metaviz/metagenomeSeq/</guid>
+      <description>
+
+&lt;p&gt;In this post we will show how to use Metaviz along with the Bioconductor package metagenomeSeq to perform a statistical and visual analysis of differential abundance of metagenomic data.&lt;/p&gt;
+
+&lt;p&gt;First, the following libraries will need to be downloaded and loaded:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r, eval=FALSE&#34;&gt;library(metagenomeSeq)
+library(msd16s)
+library(metavizr)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;generating-metagenomeseq-objects-and-computing-differential-abundance&#34;&gt;Generating metagenomeSeq objects and computing differential abundance&lt;/h2&gt;
+
+&lt;p&gt;In an R session we will use &lt;code&gt;metagenomeSeq&lt;/code&gt; to compute differential abundance.  We focus on the &lt;code&gt;msd16s&lt;/code&gt; dataset and its 301 samples from Bangladesh.&lt;br /&gt;
+In &lt;code&gt;metagenomeSeq&lt;/code&gt;, we first subset the data to only Bangladesh samples, aggregate the count data to the species level, and normalize the count data.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r, eval=FALSE&#34;&gt;aggregated_feature_order &amp;lt;- colnames(fData(msd16s))[3:9]
+
+msd16s_species &amp;lt;- msd16s
+fData(msd16s) &amp;lt;- fData(msd16s)[feature_order]
+fData(msd16s_species) &amp;lt;- fData(msd16s_species)[aggregated_feature_order]
+  
+bangladesh &amp;lt;- msd16s[, which(pData(msd16s)$Country == &amp;quot;Bangladesh&amp;quot;)]
+bangladesh_species &amp;lt;- msd16s_species[, which(pData(msd16s_species)$Country == &amp;quot;Bangladesh&amp;quot;)]
+
+aggregated_species &amp;lt;-  cumNorm(aggregateByTaxonomy(bangladesh_species, lvl=&amp;quot;species&amp;quot;), p = 0.75)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We then aggregate another copy of the Bangladesh subset to aggregate to the &amp;ldquo;class&amp;rdquo; level, normalize count data, and compute differential abundance at the &amp;ldquo;class&amp;rdquo; level between dysentery cases and controls.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r, eval=False&#34;&gt;aggregation_level &amp;lt;- &amp;quot;class&amp;quot;
+aggregated_bangladesh &amp;lt;- aggregateByTaxonomy(bangladesh, lvl=aggregation_level)
+
+normed_bangladesh &amp;lt;-  cumNorm(aggregated_bangladesh, p = 0.75)
+bangladesh_sample_data &amp;lt;-  pData(normed_bangladesh)
+mod &amp;lt;-  model.matrix(~1+Dysentery, data = bangladesh_sample_data)
+results_bangladesh &amp;lt;-  fitFeatureModel(normed_bangladesh, mod) # Check: ?results_bangladesh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can then extract a list of bacterial classes that have a log fold-change greater than 2 and an FDR adjusted p-value less than .1 between dysentery case and control samples from Bangladesh. Once we have this list of differentially abundant classes, we propagate them to an MRexperiment at &amp;ldquo;species&amp;rdquo; level to visualize and explore these results.  The differential abundance cutoff can be set to a different threshold and the aggregation level can also be changed to examine the dataset.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r, eval=FALSE&#34;&gt;logFC_bangladesh &amp;lt;- MRcoefs(results_bangladesh, number = nrow(normed_bangladesh))
+
+feature_names &amp;lt;- rownames(logFC_bangladesh[which(logFC_bangladesh[which(abs(logFC_bangladesh$logFC) &amp;gt; 1),]$adjPvalues &amp;lt; .1),]) 
+fSelection &amp;lt;- generateSelection(feature_names = feature_names , aggregation_level = aggregation_level, selection_type =2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;creating-metavizr-object&#34;&gt;Creating metavizR object&lt;/h2&gt;
+
+&lt;p&gt;The next step will be to launch a Metaviz instance from the R session, add a &amp;lsquo;FacetZoom&amp;rsquo; object, modify the node selections to show those nodes that are differentially abundant, and add a heatmap showing only species within differentially abundant classes.
+Load the &amp;lsquo;metavizr&amp;rsquo; package and create a Metaviz instance by calling&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r, eval=FALSE&#34;&gt;app &amp;lt;- startMetaviz()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will open a new Metaviz session on the default browser.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/AppInitial.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, to add a FacetZoom object of the msd16s hierarchy the following call is made to create a Metaviz control object then add a plot.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r, eval=FALSE&#34;&gt;control &amp;lt;- metavizr::metavizControl(featureSelection = fSelection)
+icicle_plot &amp;lt;- app$plot(aggregated_species, datasource_name=&amp;quot;msd16s&amp;quot;, control=control, feature_order = aggregated_feature_order)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &amp;lsquo;plot&amp;rsquo; function adds the object to the Metaviz session.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/IciclePlotPushed.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;adding-heatmap&#34;&gt;Adding heatmap&lt;/h2&gt;
+
+&lt;p&gt;This step is simple using metavizr, all that needs to be done is call the &amp;lsquo;revisualize&amp;rsquo; method to add another visualization of the same data.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r, eval=FALSE&#34;&gt;heatmap &amp;lt;- app$chart_mgr$revisualize(chart_type = &amp;quot;HeatmapPlot&amp;quot;, chart = icicle_plot)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now a heatmap is added to the Metaviz workspace.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/HeatmapAdded.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;modifying-settings-and-exploring-with-the-facetzoom-object&#34;&gt;Modifying Settings and Exploring with the FacetZoom object&lt;/h2&gt;
+
+&lt;p&gt;Now we modify chart settings to customize the visualization for our purposes. We group-by Dysentery and modify the color settings. To accomplish this we click on the &amp;lsquo;Custom settings&amp;rsquo; icon.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/HeatmapSettingsHover.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This launches a pop-up dialog window with all available chart settings.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/HeatmapSettingsPopup.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first setting to change is the &amp;lsquo;Row labels&amp;rsquo; which will be set to &amp;lsquo;Dysentery&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/HeatmapSettingsDysentery.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, move the &amp;lsquo;Row labels as colors&amp;rsquo; radio control to &amp;lsquo;On&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/HeatmapSettingsGroupByOn.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now the heatmap rows will colored by the &amp;lsquo;Dysentery&amp;rsquo; status.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/HeatmapSettingsComplete.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We would then like to update the settings of the color scheme.  From the popup window, We select an RColorBrewer template which is appropriate.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/HeatmapColorSettings.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now the Metaviz workspace colors are set.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/HeatmapColorSettingsComplete.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As with a FacetZoom object added from the UI, a user can modify node states in order to examine the statistical test result.  We modify the navigation widget by changing the &amp;lsquo;Actinobacteria&amp;rsquo; status from removed to aggregated.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetActino.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can then hover on the new column of the heatmap to highlight the path through the hierarchy.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetActinoHover.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A user can also traverse the hierarchy and change the aggregation setting for all nodes at a given level. To show this utility, we navigate to a lower level of the hierarchy by clicking on the &amp;lsquo;Proteobacteria&amp;rsquo; node and set the aggregation level to &amp;lsquo;Genus&amp;rsquo; by clicking on the row control node.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetDescendProteoBacteriaSetGenusAsAgg.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then we can hover on a column that appears to show a difference between case and control samples.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetHeatmapHoverShigella.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>450k Illumina Human Methylation data for multiple solid tumors</title>
       <link>https://epiviz.github.io/tutorials/tutorials/timp2014/</link>
       <pubDate>Wed, 23 Nov 2016 14:08:04 -0500</pubDate>
