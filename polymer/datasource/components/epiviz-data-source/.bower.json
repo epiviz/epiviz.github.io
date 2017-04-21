@@ -1,0 +1,38 @@
+{
+  "name": "epiviz-data-source",
+  "authors": [
+    "Jayaram Kancherla <jayaram.kancherla@gmail.com>"
+  ],
+  "description": "Datasource provider element for epiviz",
+  "main": "",
+  "keywords": [
+    "epiviz",
+    "datasource"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/hcbravolab/epiviz-data-source",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer#^1.6.1",
+    "epiviz-imports": "hcbravolab/epiviz-imports"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.8"
+  },
+  "_release": "6fc9ad98b5",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "6fc9ad98b52a01e3e64eecef319489933b63391d"
+  },
+  "_source": "https://github.com/hcbravolab/epiviz-data-source.git",
+  "_target": "*",
+  "_originalSource": "hcbravolab/epiviz-data-source",
+  "_direct": true
+}
