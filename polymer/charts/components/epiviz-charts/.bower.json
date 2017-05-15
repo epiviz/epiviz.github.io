@@ -22,7 +22,7 @@
   ],
   "dependencies": {
     "polymer": "Polymer#^1.6.1",
-    "epiviz-imports": "https://github.com/jkanche/epiviz-imports.git",
+    "epiviz-imports": "https://github.com/epiviz/epiviz-imports.git",
     "cyto-chromosome-vis": "^1.3.3",
     "iron-icons": "^1.2.0",
     "paper-item": "^1.2.1",
@@ -48,11 +48,11 @@
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.1.8"
   },
-  "_release": "0f985ef06b",
+  "_release": "03c526b4e6",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "0f985ef06b22c0240da80e4baf397b9c03713fbf"
+    "commit": "03c526b4e63e4e3342dcb062625ba7a45290f3ab"
   },
   "_source": "https://github.com/hcbravolab/epiviz-chart.git",
   "_target": "*",

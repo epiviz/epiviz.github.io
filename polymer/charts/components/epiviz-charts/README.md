@@ -1,6 +1,6 @@
 # Installation
 
-`bower install hcbravolab/epiviz-chart`
+`bower install epiviz/epiviz-chart`
 
 # Documentation
 
@@ -48,10 +48,8 @@ to add an epiviz chart for example line-track.
 
 # create a new element
 ```
-elem = document.createElement('epiviz-line-track'); 
+elem = document.createElement('epiviz-scatter-plot'); 
 elem.dimS = ['affy1', 'affy2']; 
-elem.dimX = 'affy1'; 
-elem.dimY = 'affy2'; 
 elem.className="charts"
 ```
 
@@ -60,3 +58,8 @@ elem.className="charts"
 
 # add chart
 `Polymer.dom(ot).appendChild(elem)`
+
+
+# Optimize elements for productions. 
+`npm install -g polymer-bundler`
+`polymer-bundler --inline-scripts --inline-css --strip-comments epiviz-charts.html > epiviz-charts-compiled.html`

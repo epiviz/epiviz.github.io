@@ -31,12 +31,12 @@
     "iron-input": "^1.0.10",
     "paper-icon-button": "^1.1.4"
   },
-  "version": "2.2.1",
-  "_release": "2.2.1",
+  "version": "2.4.1",
+  "_release": "2.4.1",
   "_resolution": {
     "type": "version",
-    "tag": "2.2.1",
-    "commit": "c0c0cc2450ed8583a3d6adf8da0bea62ffe3d630"
+    "tag": "2.4.1",
+    "commit": "85305b5740ed055d520eb63d553cb30ad647e958"
   },
   "_source": "https://github.com/Juravenator/paper-dropdown-input.git",
   "_target": "^2.0.1",

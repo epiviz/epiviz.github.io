@@ -20,16 +20,16 @@
   ],
   "dependencies": {
     "polymer": "Polymer#^1.6.1",
-    "epiviz-imports": "hcbravolab/epiviz-imports"
+    "epiviz-imports": "epiviz/epiviz-imports"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.1.8"
   },
-  "_release": "6fc9ad98b5",
+  "_release": "121f2947c4",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "6fc9ad98b52a01e3e64eecef319489933b63391d"
+    "commit": "121f2947c442ad1a8bf93d031d6c5d1b4690324f"
   },
   "_source": "https://github.com/hcbravolab/epiviz-data-source.git",
   "_target": "*",

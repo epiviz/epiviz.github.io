@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Epiviz Updates for Bioconductor 3.5 Release">
+    <meta name="author" content="epiviz">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="https://epiviz.github.io/favicon.ico">
+
+    <title>Epiviz Updates for Bioconductor 3.5 Release &middot; Epiviz</title>
+
+   	
+    
+        <link rel="stylesheet" href="https://epiviz.github.io/css/theme/simplex.css">
+    
+
+    <link rel="stylesheet" href="https://epiviz.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="https://epiviz.github.io/css/style.css">
+
+
+    
+    <script src="https://epiviz.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="https://epiviz.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="Epiviz" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default " role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://epiviz.github.io"><img src="https://epiviz.github.io/images/epiviz_4_logo_medium.png"></a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://epiviz.github.io">Home</a></li>
+                    <li><a href="https://epiviz.github.io/post/">News</a></li>
+                    
+                      <li><a href="https://epiviz.github.io/metaviz/"> Metaviz </a></li>
+                    
+                      <li><a href="https://epiviz.github.io/tutorials/"> Tutorials </a></li>
+                    
+                      <li><a href="https://epiviz.github.io/documentation/"> Documentation </a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>Epiviz Updates for Bioconductor 3.5 Release</h3>
+				<span class="label label-primary">15.05.2017</span> in 
+				
+					
+					<a href="https://epiviz.github.io/categories/news">news</a>
+				 using tags
+				
+					
+					<a href="https://epiviz.github.io/tags/update">update</a>
+				
+					 , 
+					<a href="https://epiviz.github.io/tags/metaviz">metaviz</a>
+				
+					 , 
+					<a href="https://epiviz.github.io/tags/polymer">polymer</a>
+				
+					 , 
+					<a href="https://epiviz.github.io/tags/epivizr">epivizr</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			
+
+<p>Bioconductor version 3.5 was released last month: <a href="http://bioconductor.org/news/bioc_3_5_release/">http://bioconductor.org/news/bioc_3_5_release/</a>.
+This Bioconductor version
+includes updates to <code>epivizr</code> and a new package, <code>metavizr</code>, for interactive visualization
+of metagenomic data. In this post we describe these, and take the opportunity to update
+on other developments in the Epiviz project.</p>
+
+<h2 id="what-s-new">What&rsquo;s new!</h2>
+
+<ul>
+<li><a href="#epivizr">epivizr updates</a></li>
+<li><a href="#epiviz-desktop">Introducing Epiviz desktop application</a></li>
+<li><a href="#metavizr">Metavizr now on R/Bioconductor</a></li>
+<li><a href="#polymer">Introducing Polymer</a></li>
+</ul>
+
+<p><a name="epivizr"></p>
+
+<h2 id="epivizr-updates">epivizr updates</h2>
+
+<p></a></p>
+
+<ul>
+<li><p><strong><code>Save</code> and <code>Restart</code> an epivizr session</strong></p>
+
+<p>We are introducing shareable workspaces in epivizr R/Bioconductor package. Users can use the <code>save</code> method to write the current epivizr R-session to disk (as a .rda file) and load it back later using the <code>restartEpiviz</code> method. This helps users/researchers to share their epivizr sessions with collaborators. Options to include and exclude data are available when saving the session.</p>
+
+<pre><code class="language-r">    require(epivizr)
+    app &lt;- startEpiviz()
+
+    ....
+    add plots and data
+    ....
+
+    # to save the session 
+    app$save(file=&quot;path/to/file/app.rda&quot;, include_data=TRUE)
+
+    # to reload a saved session
+    app &lt;- restartEpiviz(file=&quot;path/to/file/app.rda&quot;, open_browser=TRUE)
+</code></pre></li>
+
+<li><p><strong><code>revisualize</code> method</strong></p>
+
+<p>The revisualize method makes it easy to use existing measurements from another epiviz chart object and create a new chart object for a different chart type.</p>
+
+<pre><code class="language-r">    means_track &lt;- app$plot(tcga_colon_curves, datasource_name=&quot;450kMeth&quot;,type=&quot;bp&quot;,columns=c(&quot;cancerMean&quot;,&quot;normalMean&quot;))
+
+    heatmap_plot &lt;- app$chart_mgr$revisualize(chart_type = &quot;HeatmapPlot&quot;, chart = means_track)
+</code></pre></li>
+
+<li><p><strong>Visualizing data hosted in a remote epiviz server</strong></p>
+
+<p>We added a <code>load_remote_measurements</code> method that loads measurements and visualize data hosted at UMD with an interactive r-session. This helps develop integrative analysis workflows.</p>
+
+<pre><code class="language-r">    # start an epivizr session
+    app &lt;- startEpiviz()
+
+    # load remote measurements
+    app$load_remote_measurements()
+    remote_measurements &lt;- app$data_mgr$get_remote_measurements()
+
+    # For example, lets find measurements to visualize data from gene expression barcode project for tumor and normal samples from lung, colon and breast tissues.
+    measurementList &lt;- lapply(remote_measurements, function(m) {
+        if(m@name %in% c(&quot;colon normal&quot;, &quot;lung normal&quot;, &quot;breast normal&quot;, &quot;colon tumor&quot;, &quot;lung tumor&quot;, &quot;breast tumor&quot;) &amp;&amp; m@datasourceId == &quot;gene_expression_barcode_subtype&quot;) {
+            m
+        }
+    })
+    measurements &lt;- Filter(Negate(is.null), measurementList)
+
+    # add a heatmap with the queried measurements
+    app$chart_mgr$visualize(&quot;HeatmapPlot&quot;, measurements = measurements)
+</code></pre></li>
+</ul>
+
+<p>With this new feature we can use the epivizr package to fully reproduce the construction of
+epiviz visualizations using an R script.</p>
+
+<ul>
+<li><p><strong>Load Workspace</strong></p>
+
+<p>We also added <code>load_workspace</code> method to load a workspace in the epiviz app using epivizr session. For example, if you know the <code>workspace_id</code></p>
+
+<pre><code class="language-r">    app &lt;- startEpiviz()
+    app$load_workspace(workspace_id=&quot;Ago25FdPLVb&quot;)
+</code></pre></li>
+</ul>
+
+<p><a name="epiviz-desktop"></p>
+
+<h2 id="introducing-epiviz-desktop-application">Introducing Epiviz Desktop Application</h2>
+
+<p></a></p>
+
+<p>We packaged Epiviz into a self contained desktop application for PC, Linux and Mac using the electron framework. Electron framework is being used by several applications including slack, git-kraken, microsoft visual code editor, atom editor etc.. Similar to the epiviz web application, the desktop application can be used as a standalone app where it serves data hosted at UMD. The desktop application can also visualize data from an interactive r-session by using <a href="https://bioconductor.org/packages/release/bioc/html/epivizrStandalone.html"><code>epivizrStandalone</code> R/Bioconductor package</a>.</p>
+
+<p>To install the epiviz standalone application for your platform, please visit- <strong><a href="https://github.com/epiviz/epiviz-desktop-app/releases/tag/0.0.1">Epiviz-desktop github release page</a></strong></p>
+
+<p>To launch the desktop app that can load data from an R session -</p>
+
+<pre><code>    require(epivizrStandalone)
+    require(epivizr)
+
+    app &lt;- startStandaloneApp()
+
+    # to add data, the api is similar to epivizr
+    data(tcga_colon_blocks)
+    app$plot(tcga_colon_blocks)
+
+    # to load a workspace,
+    app$load_workspace(workspace_id=&quot;Ago25FdPLVb&quot;)
+</code></pre>
+
+<p>Note: Please allow installation of epiviz as a system application so that it can be launched from the command line.</p>
+
+<p><a name="metavizr"></p>
+
+<h2 id="metavizr-now-on-bioconductor-release-3-5">Metavizr now on Bioconductor (release 3.5)</h2>
+
+<p></a></p>
+
+<p>We recently released our <a href="http://metaviz.org">metaviz</a> application for interactive analysis
+of metagenomic data. It&rsquo;s companion R/Bioconductor pacakge, <code>metavizr</code>, implements two-way communication between the R/Bioconductor environment and the metaviz web app. The hierarchy of features from a microbiome sequencing result can be visualized with a hierarchical navigation utility and count values are displayed dynamically updated heatmaps or stacked bar plots. <code>metavizr</code> uses Websockets for communication between the browser Javascript client and the R environment. The <code>metavizr</code> package was released in Bioconductor 3.5.</p>
+
+<p>To install metavizr through Bioconductor and try the package vignette,</p>
+
+<pre><code class="language-r">    # install packahe
+    BiocInstaller::biocLite(&quot;metavizr&quot;)
+
+    #load vignette
+    require(metvizr)
+    browseVignettes(&quot;metavizr&quot;)
+</code></pre>
+
+<p>There are multiple tutorials on metaviz available on the metaviz <a href="https://epiviz.github.io/tutorials/metaviz/">tutorial page</a>, covering the application interactive visualization facilities and how to perform visual and statistical analysis using metavizr and metagenomeSeq.
+For more information, please visit the <a href="http://www.bioconductor.org/packages/release/bioc/html/metavizr.html">R/Bioconductor page</a>. If you have any problems, please post an issue on our <a href="http://github.com/epiviz/metavizr">Github page</a>. A preprint describing metaviz and metavizr is available on biorxiv: <a href="http://biorxiv.org/content/early/2017/03/06/105205">http://biorxiv.org/content/early/2017/03/06/105205</a>.</p>
+
+<p><a name="polymer"></p>
+
+<h2 id="introducing-epiviz-polymer-components">Introducing epiviz polymer components</h2>
+
+<p></a></p>
+
+<p>Note: This is currently a work in progress.</p>
+
+<p>We have been developing and exploring new ways to make our chart components versatile and extensible across various platforms and applications. We are developing epiviz <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">webcomponents</a> using the <a href="https://www.polymer-project.org/">Google Polymer library</a>. We developed custom web components for</p>
+
+<ul>
+<li><p>Handling data requests(<a href="https://github.com/epiviz/epiviz-data-source">epiviz-data-source</a>)</p>
+
+<p>This components handles data requests from a websocket/webserver connection. To add this element to a page,</p>
+
+<pre><code class="language-html">    &lt;epiviz-data-source
+        provider-type=&quot;epiviz.data.WebServerDataProvider&quot; 
+        provider-id=&quot;umd&quot; 
+        provider-url=&quot;http://epiviz.cbcb.umd.edu/data/main.php&quot;&gt;
+    &lt;/epiviz-data-source&gt;
+</code></pre></li>
+
+<li><p>Visualizing data (<a href="https://github.com/epiviz/epiviz-chart">epiviz-charts-* components</a>)</p>
+
+<p>We are developing epiviz chart components for our existing track and plot based charts. This includes genes track, blocks track, scatter plots, line plots, stacked-line plots, heatmaps etc.</p>
+
+<p>To add any of these to your page, for example a genes track</p>
+
+<pre><code class="language-html">    &lt;epiviz-genes-track use-default-data-provider=&quot;true&quot;&gt;&lt;/epiviz-genes-track&gt;
+</code></pre>
+
+<p>Some of the new components we are developing are epiviz-environment and epiviz-navigation components.</p>
+
+<h3 id="epiviz-environment">epiviz-environment</h3>
+
+<p>The main purpose of this component is to enable brushing and event handling across all its child elements. <code>epiviz-environment</code> can contain multiple charts as its children. When you hover over one of the charts, this sends an event to the environment. The environment then handles brushing of the key or region corresponding to the datapoint that was hovered across all the other charts in the environment.</p>
+
+<p>For example, to add an environment on your page</p>
+
+<pre><code class="language-html">    &lt;epiviz-environment&gt;
+        &lt;epiviz-genes-track class=&quot;charts&quot; use-default-data-provider=&quot;true&quot;&gt;&lt;/epiviz-genes-track&gt;&lt;br/&gt;
+        &lt;epiviz-scatter-plot class=&quot;charts&quot; use-default-data-provider=&quot;true&quot;&gt;&lt;/epiviz-scatter-plot&gt;&lt;br/&gt;
+        &lt;epiviz-blocks-track class=&quot;charts&quot; use-default-data-provider=&quot;true&quot;&gt;&lt;/epiviz-blocks-track&gt;&lt;br/&gt;
+        &lt;epiviz-stacked-line-plot class=&quot;charts&quot; use-default-data-provider=&quot;true&quot;&gt;&lt;/epiviz-stacked-line-plot&gt;&lt;br/&gt;
+        &lt;epiviz-stacked-line-track class=&quot;charts&quot; use-default-data-provider=&quot;true&quot;&gt;&lt;/epiviz-stacked-line-track&gt;&lt;br/&gt;
+        &lt;epiviz-heatmap-plot class=&quot;charts&quot; use-default-data-provider=&quot;true&quot;&gt;&lt;/epiviz-heatmap-plot&gt;&lt;br/&gt;
+    &lt;/epiviz-environment&gt;
+</code></pre>
+
+<h3 id="epiviz-navigation">epiviz-navigation</h3>
+
+<p>Our current epiviz application has genomic location defined at the application level. So all charts visualize data to only that region in the genome. To simultaneosuly look at data from multiple regions in the genome, we are adding a new component - <code>epiviz-navigation</code>. <code>epiviz-navigation</code> inherits from <code>epiviz-environment</code> and in addition, adds ui elements to easily navigate (change genomic location) or search (for genes/targets) the genome. A page can have multiple navigation components and navigation components can also be enclosed within an environment element. This enables us to visualize an entire dataset (using <code>epiviz-environment</code>) and also look at a specific region (using <code>epiviz-navigation</code>) at the same time.</p>
+
+<pre><code class="language-html">    &lt;epiviz-environment
+        chr=&quot;chr6&quot;&gt;
+        # these charts show data from the entire chromosome (chr6)
+        &lt;epiviz-genes-track class=&quot;charts&quot; use-default-data-provider=&quot;true&quot;&gt;&lt;/epiviz-genes-track&gt;&lt;br/&gt;
+        &lt;epiviz-scatter-plot class=&quot;charts&quot; use-default-data-provider=&quot;true&quot;&gt;&lt;/epiviz-scatter-plot&gt;&lt;br/&gt;
+
+        # the charts inside the navigation only show data for the region defined below
+        &lt;epiviz-navigation                   
+            chr=&quot;chr6&quot;
+            start=&quot;64076201&quot;
+            end=&quot;95088740&quot; 
+            class=&quot;charts&quot;&gt;
+                &lt;epiviz-genes-track class=&quot;charts&quot; dim-s='[&quot;genes&quot;]'&gt;&lt;/epiviz-genes-track&gt;
+                &lt;epiviz-scatter-plot class=&quot;charts&quot; dim-s='[&quot;affy1&quot;, &quot;affy2&quot;]'&gt;&lt;/epiviz-scatter-plot&gt;
+        &lt;/epiviz-navigation&gt;
+    &lt;/epiviz-environment&gt;
+</code></pre></li>
+</ul>
+
+<h3 id="to-install-epiviz-webcomponents-through-bower-http-bower-io">To install epiviz webcomponents (through <a href="http://bower.io/">bower</a>)</h3>
+
+<pre><code>```{JavaScript}
+    bower init
+    bower install --save epiviz/epiviz-chart
+    bower install --save epiviz/epiviz-data-source
+```
+</code></pre>
+
+<p>These webcomponents are the building blocks for our upcoming update to the epiviz and metaviz web applications and, more importantly, the ability to embed epiviz visualizations in rmarkdown documents.
+To be part of our development, please install our components and let us know if you have any feedback or issues (through <a href="http://github.com/epiviz/epiviz-chart">Github</a>).</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2017 ~ epiviz ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.17 ~ <a href="https://epiviz.github.io/license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                    
+                        <a href="https://twitter.com/epiviz" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                        <a href="https://github.com/epiviz" target="_blank">
+                        <i class="fa fa-github-square fa-2x"></i></a>
+                    
+                    
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+
