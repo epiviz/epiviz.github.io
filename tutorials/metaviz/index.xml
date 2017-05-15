@@ -21,6 +21,11 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;overview&#34;&gt;post 1: Metaviz Quick Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;metagenomeSeq&#34;&gt;post 2: Differential Analysis with MetagenomeSeq and Metaviz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;video_tutorials&#34;&gt;post 3: Visual Analysis of MSD16S Dataset&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;spline&#34;&gt;post 4: Longitudinal Data Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;usingDocker&#34;&gt;post 5: Metaviz Docker Containers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;hostingData&#34;&gt;post 6: Hosting Data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
