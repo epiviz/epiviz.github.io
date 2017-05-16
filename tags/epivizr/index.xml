@@ -19,6 +19,10 @@
             <guid>https://epiviz.github.io/post/2017-05-01-epiviz-update/</guid>
             <description>
 
+&lt;style&gt;
+p {font-size:13px;}
+&lt;/style&gt;
+
 &lt;p&gt;Bioconductor version 3.5 was released last month: &lt;a href=&#34;http://bioconductor.org/news/bioc_3_5_release/&#34;&gt;http://bioconductor.org/news/bioc_3_5_release/&lt;/a&gt;.
 This Bioconductor version
 includes updates to &lt;code&gt;epivizr&lt;/code&gt; and a new package, &lt;code&gt;metavizr&lt;/code&gt;, for interactive visualization
@@ -185,7 +189,7 @@ For more information, please visit the &lt;a href=&#34;http://www.bioconductor.o
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;    &amp;lt;epiviz-genes-track use-default-data-provider=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/epiviz-genes-track&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Some of the new components we are developing are epiviz-environment and epiviz-navigation components.&lt;/p&gt;
+&lt;p&gt;Some of the new components we are developing are epiviz-environment and epiviz-navigation components. The documentation and demo for each element is available at &lt;a href=&#34;https://epiviz.github.io/polymer/charts/&#34;&gt;https://epiviz.github.io/polymer/charts/&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;epiviz-environment&#34;&gt;epiviz-environment&lt;/h3&gt;
 

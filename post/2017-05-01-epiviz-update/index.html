@@ -10,6 +10,8 @@
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="https://epiviz.github.io/favicon.ico">
 
+    <script src="https://epiviz.github.io/polymer/charts/components/webcomponentsjs/webcomponents-lite.js"></script>
+
     <title>Epiviz Updates for Bioconductor 3.5 Release &middot; Epiviz</title>
 
    	
@@ -29,7 +31,21 @@
 
     
     <link href="" rel="alternate" type="application/rss+xml" title="Epiviz" />
+
+    
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-genes-track.html">
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-blocks-track.html">
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-heatmap-plot.html">
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-line-plot.html">
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-line-track.html">
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-stacked-line-plot.html">
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-stacked-line-track.html">
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-scatter-plot.html">
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-ideogram-track.html">
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-navigation.html">
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-environment.html">
 </head>
+
 <body lang="en">
     
     <div class="container">
@@ -86,6 +102,10 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			
+
+<style>
+p {font-size:13px;}
+</style>
 
 <p>Bioconductor version 3.5 was released last month: <a href="http://bioconductor.org/news/bioc_3_5_release/">http://bioconductor.org/news/bioc_3_5_release/</a>.
 This Bioconductor version
@@ -253,7 +273,7 @@ For more information, please visit the <a href="http://www.bioconductor.org/pack
 <pre><code class="language-html">    &lt;epiviz-genes-track use-default-data-provider=&quot;true&quot;&gt;&lt;/epiviz-genes-track&gt;
 </code></pre>
 
-<p>Some of the new components we are developing are epiviz-environment and epiviz-navigation components.</p>
+<p>Some of the new components we are developing are epiviz-environment and epiviz-navigation components. The documentation and demo for each element is available at <a href="https://epiviz.github.io/polymer/charts/">https://epiviz.github.io/polymer/charts/</a></p>
 
 <h3 id="epiviz-environment">epiviz-environment</h3>
 
