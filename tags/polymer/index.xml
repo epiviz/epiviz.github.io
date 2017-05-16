@@ -257,8 +257,6 @@ For more information, please visit the &lt;a href=&#34;http://www.bioconductor.o
         &lt;epiviz-genes-track class=&#34;charts&#34; dim-s=&#39;[&#34;genes&#34;]&#39;&gt;&lt;/epiviz-genes-track&gt;
         &lt;epiviz-scatter-plot class=&#34;charts&#34; dim-s=&#39;[&#34;affy1&#34;, &#34;affy2&#34;]&#39;&gt;&lt;/epiviz-scatter-plot&gt;
         &lt;epiviz-blocks-track class=&#34;charts&#34; dim-s=&#39;[&#34;affy1&#34;, &#34;affy2&#34;]&#39;&gt;&lt;/epiviz-blocks-track&gt;&lt;br/&gt;
-        &lt;epiviz-stacked-line-plot class=&#34;charts&#34; dim-s=&#39;[&#34;affy1&#34;, &#34;affy2&#34;]&#39;&gt;&lt;/epiviz-stacked-line-plot&gt;&lt;br/&gt;
-        &lt;epiviz-stacked-line-track class=&#34;charts&#34; dim-s=&#39;[&#34;affy1&#34;, &#34;affy2&#34;]&#39;&gt;&lt;/epiviz-stacked-line-track&gt;&lt;br/&gt;
         &lt;epiviz-heatmap-plot class=&#34;charts&#34; dim-s=&#39;[&#34;affy1&#34;, &#34;affy2&#34;]&#39;&gt;&lt;/epiviz-heatmap-plot&gt;&lt;br/&gt;
     &lt;/epiviz-environment&gt;&lt;/p&gt;
 
