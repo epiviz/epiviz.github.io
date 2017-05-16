@@ -14,6 +14,11 @@
 
     <title>Epiviz Updates for Bioconductor 3.5 Release &middot; Epiviz</title>
 
+    
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-data-source/epiviz-data-source.html">
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-charts.html">
+
+
    	
     
         <link rel="stylesheet" href="https://epiviz.github.io/css/theme/simplex.css">
@@ -31,10 +36,6 @@
 
     
     <link href="" rel="alternate" type="application/rss+xml" title="Epiviz" />
-
-    
-    
-
 </head>
 
 <body lang="en">
@@ -260,9 +261,9 @@ For more information, please visit the <a href="http://www.bioconductor.org/pack
 <pre><code class="language-html">    &lt;epiviz-genes-track use-default-data-provider=&quot;true&quot;&gt;&lt;/epiviz-genes-track&gt;
 </code></pre>
 
-<p>Some of the new components we are developing are epiviz-environment and epiviz-navigation components. The documentation and demo for each element is available at <a href="https://epiviz.github.io/polymer/charts/">https://epiviz.github.io/polymer/charts/</a></p>
+<p>Some of the new components we are developing are epiviz-environment and epiviz-navigation components. The documentation and demo for epiviz components is hosted at <a href="https://epiviz.github.io/polymer/charts/">https://epiviz.github.io/polymer/charts/</a></p>
 
-<h3 id="epiviz-environment">epiviz-environment</h3>
+<h3 id="epiviz-environment-https-epiviz-github-io-polymer-charts-components-epiviz-charts-epiviz-environment"><a href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/#epiviz-environment">epiviz-environment</a></h3>
 
 <p>The main purpose of this component is to enable brushing and event handling across all its child elements. <code>epiviz-environment</code> can contain multiple charts as its children. When you hover over one of the charts, this sends an event to the environment. The environment then handles brushing of the key or region corresponding to the datapoint that was hovered across all the other charts in the environment.</p>
 
@@ -278,7 +279,66 @@ For more information, please visit the <a href="http://www.bioconductor.org/pack
     &lt;/epiviz-environment&gt;
 </code></pre>
 
-<h3 id="epiviz-navigation">epiviz-navigation</h3>
+<p>The above page will look like the block below when viewed in a browser. <a href="https://epiviz.github.io/polymer/charts/">Documentation</a> and examples are available on our <a href="https://github.com/epiviz/epiviz-chart">Github Page</a>.</p>
+
+<p><epiviz-data-source provider-type="epiviz.data.WebServerDataProvider" provider-id="umd" provider-url="https://epiviz.cbcb.umd.edu/data/main.php"></epiviz-data-source></p>
+
+<p><epiviz-environment 
+    chr="chr6"
+    start=64076201
+    end=95088740
+    measurements='{"affy1":{
+            "id":"cancer",
+            "name":"Expression Colon Cancer",
+            "type":"feature",
+            "datasourceId":"gene_expression",
+            "datasourceGroup":"affymetrix_probeset",
+            "dataprovider":"umd",
+            "formula":null,
+            "defaultChartType":null,
+            "annotation":null,
+            "minValue":-3,
+            "maxValue":20,
+            "metadata":["probe"]
+        },
+        "affy2":{
+            "id":"normal",
+            "name":"Expression Colon Normal",
+            "type":"feature",
+            "datasourceId":"gene_expression",
+            "datasourceGroup":"affymetrix_probeset",
+            "dataprovider":"umd",
+            "formula":null,
+            "defaultChartType":null,
+            "annotation":null,
+            "minValue":-3,
+            "maxValue":20,
+            "metadata":["probe"]
+        },
+        "genes": {
+            "id": "genes",
+            "name": "Genes",
+            "type": "range",
+            "datasourceId": "genes",
+            "datasourceGroup": "genes",
+            "dataprovider": "umd",
+            "formula": null,
+            "defaultChartType": "Genes Track",
+            "annotation": null,
+            "minValue": null,
+            "maxValue": null,
+            "metadata": ["gene", "entrez", "exon_starts", "exon_ends"]
+        }
+        }'>
+        <epiviz-genes-track class="charts" dim-s='["genes"]'></epiviz-genes-track>
+        <epiviz-scatter-plot class="charts" dim-s='["affy1", "affy2"]'></epiviz-scatter-plot>
+        <epiviz-blocks-track class="charts" dim-s='["affy1", "affy2"]'></epiviz-blocks-track><br/>
+        <epiviz-stacked-line-plot class="charts" dim-s='["affy1", "affy2"]'></epiviz-stacked-line-plot><br/>
+        <epiviz-stacked-line-track class="charts" dim-s='["affy1", "affy2"]'></epiviz-stacked-line-track><br/>
+        <epiviz-heatmap-plot class="charts" dim-s='["affy1", "affy2"]'></epiviz-heatmap-plot><br/>
+    </epiviz-environment></p>
+
+<h3 id="epiviz-navigation-https-epiviz-github-io-polymer-charts-components-epiviz-charts-epiviz-navigation"><a href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/#epiviz-navigation">epiviz-navigation</a></h3>
 
 <p>Our current epiviz application has genomic location defined at the application level. So all charts visualize data to only that region in the genome. To simultaneosuly look at data from multiple regions in the genome, we are adding a new component - <code>epiviz-navigation</code>. <code>epiviz-navigation</code> inherits from <code>epiviz-environment</code> and in addition, adds ui elements to easily navigate (change genomic location) or search (for genes/targets) the genome. A page can have multiple navigation components and navigation components can also be enclosed within an environment element. This enables us to visualize an entire dataset (using <code>epiviz-environment</code>) and also look at a specific region (using <code>epiviz-navigation</code>) at the same time.</p>
 
