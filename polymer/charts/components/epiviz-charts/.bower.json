@@ -48,11 +48,11 @@
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.1.8"
   },
-  "_release": "8a81ed458d",
+  "_release": "f237527daa",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "8a81ed458db67bd7575d6e5cb6f55bd05d80e49c"
+    "commit": "f237527daa863595b12c2fbd67cb681d939c5472"
   },
   "_source": "https://github.com/hcbravolab/epiviz-chart.git",
   "_target": "*",

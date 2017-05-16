@@ -20,10 +20,6 @@
             <guid>https://epiviz.github.io/post/2017-05-01-epiviz-update/</guid>
             <description>
 
-&lt;style&gt;
-p {font-size:13px;}
-&lt;/style&gt;
-
 &lt;p&gt;Bioconductor version 3.5 was released last month: &lt;a href=&#34;http://bioconductor.org/news/bioc_3_5_release/&#34;&gt;http://bioconductor.org/news/bioc_3_5_release/&lt;/a&gt;.
 This Bioconductor version
 includes updates to &lt;code&gt;epivizr&lt;/code&gt; and a new package, &lt;code&gt;metavizr&lt;/code&gt;, for interactive visualization
