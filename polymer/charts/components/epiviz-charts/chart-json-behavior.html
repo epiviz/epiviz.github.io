@@ -263,7 +263,7 @@
             var range =  new epiviz.datatypes.GenomicRange(datasource, 1, rowLength-1);
             self._chartRange = range;
             
-            var rowDataObj = new epiviz.datatypes.GenomicRangeArray(datasource, range, globalStartIndex, jsonData.rows);
+            var rowDataObj = new epiviz.datatypes.GenomicRangeArray(datasource, range, globalStartIndex, jsonData.rows, true);
             sumExp.addRowData(rowDataObj);
 
             mSet.foreach(function(m) {
