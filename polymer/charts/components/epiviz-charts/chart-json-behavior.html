@@ -260,7 +260,7 @@
             var chartData = new epiviz.measurements.MeasurementHashtable();
             var sumExp = new epiviz.datatypes.PartialSummarizedExperiment();
             var globalStartIndex = jsonData.globalStartIndex;
-            var range =  new epiviz.datatypes.GenomicRange(datasource, 1, rowLength-1);
+            var range =  new epiviz.datatypes.GenomicRange(datasource, globalStartIndex, jsonData.rows.end[rowLength-1]);
             self._chartRange = range;
             
             var rowDataObj = new epiviz.datatypes.GenomicRangeArray(datasource, range, globalStartIndex, jsonData.rows, true);
