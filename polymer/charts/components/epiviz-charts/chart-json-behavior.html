@@ -162,7 +162,10 @@
                                  
                 if(self.measurements) {
                     self.measurements.forEach(function(mea) {
-                        mSet.add(mea);
+                        mSet.add(new epiviz.measurements.Measurement(
+                            mea.id, mea.name, mea.type, mea.datasourceId, mea.datasourceGroup, mea.dataprovider, 
+                            mea.formula, mea.defaultChartType, mea.annotation, mea.minValue, mea.maxValue, mea.metadata
+                        ));
                     })
 
                     m = self.measurements;
