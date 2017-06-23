@@ -265,8 +265,8 @@
                 // self.chartType = new epiviz.plugins.charts.LineTrackType(self.config);
                 self.chartType = self._createChart();
 
-                var width = self.offsetWidth - 40;
-                if(width < self.chartType.defaultWidth()) { width = self.chartType.defaultWidth()}
+                var width = self.offsetWidth - 20;
+                if(width < 0) { width = self.chartType.defaultWidth()}
 
                 if(self.chartType) {
                     self.chartProperties = new epiviz.ui.charts.VisualizationProperties(
