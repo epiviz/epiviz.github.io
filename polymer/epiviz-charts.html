@@ -44111,668 +44111,210 @@ It will also ensure that focus remains in the dialog.
             }
         }        
     }
-</script><dom-module id="epiviz-blocks-track">
-    
-<style>@font-face {
-    font-family: 'epiviz-icons';
-    src: url("bower_components/epiviz-imports/src/css/icomoon/fonts/epiviz-icons.eot?u5koms");
-    src: url("bower_components/epiviz-imports/src/css/icomoon/fonts/epiviz-icons.eot?#iefixu5koms") format('embedded-opentype'),
-    url("bower_components/epiviz-imports/src/css/icomoon/fonts/epiviz-icons.woff?u5koms") format('woff'),
-    url("bower_components/epiviz-imports/src/css/icomoon/fonts/epiviz-icons.ttf?u5koms") format('truetype'),
-    url("bower_components/epiviz-imports/src/css/icomoon/fonts/epiviz-icons.svg?u5koms#icomoon") format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-[class^="icon-"], [class*=" icon-"] {
-    font-family: 'epiviz-icons';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-cursor:before {
-    content: "\e640";
-}
-
-.icon-select-all:before {
-    content: "\ee02";
-}
-
-.icon-select:before {
-    content: "\f10d";
-}
-
-.icon-blocked4:before {
-    content: "\f379";
-}
-
-.icon-disk3:before {
-    font-size: 13px;
-    content: "\f39b";
-}
-
-.icon-flow-cascade:before {
-    content: "\f3af";
-}
-
-.icon-flow-branch:before {
-    content: "\f3b0";
-}
-
-.icon-flow-tree:before {
-    content: "\f3b1";
-}
-
-.icon-flow-line:before {
-    content: "\f3b2";
-}
-
-.icon-flow-parallel2:before {
-    content: "\f3b3";
-}
-</style>
-
-<style>body {
-  margin-top: 10px;
-  margin-left: 20px;
-  margin-bottom: 10px;
-  margin-right: 20px;
-  font: 62.5% "Trebuchet MS", sans-serif;
-}
-
-#container {
-  margin: 0 auto;
-}
-
-#pagemain {
-  width: 100%;
-}
-
-.ui-layout-north {
-  padding: 0px !important;
-  overflow: hidden !important;
-  position: static !important;
-}
-
-#toolbar {
-  padding: 4px;
-  display: inline-block;
-  float: left;
-  margin: 0;
-}
-
-#pageleft {
-  float:left;
-}
-
-#pageright {
-  float:right;
-  position: absolute;
-  right: 20px;
-  z-index: 1;
-}
-
-#pagefooter {
-  clear:both;
-}
-
-#scatterplot {
-}
-
-#text-location, #search-box, #save-workspace-text {
-  padding-bottom: 2px;
-  padding-top: 2px;
-  width: 145px;
-  font: 9pt "Trebuchet MS", sans-serif;
-  text-align: right;
-  top: 2px;
-  position: relative;
-}
-
-#text-location {
-  padding-right: 5px;
-  text-align: right;
-}
-
-/* Search box */
-
-#search-box, #save-workspace-text {
-  padding-left: 5px;
-  text-align: left;
-}
-
-.ui-autocomplete-loading {
-  background: white url("bower_components/epiviz-imports/src/css/theme/images/ui-anim_basic_16x16.gif") right center no-repeat;
-}
-
-.separator {
-  color: #aaaaaa;
-  font-size: 12pt;
-}
-
-.spinner-label {
-  border: 0;
-  color: #565656;
-  font-weight: bold;
-  font-size: 11px
-}
-
-.dialog-label {
-  border: 0;
-  color: #565656;
-  font-weight: bold;
-  font-size: 11px;
-}
-
-.info-panel-title {
-  color: #000000;
-  font-weight: bold;
-  font-size: 11px;
-  text-align: center;
-  background-color: #eeeeee;
-}
-
-.info-panel-content {
-  padding: 10px;
-  margin-bottom: 6px;
-}
-
-#location-table {
-  width: 100%;
-}
-
-#multiAccordion {
-  background-color: #ffffff;
-}
-
-.info-panel-table {
-  font-size: 11px;
-  width: 100%;
-  border: 1px solid #dddddd;
-  border-spacing: 0;
-  border-collapse: collapse;
-}
-
-.info-panel-table td {
-  border: 1px solid #dddddd;
-  padding: 3px;
-}
-
-.verticalDiv {
-  transform: rotate(270deg);
-  -ms-transform: rotate(270deg); /* IE 9 */
-  -webkit-transform: rotate(270deg); /* Safari and Chrome */
-  -o-transform: rotate(270deg); /* Opera */
-  -moz-transform: rotate(270deg); /* Firefox */
-
-  transform-origin: 15px 0%;
-  -ms-transform-origin: 15px 0%; /* IE 9 */
-  -webkit-transform-origin: 15px 0%; /* Safari and Chrome */
-  -o-transform-origin: 15px 0%; /* Opera */
-  -moz-transform-origin: 15px 0%; /* Firefox */
-}
-
-
-
-.img-link {
-  text-decoration: none;
-}
-
-.link-text {
-  text-decoration: underline;
-}
-
-/* File upload */
-#browse-button
-{
-  width: 28px;
-  height: 22px;
-  display: block;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-input.file
-{
-  position: relative;
-  height: 100%;
-  width: auto;
-  opacity: 0;
-  -moz-opacity: 0;
-  filter:progid:DXImageTransform.Microsoft.Alpha(opacity=1);
-}
-
-#dataUploadPane .ui-panel-content
-{
-  height: 42px;
-}
-
-.ui-tooltip
-{
-  max-width: none;
-}
-
-#info-cluster
-{
-  max-height: 201px;
-  overflow-y: auto;
-}
-
-.menuOptionsContainer {
-  visibility: hidden;
-  position: fixed;
-  z-index: 1;
-}
-
-#top-accordion .ui-accordion-content {
-  overflow: hidden;
-}
-
-#sortable-track-list {
-    list-style-type: none; margin: 0; padding: 0;
-}
-
-#sortable-track-list li {
-    margin: 0 5px 5px 5px; padding: 5px;
-}
-
-.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
-
-.toolbar-header {
-  width: 100%;
-  border: 1px solid #dddddd;
-  background: #dddddd url("bower_components/epiviz-imports/src/css/theme/images/ui-bg_highlight-soft_50_dddddd_1x100.png") 50% 50% repeat-x;
-  color: #444444;
-  font-weight: bold;
-}
-
-.dropdown-menu {
-  position: fixed;
-  z-index: 1;
-}
-
-.loader-icon {
-  position: absolute;
-}
-
-/* Classes for charts */
-
-.visualization-container {
-    position: relative;
-}
-
-.plot-container {
-  display: inline-block;
-  margin: 2px;
-}
-
-.track-container {
-  margin: 2px;
-}
-
-.genome-track {
-}
-
-.plot-chart {
-  display: inline-block;
-  margin: 5px;
-}
-
-.data-structure-container {
-  display: inline-block;
-}
-
-/* Button Icons */
-
-.epiviz-button label {
-  width: 2.2em;
-  height: 2.2em;
-}
-
-.epiviz-icon {
-  font-family: 'epiviz-icons';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* For SVG text */
-  /* text-anchor: end; */
-  /* alignment-baseline: before-edge; */
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /*font-size: 12px;*/
-  /*color: #000000;*/
-}
-
-.epiviz-button .epiviz-icon {
-  position: absolute;
-  top: 7px;
-  left: 7px;
-}
-
-::-webkit-scrollbar{width:9px;height:9px;}
-::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment{display:block;height:0;background-color:transparent;}
-::-webkit-scrollbar-track-piece{background-color:#FAFAFA;-webkit-border-radius:0;-webkit-border-bottom-right-radius:0px;-webkit-border-bottom-left-radius:0px;}
-::-webkit-scrollbar-thumb:vertical{height:50px;background-color:#aaaaaa;-webkit-border-radius:0px;}
-::-webkit-scrollbar-thumb:horizontal{width:50px;background-color:#aaaaaa;-webkit-border-radius:0px;}
-
-/* Color picker */
-
-.colorwell {
-  border: 2px solid #fff;
-  width: 6em;
-  text-align: center;
-  cursor: pointer;
-}
-body .colorwell-selected {
-  border: 2px solid #000;
-  font-weight: bold;
-}
-
-/* Menus adjustments */
-
-.ui-menu button .ui-icon {
-  top: 50%;
-  left: 50%;
-}
-
-/* Data Tables */
-
-.epiviz-data-table {
-  border-spacing: 0;
-  border-collapse: collapse;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: moz-none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/*
- * Override styles needed due to the mix of three different CSS sources
- */
-.dataTables_info { padding-top: 0; }
-.dataTables_paginate { padding-top: 0; }
-.css_right { float: right; }
-tfoot th input { width: 80% }
-#example_wrapper .fg-toolbar { font-size: 0.8em }
-#theme_links span { float: left; padding: 2px 10px; }
-
-/* Tooltips */
-
-.ui-tooltip {
-  max-width: none;
-}
-
-.tooltip-table {
-  border-collapse: collapse;
-}
-
-.tooltip-table th, .tooltip-table td {
-  border: 1px solid #dddddd;
-  border-spacing: 0;
-  max-width: 100px;
-  padding: 2px;
-}
-
-/* Test css */
-
-#test-results-table {
-  border-collapse: collapse;
-}
-
-#test-results-table th, #test-results-table td {
-  border: 1px solid #dddddd;
-  border-spacing: 0;
-  max-width: 100px;
-  padding: 2px;
-}
-
-.intro-header {
-  font-weight: bold;
-}
-
-.intro-footer {
-  font-weight: bold;
-  color: #ff0000;
-}
-
-.intro-text {
-}
-
-.intro-container {
-  display: inline-block;
-  padding: 5px;
-}
-
-.dropdown-menu ul li {
-  padding: 3px;
-  border-radius: 4px;
-}
-
-.dropdown-menu ul li:hover {
-  background-color: #dddddd;
-  cursor: pointer; cursor: hand;
-}
-
-/* hide disabled buttons */
-.ui-state-disabled {
-  display: none;
-}</style>
-<style>.base-chart {
-}
-
-.chart-legend {
-    border: 1px solid #dcdcdc;
-    background-color: #ffffff;
-}
-
-.visualization .visualization-title {
-    font-family: sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-text {
-    font-family: Arial;
-    font-size: 9pt;
-}
-.base-chart path,
-.base-chart line {
-    fill: none;
-    stroke: #565656;
-    shape-rendering: crispEdges;
-    stroke-width: 1px;
-}
-
-.base-chart text {
-    font-family: sans-serif;
-    font-size: 11px;
-}
-
-/* Sunburst */
-
-.unselectable-text {
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-
-    /*
-      Introduced in IE 10.
-      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
-    */
-    -ms-user-select: none;
-    user-select: none;
-    cursor: context-menu;
-}
-
-.node-label {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 11px;
-    text-anchor: middle;
-}
-
-.node-arc {
-    stroke: #fff;
-    fill-rule: evenodd;
-}
-
-/* Scatter plot */
-
-.scatter-plot {}
-.scatter-plot .items {}
-.scatter-plot .selected { fill: #1a6d00; stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; opacity: 1; }
-.scatter-plot .hovered { fill: #1a6d00; stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; opacity: 1; }
-
-/* Genes Track */
-
-.genes-track {}
-.genes-track .items { shape-rendering: auto; stroke: #555555; fill-opacity: 0.6; }
-.genes-track .exons { stroke: none; }
-.genes-track .gene-name { font-weight: bold; font-size: 12; fill: #000000; stroke: none; fill-opacity: 0; }
-.genes-track .selected { fill-opacity: 1; stroke: #555555; }
-.genes-track .selected .gene-body { stroke: #555555; stroke-width: 3; stroke-opacity: 0.7; }
-.genes-track .hovered { fill-opacity: 1; stroke: #555555; }
-.genes-track .hovered .gene-body { stroke: #555555; stroke-width: 3; stroke-opacity: 0.7; }
-.genes-track .hovered .gene-name { fill-opacity: 1; }
-.genes-track .selected .gene-name { fill-opacity: 1; }
-
-/* Blocks Track */
-
-.blocks-track {}
-.blocks-track .items { shape-rendering: crispEdges; fill-opacity: 0.6; stroke: #555555; stroke-opacity: 0.5; stroke-width: 1; }
-.blocks-track .selected { stroke: #ffc600; stroke-width: 5; stroke-opacity: 0.7; fill-opacity: 1; }
-.blocks-track .hovered { stroke: #ffc600; stroke-width: 5; stroke-opacity: 0.7; fill-opacity: 1; }
-
-/* Heatmap */
-
-.heatmap-plot .row-legend { font-weight: bold; font-size: 11px; text-anchor: end; }
-.heatmap-plot .items { stroke: #efefef; stroke-opacity: 0.3; shape-rendering: 'crispEdges'; }
-.heatmap-plot .selected { stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; fill-opacity: 1; }
-.heatmap-plot .hovered { stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; fill-opacity: 1; }
-.heatmap-plot .col-text { font-weight: bold; text-anchor: start; font-size: 11px; }
-.heatmap-plot .row-text { font-weight: bold; text-anchor: end; font-size: 11px; }
-.heatmap-plot .selected .col-text { font-weight: bold; fill-opacity: 1; font-size: 10px; }
-.heatmap-plot .hovered .col-text { font-weight: bold; fill-opacity: 1; font-size: 10px; }
-.heatmap-plot .selected .row-text { font-weight: bold; fill-opacity: 1; font-size: 10px; }
-.heatmap-plot .hovered .row-text { font-weight: bold; fill-opacity: 1; font-size: 10px; }
-
-/* Line Plot */
-
-.line-plot .items .bg-line { stroke: #dddddd; stroke-opacity: 0.1; }
-.line-plot .hovered .bg-line { stroke-opacity: 1!important; opacity: 1!important; }
-
-/* Line Track */
-
-.line-track {}
-
-/* Stacked Line Plot */
-
-.stacked-line-plot {}
-.stacked-line-plot .item { stroke-width: 0; }
-.stacked-line-plot .selected .item { fill: #1a6d00; stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; opacity: 1!important; }
-.stacked-line-plot .hovered .item { fill: #1a6d00; stroke: #ffc600; stroke-width: 2px!important; stroke-opacity: 1.0; opacity: 1!important; }
-
-/* icicle */
-
-.icicle .item rect { stroke: #fff; stroke-width: 0; fill-rule: evenodd; }
-
-.icicle .icon {
-    font-family: 'epiviz-icons';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-
-    /* For SVG text */
-    /* text-anchor: end; */
-    /* alignment-baseline: before-edge; */
-
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 16px;
-    color: #000000;
-}
-
-.icicle .large-icon {
-    font-weight: bold!important;
-    font-size: 24px!important;
-}
-
-.icicle .none-select .icon::before {
-    content: "\f379";
-}
-
-.icicle .node-select .icon::before {
-    content: "\f3b3";
-}
-
-.icicle .leaves-select .icon::before {
-    content: "\f3b2";
-    /*content: '\e900';*/
-}
-
-.icicle .custom-select .icon::before {
-    content: "\f3b4";
-}
-
-.icicle .none-select rect {
-    opacity: 0.35;
-    fill: #bfbfbf;
-}
-
-.icicle .node-select rect {
-    opacity: 1;
-}
-
-.icicle .custom-select rect {
-    opacity: 0.9;
-}
-
-.icicle .leaves-select rect {
-    opacity: 1;
-}
-
-.icicle .selected rect { stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; fill-opacity: 1!important; }
-
-.icicle .hovered rect { stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; fill-opacity: 1!important; }
-
-.icicle .unhovered rect { fill-opacity: 0.5; }
-
-.icicle .unselected rect { fill-opacity: 0.5; }
-
-.icicle .dragstart rect { fill-opacity: 0.5; }
-
-.icicle .selected { cursor: w-resize; }
-
-.icicle .item text {
-   text-anchor: middle;
-   font-family: sans-serif;
-   font-size: 14px;
-   font-weight: bold;
-}
-
-</style>
-
-<template>
+</script><dom-module id="chart-shared-css">
+  <template>
+    <style>
+        .base-chart {
+        }
+
+        .chart-legend {
+            border: 1px solid #dcdcdc;
+            background-color: #ffffff;
+        }
+
+        .visualization .visualization-title {
+            font-family: sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        text {
+            font-family: Arial;
+            font-size: 9pt;
+        }
+        .base-chart path,
+        .base-chart line {
+            fill: none;
+            stroke: #565656;
+            shape-rendering: crispEdges;
+            stroke-width: 1px;
+        }
+
+        .base-chart text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+
+        /* Sunburst */
+
+        .unselectable-text {
+            -moz-user-select: -moz-none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+
+            /*
+            Introduced in IE 10.
+            See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+            */
+            -ms-user-select: none;
+            user-select: none;
+            cursor: context-menu;
+        }
+
+        .node-label {
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 11px;
+            text-anchor: middle;
+        }
+
+        .node-arc {
+            stroke: #fff;
+            fill-rule: evenodd;
+        }
+
+        /* Scatter plot */
+
+        .scatter-plot {}
+        .scatter-plot .items {}
+        .scatter-plot .selected { fill: #1a6d00; stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; opacity: 1; }
+        .scatter-plot .hovered { fill: #1a6d00; stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; opacity: 1; }
+
+        /* Genes Track */
+
+        .genes-track {}
+        .genes-track .items { shape-rendering: auto; stroke: #555555; fill-opacity: 0.6; }
+        .genes-track .exons { stroke: none; }
+        .genes-track .gene-name { font-weight: bold; font-size: 12; fill: #000000; stroke: none; fill-opacity: 0; }
+        .genes-track .selected { fill-opacity: 1; stroke: #555555; }
+        .genes-track .selected .gene-body { stroke: #555555; stroke-width: 3; stroke-opacity: 0.7; }
+        .genes-track .hovered { fill-opacity: 1; stroke: #555555; }
+        .genes-track .hovered .gene-body { stroke: #555555; stroke-width: 3; stroke-opacity: 0.7; }
+        .genes-track .hovered .gene-name { fill-opacity: 1; }
+        .genes-track .selected .gene-name { fill-opacity: 1; }
+
+        /* Blocks Track */
+
+        .blocks-track {}
+        .blocks-track .items { shape-rendering: crispEdges; fill-opacity: 0.6; stroke: #555555; stroke-opacity: 0.5; stroke-width: 1; }
+        .blocks-track .selected { stroke: #ffc600; stroke-width: 5; stroke-opacity: 0.7; fill-opacity: 1; }
+        .blocks-track .hovered { stroke: #ffc600; stroke-width: 5; stroke-opacity: 0.7; fill-opacity: 1; }
+
+        /* Heatmap */
+
+        .heatmap-plot .row-legend { font-weight: bold; font-size: 11px; text-anchor: end; }
+        .heatmap-plot .items { stroke: #efefef; stroke-opacity: 0.3; shape-rendering: 'crispEdges'; }
+        .heatmap-plot .selected { stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; fill-opacity: 1; }
+        .heatmap-plot .hovered { stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; fill-opacity: 1; }
+        .heatmap-plot .col-text { font-weight: bold; text-anchor: start; font-size: 11px; }
+        .heatmap-plot .row-text { font-weight: bold; text-anchor: end; font-size: 11px; }
+        .heatmap-plot .selected .col-text { font-weight: bold; fill-opacity: 1; font-size: 10px; }
+        .heatmap-plot .hovered .col-text { font-weight: bold; fill-opacity: 1; font-size: 10px; }
+        .heatmap-plot .selected .row-text { font-weight: bold; fill-opacity: 1; font-size: 10px; }
+        .heatmap-plot .hovered .row-text { font-weight: bold; fill-opacity: 1; font-size: 10px; }
+
+        /* Line Plot */
+
+        .line-plot .items .bg-line { stroke: #dddddd; stroke-opacity: 0.1; }
+        .line-plot .hovered .bg-line { stroke-opacity: 1!important; opacity: 1!important; }
+
+        /* Line Track */
+
+        .line-track {}
+
+        /* Stacked Line Plot */
+
+        .stacked-line-plot {}
+        .stacked-line-plot .item { stroke-width: 0; }
+        .stacked-line-plot .selected .item { fill: #1a6d00; stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; opacity: 1!important; }
+        .stacked-line-plot .hovered .item { fill: #1a6d00; stroke: #ffc600; stroke-width: 2px!important; stroke-opacity: 1.0; opacity: 1!important; }
+
+        /* icicle */
+
+        .icicle .item rect { stroke: #fff; stroke-width: 0; fill-rule: evenodd; }
+
+        .icicle .icon {
+            font-family: 'epiviz-icons';
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+
+            /* For SVG text */
+            /* text-anchor: end; */
+            /* alignment-baseline: before-edge; */
+
+            /* Better Font Rendering =========== */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 16px;
+            color: #000000;
+        }
+
+        .icicle .large-icon {
+            font-weight: bold!important;
+            font-size: 24px!important;
+        }
+
+        .icicle .none-select .icon::before {
+            content: "\f379";
+        }
+
+        .icicle .node-select .icon::before {
+            content: "\f3b3";
+        }
+
+        .icicle .leaves-select .icon::before {
+            content: "\f3b2";
+            /*content: '\e900';*/
+        }
+
+        .icicle .custom-select .icon::before {
+            content: "\f3b4";
+        }
+
+        .icicle .none-select rect {
+            opacity: 0.35;
+            fill: #bfbfbf;
+        }
+
+        .icicle .node-select rect {
+            opacity: 1;
+        }
+
+        .icicle .custom-select rect {
+            opacity: 0.9;
+        }
+
+        .icicle .leaves-select rect {
+            opacity: 1;
+        }
+
+        .icicle .selected rect { stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; fill-opacity: 1!important; }
+
+        .icicle .hovered rect { stroke: #ffc600; stroke-width: 2; stroke-opacity: 1.0; fill-opacity: 1!important; }
+
+        .icicle .unhovered rect { fill-opacity: 0.5; }
+
+        .icicle .unselected rect { fill-opacity: 0.5; }
+
+        .icicle .dragstart rect { fill-opacity: 0.5; }
+
+        .icicle .selected { cursor: w-resize; }
+
+        .icicle .item text {
+        text-anchor: middle;
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        }
+    </style>
+  </template>
+</dom-module><dom-module id="epiviz-blocks-track">
+    <template>
         <style include="shared-settings"></style>
+        <style include="chart-shared-css"></style>
         <style>
             :host {
                 /*width: 900px;
@@ -44982,6 +44524,7 @@ text {
             ready: function() {
                 var self = this;
                 self.plotId = self.plotId || self._generatePlotId();
+                self.scopeSubtree(self.$.chart, true);
                 self.config = new epiviz.Config(self.configSrc);
             },
 
@@ -45009,6 +44552,7 @@ text {
 </dom-module><dom-module id="epiviz-genes-track">
     <template>
         <style include="shared-settings"></style>
+        <style include="chart-shared-css"></style>
         <style>
             :host {
                 /*min-width: 450px;
@@ -45225,7 +44769,7 @@ text {
                 var self = this;
                 // style observer on charts
                 self.plotId = self.plotId || self._generatePlotId();
-                // self.scopeSubtree(self.$.chart, true);
+                self.scopeSubtree(self.$.chart, true);
                 self.config = new epiviz.Config(self.configSrc);
 
                 // self.listen(self.$.chart, 'iron-resize', 'onElementResize');
@@ -45257,6 +44801,7 @@ text {
 </dom-module><dom-module id="epiviz-heatmap-plot">
     <template>
         <style include="shared-settings"></style>
+        <style include="chart-shared-css"></style>
         <style>
             :host {
                 /*min-width: 400px;
@@ -45486,7 +45031,7 @@ text {
                 var self = this;
                 self.plotId = self.plotId || self._generatePlotId();
                 // style observer on charts
-                // self.scopeSubtree(self.$.chart, true);
+                self.scopeSubtree(self.$.chart, true);
                 self.config = new epiviz.Config(self.configSrc);
                 epiviz.ui.charts.transform.clustering.ClusteringAlgorithmFactory.initialize(self.config);
             },
@@ -45515,6 +45060,7 @@ text {
 </dom-module><dom-module id="epiviz-line-plot">
     <template>
         <style include="shared-settings"></style>
+        <style include="chart-shared-css"></style>
         <style>
             :host {
                 /*min-width: 400px;
@@ -45735,7 +45281,7 @@ text {
                 var self = this;
                 self.plotId = self.plotId || self._generatePlotId();
                 // style observer on charts
-                // self.scopeSubtree(self.$.chart, true);
+                self.scopeSubtree(self.$.chart, true);
 
                 self.config = new epiviz.Config(self.configSrc);
             },
@@ -45764,6 +45310,7 @@ text {
 </dom-module><dom-module id="epiviz-line-track">
     <template>
         <style include="shared-settings"></style>
+        <style include="chart-shared-css"></style>
         <style>
             :host {
                 /*min-width: 900px;
@@ -45992,7 +45539,7 @@ text {
                 var self = this;
                 self.plotId = self.plotId || self._generatePlotId();
                 // style observer on charts
-                // self.scopeSubtree(self.$.chart, true);
+                self.scopeSubtree(self.$.chart, true);
                 self.config = new epiviz.Config(self.configSrc);
             },
 
@@ -46020,6 +45567,7 @@ text {
 </dom-module><dom-module id="epiviz-scatter-plot">
     <template>
         <style include="shared-settings"></style>
+        <style include="chart-shared-css"></style>
         <style>
             :host {
                 /*min-width: 400px;
@@ -46249,7 +45797,7 @@ text {
                 var self = this;
                 self.plotId = self.plotId || self._generatePlotId();
                 // style observer on charts
-                // self.scopeSubtree(self.$.chart, true);
+                self.scopeSubtree(self.$.chart, true);
                 self.config = new epiviz.Config(self.configSrc);
             },
             
@@ -46277,6 +45825,7 @@ text {
 </dom-module><dom-module id="epiviz-stacked-line-track">
     <template>
         <style include="shared-settings"></style>
+        <style include="chart-shared-css"></style>
         <style>
             :host {
                 /*min-width: 900px;
@@ -46489,7 +46038,7 @@ text {
                 var self = this;
                 self.plotId = self.plotId || self._generatePlotId();
                 // style observer on charts
-                // self.scopeSubtree(self.$.chart, true);
+                self.scopeSubtree(self.$.chart, true);
                 self.config = new epiviz.Config(self.configSrc);
             },
 
@@ -46517,6 +46066,7 @@ text {
 </dom-module><dom-module id="epiviz-stacked-line-plot">
     <template>
         <style include="shared-settings"></style>
+        <style include="chart-shared-css"></style>
         <style>
             :host {
                 /*min-width: 400px;
@@ -46739,7 +46289,7 @@ text {
                 var self = this;
                 self.plotId = self.plotId || self._generatePlotId();
                 // style observer on charts
-                // self.scopeSubtree(self.$.chart, true);
+                self.scopeSubtree(self.$.chart, true);
                 self.config = new epiviz.Config(self.configSrc);
             },
 
@@ -47902,10 +47452,10 @@ text {
             var m = [];
             var mSet = new epiviz.measurements.MeasurementSet();
             var datasource = "epiviz";
-
             var rowLength = 0;
-
+            var hasfData = true;
             var measurementType = 'feature';
+            var useOffset = false;
 
             if(self.nodeName === "EPIVIZ-JSON-GENES-TRACK") {
                 measurementType = 'range';
@@ -47983,7 +47533,7 @@ text {
                 //if data format is more like a dataframe/data table representation
                 var rowMetadata = Object.keys(self.data.rows);
                 var rowLength = 0 ;
-                var hasfData = true;
+                useOffset = self.data.rows.useOffset;
 
                 if(self.data.cols == null) { hasfData = false; self.data.cols = {};}
                 
@@ -48105,8 +47655,8 @@ text {
             }
             var range =  new epiviz.datatypes.GenomicRange(chr, globalStartIndex, jsonData.rows.end[rowLength-1] - globalStartIndex);
             self._chartRange = range;
-            
-            var rowDataObj = new epiviz.datatypes.GenomicRangeArray(chr, range, globalStartIndex, jsonData.rows, self.data.rows.useOffset);
+
+            var rowDataObj = new epiviz.datatypes.GenomicRangeArray(chr, range, globalStartIndex, jsonData.rows, useOffset);
             sumExp.addRowData(rowDataObj);
 
             if(hasfData) {
@@ -48141,7 +47691,6 @@ text {
 </script>
 <dom-module id="epiviz-json-heatmap-plot">
     <template>
-        <style include="shared-settings"></style>
         <style>
             :host {
                 /*min-width: 400px;
@@ -48204,7 +47753,6 @@ text {
     </script>
 </dom-module><dom-module id="epiviz-json-line-plot">
     <template>
-        <style include="shared-settings"></style>
         <style>
             :host {
                 /*min-width: 400px;
@@ -48267,7 +47815,6 @@ text {
     </script>
 </dom-module><dom-module id="epiviz-json-line-track">
     <template>
-        <style include="shared-settings"></style>
         <style>
             :host {
                 /*min-width: 900px;
@@ -48330,7 +47877,6 @@ text {
     </script>
 </dom-module><dom-module id="epiviz-json-scatter-plot">
     <template>
-        <style include="shared-settings"></style>
         <style>
             :host {
                 /*min-width: 400px;
@@ -48393,7 +47939,6 @@ text {
     </script>
 </dom-module><dom-module id="epiviz-json-stacked-line-track">
     <template>
-        <style include="shared-settings"></style>
         <style>
             :host {
                 /*min-width: 900px;
@@ -48456,7 +48001,6 @@ text {
     </script>
 </dom-module><dom-module id="epiviz-json-stacked-line-plot">
     <template>
-        <style include="shared-settings"></style>
         <style>
             :host {
                 /*min-width: 400px;
@@ -48519,7 +48063,6 @@ text {
     </script>
 </dom-module><dom-module id="epiviz-json-blocks-track">
     <template>
-        <style include="shared-settings"></style>
         <style>
             :host {
                 /*min-width: 400px;
@@ -48580,7 +48123,6 @@ text {
     </script>
 </dom-module><dom-module id="epiviz-json-genes-track">
     <template>
-        <style include="shared-settings"></style>
         <style>
             :host {
                 /*min-width: 400px;
