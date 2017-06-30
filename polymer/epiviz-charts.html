@@ -28947,6 +28947,7 @@ module.exports = {
             position:absolute;
             top: 0;
             right: 0;
+            /*display:block;*/
             /*width: 24px;
             height: 24px;*/
             
@@ -29096,8 +29097,8 @@ module.exports = {
             if(this.chart != null) {
                 // var width = self.offsetWidth - 40;
                 // if(width < self.chartType.defaultWidth()) { width = self.chartType.defaultWidth()}
-                this.chart._properties.width = Math.max(400, self.offsetWidth - 20 - epiviz.ui.charts.Visualization.SVG_MARGIN);
-                this.chart._properties.height = Math.max(120, self.offsetHeight - 20 - epiviz.ui.charts.Visualization.SVG_MARGIN);
+                this.chart._properties.width = Math.max(self.chartType.defaultWidth(), self.offsetWidth - 20 - epiviz.ui.charts.Visualization.SVG_MARGIN);
+                this.chart._properties.height = Math.max(self.chartType.defaultHeight(), self.offsetHeight - 20 - epiviz.ui.charts.Visualization.SVG_MARGIN);
                 self._dataChanged();
             }
         },
@@ -44329,6 +44330,9 @@ It will also ensure that focus remains in the dialog.
                 transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
             }
+            #chart {
+                position:relative;
+            }
         </style>
 
         <div id="chart" on-mouseover="hostHovered" on-mouseout="hostUnhovered">
@@ -44570,6 +44574,10 @@ It will also ensure that focus remains in the dialog.
                 -o-transition:width 0.01s, height 0.01s;*/
                 transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
+            }
+
+            #chart {
+                position:relative;
             }
         </style>
 
@@ -44815,6 +44823,9 @@ It will also ensure that focus remains in the dialog.
                 overflow: auto;
                 transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
+            }
+            #chart {
+                position:relative;
             }
         </style>
 
@@ -45075,6 +45086,9 @@ It will also ensure that focus remains in the dialog.
                 transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
             }
+            #chart {
+                position:relative;
+            }
         </style>
 
         <div id="chart" on-mouseover="hostHovered" on-mouseout="hostUnhovered">
@@ -45325,6 +45339,9 @@ It will also ensure that focus remains in the dialog.
                 transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
             }
+            #chart {
+                position:relative;
+            }
 
             /*::shadow .line-plot .items .bg-line { stroke: #dddddd; stroke-opacity: 0.1; }
             ::shadow .line-plot .hovered .bg-line { stroke-opacity: 1!important; opacity: 1!important; }
@@ -45573,7 +45590,7 @@ It will also ensure that focus remains in the dialog.
                 /*min-width: 400px;
                 min-height: 400px;*/
                 width: 100%;
-                height: 100%;
+                /*height: 100%;*/
                 display: inline-block;
                 /*border: 1px solid black;
                 padding: 10px;
@@ -45581,6 +45598,9 @@ It will also ensure that focus remains in the dialog.
                 overflow: auto;
                 transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
+            }
+            #chart {
+                position:relative;
             }
         </style>
 
@@ -45840,6 +45860,9 @@ It will also ensure that focus remains in the dialog.
                 transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
             }
+            #chart {
+                position:relative;
+            }
         </style>
 
         <div id="chart" on-mouseover="hostHovered" on-mouseout="hostUnhovered">
@@ -46080,6 +46103,9 @@ It will also ensure that focus remains in the dialog.
                 overflow: auto;
                 transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
+            }
+            #chart {
+                position:relative;
             }
         </style>
 
@@ -47146,6 +47172,9 @@ It will also ensure that focus remains in the dialog.
         :host {
             display: inline-block;
             min-width: 250px;
+        }
+        #chart {
+            position:relative;
         }
         </style>
 
@@ -50693,8 +50722,8 @@ It will also ensure that focus remains in the dialog.
                 overflow: auto;
                 transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
-                width: auto;
-                height: auto;
+                /*width: auto;
+                height: auto;*/
             }
         </style>
 
