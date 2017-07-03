@@ -29096,7 +29096,7 @@ module.exports = {
             // this._measurementsChanged();
             if(this.chart != null) {
                 var width = self.offsetWidth - 40;
-                if(width < 0) { width = self.chartType.defaultWidth()}
+                if(width < 0) { width = self.chartType.defaultWidth()/2;}
                 this.chart._properties.width = Math.max(width, self.offsetWidth - epiviz.ui.charts.Visualization.SVG_MARGIN);
                 this.chart._properties.height = Math.max(self.chartType.defaultHeight(), self.offsetHeight - epiviz.ui.charts.Visualization.SVG_MARGIN);
                 self._dataChanged();
@@ -29204,7 +29204,7 @@ module.exports = {
                 self.chartType = self._createChart();
 
                 var width = self.offsetWidth - 40;
-                if(width < self.chartType.defaultWidth()) { width = self.chartType.defaultWidth()}
+                if(width < 0) { width = self.chartType.defaultWidth()/2;}
 
                 if(self.chartType) {
                     self.chartProperties = new epiviz.ui.charts.VisualizationProperties(
