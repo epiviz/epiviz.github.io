@@ -28278,7 +28278,7 @@ epiviz.utils.arrayIntersection(this.metadataColumns(),a.metadataColumns());if(g.
 b)>a.getStart(0,c))return!0;return!1};epiviz.ui.charts.ChartObject=function(a,b,c,d,e,f,g,h){epiviz.ui.charts.VisObject.call(this);this.id=a;this.start=b;this.end=c;this.values=d;this.seriesIndex=e;this.valueItems=f;this.measurements=g;this.cssClasses=h};epiviz.ui.charts.ChartObject.prototype=epiviz.utils.mapCopy(epiviz.ui.charts.VisObject.prototype);epiviz.ui.charts.ChartObject.constructor=epiviz.ui.charts.ChartObject;epiviz.ui.charts.ChartObject.prototype.regionStart=function(){return this.start};
 epiviz.ui.charts.ChartObject.prototype.regionEnd=function(){return this.end};epiviz.ui.charts.ChartObject.prototype.getMetadata=function(a,b,c){return this.valueItems?this.valueItems[a][b].rowItem.metadata(c):null};epiviz.ui.charts.ChartObject.prototype.getStart=function(a,b){return this.valueItems[a][b].rowItem.start()};epiviz.ui.charts.ChartObject.prototype.getEnd=function(a,b){return this.valueItems[a][b].rowItem.end()};epiviz.ui.charts.ChartObject.prototype.metadataColumns=function(){return Object.keys(this.valueItems[0][0].rowItem.rowMetadata())};
 epiviz.ui.charts.ChartObject.prototype.dimensions=function(){var a=[];return this.valueItems?(a.push(this.valueItems.length),this.valueItems.length?a.push(this.valueItems[0].length):a.push(0),a):[0,0]};epiviz.ui.charts.Track=function(a,b,c){epiviz.ui.charts.Chart.call(this,a,b,c);this._highlightGroup=this._background=null};epiviz.ui.charts.Track.prototype=epiviz.utils.mapCopy(epiviz.ui.charts.Chart.prototype);epiviz.ui.charts.Track.constructor=epiviz.ui.charts.Track;
-epiviz.ui.charts.Track.prototype._initialize=function(){epiviz.ui.charts.Chart.prototype._initialize.call(this);var a=this;this._highlightGroup=this._svg.append("g").attr("class","track-highlight");this._background=this._svg.append("rect").attr("class","chart-background").attr("x",0).attr("y",0).attr("width","100%").attr("height","100%").attr("fill","#ffffff").attr("fill-opacity","0");this._background.on("mouseover",function(){a._captureMouseHover()}).on("mousemove",
+epiviz.ui.charts.Track.prototype._initialize=function(){this._properties.width="100%";epiviz.ui.charts.Chart.prototype._initialize.call(this);var a=this;this._highlightGroup=this._svg.append("g").attr("class","track-highlight");this._background=this._svg.append("rect").attr("class","chart-background").attr("x",0).attr("y",0).attr("width","100%").attr("height","100%").attr("fill","#ffffff").attr("fill-opacity","0");this._background.on("mouseover",function(){a._captureMouseHover()}).on("mousemove",
 function(){a._captureMouseHover()}).on("mouseout",function(){a._unhover.notify(new epiviz.ui.charts.VisEventArgs(a.id()))})};epiviz.ui.charts.Track.prototype.draw=function(a,b,c,d){a=epiviz.ui.charts.Chart.prototype.draw.call(this,a,b);this._drawLegend();return a};epiviz.ui.charts.Track.prototype.displayType=function(){return epiviz.ui.charts.VisualizationType.DisplayType.TRACK};
 epiviz.ui.charts.Track.prototype.doHover=function(a){epiviz.ui.charts.Chart.prototype.doHover.call(this,a);if(void 0!=a.start&&void 0!=a.end&&this._lastRange){this._highlightGroup.selectAll("rect").remove();this._highlightGroup.attr("transform","translate("+this.margins().left()+", 0)");var b=epiviz.ui.charts.Axis,c=d3.scale.linear().domain([this._lastRange.start(),this._lastRange.end()]).range([0,this.width()-this.margins().sumAxis(b.X)]),b=[];if(a.measurements&&a.measurements.length)for(var d=0;d<
 a.valueItems[0].length;++d){var e=a.valueItems[0][d].rowItem;b.push({start:e.start(),end:e.end()})}else b.push({start:a.start,end:a.end});this._highlightGroup.selectAll("rect").data(b,function(a){return sprintf("%s-%s",a.start,a.end)}).enter().append("rect").style("fill",this.colors().get(0)).style("fill-opacity","0.1").attr("x",function(a){var b=c(a.end+1)-c(a.start),d=Math.max(5,b);return c(a.start)+.5*b-.5*d}).attr("width",function(a){return Math.max(5,c(a.end+1)-c(a.start))}).attr("y",0).attr("height",
@@ -28987,7 +28987,7 @@ module.exports = {
   };
 </script>
 
-<dom-module id="shared-settings" assetpath="bower_components/epiviz-charts/">
+<dom-module id="shared-settings">
   <template>
     <style>
         #chartSettingsContainer {
@@ -29143,7 +29143,7 @@ module.exports = {
             var self = this;
             // this._measurementsChanged();
             if(this.chart != null) {
-                var width = self.offsetWidth - 40;
+                var width = self.offsetWidth - 20;
                 if(width < 0) { width = self.chartType.defaultWidth()/2;}
                 this.chart._properties.width = Math.max(width, self.offsetWidth - epiviz.ui.charts.Visualization.SVG_MARGIN);
                 this.chart._properties.height = Math.max(self.chartType.defaultHeight(), self.offsetHeight - epiviz.ui.charts.Visualization.SVG_MARGIN);
@@ -29194,7 +29194,9 @@ module.exports = {
          */
         _chartSettingsChanged: function() {
             var self = this;
-            self.chart.setCustomSettingsValues(self.chartSettings);
+            if(self.chartSettings) {
+                self.chart.setCustomSettingsValues(self.chartSettings);
+            }
             // self._dataChanged();
         },
 
@@ -29203,9 +29205,11 @@ module.exports = {
          */
         _chartColorsChanged: function() {
             var self = this;
-            self.chartColorPalette = new epiviz.ui.charts.ColorPalette(self.chartColors);
-            self.chart.setColors(self.chartColorPalette);
-            self._dataChanged();
+            if(self.chartColors) {
+                self.chartColorPalette = new epiviz.ui.charts.ColorPalette(self.chartColors);
+                self.chart.setColors(self.chartColorPalette);
+                self._dataChanged();
+            }
         },
 
         /**
@@ -43171,7 +43175,7 @@ It will also ensure that focus remains in the dialog.
     Polymer.IronLabel._labelNumber = 0;
   </script>
 </dom-module>
-<dom-module id="epiviz-chart-settings" assetpath="bower_components/epiviz-charts/">
+<dom-module id="epiviz-chart-settings">
 
     <template>
         <style>
@@ -43994,7 +43998,7 @@ It will also ensure that focus remains in the dialog.
     });
   </script>
 </dom-module>
-<dom-module id="epiviz-chart-colors" assetpath="bower_components/epiviz-charts/">
+<dom-module id="epiviz-chart-colors">
 
     <template>
         <style>
@@ -44271,7 +44275,7 @@ It will also ensure that focus remains in the dialog.
             }
         }        
     }
-</script><dom-module id="chart-shared-css" assetpath="bower_components/epiviz-charts/">
+</script><dom-module id="chart-shared-css">
   <template>
     <style>
         .base-chart {
@@ -44471,7 +44475,7 @@ It will also ensure that focus remains in the dialog.
         }
     </style>
   </template>
-</dom-module><dom-module id="epiviz-blocks-track" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-blocks-track">
     <template>
         <style include="shared-settings"></style>
         <style include="chart-shared-css"></style>
@@ -44712,7 +44716,7 @@ It will also ensure that focus remains in the dialog.
             }
         });
     </script>
-</dom-module><dom-module id="epiviz-genes-track" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-genes-track">
     <template>
         <style include="shared-settings"></style>
         <style include="chart-shared-css"></style>
@@ -44965,7 +44969,7 @@ It will also ensure that focus remains in the dialog.
             }
         });
     </script>
-</dom-module><dom-module id="epiviz-heatmap-plot" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-heatmap-plot">
     <template>
         <style include="shared-settings"></style>
         <style include="chart-shared-css"></style>
@@ -45227,7 +45231,7 @@ It will also ensure that focus remains in the dialog.
             }
         });
     </script>
-</dom-module><dom-module id="epiviz-line-plot" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-line-plot">
     <template>
         <style include="shared-settings"></style>
         <style include="chart-shared-css"></style>
@@ -45480,7 +45484,7 @@ It will also ensure that focus remains in the dialog.
             }
         });
     </script>
-</dom-module><dom-module id="epiviz-line-track" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-line-track">
     <template>
         <style include="shared-settings"></style>
         <style include="chart-shared-css"></style>
@@ -45740,7 +45744,7 @@ It will also ensure that focus remains in the dialog.
             }
         });
     </script>
-</dom-module><dom-module id="epiviz-scatter-plot" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-scatter-plot">
     <template>
         <style include="shared-settings"></style>
         <style include="chart-shared-css"></style>
@@ -46030,7 +46034,9 @@ It will also ensure that focus remains in the dialog.
              */
             _draw: function() {
                 this.chart.draw(this.range, this.data);
-                this._colorByRegionsChanged();
+                if(this.colorByRegions) {
+                    this._colorByRegionsChanged();
+                }
             },
 
             /**
@@ -46044,7 +46050,7 @@ It will also ensure that focus remains in the dialog.
             }
         });
     </script>
-</dom-module><dom-module id="epiviz-stacked-line-track" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-stacked-line-track">
     <template>
         <style include="shared-settings"></style>
         <style include="chart-shared-css"></style>
@@ -46288,7 +46294,7 @@ It will also ensure that focus remains in the dialog.
             }
         });
     </script>
-</dom-module><dom-module id="epiviz-stacked-line-plot" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-stacked-line-plot">
     <template>
         <style include="shared-settings"></style>
         <style include="chart-shared-css"></style>
@@ -47030,14 +47036,27 @@ It will also ensure that focus remains in the dialog.
 
     var fileName = defaultDataURLs[resolution];
 
-    loadData(baseDir + fileName, resolution, function (d) {
+    var data = [{"#chromosome":"1","arm":"p","band":"36.3","iscn_start":"0","iscn_stop":"451","bp_start":"1","bp_stop":"7100000","stain":"gneg","density":""},{"#chromosome":"1","arm":"p","band":"36.2","iscn_start":"451","iscn_stop":"682","bp_start":"7100001","bp_stop":"15900000","stain":"gpos","density":"100"},{"#chromosome":"1","arm":"p","band":"36.1","iscn_start":"682","iscn_stop":"1259","bp_start":"15900001","bp_stop":"27600000","stain":"gneg","density":""},{"#chromosome":"1","arm":"p","band":"35","iscn_start":"1259","iscn_stop":"1583","bp_start":"27600001","bp_stop":"34300000","stain":"gpos","density":"100"},{"#chromosome":"1","arm":"p","band":"34.3","iscn_start":"1583","iscn_stop":"1779","bp_start":"34300001","bp_stop":"39600000","stain":"gneg","density":""},{"#chromosome":"1","arm":"p","band":"34.2","iscn_start":"1779","iscn_stop":"1999","bp_start":"39600001","bp_stop":"43700000","stain":"gpos","density":"25"},{"#chromosome":"1","arm":"p","band":"34.1","iscn_start":"1999","iscn_stop":"2184","bp_start":"43700001","bp_stop":"46300000","stain":"gneg","density":""},{"#chromosome":"1","arm":"p","band":"33","iscn_start":"2184","iscn_stop":"2519","bp_start":"46300001","bp_stop":"50200000","stain":"gpos","density":"75"},{"#chromosome":"1","arm":"p","band":"32.3","iscn_start":"2519","iscn_stop":"2723","bp_start":"50200001","bp_stop":"55600000","stain":"gneg","density":""},{"#chromosome":"1","arm":"p","band":"32.2","iscn_start":"2723","iscn_stop":"2825","bp_start":"55600001","bp_stop":"58500000","stain":"gpos","density":"50"},{"#chromosome":"1","arm":"p","band":"32.1","iscn_start":"2825","iscn_stop":"3050","bp_start":"58500001","bp_stop":"60800000","stain":"gneg","density":""},{"#chromosome":"1","arm":"p","band":"31.3","iscn_start":"3050","iscn_stop":"3387","bp_start":"60800001","bp_stop":"68500000","stain":"gpos","density":"50"},{"#chromosome":"1","arm":"p","band":"31.2","iscn_start":"3387","iscn_stop":"3705","bp_start":"68500001","bp_stop":"69300000","stain":"gneg","density":""},{"#chromosome":"1","arm":"p","band":"31.1","iscn_start":"3705","iscn_stop":"4598","bp_start":"69300001","bp_stop":"84400000","stain":"gpos","density":"100"},{"#chromosome":"1","arm":"p","band":"22.3","iscn_start":"4598","iscn_stop":"4933","bp_start":"84400001","bp_stop":"87900000","stain":"gneg","density":""},{"#chromosome":"1","arm":"p","band":"22.2","iscn_start":"4933","iscn_stop":"5148","bp_start":"87900001","bp_stop":"91500000","stain":"gpos","density":"75"},{"#chromosome":"1","arm":"p","band":"22.1","iscn_start":"5148","iscn_stop":"5430","bp_start":"91500001","bp_stop":"94300000","stain":"gneg","density":""},{"#chromosome":"1","arm":"p","band":"21","iscn_start":"5430","iscn_stop":"6274","bp_start":"94300001","bp_stop":"106700000","stain":"gpos","density":"100"},{"#chromosome":"1","arm":"p","band":"13.3","iscn_start":"6274","iscn_stop":"6560","bp_start":"106700001","bp_stop":"111200000","stain":"gneg","density":""},{"#chromosome":"1","arm":"p","band":"13.2","iscn_start":"6560","iscn_stop":"6827","bp_start":"111200001","bp_stop":"115500000","stain":"gpos","density":"50"},{"#chromosome":"1","arm":"p","band":"13.1","iscn_start":"6827","iscn_stop":"7094","bp_start":"115500001","bp_stop":"117200000","stain":"gneg","density":""},{"#chromosome":"1","arm":"p","band":"12","iscn_start":"7094","iscn_stop":"7279","bp_start":"117200001","bp_stop":"120400000","stain":"gpos","density":"50"},{"#chromosome":"1","arm":"p","band":"11","iscn_start":"7279","iscn_stop":"7394","bp_start":"120400001","bp_stop":"123400000","stain":"acen","density":""},{"#chromosome":"1","arm":"q","band":"11","iscn_start":"7394","iscn_stop":"7554","bp_start":"123400001","bp_stop":"125100000","stain":"acen","density":""},{"#chromosome":"1","arm":"q","band":"12","iscn_start":"7554","iscn_stop":"8672","bp_start":"125100001","bp_stop":"143200000","stain":"gvar","density":""},{"#chromosome":"1","arm":"q","band":"21.1","iscn_start":"8672","iscn_stop":"8915","bp_start":"143200001","bp_stop":"147500000","stain":"gneg","density":""},{"#chromosome":"1","arm":"q","band":"21.2","iscn_start":"8915","iscn_stop":"9094","bp_start":"147500001","bp_stop":"150600000","stain":"gpos","density":"50"},{"#chromosome":"1","arm":"q","band":"21.3","iscn_start":"9094","iscn_stop":"9350","bp_start":"150600001","bp_stop":"155100000","stain":"gneg","density":""},{"#chromosome":"1","arm":"q","band":"22","iscn_start":"9350","iscn_stop":"9685","bp_start":"155100001","bp_stop":"156600000","stain":"gpos","density":"50"},{"#chromosome":"1","arm":"q","band":"23","iscn_start":"9685","iscn_stop":"10160","bp_start":"156600001","bp_stop":"165500000","stain":"gneg","density":""},{"#chromosome":"1","arm":"q","band":"24","iscn_start":"10160","iscn_stop":"10565","bp_start":"165500001","bp_stop":"173000000","stain":"gpos","density":"100"},{"#chromosome":"1","arm":"q","band":"25","iscn_start":"10565","iscn_stop":"11005","bp_start":"173000001","bp_stop":"185800000","stain":"gneg","density":""},{"#chromosome":"1","arm":"q","band":"31","iscn_start":"11005","iscn_stop":"12207","bp_start":"185800001","bp_stop":"198700000","stain":"gpos","density":"100"},{"#chromosome":"1","arm":"q","band":"32.1","iscn_start":"12207","iscn_stop":"12757","bp_start":"198700001","bp_stop":"207100000","stain":"gneg","density":""},{"#chromosome":"1","arm":"q","band":"32.2","iscn_start":"12757","iscn_stop":"12988","bp_start":"207100001","bp_stop":"211300000","stain":"gpos","density":"25"},{"#chromosome":"1","arm":"q","band":"32.3","iscn_start":"12988","iscn_stop":"13272","bp_start":"211300001","bp_stop":"214400000","stain":"gneg","density":""},{"#chromosome":"1","arm":"q","band":"41","iscn_start":"13272","iscn_stop":"13920","bp_start":"214400001","bp_stop":"223900000","stain":"gpos","density":"100"},{"#chromosome":"1","arm":"q","band":"42.1","iscn_start":"13920","iscn_stop":"14212","bp_start":"223900001","bp_stop":"230500000","stain":"gneg","density":""},{"#chromosome":"1","arm":"q","band":"42.2","iscn_start":"14212","iscn_stop":"14296","bp_start":"230500001","bp_stop":"234600000","stain":"gpos","density":"50"},{"#chromosome":"1","arm":"q","band":"42.3","iscn_start":"14296","iscn_stop":"14406","bp_start":"234600001","bp_stop":"236400000","stain":"gneg","density":""},{"#chromosome":"1","arm":"q","band":"43","iscn_start":"14406","iscn_stop":"14776","bp_start":"236400001","bp_stop":"243500000","stain":"gpos","density":"75"},{"#chromosome":"1","arm":"q","band":"44","iscn_start":"14776","iscn_stop":"15100","bp_start":"243500001","bp_stop":"248956422","stain":"gneg","density":""},{"#chromosome":"2","arm":"p","band":"25.3","iscn_start":"0","iscn_stop":"193","bp_start":"1","bp_stop":"4400000","stain":"gneg","density":""},{"#chromosome":"2","arm":"p","band":"25.2","iscn_start":"193","iscn_stop":"282","bp_start":"4400001","bp_stop":"6900000","stain":"gpos","density":"50"},{"#chromosome":"2","arm":"p","band":"25.1","iscn_start":"282","iscn_stop":"475","bp_start":"6900001","bp_stop":"12000000","stain":"gneg","density":""},{"#chromosome":"2","arm":"p","band":"24","iscn_start":"475","iscn_stop":"931","bp_start":"12000001","bp_stop":"23800000","stain":"gpos","density":"100"},{"#chromosome":"2","arm":"p","band":"23","iscn_start":"931","iscn_stop":"1558","bp_start":"23800001","bp_stop":"31800000","stain":"gneg","density":""},{"#chromosome":"2","arm":"p","band":"22","iscn_start":"1558","iscn_stop":"2145","bp_start":"31800001","bp_stop":"41500000","stain":"gpos","density":"100"},{"#chromosome":"2","arm":"p","band":"21","iscn_start":"2145","iscn_stop":"2650","bp_start":"41500001","bp_stop":"47500000","stain":"gneg","density":""},{"#chromosome":"2","arm":"p","band":"16","iscn_start":"2650","iscn_stop":"3439","bp_start":"47500001","bp_stop":"61000000","stain":"gpos","density":"100"},{"#chromosome":"2","arm":"p","band":"15","iscn_start":"3439","iscn_stop":"3682","bp_start":"61000001","bp_stop":"63900000","stain":"gneg","density":""},{"#chromosome":"2","arm":"p","band":"14","iscn_start":"3682","iscn_stop":"3976","bp_start":"63900001","bp_stop":"68400000","stain":"gpos","density":"50"},{"#chromosome":"2","arm":"p","band":"13","iscn_start":"3976","iscn_stop":"4572","bp_start":"68400001","bp_stop":"74800000","stain":"gneg","density":""},{"#chromosome":"2","arm":"p","band":"12","iscn_start":"4572","iscn_stop":"5068","bp_start":"74800001","bp_stop":"83100000","stain":"gpos","density":"100"},{"#chromosome":"2","arm":"p","band":"11.2","iscn_start":"5068","iscn_stop":"5534","bp_start":"83100001","bp_stop":"91800000","stain":"gneg","density":""},{"#chromosome":"2","arm":"p","band":"11.1","iscn_start":"5534","iscn_stop":"5665","bp_start":"91800001","bp_stop":"93900000","stain":"acen","density":""},{"#chromosome":"2","arm":"q","band":"11.1","iscn_start":"5665","iscn_stop":"5828","bp_start":"93900001","bp_stop":"96000000","stain":"acen","density":""},{"#chromosome":"2","arm":"q","band":"11.2","iscn_start":"5828","iscn_stop":"6181","bp_start":"96000001","bp_stop":"102100000","stain":"gneg","density":""},{"#chromosome":"2","arm":"q","band":"12","iscn_start":"6181","iscn_stop":"6602","bp_start":"102100001","bp_stop":"108700000","stain":"gpos","density":"100"},{"#chromosome":"2","arm":"q","band":"13","iscn_start":"6602","iscn_stop":"6928","bp_start":"108700001","bp_stop":"112200000","stain":"gneg","density":""},{"#chromosome":"2","arm":"q","band":"14.1","iscn_start":"6928","iscn_stop":"7254","bp_start":"112200001","bp_stop":"118100000","stain":"gpos","density":"50"},{"#chromosome":"2","arm":"q","band":"14.2","iscn_start":"7254","iscn_stop":"7336","bp_start":"118100001","bp_stop":"121600000","stain":"gneg","density":""},{"#chromosome":"2","arm":"q","band":"14.3","iscn_start":"7336","iscn_stop":"7662","bp_start":"121600001","bp_stop":"129100000","stain":"gpos","density":"50"},{"#chromosome":"2","arm":"q","band":"21.1","iscn_start":"7662","iscn_stop":"7920","bp_start":"129100001","bp_stop":"131700000","stain":"gneg","density":""},{"#chromosome":"2","arm":"q","band":"21.2","iscn_start":"7920"
+                ,"iscn_stop":"8177","bp_start":"131700001","bp_stop":"134300000","stain":"gpos","density":"25"},{"#chromosome":"2","arm":"q","band":"21.3","iscn_start":"8177","iscn_stop":"8314","bp_start":"134300001","bp_stop":"136100000","stain":"gneg","density":""},{"#chromosome":"2","arm":"q","band":"22","iscn_start":"8314","iscn_stop":"9048","bp_start":"136100001","bp_stop":"147900000","stain":"gpos","density":"100"},{"#chromosome":"2","arm":"q","band":"23","iscn_start":"9048","iscn_stop":"9374","bp_start":"147900001","bp_stop":"154000000","stain":"gneg","density":""},{"#chromosome":"2","arm":"q","band":"24.1","iscn_start":"9374","iscn_stop":"9650","bp_start":"154000001","bp_stop":"158900000","stain":"gpos","density":"75"},{"#chromosome":"2","arm":"q","band":"24.2","iscn_start":"9650","iscn_stop":"9868","bp_start":"158900001","bp_stop":"162900000","stain":"gneg","density":""},{"#chromosome":"2","arm":"q","band":"24.3","iscn_start":"9868","iscn_stop":"10202","bp_start":"162900001","bp_stop":"168900000","stain":"gpos","density":"75"},{"#chromosome":"2","arm":"q","band":"31","iscn_start":"10202","iscn_stop":"10854","bp_start":"168900001","bp_stop":"182100000","stain":"gneg","density":""},{"#chromosome":"2","arm":"q","band":"32.1","iscn_start":"10854","iscn_stop":"11271","bp_start":"182100001","bp_stop":"188500000","stain":"gpos","density":"75"},{"#chromosome":"2","arm":"q","band":"32.2","iscn_start":"11271","iscn_stop":"11427","bp_start":"188500001","bp_stop":"191100000","stain":"gneg","density":""},{"#chromosome":"2","arm":"q","band":"32.3","iscn_start":"11427","iscn_stop":"11792","bp_start":"191100001","bp_stop":"196600000","stain":"gpos","density":"75"},{"#chromosome":"2","arm":"q","band":"33","iscn_start":"11792","iscn_stop":"12362","bp_start":"196600001","bp_stop":"208200000","stain":"gneg","density":""},{"#chromosome":"2","arm":"q","band":"34","iscn_start":"12362","iscn_stop":"12811","bp_start":"208200001","bp_stop":"214500000","stain":"gpos","density":"100"},{"#chromosome":"2","arm":"q","band":"35","iscn_start":"12811","iscn_stop":"13164","bp_start":"214500001","bp_stop":"220700000","stain":"gneg","density":""},{"#chromosome":"2","arm":"q","band":"36","iscn_start":"13164","iscn_stop":"13653","bp_start":"220700001","bp_stop":"230100000","stain":"gpos","density":"100"},{"#chromosome":"2","arm":"q","band":"37.1","iscn_start":"13653","iscn_stop":"13930","bp_start":"230100001","bp_stop":"234700000","stain":"gneg","density":""},{"#chromosome":"2","arm":"q","band":"37.2","iscn_start":"13930","iscn_stop":"14027","bp_start":"234700001","bp_stop":"236400000","stain":"gpos","density":"50"},{"#chromosome":"2","arm":"q","band":"37.3","iscn_start":"14027","iscn_stop":"14400","bp_start":"236400001","bp_stop":"242193529","stain":"gneg","density":""},{"#chromosome":"3","arm":"p","band":"26","iscn_start":"0","iscn_stop":"257","bp_start":"1","bp_stop":"8100000","stain":"gpos","density":"100"},{"#chromosome":"3","arm":"p","band":"25","iscn_start":"257","iscn_stop":"649","bp_start":"8100001","bp_stop":"16300000","stain":"gneg","density":""},{"#chromosome":"3","arm":"p","band":"24.3","iscn_start":"649","iscn_stop":"1010","bp_start":"16300001","bp_stop":"23800000","stain":"gpos","density":"100"},{"#chromosome":"3","arm":"p","band":"24.2","iscn_start":"1010","iscn_stop":"1114","bp_start":"23800001","bp_stop":"26300000","stain":"gneg","density":""},{"#chromosome":"3","arm":"p","band":"24.1","iscn_start":"1114","iscn_stop":"1355","bp_start":"26300001","bp_stop":"30800000","stain":"gpos","density":"75"},{"#chromosome":"3","arm":"p","band":"23","iscn_start":"1355","iscn_stop":"1574","bp_start":"30800001","bp_stop":"32000000","stain":"gneg","density":""},{"#chromosome":"3","arm":"p","band":"22","iscn_start":"1574","iscn_stop":"1966","bp_start":"32000001","bp_stop":"43600000","stain":"gpos","density":"100"},{"#chromosome":"3","arm":"p","band":"21.3","iscn_start":"1966","iscn_stop":"2910","bp_start":"43600001","bp_stop":"50600000","stain":"gneg","density":""},{"#chromosome":"3","arm":"p","band":"21.2","iscn_start":"2910","iscn_stop":"3041","bp_start":"50600001","bp_stop":"52300000","stain":"gpos","density":"25"},{"#chromosome":"3","arm":"p","band":"21.1","iscn_start":"3041","iscn_stop":"3302","bp_start":"52300001","bp_stop":"54400000","stain":"gneg","density":""},{"#chromosome":"3","arm":"p","band":"14.3","iscn_start":"3302","iscn_stop":"3575","bp_start":"54400001","bp_stop":"58600000","stain":"gpos","density":"50"},{"#chromosome":"3","arm":"p","band":"14.2","iscn_start":"3575","iscn_stop":"3847","bp_start":"58600001","bp_stop":"63800000","stain":"gneg","density":""},{"#chromosome":"3","arm":"p","band":"14.1","iscn_start":"3847","iscn_stop":"4103","bp_start":"63800001","bp_stop":"69700000","stain":"gpos","density":"50"},{"#chromosome":"3","arm":"p","band":"13","iscn_start":"4103","iscn_stop":"4456","bp_start":"69700001","bp_stop":"74100000","stain":"gneg","density":""},{"#chromosome":"3","arm":"p","band":"12","iscn_start":"4456","iscn_stop":"5439","bp_start":"74100001","bp_stop":"87100000","stain":"gpos","density":"100"},{"#chromosome":"3","arm":"p","band":"11","iscn_start":"5439","iscn_stop":"5573","bp_start":"87100001","bp_stop":"90900000","stain":"acen","density":""},{"#chromosome":"3","arm":"q","band":"11.1","iscn_start":"5573","iscn_stop":"5733","bp_start":"90900001","bp_stop":"94000000","stain":"acen","density":""},{"#chromosome":"3","arm":"q","band":"11.2","iscn_start":"5733","iscn_stop":"6034","bp_start":"94000001","bp_stop":"98600000","stain":"gvar","density":""},{"#chromosome":"3","arm":"q","band":"12","iscn_start":"6034","iscn_stop":"6175","bp_start":"98600001","bp_stop":"103100000","stain":"gneg","density":""},{"#chromosome":"3","arm":"q","band":"13.1","iscn_start":"6175","iscn_stop":"6665","bp_start":"103100001","bp_stop":"111600000","stain":"gpos","density":"100"},{"#chromosome":"3","arm":"q","band":"13.2","iscn_start":"6665","iscn_stop":"6806","bp_start":"111600001","bp_stop":"113700000","stain":"gneg","density":""},{"#chromosome":"3","arm":"q","band":"13.3","iscn_start":"6806","iscn_stop":"7389","bp_start":"113700001","bp_stop":"122200000","stain":"gpos","density":"100"},{"#chromosome":"3","arm":"q","band":"21","iscn_start":"7389","iscn_stop":"7926","bp_start":"122200001","bp_stop":"129500000","stain":"gneg","density":""},{"#chromosome":"3","arm":"q","band":"22","iscn_start":"7926","iscn_stop":"8255","bp_start":"129500001","bp_stop":"139000000","stain":"gpos","density":"100"},{"#chromosome":"3","arm":"q","band":"23","iscn_start":"8255","iscn_stop":"8538","bp_start":"139000001","bp_stop":"143100000","stain":"gneg","density":""},{"#chromosome":"3","arm":"q","band":"24","iscn_start":"8538","iscn_stop":"9206","bp_start":"143100001","bp_stop":"149200000","stain":"gpos","density":"100"},{"#chromosome":"3","arm":"q","band":"25.1","iscn_start":"9206","iscn_stop":"9334","bp_start":"149200001","bp_stop":"152300000","stain":"gneg","density":""},{"#chromosome":"3","arm":"q","band":"25.2","iscn_start":"9334","iscn_stop":"9443","bp_start":"152300001","bp_stop":"155300000","stain":"gpos","density":"50"},{"#chromosome":"3","arm":"q","band":"25.3","iscn_start":"9443","iscn_stop":"9639","bp_start":"155300001","bp_stop":"161000000","stain":"gneg","density":""},{"#chromosome":"3","arm":"q","band":"26.1","iscn_start":"9639","iscn_stop":"10147","bp_start":"161000001","bp_stop":"167900000","stain":"gpos","density":"100"},{"#chromosome":"3","arm":"q","band":"26.2","iscn_start":"10147","iscn_stop":"10269","bp_start":"167900001","bp_stop":"171200000","stain":"gneg","density":""},{"#chromosome":"3","arm":"q","band":"26.3","iscn_start":"10269","iscn_stop":"10702","bp_start":"171200001","bp_stop":"183000000","stain":"gpos","density":"100"},{"#chromosome":"3","arm":"q","band":"27","iscn_start":"10702","iscn_stop":"11022","bp_start":"183000001","bp_stop":"188200000","stain":"gneg","density":""},{"#chromosome":"3","arm":"q","band":"28","iscn_start":"11022","iscn_stop":"11352","bp_start":"188200001","bp_stop":"192600000","stain":"gpos","density":"75"},{"#chromosome":"3","arm":"q","band":"29","iscn_start":"11352","iscn_stop":"11700","bp_start":"192600001","bp_stop":"198295559","stain":"gneg","density":""},{"#chromosome":"4","arm":"p","band":"16","iscn_start":"0","iscn_stop":"843","bp_start":"1","bp_stop":"11300000","stain":"gneg","density":""},{"#chromosome":"4","arm":"p","band":"15.3","iscn_start":"843","iscn_stop":"1330","bp_start":"11300001","bp_stop":"21300000","stain":"gpos","density":"100"},{"#chromosome":"4","arm":"p","band":"15.2","iscn_start":"1330","iscn_stop":"1449","bp_start":"21300001","bp_stop":"27700000","stain":"gneg","density":""},{"#chromosome":"4","arm":"p","band":"15.1","iscn_start":"1449","iscn_stop":"1857","bp_start":"27700001","bp_stop":"35800000","stain":"gpos","density":"100"},{"#chromosome":"4","arm":"p","band":"14","iscn_start":"1857","iscn_stop":"2292","bp_start":"35800001","bp_stop":"41200000","stain":"gneg","density":""},{"#chromosome":"4","arm":"p","band":"13","iscn_start":"2292","iscn_stop":"2647","bp_start":"41200001","bp_stop":"44600000","stain":"gpos","density":"50"},{"#chromosome":"4","arm":"p","band":"12","iscn_start":"2647","iscn_stop":"2950","bp_start":"44600001","bp_stop":"48200000","stain":"gneg","density":""},{"#chromosome":"4","arm":"p","band":"11","iscn_start":"2950","iscn_stop":"3095","bp_start":"48200001","bp_stop":"50000000","stain":"acen","density":""},{"#chromosome":"4","arm":"q","band":"11","iscn_start":"3095","iscn_stop":"3211","bp_start":"50000001","bp_stop":"51800000","stain":"acen","density":""},{"#chromosome":"4","arm":"q","band":"12","iscn_start":"3211","iscn_stop":"3649","bp_start":"51800001","bp_stop":"58500000","stain":"gneg","density":""},{"#chromosome":"4","arm":"q","band":"13.1","iscn_start":"3649","iscn_stop":"3993","bp_start":"58500001","bp_stop":"65500000","stain":"gpos","density":"100"},{"#chromosome":"4","arm":"q","band":"13.2","iscn_start":"3993","iscn_stop":"4147",
+                "bp_start":"65500001","bp_stop":"69400000","stain":"gneg","density":""},{"#chromosome":"4","arm":"q","band":"13.3","iscn_start":"4147","iscn_stop":"4422","bp_start":"69400001","bp_stop":"75300000","stain":"gpos","density":"75"},{"#chromosome":"4","arm":"q","band":"21.1","iscn_start":"4422","iscn_stop":"4577","bp_start":"75300001","bp_stop":"78000000","stain":"gneg","density":""},{"#chromosome":"4","arm":"q","band":"21.2","iscn_start":"4577","iscn_stop":"4920","bp_start":"78000001","bp_stop":"86000000","stain":"gpos","density":"100"},{"#chromosome":"4","arm":"q","band":"21.3","iscn_start":"4920","iscn_stop":"5169","bp_start":"86000001","bp_stop":"87100000","stain":"gneg","density":""},{"#chromosome":"4","arm":"q","band":"22","iscn_start":"5169","iscn_stop":"5735","bp_start":"87100001","bp_stop":"97900000","stain":"gpos","density":"100"},{"#chromosome":"4","arm":"q","band":"23","iscn_start":"5735","iscn_stop":"5838","bp_start":"97900001","bp_stop":"100100000","stain":"gneg","density":""},{"#chromosome":"4","arm":"q","band":"24","iscn_start":"5838","iscn_stop":"6353","bp_start":"100100001","bp_stop":"106700000","stain":"gpos","density":"50"},{"#chromosome":"4","arm":"q","band":"25","iscn_start":"6353","iscn_stop":"6560","bp_start":"106700001","bp_stop":"113200000","stain":"gneg","density":""},{"#chromosome":"4","arm":"q","band":"26","iscn_start":"6560","iscn_stop":"7294","bp_start":"113200001","bp_stop":"119900000","stain":"gpos","density":"75"},{"#chromosome":"4","arm":"q","band":"27","iscn_start":"7294","iscn_stop":"7577","bp_start":"119900001","bp_stop":"122800000","stain":"gneg","density":""},{"#chromosome":"4","arm":"q","band":"28","iscn_start":"7577","iscn_stop":"8440","bp_start":"122800001","bp_stop":"138500000","stain":"gpos","density":"100"},{"#chromosome":"4","arm":"q","band":"31.1","iscn_start":"8440","iscn_stop":"8813","bp_start":"138500001","bp_stop":"140600000","stain":"gneg","density":""},{"#chromosome":"4","arm":"q","band":"31.2","iscn_start":"8813","iscn_stop":"9071","bp_start":"140600001","bp_stop":"150200000","stain":"gpos","density":"100"},{"#chromosome":"4","arm":"q","band":"31.3","iscn_start":"9071","iscn_stop":"9431","bp_start":"150200001","bp_stop":"154600000","stain":"gneg","density":""},{"#chromosome":"4","arm":"q","band":"32","iscn_start":"9431","iscn_stop":"10050","bp_start":"154600001","bp_stop":"169200000","stain":"gpos","density":"100"},{"#chromosome":"4","arm":"q","band":"33","iscn_start":"10050","iscn_stop":"10281","bp_start":"169200001","bp_stop":"171000000","stain":"gneg","density":""},{"#chromosome":"4","arm":"q","band":"34","iscn_start":"10281","iscn_stop":"10732","bp_start":"171000001","bp_stop":"182300000","stain":"gpos","density":"100"},{"#chromosome":"4","arm":"q","band":"35","iscn_start":"10732","iscn_stop":"11170","bp_start":"182300001","bp_stop":"190214555","stain":"gneg","density":""},{"#chromosome":"5","arm":"p","band":"15.3","iscn_start":"0","iscn_stop":"574","bp_start":"1","bp_stop":"9900000","stain":"gneg","density":""},{"#chromosome":"5","arm":"p","band":"15.2","iscn_start":"574","iscn_stop":"815","bp_start":"9900001","bp_stop":"15000000","stain":"gpos","density":"50"},{"#chromosome":"5","arm":"p","band":"15.1","iscn_start":"815","iscn_stop":"1028","bp_start":"15000001","bp_stop":"18400000","stain":"gneg","density":""},{"#chromosome":"5","arm":"p","band":"14","iscn_start":"1028","iscn_stop":"1897","bp_start":"18400001","bp_stop":"28900000","stain":"gpos","density":"100"},{"#chromosome":"5","arm":"p","band":"13.3","iscn_start":"1897","iscn_stop":"2123","bp_start":"28900001","bp_stop":"33800000","stain":"gneg","density":""},{"#chromosome":"5","arm":"p","band":"13.2","iscn_start":"2123","iscn_stop":"2301","bp_start":"33800001","bp_stop":"38400000","stain":"gpos","density":"25"},{"#chromosome":"5","arm":"p","band":"13.1","iscn_start":"2301","iscn_stop":"2444","bp_start":"38400001","bp_stop":"42500000","stain":"gneg","density":""},{"#chromosome":"5","arm":"p","band":"12","iscn_start":"2444","iscn_stop":"2712","bp_start":"42500001","bp_stop":"46100000","stain":"gpos","density":"50"},{"#chromosome":"5","arm":"p","band":"11","iscn_start":"2712","iscn_stop":"2845","bp_start":"46100001","bp_stop":"48800000","stain":"acen","density":""},{"#chromosome":"5","arm":"q","band":"11.1","iscn_start":"2845","iscn_stop":"2990","bp_start":"48800001","bp_stop":"51400000","stain":"acen","density":""},{"#chromosome":"5","arm":"q","band":"11.2","iscn_start":"2990","iscn_stop":"3518","bp_start":"51400001","bp_stop":"59600000","stain":"gneg","density":""},{"#chromosome":"5","arm":"q","band":"12","iscn_start":"3518","iscn_stop":"3966","bp_start":"59600001","bp_stop":"67400000","stain":"gpos","density":"100"},{"#chromosome":"5","arm":"q","band":"13.1","iscn_start":"3966","iscn_stop":"4249","bp_start":"67400001","bp_stop":"69100000","stain":"gneg","density":""},{"#chromosome":"5","arm":"q","band":"13.2","iscn_start":"4249","iscn_stop":"4462","bp_start":"69100001","bp_stop":"74000000","stain":"gpos","density":"50"},{"#chromosome":"5","arm":"q","band":"13.3","iscn_start":"4462","iscn_stop":"4691","bp_start":"74000001","bp_stop":"77600000","stain":"gneg","density":""},{"#chromosome":"5","arm":"q","band":"14","iscn_start":"4691","iscn_stop":"5496","bp_start":"77600001","bp_stop":"93000000","stain":"gpos","density":"100"},{"#chromosome":"5","arm":"q","band":"15","iscn_start":"5496","iscn_stop":"5747","bp_start":"93000001","bp_stop":"98900000","stain":"gneg","density":""},{"#chromosome":"5","arm":"q","band":"21","iscn_start":"5747","iscn_stop":"6577","bp_start":"98900001","bp_stop":"110200000","stain":"gpos","density":"100"},{"#chromosome":"5","arm":"q","band":"22","iscn_start":"6577","iscn_stop":"6802","bp_start":"110200001","bp_stop":"115900000","stain":"gneg","density":""},{"#chromosome":"5","arm":"q","band":"23.1","iscn_start":"6802","iscn_stop":"7130","bp_start":"115900001","bp_stop":"122100000","stain":"gpos","density":"75"},{"#chromosome":"5","arm":"q","band":"23.2","iscn_start":"7130","iscn_stop":"7513","bp_start":"122100001","bp_stop":"127900000","stain":"gneg","density":""},{"#chromosome":"5","arm":"q","band":"23.3","iscn_start":"7513","iscn_stop":"7751","bp_start":"127900001","bp_stop":"131200000","stain":"gpos","density":"75"},{"#chromosome":"5","arm":"q","band":"31.1","iscn_start":"7751","iscn_stop":"8146","bp_start":"131200001","bp_stop":"136900000","stain":"gneg","density":""},{"#chromosome":"5","arm":"q","band":"31.2","iscn_start":"8146","iscn_stop":"8381","bp_start":"136900001","bp_stop":"140100000","stain":"gpos","density":"25"},{"#chromosome":"5","arm":"q","band":"31.3","iscn_start":"8381","iscn_stop":"8740","bp_start":"140100001","bp_stop":"145100000","stain":"gneg","density":""},{"#chromosome":"5","arm":"q","band":"32","iscn_start":"8740","iscn_stop":"9189","bp_start":"145100001","bp_stop":"150400000","stain":"gpos","density":"75"},{"#chromosome":"5","arm":"q","band":"33.1","iscn_start":"9189","iscn_stop":"9331","bp_start":"150400001","bp_stop":"153300000","stain":"gneg","density":""},{"#chromosome":"5","arm":"q","band":"33.2","iscn_start":"9331","iscn_stop":"9432","bp_start":"153300001","bp_stop":"156300000","stain":"gpos","density":"50"},{"#chromosome":"5","arm":"q","band":"33.3","iscn_start":"9432","iscn_stop":"9558","bp_start":"156300001","bp_stop":"160500000","stain":"gneg","density":""},{"#chromosome":"5","arm":"q","band":"34","iscn_start":"9558","iscn_stop":"10138","bp_start":"160500001","bp_stop":"169000000","stain":"gpos","density":"100"},{"#chromosome":"5","arm":"q","band":"35.1","iscn_start":"10138","iscn_stop":"10271","bp_start":"169000001","bp_stop":"173300000","stain":"gneg","density":""},{"#chromosome":"5","arm":"q","band":"35.2","iscn_start":"10271","iscn_stop":"10388","bp_start":"173300001","bp_stop":"177100000","stain":"gpos","density":"25"},{"#chromosome":"5","arm":"q","band":"35.3","iscn_start":"10388","iscn_stop":"10600","bp_start":"177100001","bp_stop":"181538259","stain":"gneg","density":""},{"#chromosome":"6","arm":"p","band":"25","iscn_start":"0","iscn_stop":"405","bp_start":"1","bp_stop":"7100000","stain":"gneg","density":""},{"#chromosome":"6","arm":"p","band":"24","iscn_start":"405","iscn_stop":"643","bp_start":"7100001","bp_stop":"13400000","stain":"gpos","density":"100"},{"#chromosome":"6","arm":"p","band":"23","iscn_start":"643","iscn_stop":"1047","bp_start":"13400001","bp_stop":"15200000","stain":"gneg","density":""},{"#chromosome":"6","arm":"p","band":"22.3","iscn_start":"1047","iscn_stop":"1381","bp_start":"15200001","bp_stop":"25200000","stain":"gpos","density":"75"},{"#chromosome":"6","arm":"p","band":"22.2","iscn_start":"1381","iscn_stop":"1541","bp_start":"25200001","bp_stop":"27100000","stain":"gneg","density":""},{"#chromosome":"6","arm":"p","band":"22.1","iscn_start":"1541","iscn_stop":"1773","bp_start":"27100001","bp_stop":"30500000","stain":"gpos","density":"50"},{"#chromosome":"6","arm":"p","band":"21.3","iscn_start":"1773","iscn_stop":"2428","bp_start":"30500001","bp_stop":"36600000","stain":"gneg","density":""},{"#chromosome":"6","arm":"p","band":"21.2","iscn_start":"2428","iscn_stop":"2571","bp_start":"36600001","bp_stop":"40500000","stain":"gpos","density":"25"},{"#chromosome":"6","arm":"p","band":"21.1","iscn_start":"2571","iscn_stop":"2999","bp_start":"40500001","bp_stop":"46200000","stain":"gneg","density":""},{"#chromosome":"6","arm":"p","band":"12","iscn_start":"2999","iscn_stop":"3618","bp_start":"46200001","bp_stop":"57200000","stain":"gpos","density":"100"},{"#chromosome":"6","arm":"p","band":"11.2","iscn_start":"3618","iscn_stop":"3714","bp_start":"57200001","bp_stop":"58500000","stain":"gneg","density":""},{"#chromosome":"6","arm":"p","band":"11.1","iscn_start":"3714","iscn_stop":"3856","bp_start":"58500001","bp_stop":"59800000","stain":"acen","density":""},{"#chromosome":"6","arm":"q","band":"11","iscn_start":"3856","iscn_stop":"3999","bp_start":"59800001","bp_stop":"62700000","stain":"acen",
+                "density":""},{"#chromosome":"6","arm":"q","band":"12","iscn_start":"3999","iscn_stop":"4439","bp_start":"62700001","bp_stop":"69200000","stain":"gpos","density":"100"},{"#chromosome":"6","arm":"q","band":"13","iscn_start":"4439","iscn_stop":"4701","bp_start":"69200001","bp_stop":"75200000","stain":"gneg","density":""},{"#chromosome":"6","arm":"q","band":"14","iscn_start":"4701","iscn_stop":"5129","bp_start":"75200001","bp_stop":"87300000","stain":"gpos","density":"100"},{"#chromosome":"6","arm":"q","band":"15","iscn_start":"5129","iscn_stop":"5402","bp_start":"87300001","bp_stop":"92500000","stain":"gneg","density":""},{"#chromosome":"6","arm":"q","band":"16.1","iscn_start":"5402","iscn_stop":"5742","bp_start":"92500001","bp_stop":"98900000","stain":"gpos","density":"100"},{"#chromosome":"6","arm":"q","band":"16.2","iscn_start":"5742","iscn_stop":"5807","bp_start":"98900001","bp_stop":"100000000","stain":"gneg","density":""},{"#chromosome":"6","arm":"q","band":"16.3","iscn_start":"5807","iscn_stop":"6068","bp_start":"100000001","bp_stop":"105000000","stain":"gpos","density":"100"},{"#chromosome":"6","arm":"q","band":"21","iscn_start":"6068","iscn_stop":"6746","bp_start":"105000001","bp_stop":"114200000","stain":"gneg","density":""},{"#chromosome":"6","arm":"q","band":"22.1","iscn_start":"6746","iscn_stop":"6955","bp_start":"114200001","bp_stop":"117900000","stain":"gpos","density":"75"},{"#chromosome":"6","arm":"q","band":"22.2","iscn_start":"6955","iscn_stop":"7067","bp_start":"117900001","bp_stop":"118100000","stain":"gneg","density":""},{"#chromosome":"6","arm":"q","band":"22.3","iscn_start":"7067","iscn_stop":"7793","bp_start":"118100001","bp_stop":"130000000","stain":"gpos","density":"100"},{"#chromosome":"6","arm":"q","band":"23.1","iscn_start":"7793","iscn_stop":"7962","bp_start":"130000001","bp_stop":"130900000","stain":"gneg","density":""},{"#chromosome":"6","arm":"q","band":"23.2","iscn_start":"7962","iscn_stop":"8096","bp_start":"130900001","bp_stop":"134700000","stain":"gpos","density":"50"},{"#chromosome":"6","arm":"q","band":"23.3","iscn_start":"8096","iscn_stop":"8221","bp_start":"134700001","bp_stop":"138300000","stain":"gneg","density":""},{"#chromosome":"6","arm":"q","band":"24","iscn_start":"8221","iscn_stop":"8851","bp_start":"138300001","bp_stop":"148500000","stain":"gpos","density":"100"},{"#chromosome":"6","arm":"q","band":"25.1","iscn_start":"8851","iscn_stop":"8996","bp_start":"148500001","bp_stop":"152100000","stain":"gneg","density":""},{"#chromosome":"6","arm":"q","band":"25.2","iscn_start":"8996","iscn_stop":"9119","bp_start":"152100001","bp_stop":"155200000","stain":"gpos","density":"50"},{"#chromosome":"6","arm":"q","band":"25.3","iscn_start":"9119","iscn_stop":"9386","bp_start":"155200001","bp_stop":"160600000","stain":"gneg","density":""},{"#chromosome":"6","arm":"q","band":"26","iscn_start":"9386","iscn_stop":"9696","bp_start":"160600001","bp_stop":"164100000","stain":"gpos","density":"50"},{"#chromosome":"6","arm":"q","band":"27","iscn_start":"9696","iscn_stop":"10100","bp_start":"164100001","bp_stop":"170805979","stain":"gneg","density":""},{"#chromosome":"7","arm":"p","band":"22","iscn_start":"0","iscn_stop":"470","bp_start":"1","bp_stop":"7200000","stain":"gneg","density":""},{"#chromosome":"7","arm":"p","band":"21","iscn_start":"470","iscn_stop":"1300","bp_start":"7200001","bp_stop":"20900000","stain":"gpos","density":"100"},{"#chromosome":"7","arm":"p","band":"15.3","iscn_start":"1300","iscn_stop":"1555","bp_start":"20900001","bp_stop":"25500000","stain":"gneg","density":""},{"#chromosome":"7","arm":"p","band":"15.2","iscn_start":"1555","iscn_stop":"1700","bp_start":"25500001","bp_stop":"27900000","stain":"gpos","density":"50"},{"#chromosome":"7","arm":"p","band":"15.1","iscn_start":"1700","iscn_stop":"1894","bp_start":"27900001","bp_stop":"28800000","stain":"gneg","density":""},{"#chromosome":"7","arm":"p","band":"14","iscn_start":"1894","iscn_stop":"2339","bp_start":"28800001","bp_stop":"43300000","stain":"gpos","density":"100"},{"#chromosome":"7","arm":"p","band":"13","iscn_start":"2339","iscn_stop":"2698","bp_start":"43300001","bp_stop":"45400000","stain":"gneg","density":""},{"#chromosome":"7","arm":"p","band":"12","iscn_start":"2698","iscn_stop":"3069","bp_start":"45400001","bp_stop":"53900000","stain":"gpos","density":"100"},{"#chromosome":"7","arm":"p","band":"11.2","iscn_start":"3069","iscn_stop":"3267","bp_start":"53900001","bp_stop":"58100000","stain":"gneg","density":""},{"#chromosome":"7","arm":"p","band":"11.1","iscn_start":"3267","iscn_stop":"3391","bp_start":"58100001","bp_stop":"60100000","stain":"acen","density":""},{"#chromosome":"7","arm":"q","band":"11.1","iscn_start":"3391","iscn_stop":"3513","bp_start":"60100001","bp_stop":"62100000","stain":"acen","density":""},{"#chromosome":"7","arm":"q","band":"11.21","iscn_start":"3742","iscn_stop":"4012","bp_start":"62100001","bp_stop":"67500000","stain":"gneg","density":""},{"#chromosome":"7","arm":"q","band":"11.22","iscn_start":"4012","iscn_stop":"4200","bp_start":"67500001","bp_stop":"72700000","stain":"gpos","density":"50"},{"#chromosome":"7","arm":"q","band":"11.23","iscn_start":"4200","iscn_stop":"4605","bp_start":"72700001","bp_stop":"77900000","stain":"gneg","density":""},{"#chromosome":"7","arm":"q","band":"21.1","iscn_start":"4605","iscn_stop":"5263","bp_start":"77900001","bp_stop":"91500000","stain":"gpos","density":"100"},{"#chromosome":"7","arm":"q","band":"21.2","iscn_start":"5263","iscn_stop":"5371","bp_start":"91500001","bp_stop":"93300000","stain":"gneg","density":""},{"#chromosome":"7","arm":"q","band":"21.3","iscn_start":"5371","iscn_stop":"5612","bp_start":"93300001","bp_stop":"98400000","stain":"gpos","density":"75"},{"#chromosome":"7","arm":"q","band":"22","iscn_start":"5612","iscn_stop":"6292","bp_start":"98400001","bp_stop":"107800000","stain":"gneg","density":""},{"#chromosome":"7","arm":"q","band":"31.1","iscn_start":"6292","iscn_stop":"6584","bp_start":"107800001","bp_stop":"115000000","stain":"gpos","density":"75"},{"#chromosome":"7","arm":"q","band":"31.2","iscn_start":"6584","iscn_stop":"6836","bp_start":"115000001","bp_stop":"117700000","stain":"gneg","density":""},{"#chromosome":"7","arm":"q","band":"31.3","iscn_start":"6836","iscn_stop":"7517","bp_start":"117700001","bp_stop":"127500000","stain":"gpos","density":"100"},{"#chromosome":"7","arm":"q","band":"32","iscn_start":"7517","iscn_stop":"7966","bp_start":"127500001","bp_stop":"132900000","stain":"gneg","density":""},{"#chromosome":"7","arm":"q","band":"33","iscn_start":"7966","iscn_stop":"8221","bp_start":"132900001","bp_stop":"138500000","stain":"gpos","density":"50"},{"#chromosome":"7","arm":"q","band":"34","iscn_start":"8221","iscn_stop":"8440","bp_start":"138500001","bp_stop":"143400000","stain":"gneg","density":""},{"#chromosome":"7","arm":"q","band":"35","iscn_start":"8440","iscn_stop":"8719","bp_start":"143400001","bp_stop":"148200000","stain":"gpos","density":"75"},{"#chromosome":"7","arm":"q","band":"36","iscn_start":"8719","iscn_stop":"9350","bp_start":"148200001","bp_stop":"159345973","stain":"gneg","density":""},{"#chromosome":"8","arm":"p","band":"23.3","iscn_start":"0","iscn_stop":"102","bp_start":"1","bp_stop":"2300000","stain":"gneg","density":""},{"#chromosome":"8","arm":"p","band":"23.2","iscn_start":"102","iscn_stop":"293","bp_start":"2300001","bp_stop":"6300000","stain":"gpos","density":"75"},{"#chromosome":"8","arm":"p","band":"23.1","iscn_start":"293","iscn_stop":"610","bp_start":"6300001","bp_stop":"12800000","stain":"gneg","density":""},{"#chromosome":"8","arm":"p","band":"22","iscn_start":"610","iscn_stop":"1138","bp_start":"12800001","bp_stop":"19200000","stain":"gpos","density":"100"},{"#chromosome":"8","arm":"p","band":"21.3","iscn_start":"1138","iscn_stop":"1288","bp_start":"19200001","bp_stop":"23500000","stain":"gneg","density":""},{"#chromosome":"8","arm":"p","band":"21.2","iscn_start":"1288","iscn_stop":"1449","bp_start":"23500001","bp_stop":"27500000","stain":"gpos","density":"50"},{"#chromosome":"8","arm":"p","band":"21.1","iscn_start":"1449","iscn_stop":"1656","bp_start":"27500001","bp_stop":"29000000","stain":"gneg","density":""},{"#chromosome":"8","arm":"p","band":"12","iscn_start":"1656","iscn_stop":"2266","bp_start":"29000001","bp_stop":"36700000","stain":"gpos","density":"75"},{"#chromosome":"8","arm":"p","band":"11.2","iscn_start":"2266","iscn_stop":"2611","bp_start":"36700001","bp_stop":"43200000","stain":"gneg","density":""},{"#chromosome":"8","arm":"p","band":"11.1","iscn_start":"2611","iscn_stop":"2743","bp_start":"43200001","bp_stop":"45200000","stain":"acen","density":""},{"#chromosome":"8","arm":"q","band":"11.1","iscn_start":"2743","iscn_stop":"2891","bp_start":"45200001","bp_stop":"47200000","stain":"acen","density":""},{"#chromosome":"8","arm":"q","band":"11.21","iscn_start":"2946","iscn_stop":"3001","bp_start":"47200001","bp_stop":"51300000","stain":"gneg","density":""},{"#chromosome":"8","arm":"q","band":"11.22","iscn_start":"3001","iscn_stop":"3070","bp_start":"51300001","bp_stop":"51700000","stain":"gpos","density":"75"},{"#chromosome":"8","arm":"q","band":"11.23","iscn_start":"3070","iscn_stop":"3148","bp_start":"51700001","bp_stop":"54600000","stain":"gneg","density":""},{"#chromosome":"8","arm":"q","band":"12","iscn_start":"3148","iscn_stop":"3641","bp_start":"54600001","bp_stop":"65100000","stain":"gpos","density":"100"},{"#chromosome":"8","arm":"q","band":"13","iscn_start":"3641","iscn_stop":"4145","bp_start":"65100001","bp_stop":"72000000","stain":"gneg","density":""},{"#chromosome":"8","arm":"q","band":"21.1","iscn_start":"4145","iscn_stop":"4756","bp_start":"72000001","bp_stop":"83500000","stain":"gpos","density":"100"},{"#chromosome":"8","arm":"q","band":"21.2","iscn_start":"4756","iscn_stop":"4885","bp_start":"83500001","bp_stop":"85900000","stain":"gneg","density":""},{"#chromosome":"8","arm":"q","band":"21.3","iscn_start":"4885",
+                "iscn_stop":"5506","bp_start":"85900001","bp_stop":"92300000","stain":"gpos","density":"100"},{"#chromosome":"8","arm":"q","band":"22.1","iscn_start":"5506","iscn_stop":"5856","bp_start":"92300001","bp_stop":"97900000","stain":"gneg","density":""},{"#chromosome":"8","arm":"q","band":"22.2","iscn_start":"5856","iscn_stop":"5996","bp_start":"97900001","bp_stop":"100500000","stain":"gpos","density":"25"},{"#chromosome":"8","arm":"q","band":"22.3","iscn_start":"5996","iscn_stop":"6276","bp_start":"100500001","bp_stop":"105100000","stain":"gneg","density":""},{"#chromosome":"8","arm":"q","band":"23","iscn_start":"6276","iscn_stop":"7026","bp_start":"105100001","bp_stop":"116700000","stain":"gpos","density":"100"},{"#chromosome":"8","arm":"q","band":"24.1","iscn_start":"7026","iscn_stop":"7628","bp_start":"116700001","bp_stop":"126300000","stain":"gneg","density":""},{"#chromosome":"8","arm":"q","band":"24.2","iscn_start":"7628","iscn_stop":"7885","bp_start":"126300001","bp_stop":"138900000","stain":"gpos","density":"100"},{"#chromosome":"8","arm":"q","band":"24.3","iscn_start":"7885","iscn_stop":"8250","bp_start":"138900001","bp_stop":"145138636","stain":"gneg","density":""},{"#chromosome":"9","arm":"p","band":"24","iscn_start":"0","iscn_stop":"355","bp_start":"1","bp_stop":"9000000","stain":"gneg","density":""},{"#chromosome":"9","arm":"p","band":"23","iscn_start":"355","iscn_stop":"841","bp_start":"9000001","bp_stop":"14200000","stain":"gpos","density":"75"},{"#chromosome":"9","arm":"p","band":"22","iscn_start":"841","iscn_stop":"942","bp_start":"14200001","bp_stop":"19900000","stain":"gneg","density":""},{"#chromosome":"9","arm":"p","band":"21","iscn_start":"942","iscn_stop":"1661","bp_start":"19900001","bp_stop":"33200000","stain":"gpos","density":"100"},{"#chromosome":"9","arm":"p","band":"13","iscn_start":"1661","iscn_stop":"2148","bp_start":"33200001","bp_stop":"39000000","stain":"gneg","density":""},{"#chromosome":"9","arm":"p","band":"12","iscn_start":"2148","iscn_stop":"2522","bp_start":"39000001","bp_stop":"40000000","stain":"gpos","density":"50"},{"#chromosome":"9","arm":"p","band":"11","iscn_start":"2522","iscn_stop":"2634","bp_start":"40000001","bp_stop":"43000000","stain":"acen","density":""},{"#chromosome":"9","arm":"q","band":"11","iscn_start":"2634","iscn_stop":"2773","bp_start":"43000001","bp_stop":"45500000","stain":"acen","density":""},{"#chromosome":"9","arm":"q","band":"12","iscn_start":"2773","iscn_stop":"3695","bp_start":"45500001","bp_stop":"61500000","stain":"gvar","density":""},{"#chromosome":"9","arm":"q","band":"13","iscn_start":"3695","iscn_stop":"3864","bp_start":"61500001","bp_stop":"65000000","stain":"gneg","density":""},{"#chromosome":"9","arm":"q","band":"21.1","iscn_start":"3864","iscn_stop":"4232","bp_start":"65000001","bp_stop":"76600000","stain":"gpos","density":"100"},{"#chromosome":"9","arm":"q","band":"21.2","iscn_start":"4232","iscn_stop":"4370","bp_start":"76600001","bp_stop":"78500000","stain":"gneg","density":""},{"#chromosome":"9","arm":"q","band":"21.3","iscn_start":"4370","iscn_stop":"4865","bp_start":"78500001","bp_stop":"87800000","stain":"gpos","density":"100"},{"#chromosome":"9","arm":"q","band":"22.1","iscn_start":"4865","iscn_stop":"5160","bp_start":"87800001","bp_stop":"89200000","stain":"gneg","density":""},{"#chromosome":"9","arm":"q","band":"22.2","iscn_start":"5160","iscn_stop":"5283","bp_start":"89200001","bp_stop":"91200000","stain":"gpos","density":"25"},{"#chromosome":"9","arm":"q","band":"22.3","iscn_start":"5283","iscn_stop":"5857","bp_start":"91200001","bp_stop":"99800000","stain":"gneg","density":""},{"#chromosome":"9","arm":"q","band":"31","iscn_start":"5857","iscn_stop":"6373","bp_start":"99800001","bp_stop":"112100000","stain":"gpos","density":"100"},{"#chromosome":"9","arm":"q","band":"32","iscn_start":"6373","iscn_stop":"6571","bp_start":"112100001","bp_stop":"114900000","stain":"gneg","density":""},{"#chromosome":"9","arm":"q","band":"33","iscn_start":"6571","iscn_stop":"6958","bp_start":"114900001","bp_stop":"127500000","stain":"gpos","density":"100"},{"#chromosome":"9","arm":"q","band":"34.1","iscn_start":"6958","iscn_stop":"7448","bp_start":"127500001","bp_stop":"133100000","stain":"gneg","density":""},{"#chromosome":"9","arm":"q","band":"34.2","iscn_start":"7448","iscn_stop":"7559","bp_start":"133100001","bp_stop":"134500000","stain":"gpos","density":"25"},{"#chromosome":"9","arm":"q","band":"34.3","iscn_start":"7559","iscn_stop":"7950","bp_start":"134500001","bp_stop":"138394717","stain":"gneg","density":""},{"#chromosome":"10","arm":"p","band":"15","iscn_start":"0","iscn_stop":"456","bp_start":"1","bp_stop":"6600000","stain":"gneg","density":""},{"#chromosome":"10","arm":"p","band":"14","iscn_start":"456","iscn_stop":"841","bp_start":"6600001","bp_stop":"12200000","stain":"gpos","density":"75"},{"#chromosome":"10","arm":"p","band":"13","iscn_start":"841","iscn_stop":"1261","bp_start":"12200001","bp_stop":"17300000","stain":"gneg","density":""},{"#chromosome":"10","arm":"p","band":"12.3","iscn_start":"1261","iscn_stop":"1658","bp_start":"17300001","bp_stop":"22300000","stain":"gpos","density":"100"},{"#chromosome":"10","arm":"p","band":"12.2","iscn_start":"1658","iscn_stop":"1711","bp_start":"22300001","bp_stop":"24300000","stain":"gneg","density":""},{"#chromosome":"10","arm":"p","band":"12.1","iscn_start":"1711","iscn_stop":"1923","bp_start":"24300001","bp_stop":"29300000","stain":"gpos","density":"50"},{"#chromosome":"10","arm":"p","band":"11.2","iscn_start":"1923","iscn_stop":"2477","bp_start":"29300001","bp_stop":"38000000","stain":"gneg","density":""},{"#chromosome":"10","arm":"p","band":"11.1","iscn_start":"2477","iscn_stop":"2620","bp_start":"38000001","bp_stop":"39800000","stain":"acen","density":""},{"#chromosome":"10","arm":"q","band":"11.1","iscn_start":"2620","iscn_stop":"2762","bp_start":"39800001","bp_stop":"41600000","stain":"acen","density":""},{"#chromosome":"10","arm":"q","band":"11.2","iscn_start":"2762","iscn_stop":"3222","bp_start":"41600001","bp_stop":"51100000","stain":"gneg","density":""},{"#chromosome":"10","arm":"q","band":"21.1","iscn_start":"3222","iscn_stop":"3832","bp_start":"51100001","bp_stop":"59400000","stain":"gpos","density":"100"},{"#chromosome":"10","arm":"q","band":"21.2","iscn_start":"3832","iscn_stop":"3985","bp_start":"59400001","bp_stop":"62800000","stain":"gneg","density":""},{"#chromosome":"10","arm":"q","band":"21.3","iscn_start":"3985","iscn_stop":"4442","bp_start":"62800001","bp_stop":"68800000","stain":"gpos","density":"100"},{"#chromosome":"10","arm":"q","band":"22.1","iscn_start":"4442","iscn_stop":"4845","bp_start":"68800001","bp_stop":"73100000","stain":"gneg","density":""},{"#chromosome":"10","arm":"q","band":"22.2","iscn_start":"4845","iscn_stop":"5047","bp_start":"73100001","bp_stop":"75900000","stain":"gpos","density":"50"},{"#chromosome":"10","arm":"q","band":"22.3","iscn_start":"5047","iscn_stop":"5388","bp_start":"75900001","bp_stop":"80300000","stain":"gneg","density":""},{"#chromosome":"10","arm":"q","band":"23.1","iscn_start":"5388","iscn_stop":"5566","bp_start":"80300001","bp_stop":"86100000","stain":"gpos","density":"100"},{"#chromosome":"10","arm":"q","band":"23.2","iscn_start":"5566","iscn_stop":"5667","bp_start":"86100001","bp_stop":"87700000","stain":"gneg","density":""},{"#chromosome":"10","arm":"q","band":"23.3","iscn_start":"5667","iscn_stop":"6096","bp_start":"87700001","bp_stop":"95300000","stain":"gpos","density":"100"},{"#chromosome":"10","arm":"q","band":"24.1","iscn_start":"6096","iscn_stop":"6193","bp_start":"95300001","bp_stop":"97500000","stain":"gneg","density":""},{"#chromosome":"10","arm":"q","band":"24.2","iscn_start":"6193","iscn_stop":"6371","bp_start":"97500001","bp_stop":"100100000","stain":"gpos","density":"50"},{"#chromosome":"10","arm":"q","band":"24.3","iscn_start":"6371","iscn_stop":"6644","bp_start":"100100001","bp_stop":"104000000","stain":"gneg","density":""},{"#chromosome":"10","arm":"q","band":"25.1","iscn_start":"6644","iscn_stop":"7017","bp_start":"104000001","bp_stop":"110100000","stain":"gpos","density":"100"},{"#chromosome":"10","arm":"q","band":"25.2","iscn_start":"7017","iscn_stop":"7174","bp_start":"110100001","bp_stop":"113100000","stain":"gneg","density":""},{"#chromosome":"10","arm":"q","band":"25.3","iscn_start":"7174","iscn_stop":"7351","bp_start":"113100001","bp_stop":"117300000","stain":"gpos","density":"75"},{"#chromosome":"10","arm":"q","band":"26.1","iscn_start":"7351","iscn_stop":"7722","bp_start":"117300001","bp_stop":"125700000","stain":"gneg","density":""},{"#chromosome":"10","arm":"q","band":"26.2","iscn_start":"7722","iscn_stop":"7852","bp_start":"125700001","bp_stop":"128800000","stain":"gpos","density":"50"},{"#chromosome":"10","arm":"q","band":"26.3","iscn_start":"7852","iscn_stop":"8050","bp_start":"128800001","bp_stop":"133797422","stain":"gneg","density":""},{"#chromosome":"11","arm":"p","band":"15.5","iscn_start":"0","iscn_stop":"212","bp_start":"1","bp_stop":"2800000","stain":"gneg","density":""},{"#chromosome":"11","arm":"p","band":"15.4","iscn_start":"212","iscn_stop":"425","bp_start":"2800001","bp_stop":"11700000","stain":"gpos","density":"50"},{"#chromosome":"11","arm":"p","band":"15.3","iscn_start":"425","iscn_stop":"687","bp_start":"11700001","bp_stop":"13800000","stain":"gneg","density":""},{"#chromosome":"11","arm":"p","band":"15.2","iscn_start":"687","iscn_stop":"862","bp_start":"13800001","bp_stop":"16900000","stain":"gpos","density":"50"},{"#chromosome":"11","arm":"p","band":"15.1","iscn_start":"862","iscn_stop":"1149","bp_start":"16900001","bp_stop":"22000000","stain":"gneg","density":""},{"#chromosome":"11","arm":"p","band":"14","iscn_start":"1149","iscn_stop":"1957","bp_start":"22000001","bp_stop":"31000000","stain":"gpos","density":"100"},{"#chromosome":"11","arm":"p","band":"13","iscn_start":"1957","iscn_stop":"2262","bp_start":"31000001","bp_stop":"36400000",
+                "stain":"gneg","density":""},{"#chromosome":"11","arm":"p","band":"12","iscn_start":"2262","iscn_stop":"2639","bp_start":"36400001","bp_stop":"43400000","stain":"gpos","density":"100"},{"#chromosome":"11","arm":"p","band":"11.2","iscn_start":"2639","iscn_stop":"3186","bp_start":"43400001","bp_stop":"48800000","stain":"gneg","density":""},{"#chromosome":"11","arm":"p","band":"11.12","iscn_start":"3257","iscn_stop":"3309","bp_start":"48800001","bp_stop":"51000000","stain":"gpos","density":"75"},{"#chromosome":"11","arm":"p","band":"11.11","iscn_start":"2872","iscn_stop":"3035","bp_start":"51000001","bp_stop":"53400000","stain":"acen"},{"#chromosome":"11","arm":"q","band":"11","iscn_start":"3348","iscn_stop":"3478","bp_start":"53400001","bp_stop":"55800000","stain":"acen","density":""},{"#chromosome":"11","arm":"q","band":"12","iscn_start":"3478","iscn_stop":"3999","bp_start":"55800001","bp_stop":"63600000","stain":"gpos","density":"100"},{"#chromosome":"11","arm":"q","band":"13.1","iscn_start":"3999","iscn_stop":"4248","bp_start":"63600001","bp_stop":"66100000","stain":"gneg","density":""},{"#chromosome":"11","arm":"q","band":"13.2","iscn_start":"4248","iscn_stop":"4353","bp_start":"66100001","bp_stop":"68700000","stain":"gpos","density":"25"},{"#chromosome":"11","arm":"q","band":"13.3","iscn_start":"4353","iscn_stop":"4584","bp_start":"68700001","bp_stop":"70500000","stain":"gneg","density":""},{"#chromosome":"11","arm":"q","band":"13.4","iscn_start":"4584","iscn_stop":"4708","bp_start":"70500001","bp_stop":"75500000","stain":"gpos","density":"50"},{"#chromosome":"11","arm":"q","band":"13.5","iscn_start":"4708","iscn_stop":"4842","bp_start":"75500001","bp_stop":"77400000","stain":"gneg","density":""},{"#chromosome":"11","arm":"q","band":"14.1","iscn_start":"4842","iscn_stop":"5186","bp_start":"77400001","bp_stop":"85900000","stain":"gpos","density":"100"},{"#chromosome":"11","arm":"q","band":"14.2","iscn_start":"5186","iscn_stop":"5324","bp_start":"85900001","bp_stop":"88600000","stain":"gneg","density":""},{"#chromosome":"11","arm":"q","band":"14.3","iscn_start":"5324","iscn_stop":"5599","bp_start":"88600001","bp_stop":"93000000","stain":"gpos","density":"100"},{"#chromosome":"11","arm":"q","band":"21","iscn_start":"5599","iscn_stop":"5703","bp_start":"93000001","bp_stop":"97400000","stain":"gneg","density":""},{"#chromosome":"11","arm":"q","band":"22.1","iscn_start":"5703","iscn_stop":"5967","bp_start":"97400001","bp_stop":"102300000","stain":"gpos","density":"100"},{"#chromosome":"11","arm":"q","band":"22.2","iscn_start":"5967","iscn_stop":"6114","bp_start":"102300001","bp_stop":"103000000","stain":"gneg","density":""},{"#chromosome":"11","arm":"q","band":"22.3","iscn_start":"6114","iscn_stop":"6363","bp_start":"103000001","bp_stop":"110600000","stain":"gpos","density":"100"},{"#chromosome":"11","arm":"q","band":"23.1","iscn_start":"6363","iscn_stop":"6585","bp_start":"110600001","bp_stop":"112700000","stain":"gneg","density":""},{"#chromosome":"11","arm":"q","band":"23.2","iscn_start":"6585","iscn_stop":"6793","bp_start":"112700001","bp_stop":"114600000","stain":"gpos","density":"50"},{"#chromosome":"11","arm":"q","band":"23.3","iscn_start":"6793","iscn_stop":"7311","bp_start":"114600001","bp_stop":"121300000","stain":"gneg","density":""},{"#chromosome":"11","arm":"q","band":"24","iscn_start":"7311","iscn_stop":"7658","bp_start":"121300001","bp_stop":"130900000","stain":"gpos","density":"100"},{"#chromosome":"11","arm":"q","band":"25","iscn_start":"7658","iscn_stop":"7980","bp_start":"130900001","bp_stop":"135086622","stain":"gneg","density":""},{"#chromosome":"12","arm":"p","band":"13.3","iscn_start":"0","iscn_stop":"522","bp_start":"1","bp_stop":"10000000","stain":"gneg","density":""},{"#chromosome":"12","arm":"p","band":"13.2","iscn_start":"522","iscn_stop":"665","bp_start":"10000001","bp_stop":"12600000","stain":"gpos","density":"75"},{"#chromosome":"12","arm":"p","band":"13.1","iscn_start":"665","iscn_stop":"760","bp_start":"12600001","bp_stop":"14600000","stain":"gneg","density":""},{"#chromosome":"12","arm":"p","band":"12.3","iscn_start":"760","iscn_stop":"1092","bp_start":"14600001","bp_stop":"19800000","stain":"gpos","density":"100"},{"#chromosome":"12","arm":"p","band":"12.2","iscn_start":"1092","iscn_stop":"1160","bp_start":"19800001","bp_stop":"21100000","stain":"gneg","density":""},{"#chromosome":"12","arm":"p","band":"12.1","iscn_start":"1160","iscn_stop":"1492","bp_start":"21100001","bp_stop":"26300000","stain":"gpos","density":"100"},{"#chromosome":"12","arm":"p","band":"11.2","iscn_start":"1492","iscn_stop":"1922","bp_start":"26300001","bp_stop":"33200000","stain":"gneg","density":""},{"#chromosome":"12","arm":"p","band":"11.1","iscn_start":"1922","iscn_stop":"2105","bp_start":"33200001","bp_stop":"35500000","stain":"acen","density":""},{"#chromosome":"12","arm":"q","band":"11","iscn_start":"2105","iscn_stop":"2202","bp_start":"35500001","bp_stop":"37800000","stain":"acen","density":""},{"#chromosome":"12","arm":"q","band":"12","iscn_start":"2202","iscn_stop":"2697","bp_start":"37800001","bp_stop":"46000000","stain":"gpos","density":"100"},{"#chromosome":"12","arm":"q","band":"13.1","iscn_start":"2697","iscn_stop":"3204","bp_start":"46000001","bp_stop":"54500000","stain":"gneg","density":""},{"#chromosome":"12","arm":"q","band":"13.2","iscn_start":"3204","iscn_stop":"3340","bp_start":"54500001","bp_stop":"56200000","stain":"gpos","density":"25"},{"#chromosome":"12","arm":"q","band":"13.3","iscn_start":"3340","iscn_stop":"3430","bp_start":"56200001","bp_stop":"57700000","stain":"gneg","density":""},{"#chromosome":"12","arm":"q","band":"14","iscn_start":"3430","iscn_stop":"3942","bp_start":"57700001","bp_stop":"67300000","stain":"gpos","density":"100"},{"#chromosome":"12","arm":"q","band":"15","iscn_start":"3942","iscn_stop":"4286","bp_start":"67300001","bp_stop":"71100000","stain":"gneg","density":""},{"#chromosome":"12","arm":"q","band":"21.1","iscn_start":"4286","iscn_stop":"4460","bp_start":"71100001","bp_stop":"75300000","stain":"gpos","density":"75"},{"#chromosome":"12","arm":"q","band":"21.2","iscn_start":"4460","iscn_stop":"4664","bp_start":"75300001","bp_stop":"79900000","stain":"gneg","density":""},{"#chromosome":"12","arm":"q","band":"21.3","iscn_start":"4664","iscn_stop":"5293","bp_start":"79900001","bp_stop":"92200000","stain":"gpos","density":"100"},{"#chromosome":"12","arm":"q","band":"22","iscn_start":"5293","iscn_stop":"5716","bp_start":"92200001","bp_stop":"95800000","stain":"gneg","density":""},{"#chromosome":"12","arm":"q","band":"23","iscn_start":"5716","iscn_stop":"6229","bp_start":"95800001","bp_stop":"108600000","stain":"gpos","density":"100"},{"#chromosome":"12","arm":"q","band":"24.1","iscn_start":"6229","iscn_stop":"6714","bp_start":"108600001","bp_stop":"113900000","stain":"gneg","density":""},{"#chromosome":"12","arm":"q","band":"24.2","iscn_start":"6714","iscn_stop":"6917","bp_start":"113900001","bp_stop":"120300000","stain":"gpos","density":"100"},{"#chromosome":"12","arm":"q","band":"24.31","iscn_start":"7227","iscn_stop":"7351","bp_start":"120300001","bp_stop":"125400000","stain":"gneg","density":""},{"#chromosome":"12","arm":"q","band":"24.32","iscn_start":"7351","iscn_stop":"7412","bp_start":"125400001","bp_stop":"128700000","stain":"gpos","density":"50"},{"#chromosome":"12","arm":"q","band":"24.33","iscn_start":"7412","iscn_stop":"7500","bp_start":"128700001","bp_stop":"133275309","stain":"gneg","density":""},{"#chromosome":"13","arm":"p","band":"13","iscn_start":"0","iscn_stop":"301","bp_start":"1","bp_stop":"4600000","stain":"gvar","density":""},{"#chromosome":"13","arm":"p","band":"12","iscn_start":"301","iscn_stop":"602","bp_start":"4600001","bp_stop":"10100000","stain":"stalk","density":""},{"#chromosome":"13","arm":"p","band":"11.2","iscn_start":"602","iscn_stop":"1004","bp_start":"10100001","bp_stop":"16500000","stain":"gvar","density":""},{"#chromosome":"13","arm":"p","band":"11.1","iscn_start":"1004","iscn_stop":"1204","bp_start":"16500001","bp_stop":"17700000","stain":"acen","density":""},{"#chromosome":"13","arm":"q","band":"11","iscn_start":"1204","iscn_stop":"1351","bp_start":"17700001","bp_stop":"18900000","stain":"acen","density":""},{"#chromosome":"13","arm":"q","band":"12.1","iscn_start":"1351","iscn_stop":"1735","bp_start":"18900001","bp_stop":"27200000","stain":"gneg","density":""},{"#chromosome":"13","arm":"q","band":"12.2","iscn_start":"1735","iscn_stop":"1821","bp_start":"27200001","bp_stop":"28300000","stain":"gpos","density":"25"},{"#chromosome":"13","arm":"q","band":"12.3","iscn_start":"1821","iscn_stop":"2019","bp_start":"28300001","bp_stop":"31600000","stain":"gneg","density":""},{"#chromosome":"13","arm":"q","band":"13","iscn_start":"2019","iscn_stop":"2295","bp_start":"31600001","bp_stop":"39500000","stain":"gpos","density":"100"},{"#chromosome":"13","arm":"q","band":"14.1","iscn_start":"2295","iscn_stop":"2690","bp_start":"39500001","bp_stop":"46700000","stain":"gneg","density":""},{"#chromosome":"13","arm":"q","band":"14.2","iscn_start":"2690","iscn_stop":"2841","bp_start":"46700001","bp_stop":"50300000","stain":"gpos","density":"50"},{"#chromosome":"13","arm":"q","band":"14.3","iscn_start":"2841","iscn_stop":"3028","bp_start":"50300001","bp_stop":"54700000","stain":"gneg","density":""},{"#chromosome":"13","arm":"q","band":"21.1","iscn_start":"3028","iscn_stop":"3294","bp_start":"54700001","bp_stop":"59000000","stain":"gpos","density":"100"},{"#chromosome":"13","arm":"q","band":"21.2","iscn_start":"3294","iscn_stop":"3444","bp_start":"59000001","bp_stop":"61800000","stain":"gneg","density":""},{"#chromosome":"13","arm":"q","band":"21.3","iscn_start":"3444","iscn_stop":"4093","bp_start":"61800001","bp_stop":"72800000","stain":"gpos","density":"100"},{"#chromosome":"13","arm":"q","band":"22","iscn_start":"4093","iscn_stop":"4625","bp_start":"72800001","bp_stop":"78500000","stain":"gneg","density":""},
+                {"#chromosome":"13","arm":"q","band":"31","iscn_start":"4625","iscn_stop":"5280","bp_start":"78500001","bp_stop":"94400000","stain":"gpos","density":"100"},{"#chromosome":"13","arm":"q","band":"32","iscn_start":"5280","iscn_stop":"5742","bp_start":"94400001","bp_stop":"101100000","stain":"gneg","density":""},{"#chromosome":"13","arm":"q","band":"33","iscn_start":"5742","iscn_stop":"6065","bp_start":"101100001","bp_stop":"109600000","stain":"gpos","density":"100"},{"#chromosome":"13","arm":"q","band":"34","iscn_start":"6065","iscn_stop":"6510","bp_start":"109600001","bp_stop":"114364328","stain":"gneg","density":""},{"#chromosome":"14","arm":"p","band":"13","iscn_start":"0","iscn_stop":"305","bp_start":"1","bp_stop":"3600000","stain":"gvar","density":""},{"#chromosome":"14","arm":"p","band":"12","iscn_start":"305","iscn_stop":"611","bp_start":"3600001","bp_stop":"8000000","stain":"stalk","density":""},{"#chromosome":"14","arm":"p","band":"11.2","iscn_start":"611","iscn_stop":"1018","bp_start":"8000001","bp_stop":"16100000","stain":"gvar","density":""},{"#chromosome":"14","arm":"p","band":"11.1","iscn_start":"1018","iscn_stop":"1222","bp_start":"16100001","bp_stop":"17200000","stain":"acen","density":""},{"#chromosome":"14","arm":"q","band":"11.1","iscn_start":"1222","iscn_stop":"1421","bp_start":"17200001","bp_stop":"18200000","stain":"acen","density":""},{"#chromosome":"14","arm":"q","band":"11.2","iscn_start":"1421","iscn_stop":"1808","bp_start":"18200001","bp_stop":"24100000","stain":"gneg","density":""},{"#chromosome":"14","arm":"q","band":"12","iscn_start":"1808","iscn_stop":"2243","bp_start":"24100001","bp_stop":"32900000","stain":"gpos","density":"100"},{"#chromosome":"14","arm":"q","band":"13","iscn_start":"2243","iscn_stop":"2633","bp_start":"32900001","bp_stop":"37400000","stain":"gneg","density":""},{"#chromosome":"14","arm":"q","band":"21","iscn_start":"2633","iscn_stop":"3441","bp_start":"37400001","bp_stop":"50400000","stain":"gpos","density":"100"},{"#chromosome":"14","arm":"q","band":"22","iscn_start":"3441","iscn_stop":"3894","bp_start":"50400001","bp_stop":"57600000","stain":"gneg","density":""},{"#chromosome":"14","arm":"q","band":"23","iscn_start":"3894","iscn_stop":"4169","bp_start":"57600001","bp_stop":"67400000","stain":"gpos","density":"100"},{"#chromosome":"14","arm":"q","band":"24.1","iscn_start":"4169","iscn_stop":"4587","bp_start":"67400001","bp_stop":"69800000","stain":"gneg","density":""},{"#chromosome":"14","arm":"q","band":"24.2","iscn_start":"4587","iscn_stop":"4786","bp_start":"69800001","bp_stop":"73300000","stain":"gpos","density":"50"},{"#chromosome":"14","arm":"q","band":"24.3","iscn_start":"4786","iscn_stop":"5084","bp_start":"73300001","bp_stop":"78800000","stain":"gneg","density":""},{"#chromosome":"14","arm":"q","band":"31","iscn_start":"5084","iscn_stop":"5599","bp_start":"78800001","bp_stop":"89300000","stain":"gpos","density":"100"},{"#chromosome":"14","arm":"q","band":"32.1","iscn_start":"5599","iscn_stop":"5798","bp_start":"89300001","bp_stop":"95800000","stain":"gneg","density":""},{"#chromosome":"14","arm":"q","band":"32.2","iscn_start":"5798","iscn_stop":"5881","bp_start":"95800001","bp_stop":"100900000","stain":"gpos","density":"50"},{"#chromosome":"14","arm":"q","band":"32.3","iscn_start":"5881","iscn_stop":"6300","bp_start":"100900001","bp_stop":"107043718","stain":"gneg","density":""},{"#chromosome":"15","arm":"p","band":"13","iscn_start":"0","iscn_stop":"319","bp_start":"1","bp_stop":"4200000","stain":"gvar","density":""},{"#chromosome":"15","arm":"p","band":"12","iscn_start":"319","iscn_stop":"637","bp_start":"4200001","bp_stop":"9700000","stain":"stalk","density":""},{"#chromosome":"15","arm":"p","band":"11.2","iscn_start":"637","iscn_stop":"1062","bp_start":"9700001","bp_stop":"17500000","stain":"gvar","density":""},{"#chromosome":"15","arm":"p","band":"11.1","iscn_start":"1062","iscn_stop":"1275","bp_start":"17500001","bp_stop":"19000000","stain":"acen","density":""},{"#chromosome":"15","arm":"q","band":"11.1","iscn_start":"1275","iscn_stop":"1498","bp_start":"19000001","bp_stop":"20500000","stain":"acen","density":""},{"#chromosome":"15","arm":"q","band":"11.2","iscn_start":"1498","iscn_stop":"1657","bp_start":"20500001","bp_stop":"25500000","stain":"gneg","density":""},{"#chromosome":"15","arm":"q","band":"12","iscn_start":"1657","iscn_stop":"1862","bp_start":"25500001","bp_stop":"27800000","stain":"gpos","density":"50"},{"#chromosome":"15","arm":"q","band":"13","iscn_start":"1862","iscn_stop":"2043","bp_start":"27800001","bp_stop":"33400000","stain":"gneg","density":""},{"#chromosome":"15","arm":"q","band":"14","iscn_start":"2043","iscn_stop":"2411","bp_start":"33400001","bp_stop":"39800000","stain":"gpos","density":"75"},{"#chromosome":"15","arm":"q","band":"15","iscn_start":"2411","iscn_stop":"2832","bp_start":"39800001","bp_stop":"44500000","stain":"gneg","density":""},{"#chromosome":"15","arm":"q","band":"21.1","iscn_start":"2832","iscn_stop":"3121","bp_start":"44500001","bp_stop":"49200000","stain":"gpos","density":"75"},{"#chromosome":"15","arm":"q","band":"21.2","iscn_start":"3121","iscn_stop":"3312","bp_start":"49200001","bp_stop":"52600000","stain":"gneg","density":""},{"#chromosome":"15","arm":"q","band":"21.3","iscn_start":"3312","iscn_stop":"3600","bp_start":"52600001","bp_stop":"58800000","stain":"gpos","density":"75"},{"#chromosome":"15","arm":"q","band":"22.1","iscn_start":"3600","iscn_stop":"3724","bp_start":"58800001","bp_stop":"59000000","stain":"gneg","density":""},{"#chromosome":"15","arm":"q","band":"22.2","iscn_start":"3724","iscn_stop":"3820","bp_start":"59000001","bp_stop":"63400000","stain":"gpos","density":"25"},{"#chromosome":"15","arm":"q","band":"22.3","iscn_start":"3820","iscn_stop":"4203","bp_start":"63400001","bp_stop":"67200000","stain":"gneg","density":""},{"#chromosome":"15","arm":"q","band":"23","iscn_start":"4203","iscn_stop":"4471","bp_start":"67200001","bp_stop":"72400000","stain":"gpos","density":"25"},{"#chromosome":"15","arm":"q","band":"24","iscn_start":"4471","iscn_stop":"5002","bp_start":"72400001","bp_stop":"78000000","stain":"gneg","density":""},{"#chromosome":"15","arm":"q","band":"25","iscn_start":"5002","iscn_stop":"5381","bp_start":"78000001","bp_stop":"88500000","stain":"gpos","density":"100"},{"#chromosome":"15","arm":"q","band":"26.1","iscn_start":"5381","iscn_stop":"5650","bp_start":"88500001","bp_stop":"93800000","stain":"gneg","density":""},{"#chromosome":"15","arm":"q","band":"26.2","iscn_start":"5650","iscn_stop":"5861","bp_start":"93800001","bp_stop":"98000000","stain":"gpos","density":"50"},{"#chromosome":"15","arm":"q","band":"26.3","iscn_start":"5861","iscn_stop":"6070","bp_start":"98000001","bp_stop":"101991189","stain":"gneg","density":""},{"#chromosome":"16","arm":"p","band":"13.3","iscn_start":"0","iscn_stop":"410","bp_start":"1","bp_stop":"7800000","stain":"gneg","density":""},{"#chromosome":"16","arm":"p","band":"13.2","iscn_start":"410","iscn_stop":"638","bp_start":"7800001","bp_stop":"10400000","stain":"gpos","density":"50"},{"#chromosome":"16","arm":"p","band":"13.1","iscn_start":"638","iscn_stop":"1012","bp_start":"10400001","bp_stop":"16700000","stain":"gneg","density":""},{"#chromosome":"16","arm":"p","band":"12","iscn_start":"1012","iscn_stop":"1522","bp_start":"16700001","bp_stop":"28500000","stain":"gpos","density":"100"},{"#chromosome":"16","arm":"p","band":"11.2","iscn_start":"1522","iscn_stop":"2060","bp_start":"28500001","bp_stop":"35300000","stain":"gneg","density":""},{"#chromosome":"16","arm":"p","band":"11.1","iscn_start":"2060","iscn_stop":"2187","bp_start":"35300001","bp_stop":"36800000","stain":"acen","density":""},{"#chromosome":"16","arm":"q","band":"11.1","iscn_start":"2187","iscn_stop":"2310","bp_start":"36800001","bp_stop":"38400000","stain":"acen","density":""},{"#chromosome":"16","arm":"q","band":"11.2","iscn_start":"2310","iscn_stop":"2811","bp_start":"38400001","bp_stop":"47000000","stain":"gvar","density":""},{"#chromosome":"16","arm":"q","band":"12.1","iscn_start":"2811","iscn_stop":"2969","bp_start":"47000001","bp_stop":"52600000","stain":"gneg","density":""},{"#chromosome":"16","arm":"q","band":"12.2","iscn_start":"2969","iscn_stop":"3118","bp_start":"52600001","bp_stop":"56000000","stain":"gpos","density":"50"},{"#chromosome":"16","arm":"q","band":"13","iscn_start":"3118","iscn_stop":"3364","bp_start":"56000001","bp_stop":"57300000","stain":"gneg","density":""},{"#chromosome":"16","arm":"q","band":"21","iscn_start":"3364","iscn_stop":"3750","bp_start":"57300001","bp_stop":"66600000","stain":"gpos","density":"100"},{"#chromosome":"16","arm":"q","band":"22","iscn_start":"3750","iscn_stop":"4189","bp_start":"66600001","bp_stop":"74100000","stain":"gneg","density":""},{"#chromosome":"16","arm":"q","band":"23","iscn_start":"4189","iscn_stop":"4655","bp_start":"74100001","bp_stop":"84100000","stain":"gpos","density":"100"},{"#chromosome":"16","arm":"q","band":"24","iscn_start":"4655","iscn_stop":"5120","bp_start":"84100001","bp_stop":"90338345","stain":"gneg","density":""},{"#chromosome":"17","arm":"p","band":"13","iscn_start":"0","iscn_stop":"602","bp_start":"1","bp_stop":"10800000","stain":"gneg","density":""},{"#chromosome":"17","arm":"p","band":"12","iscn_start":"602","iscn_stop":"1051","bp_start":"10800001","bp_stop":"16100000","stain":"gpos","density":"75"},{"#chromosome":"17","arm":"p","band":"11.2","iscn_start":"1051","iscn_stop":"1492","bp_start":"16100001","bp_stop":"22700000","stain":"gneg","density":""},{"#chromosome":"17","arm":"p","band":"11.1","iscn_start":"1492","iscn_stop":"1618","bp_start":"22700001","bp_stop":"25100000","stain":"acen","density":""},{"#chromosome":"17","arm":"q","band":"11.1","iscn_start":"1618","iscn_stop":"1762","bp_start":"25100001","bp_stop":"27400000","stain":"acen","density":""},{"#chromosome":"17","arm":"q","band":"11.2","iscn_start":"1762","iscn_stop":"2050","bp_start":"27400001",
+                "bp_stop":"33500000","stain":"gneg","density":""},{"#chromosome":"17","arm":"q","band":"12","iscn_start":"2050","iscn_stop":"2383","bp_start":"33500001","bp_stop":"39800000","stain":"gpos","density":"50"},{"#chromosome":"17","arm":"q","band":"21.1","iscn_start":"2383","iscn_stop":"2554","bp_start":"39800001","bp_stop":"40200000","stain":"gneg","density":""},{"#chromosome":"17","arm":"q","band":"21.2","iscn_start":"2554","iscn_stop":"2669","bp_start":"40200001","bp_stop":"42800000","stain":"gpos","density":"25"},{"#chromosome":"17","arm":"q","band":"21.3","iscn_start":"2669","iscn_stop":"3149","bp_start":"42800001","bp_stop":"52100000","stain":"gneg","density":""},{"#chromosome":"17","arm":"q","band":"22","iscn_start":"3149","iscn_stop":"3680","bp_start":"52100001","bp_stop":"59500000","stain":"gpos","density":"75"},{"#chromosome":"17","arm":"q","band":"23","iscn_start":"3680","iscn_stop":"3950","bp_start":"59500001","bp_stop":"64600000","stain":"gneg","density":""},{"#chromosome":"17","arm":"q","band":"24","iscn_start":"3950","iscn_stop":"4441","bp_start":"64600001","bp_stop":"72900000","stain":"gpos","density":"100"},{"#chromosome":"17","arm":"q","band":"25","iscn_start":"4441","iscn_stop":"4950","bp_start":"72900001","bp_stop":"83257441","stain":"gneg","density":""},{"#chromosome":"18","arm":"p","band":"11.32","iscn_start":"0","iscn_stop":"77","bp_start":"1","bp_stop":"2900000","stain":"gneg","density":""},{"#chromosome":"18","arm":"p","band":"11.31","iscn_start":"77","iscn_stop":"208","bp_start":"2900001","bp_stop":"7200000","stain":"gpos","density":"50"},{"#chromosome":"18","arm":"p","band":"11.2","iscn_start":"623","iscn_stop":"1190","bp_start":"7200001","bp_stop":"15400000","stain":"gneg","density":""},{"#chromosome":"18","arm":"p","band":"11.1","iscn_start":"1190","iscn_stop":"1301","bp_start":"15400001","bp_stop":"18500000","stain":"acen","density":""},{"#chromosome":"18","arm":"q","band":"11.1","iscn_start":"1301","iscn_stop":"1433","bp_start":"18500001","bp_stop":"21500000","stain":"acen","density":""},{"#chromosome":"18","arm":"q","band":"11.2","iscn_start":"1433","iscn_stop":"1862","bp_start":"21500001","bp_stop":"27500000","stain":"gneg","density":""},{"#chromosome":"18","arm":"q","band":"12.1","iscn_start":"1862","iscn_stop":"2223","bp_start":"27500001","bp_stop":"35100000","stain":"gpos","density":"100"},{"#chromosome":"18","arm":"q","band":"12.2","iscn_start":"2223","iscn_stop":"2419","bp_start":"35100001","bp_stop":"39500000","stain":"gneg","density":""},{"#chromosome":"18","arm":"q","band":"12.3","iscn_start":"2419","iscn_stop":"2721","bp_start":"39500001","bp_stop":"45900000","stain":"gpos","density":"75"},{"#chromosome":"18","arm":"q","band":"21.1","iscn_start":"2721","iscn_stop":"3010","bp_start":"45900001","bp_stop":"50700000","stain":"gneg","density":""},{"#chromosome":"18","arm":"q","band":"21.2","iscn_start":"3010","iscn_stop":"3183","bp_start":"50700001","bp_stop":"56200000","stain":"gpos","density":"75"},{"#chromosome":"18","arm":"q","band":"21.3","iscn_start":"3183","iscn_stop":"3449","bp_start":"56200001","bp_stop":"63900000","stain":"gneg","density":""},{"#chromosome":"18","arm":"q","band":"22","iscn_start":"3449","iscn_stop":"4229","bp_start":"63900001","bp_stop":"75400000","stain":"gpos","density":"100"},{"#chromosome":"18","arm":"q","band":"23","iscn_start":"4229","iscn_stop":"4650","bp_start":"75400001","bp_stop":"80373285","stain":"gneg","density":""},{"#chromosome":"19","arm":"p","band":"13.3","iscn_start":"0","iscn_stop":"668","bp_start":"1","bp_stop":"6900000","stain":"gneg","density":""},{"#chromosome":"19","arm":"p","band":"13.2","iscn_start":"668","iscn_stop":"1069","bp_start":"6900001","bp_stop":"12600000","stain":"gpos","density":"25"},{"#chromosome":"19","arm":"p","band":"13.1","iscn_start":"1069","iscn_stop":"1461","bp_start":"12600001","bp_stop":"19900000","stain":"gneg","density":""},{"#chromosome":"19","arm":"p","band":"12","iscn_start":"1461","iscn_stop":"1746","bp_start":"19900001","bp_stop":"24200000","stain":"gvar","density":""},{"#chromosome":"19","arm":"p","band":"11","iscn_start":"1746","iscn_stop":"1880","bp_start":"24200001","bp_stop":"26200000","stain":"acen","density":""},{"#chromosome":"19","arm":"q","band":"11","iscn_start":"1880","iscn_stop":"2019","bp_start":"26200001","bp_stop":"28100000","stain":"acen","density":""},{"#chromosome":"19","arm":"q","band":"12","iscn_start":"2019","iscn_stop":"2342","bp_start":"28100001","bp_stop":"31900000","stain":"gvar","density":""},{"#chromosome":"19","arm":"q","band":"13.1","iscn_start":"2342","iscn_stop":"2943","bp_start":"31900001","bp_stop":"38200000","stain":"gneg","density":""},{"#chromosome":"19","arm":"q","band":"13.2","iscn_start":"2943","iscn_stop":"3344","bp_start":"38200001","bp_stop":"42900000","stain":"gpos","density":"100"},{"#chromosome":"19","arm":"q","band":"13.3","iscn_start":"3344","iscn_stop":"3710","bp_start":"42900001","bp_stop":"50900000","stain":"gneg","density":""},{"#chromosome":"19","arm":"q","band":"13.4","iscn_start":"3710","iscn_stop":"4120","bp_start":"50900001","bp_stop":"58617616","stain":"gpos","density":"100"},{"#chromosome":"20","arm":"p","band":"13","iscn_start":"0","iscn_stop":"471","bp_start":"1","bp_stop":"5100000","stain":"gneg","density":""},{"#chromosome":"20","arm":"p","band":"12","iscn_start":"471","iscn_stop":"1005","bp_start":"5100001","bp_stop":"17900000","stain":"gpos","density":"100"},{"#chromosome":"20","arm":"p","band":"11.2","iscn_start":"1005","iscn_stop":"1593","bp_start":"17900001","bp_stop":"25700000","stain":"gneg","density":""},{"#chromosome":"20","arm":"p","band":"11.1","iscn_start":"1593","iscn_stop":"1729","bp_start":"25700001","bp_stop":"28100000","stain":"acen","density":""},{"#chromosome":"20","arm":"q","band":"11.1","iscn_start":"1729","iscn_stop":"1870","bp_start":"28100001","bp_stop":"30400000","stain":"acen","density":""},{"#chromosome":"20","arm":"q","band":"11.2","iscn_start":"1870","iscn_stop":"2362","bp_start":"30400001","bp_stop":"39000000","stain":"gneg","density":""},{"#chromosome":"20","arm":"q","band":"12","iscn_start":"2362","iscn_stop":"2732","bp_start":"39000001","bp_stop":"43100000","stain":"gpos","density":"75"},{"#chromosome":"20","arm":"q","band":"13.1","iscn_start":"2732","iscn_stop":"3075","bp_start":"43100001","bp_stop":"51200000","stain":"gneg","density":""},{"#chromosome":"20","arm":"q","band":"13.2","iscn_start":"3075","iscn_stop":"3409","bp_start":"51200001","bp_stop":"56400000","stain":"gpos","density":"75"},{"#chromosome":"20","arm":"q","band":"13.3","iscn_start":"3409","iscn_stop":"3770","bp_start":"56400001","bp_stop":"64444167","stain":"gneg","density":""},{"#chromosome":"21","arm":"p","band":"13","iscn_start":"0","iscn_stop":"301","bp_start":"1","bp_stop":"3100000","stain":"gvar","density":""},{"#chromosome":"21","arm":"p","band":"12","iscn_start":"301","iscn_stop":"601","bp_start":"3100001","bp_stop":"7000000","stain":"stalk","density":""},{"#chromosome":"21","arm":"p","band":"11.2","iscn_start":"601","iscn_stop":"1002","bp_start":"7000001","bp_stop":"10900000","stain":"gvar","density":""},{"#chromosome":"21","arm":"p","band":"11.1","iscn_start":"1002","iscn_stop":"1203","bp_start":"10900001","bp_stop":"12000000","stain":"acen","density":""},{"#chromosome":"21","arm":"q","band":"11.1","iscn_start":"1203","iscn_stop":"1341","bp_start":"12000001","bp_stop":"13000000","stain":"acen","density":""},{"#chromosome":"21","arm":"q","band":"11.2","iscn_start":"1341","iscn_stop":"1514","bp_start":"13000001","bp_stop":"15000000","stain":"gneg","density":""},{"#chromosome":"21","arm":"q","band":"21","iscn_start":"1514","iscn_stop":"2204","bp_start":"15000001","bp_stop":"30200000","stain":"gpos","density":"100"},{"#chromosome":"21","arm":"q","band":"22.1","iscn_start":"2204","iscn_stop":"2631","bp_start":"30200001","bp_stop":"38300000","stain":"gneg","density":""},{"#chromosome":"21","arm":"q","band":"22.2","iscn_start":"2631","iscn_stop":"2808","bp_start":"38300001","bp_stop":"41200000","stain":"gpos","density":"50"},{"#chromosome":"21","arm":"q","band":"22.3","iscn_start":"2808","iscn_stop":"3200","bp_start":"41200001","bp_stop":"46709983","stain":"gneg","density":""},{"#chromosome":"22","arm":"p","band":"13","iscn_start":"0","iscn_stop":"308","bp_start":"1","bp_stop":"4300000","stain":"gvar","density":""},{"#chromosome":"22","arm":"p","band":"12","iscn_start":"308","iscn_stop":"604","bp_start":"4300001","bp_stop":"9400000","stain":"stalk","density":""},{"#chromosome":"22","arm":"p","band":"11.2","iscn_start":"604","iscn_stop":"1093","bp_start":"9400001","bp_stop":"13700000","stain":"gvar","density":""},{"#chromosome":"22","arm":"p","band":"11.1","iscn_start":"1093","iscn_stop":"1232","bp_start":"13700001","bp_stop":"15000000","stain":"acen","density":""},{"#chromosome":"22","arm":"q","band":"11.1","iscn_start":"1232","iscn_stop":"1371","bp_start":"15000001","bp_stop":"17400000","stain":"acen","density":""},{"#chromosome":"22","arm":"q","band":"11.2","iscn_start":"1371","iscn_stop":"1887","bp_start":"17400001","bp_stop":"25500000","stain":"gneg","density":""},{"#chromosome":"22","arm":"q","band":"12.1","iscn_start":"1887","iscn_stop":"2000","bp_start":"25500001","bp_stop":"29200000","stain":"gpos","density":"50"},{"#chromosome":"22","arm":"q","band":"12.2","iscn_start":"2000","iscn_stop":"2123","bp_start":"29200001","bp_stop":"31800000","stain":"gneg","density":""},{"#chromosome":"22","arm":"q","band":"12.3","iscn_start":"2123","iscn_stop":"2287","bp_start":"31800001","bp_stop":"37200000","stain":"gpos","density":"50"},{"#chromosome":"22","arm":"q","band":"13.1","iscn_start":"2287","iscn_stop":"2596","bp_start":"37200001","bp_stop":"40600000","stain":"gneg","density":""},{"#chromosome":"22","arm":"q","band":"13.2","iscn_start":"2596","iscn_stop":"2782","bp_start":"40600001","bp_stop":"43800000","stain":"gpos","density":"50"},{"#chromosome":"22","arm":"q","band":"13.3","iscn_start":"2782","iscn_stop":"3400",
+                "bp_start":"43800001","bp_stop":"50818468","stain":"gneg","density":""},{"#chromosome":"X","arm":"p","band":"22.3","iscn_start":"0","iscn_stop":"428","bp_start":"1","bp_stop":"9600000","stain":"gneg","density":""},{"#chromosome":"X","arm":"p","band":"22.2","iscn_start":"428","iscn_stop":"642","bp_start":"9600001","bp_stop":"17400000","stain":"gpos","density":"100"},{"#chromosome":"X","arm":"p","band":"22.1","iscn_start":"642","iscn_stop":"1131","bp_start":"17400001","bp_stop":"24900000","stain":"gneg","density":""},{"#chromosome":"X","arm":"p","band":"21.3","iscn_start":"1131","iscn_stop":"1454","bp_start":"24900001","bp_stop":"29300000","stain":"gpos","density":"100"},{"#chromosome":"X","arm":"p","band":"21.2","iscn_start":"1454","iscn_stop":"1575","bp_start":"29300001","bp_stop":"31500000","stain":"gneg","density":""},{"#chromosome":"X","arm":"p","band":"21.1","iscn_start":"1575","iscn_stop":"1977","bp_start":"31500001","bp_stop":"37800000","stain":"gpos","density":"100"},{"#chromosome":"X","arm":"p","band":"11.4","iscn_start":"1977","iscn_stop":"2252","bp_start":"37800001","bp_stop":"42500000","stain":"gneg","density":""},{"#chromosome":"X","arm":"p","band":"11.3","iscn_start":"2252","iscn_stop":"2446","bp_start":"42500001","bp_stop":"47600000","stain":"gpos","density":"75"},{"#chromosome":"X","arm":"p","band":"11.23","iscn_start":"2729","iscn_stop":"2912","bp_start":"47600001","bp_stop":"50100000","stain":"gneg","density":""},{"#chromosome":"X","arm":"p","band":"11.22","iscn_start":"2912","iscn_stop":"3014","bp_start":"50100001","bp_stop":"54800000","stain":"gpos","density":"25"},{"#chromosome":"X","arm":"p","band":"11.21","iscn_start":"3014","iscn_stop":"3057","bp_start":"54800001","bp_stop":"58100000","stain":"gneg","density":""},{"#chromosome":"X","arm":"p","band":"11.1","iscn_start":"3108","iscn_stop":"3241","bp_start":"58100001","bp_stop":"61000000","stain":"acen","density":""},{"#chromosome":"X","arm":"q","band":"11","iscn_start":"3241","iscn_stop":"3341","bp_start":"61000001","bp_stop":"65400000","stain":"acen","density":""},{"#chromosome":"X","arm":"q","band":"12","iscn_start":"3341","iscn_stop":"3672","bp_start":"65400001","bp_stop":"68500000","stain":"gpos","density":"50"},{"#chromosome":"X","arm":"q","band":"13","iscn_start":"3672","iscn_stop":"4405","bp_start":"68500001","bp_stop":"76800000","stain":"gneg","density":""},{"#chromosome":"X","arm":"q","band":"21.1","iscn_start":"4405","iscn_stop":"4740","bp_start":"76800001","bp_stop":"85400000","stain":"gpos","density":"100"},{"#chromosome":"X","arm":"q","band":"21.2","iscn_start":"4740","iscn_stop":"4830","bp_start":"85400001","bp_stop":"87000000","stain":"gneg","density":""},{"#chromosome":"X","arm":"q","band":"21.3","iscn_start":"4830","iscn_stop":"5559","bp_start":"87000001","bp_stop":"99100000","stain":"gpos","density":"100"},{"#chromosome":"X","arm":"q","band":"22.1","iscn_start":"5559","iscn_stop":"5730","bp_start":"99100001","bp_stop":"103300000","stain":"gneg","density":""},{"#chromosome":"X","arm":"q","band":"22.2","iscn_start":"5730","iscn_stop":"5820","bp_start":"103300001","bp_stop":"104500000","stain":"gpos","density":"50"},{"#chromosome":"X","arm":"q","band":"22.3","iscn_start":"5820","iscn_stop":"5951","bp_start":"104500001","bp_stop":"109400000","stain":"gneg","density":""},{"#chromosome":"X","arm":"q","band":"23","iscn_start":"5951","iscn_stop":"6352","bp_start":"109400001","bp_stop":"117400000","stain":"gpos","density":"75"},{"#chromosome":"X","arm":"q","band":"24","iscn_start":"6352","iscn_stop":"6653","bp_start":"117400001","bp_stop":"121800000","stain":"gneg","density":""},{"#chromosome":"X","arm":"q","band":"25","iscn_start":"6653","iscn_stop":"7195","bp_start":"121800001","bp_stop":"129500000","stain":"gpos","density":"100"},{"#chromosome":"X","arm":"q","band":"26","iscn_start":"7195","iscn_stop":"7647","bp_start":"129500001","bp_stop":"138900000","stain":"gneg","density":""},{"#chromosome":"X","arm":"q","band":"27","iscn_start":"7647","iscn_stop":"8168","bp_start":"138900001","bp_stop":"148000000","stain":"gpos","density":"100"},{"#chromosome":"X","arm":"q","band":"28","iscn_start":"8168","iscn_stop":"8610","bp_start":"148000001","bp_stop":"156040895","stain":"gneg","density":""},{"#chromosome":"Y","arm":"p","band":"11.3","iscn_start":"0","iscn_stop":"286","bp_start":"1","bp_stop":"600000","stain":"gpos","density":"100"},{"#chromosome":"Y","arm":"p","band":"11.2","iscn_start":"286","iscn_stop":"751","bp_start":"600001","bp_stop":"10300000","stain":"gneg","density":""},{"#chromosome":"Y","arm":"p","band":"11.1","iscn_start":"751","iscn_stop":"883","bp_start":"10300001","bp_stop":"10400000","stain":"acen","density":""},{"#chromosome":"Y","arm":"q","band":"11.1","iscn_start":"883","iscn_stop":"1002","bp_start":"10400001","bp_stop":"10600000","stain":"acen","density":""},{"#chromosome":"Y","arm":"q","band":"11.21","iscn_start":"1143","iscn_stop":"1268","bp_start":"10600001","bp_stop":"12400000","stain":"gneg","density":""},{"#chromosome":"Y","arm":"q","band":"11.221","iscn_start":"1268","iscn_stop":"1568","bp_start":"12400001","bp_stop":"17100000","stain":"gpos","density":"50"},{"#chromosome":"Y","arm":"q","band":"11.222","iscn_start":"1568","iscn_stop":"1727","bp_start":"17100001","bp_stop":"19600000","stain":"gneg","density":""},{"#chromosome":"Y","arm":"q","band":"11.223","iscn_start":"1727","iscn_stop":"1992","bp_start":"19600001","bp_stop":"23800000","stain":"gpos","density":"50"},{"#chromosome":"Y","arm":"q","band":"11.23","iscn_start":"1992","iscn_stop":"2169","bp_start":"23800001","bp_stop":"26600000","stain":"gneg","density":""},{"#chromosome":"Y","arm":"q","band":"12","iscn_start":"2169","iscn_stop":"3650","bp_start":"26600001","bp_stop":"57227415","stain":"gvar","density":""}];
 
-      if(d) {
-        var filteredResults = filterByChromosome(d, chr);
-        cb(filteredResults);
-      }
+    var filteredResults = filterByChromosome(data, chr);
+    cb(filteredResults);
 
-    });
+    // loadData(baseDir + fileName, resolution, function (d) {
+
+    //   if(d) {
+    //     var filteredResults = filterByChromosome(d, chr);
+    //     cb(filteredResults);
+    //   }
+
+    // });
   }
 
   function filterByChromosome(data, chr) {
@@ -47368,7 +47387,7 @@ It will also ensure that focus remains in the dialog.
 })(cyto_chr || {}, d3);
 }());</script>
 
-<dom-module id="epiviz-ideogram-track" assetpath="bower_components/epiviz-charts/">
+<dom-module id="epiviz-ideogram-track">
     <template>
         <style>
         :host {
@@ -47656,13 +47675,49 @@ It will also ensure that focus remains in the dialog.
             }, 
 
             /**
+            * Chromosome location.
+            * Default Location Attribute to set to all the children chart elements.
+            *
+            * @example: chr1
+            *
+            * @type {string}
+            */
+            chr: {
+                type: String,
+                notify: true
+            },
+
+            /**
+            * Chromosome start. 
+            * Default Chromosome start value to use. (defaults to 0).
+            *
+            * @type {number}
+            */
+            start: {
+                type: Number,
+                notify: true
+            },
+
+            /**
+            * Chromosome end. 
+            * Default Chromosome end value to use. (defaults to the `<chr>` length).
+            *
+            * @type {number}
+            */
+            end: {
+                type: Number,
+                notify: true
+            },
+
+            /**
              * Chart range. 
              *
              * @type {Object<epiviz.datatypes.GenomicRange>}
              */
             range: {
                 type: Object,
-                notify: true
+                notify: true,
+                computed: 'getGenomicRange(chr, start, end)',
             },
 
             /**
@@ -47673,6 +47728,35 @@ It will also ensure that focus remains in the dialog.
             _chartMeasurements: {
                 type: Array,
                 notify: true
+            },
+
+            /**
+             * Chart Setings. 
+             *
+             * @type {Object}
+             */
+            settings: {
+                type: Object,
+                notify: true
+            },
+
+            /**
+             * Chart Colors. 
+             *
+             * @type {Object}
+             */
+            colors: {
+                type: Array,
+                notify: true
+            }
+        },
+
+        getGenomicRange: function(chr, start, end) {
+            if(chr && start && end) {
+                return new epiviz.datatypes.GenomicRange(chr, start, end-start);
+            }
+            else  {
+                return null;
             }
         },
 
@@ -47692,110 +47776,7 @@ It will also ensure that focus remains in the dialog.
                 measurementType = 'range';
             }
 
-            // if data format is a Array of JSON Objects (long format)
-            if(Array.isArray(self.data)) {
-                if(self.key && self.key.length > 0) {
-                    self.data.forEach(function(d) {
-                        var keyFields = [];
-                        self.key.forEach(function(k) {
-                            keyFields.push(d[k]);
-                        });
-                        d.key = keyFields.join("-");
-                    });
-                }
-
-                var rowKeys = Object.keys(self.data[0]);
-                var colAnnotation = null;
-                var colsCollection = {}, cols = {};
-                var rowLength = self.data.length;
-
-                rowKeys.forEach(function(key) {
-                    colsCollection[key] = self.data.map(function(r) { return r[key];});
-                });
-
-                var rowMetadata = rowKeys.slice(0);
-                var rows = Object.assign({}, colsCollection);
-
-                self.dimS.forEach(function(dim) {
-                    var index = rowMetadata.indexOf(dim);
-                    rowMetadata.splice(index, 1);
-                    delete rows[dim];
-                    cols[dim] = colsCollection[dim];
-                });
-
-                self.dimS.forEach(function(dim) {
-                    var colValues = cols[dim];
-                    m.push({
-                        'id': dim,
-                        'name': dim,
-                        'type': measurementType,
-                        'datasourceId': datasource,
-                        'datasourceGroup': dim,
-                        'dataprovider': datasource,
-                        'formula': null,
-                        'defaultChartType': self.chartName,
-                        'annotation': colAnnotation,
-                        'minValue': Math.min.apply(Math, colValues),
-                        'maxValue': Math.max.apply(Math, colValues),
-                        'metadata': rowMetadata
-                    });
-
-                    mSet.add(new epiviz.measurements.Measurement(
-                        dim, dim, measurementType, datasource, dim, datasource, null, self.chartName, colAnnotation, null, null, rowMetadata
-                    ));
-                });
-
-                self._chartMeasurements = m;
-
-                /**
-                 *  Must have fields
-                 *  jsondata.cols
-                 *  jsondata.rows
-                 *  jsondata.rows.metadata (label)
-                 */
-                var jsonData = {};
-                jsonData.cols = cols;
-                jsonData.globalStartIndex = 1;
-                var rowObj = self._generateRowIndexes(rowLength);
-                rowObj.metadata = rows;
-                jsonData.rows = rowObj;
-            }
-            else {
-                //if data format is more like a dataframe/data table representation
-                var rowMetadata = Object.keys(self.data.rows);
-                var rowLength = 0 ;
-                useOffset = self.data.rows.useOffset;
-
-                if(self.data.cols == null) { hasfData = false; self.data.cols = {};}
-                
-                if(self.data.cols && Object.keys(self.data.cols) > 0) {
-                    if(Object.keys(self.data.cols[Object.keys(self.data.cols)[0]]).indexOf("values") != -1) {
-                        rowLength = self.data.cols[Object.keys(self.data.cols)[0]].values.length;
-                    }
-                    else {
-                        rowLength = self.data.cols[Object.keys(self.data.cols)[0]].length;
-                    }
-                }
-                else if (self.data.rows) {
-                    if(Object.keys(self.data.rows).indexOf("values") != -1) {
-                        rowLength = self.data.rows.values[Object.keys(self.data.rows.values)[0]].length;
-                    }
-                    else {
-                        rowLength = self.data.rows[Object.keys(self.data.rows)[0]].length;
-                    }
-                };
-
-                if(self.key && self.key.length > 0) {
-                    var keyArray = [];
-                    for (var ikey = 0; ikey < rowLength; ikey++) {
-                        var keyFields = [];
-                        self.key.forEach(function(k) {
-                            keyFields.push(self.data.rows[k][ikey]);
-                        });
-                        keyArray.push(keyFields.join("-"));
-                    }
-                    self.data.rows.key = keyArray;
-                }
+            if(Object.keys(self.data).indexOf("format") != -1 && self.data.format == "epiviz") {
 
                 if(self.measurements) {
                     self.measurements.forEach(function(mea) {
@@ -47842,68 +47823,263 @@ It will also ensure that focus remains in the dialog.
                 }
 
                 self._chartMeasurements = m;
-                var jsonData = {};
-                jsonData.cols = {};
-                if(self.data.cols) {
-                    var colKeys = Object.keys(self.data.cols);
+                var chartData = new epiviz.measurements.MeasurementHashtable();
 
-                    colKeys.forEach(function(ck) {
-                        if(Array.isArray(self.data.cols[ck])) {
-                            jsonData.cols[ck] = self.data.cols[ck];
+                mSet.foreach(function(m) {
+
+                    var mData = self.data[m.datasourceId()];
+                    var rowLength = mData.rows.values.chr.length;
+
+                    if(!self.chr) {
+                        self.chr = mData.rows.values.chr[0];
+                    }
+
+                    if(!self.start) {
+                        self.start = mData.rows.values.start[0];
+                    }
+
+                    if(!self.end) {
+                        self.end = mData.rows.values.end[rowLength-1];
+                    }
+
+                    if(!self.range) {
+                        self.range =  new epiviz.datatypes.GenomicRange(mData.rows.values.chr[0], mData.rows.values.start[0], mData.rows.values.end[rowLength-1] - mData.rows.values.start[0]);
+                    }
+
+                    var sumExp = new epiviz.datatypes.PartialSummarizedExperiment();
+
+                    var rowDataObj = new epiviz.datatypes.GenomicRangeArray(m, self.range, mData.rows.values.start[0], mData.rows.values, mData.rows.useOffset);
+                    sumExp.addRowData(rowDataObj);
+
+                    if(mData.cols) {
+                        var valueData = new epiviz.datatypes.FeatureValueArray(m, self.range,mData.rows.values.start[0], mData.cols[m.id()].values);
+                        sumExp.addValues(valueData);
+                    }
+
+                    var msData = new epiviz.datatypes.MeasurementGenomicDataWrapper(m, sumExp);
+                    chartData.put(m, msData);
+
+                    self._chartRange = self.range;
+                });
+
+                var genomicData = new epiviz.datatypes.MapGenomicData(chartData);
+                self._chartData = genomicData;
+
+            }
+            else {
+                // if data format is a Array of JSON Objects (long format)
+                if(Array.isArray(self.data)) {
+                    if(self.key && self.key.length > 0) {
+                        self.data.forEach(function(d) {
+                            var keyFields = [];
+                            self.key.forEach(function(k) {
+                                keyFields.push(d[k]);
+                            });
+                            d.key = keyFields.join("-");
+                        });
+                    }
+
+                    var rowKeys = Object.keys(self.data[0]);
+                    var colAnnotation = null;
+                    var colsCollection = {}, cols = {};
+                    var rowLength = self.data.length;
+
+                    rowKeys.forEach(function(key) {
+                        colsCollection[key] = self.data.map(function(r) { return r[key];});
+                    });
+
+                    var rowMetadata = rowKeys.slice(0);
+                    var rows = Object.assign({}, colsCollection);
+
+                    self.dimS.forEach(function(dim) {
+                        var index = rowMetadata.indexOf(dim);
+                        rowMetadata.splice(index, 1);
+                        delete rows[dim];
+                        cols[dim] = colsCollection[dim];
+                    });
+
+                    self.dimS.forEach(function(dim) {
+                        var colValues = cols[dim];
+                        m.push({
+                            'id': dim,
+                            'name': dim,
+                            'type': measurementType,
+                            'datasourceId': datasource,
+                            'datasourceGroup': dim,
+                            'dataprovider': datasource,
+                            'formula': null,
+                            'defaultChartType': self.chartName,
+                            'annotation': colAnnotation,
+                            'minValue': Math.min.apply(Math, colValues),
+                            'maxValue': Math.max.apply(Math, colValues),
+                            'metadata': rowMetadata
+                        });
+
+                        mSet.add(new epiviz.measurements.Measurement(
+                            dim, dim, measurementType, datasource, dim, datasource, null, self.chartName, colAnnotation, null, null, rowMetadata
+                        ));
+                    });
+
+                    self._chartMeasurements = m;
+
+                    /**
+                    *  Must have fields
+                    *  jsondata.cols
+                    *  jsondata.rows
+                    *  jsondata.rows.metadata (label)
+                    */
+                    var jsonData = {};
+                    jsonData.cols = cols;
+                    jsonData.globalStartIndex = 1;
+                    var rowObj = self._generateRowIndexes(rowLength);
+                    rowObj.metadata = rows;
+                    jsonData.rows = rowObj;
+                }
+                else {
+                    //if data format is more like a dataframe/data table representation
+                    var rowMetadata = Object.keys(self.data.rows);
+                    var rowLength = 0 ;
+                    useOffset = self.data.rows.useOffset;
+
+                    if(self.data.cols == null) { hasfData = false; self.data.cols = {};}
+                    
+                    if(self.data.cols && Object.keys(self.data.cols) > 0) {
+                        if(Object.keys(self.data.cols[Object.keys(self.data.cols)[0]]).indexOf("values") != -1) {
+                            rowLength = self.data.cols[Object.keys(self.data.cols)[0]].values.length;
                         }
                         else {
-                            jsonData.cols[ck] = self.data.cols[ck]["values"];
+                            rowLength = self.data.cols[Object.keys(self.data.cols)[0]].length;
                         }
+                    }
+                    else if (self.data.rows) {
+                        if(Object.keys(self.data.rows).indexOf("values") != -1) {
+                            rowLength = self.data.rows.values[Object.keys(self.data.rows.values)[0]].length;
+                        }
+                        else {
+                            rowLength = self.data.rows[Object.keys(self.data.rows)[0]].length;
+                        }
+                    };
+
+                    if(self.key && self.key.length > 0) {
+                        var keyArray = [];
+                        for (var ikey = 0; ikey < rowLength; ikey++) {
+                            var keyFields = [];
+                            self.key.forEach(function(k) {
+                                keyFields.push(self.data.rows[k][ikey]);
+                            });
+                            keyArray.push(keyFields.join("-"));
+                        }
+                        self.data.rows.key = keyArray;
+                    }
+
+                    if(self.measurements) {
+                        self.measurements.forEach(function(mea) {
+                            mSet.add(new epiviz.measurements.Measurement(
+                                mea.id, mea.name, mea.type, mea.datasourceId, mea.datasourceGroup, mea.dataprovider, 
+                                mea.formula, mea.defaultChartType, mea.annotation, mea.minValue, mea.maxValue, mea.metadata
+                            ));
+                        });
+                        m = self.measurements;
+                    }
+                    else if(self.dimS) {
+                        self.dimS.forEach(function(dim) {
+
+                            var colValues = [0,5];
+                            if(self.data.cols) {
+                                colValues = self.data.cols[dim] || self.data.cols[dim].values;
+                            }
+                            // var colValues = self.data.cols[dim];
+                            var rowLength = colValues.length;
+
+                            m.push({
+                                'id': dim,
+                                'name': dim,
+                                'type': measurementType,
+                                'datasourceId': datasource,
+                                'datasourceGroup': dim,
+                                'dataprovider': datasource,
+                                'formula': null,
+                                'defaultChartType': self.chartName,
+                                'annotation': undefined,
+                                'minValue': Math.min.apply(Math, colValues),
+                                'maxValue': Math.max.apply(Math, colValues),
+                                'metadata': rowMetadata
+                            });
+
+                            if(!hasfData) {
+                                self.data.cols[dim] = {"values":[]}
+                            }
+
+                            mSet.add(new epiviz.measurements.Measurement(
+                                dim, dim, measurementType, datasource, dim, datasource, null, self.chartName, undefined, null, null, rowMetadata
+                            ));
+                        });
+                    }
+
+                    self._chartMeasurements = m;
+                    var jsonData = {};
+                    jsonData.cols = {};
+                    if(self.data.cols) {
+                        var colKeys = Object.keys(self.data.cols);
+
+                        colKeys.forEach(function(ck) {
+                            if(Array.isArray(self.data.cols[ck])) {
+                                jsonData.cols[ck] = self.data.cols[ck];
+                            }
+                            else {
+                                jsonData.cols[ck] = self.data.cols[ck]["values"];
+                            }
+                        });
+                    }
+
+                    var rowObj = {};
+                    var rowKeys = Object.keys(self.data.rows);
+
+                    if(rowKeys.indexOf("values") != -1) {
+                        rowObj = self.data.rows.values;
+                    }
+                    else if( (rowKeys.indexOf("start") == -1) || (rowKeys.indexOf("index") == -1) || (rowKeys.rows.indexOf("end") == -1)) {
+                        rowObj = self._generateRowIndexes(rowLength);
+                        rowObj.metadata = self.data.rows;
+                    }
+                    else {
+                        rowObj = self.data.rows;
+                    }
+
+                    jsonData.globalStartIndex = rowObj.start[0];
+                    jsonData.rows = rowObj;
+                }
+
+                var chartData = new epiviz.measurements.MeasurementHashtable();
+                var sumExp = new epiviz.datatypes.PartialSummarizedExperiment();
+                var globalStartIndex = jsonData.globalStartIndex;
+
+                var chr = datasource;
+
+                if(jsonData.rows.chr) {
+                    chr = jsonData.rows.chr[0];
+                }
+                var range =  new epiviz.datatypes.GenomicRange(chr, globalStartIndex, jsonData.rows.end[rowLength-1] - globalStartIndex);
+                self._chartRange = range;
+
+                var rowDataObj = new epiviz.datatypes.GenomicRangeArray(chr, range, globalStartIndex, jsonData.rows, useOffset);
+                sumExp.addRowData(rowDataObj);
+
+                if(hasfData) {
+                    mSet.foreach(function(m) {
+                        var valueData = new epiviz.datatypes.FeatureValueArray(m, range, globalStartIndex, jsonData.cols[m.id()]);
+                        sumExp.addValues(valueData);
                     });
                 }
 
-                var rowObj = {};
-                var rowKeys = Object.keys(self.data.rows);
-
-                if(rowKeys.indexOf("values") != -1) {
-                    rowObj = self.data.rows.values;
-                }
-                else if( (rowKeys.indexOf("start") == -1) || (rowKeys.indexOf("index") == -1) || (rowKeys.rows.indexOf("end") == -1)) {
-                    rowObj = self._generateRowIndexes(rowLength);
-                    rowObj.metadata = self.data.rows;
-                }
-                else {
-                    rowObj = self.data.rows;
-                }
-
-                jsonData.globalStartIndex = rowObj.start[0];
-                jsonData.rows = rowObj;
-            }
-
-            var chartData = new epiviz.measurements.MeasurementHashtable();
-            var sumExp = new epiviz.datatypes.PartialSummarizedExperiment();
-            var globalStartIndex = jsonData.globalStartIndex;
-
-            var chr = datasource;
-
-            if(jsonData.rows.chr) {
-                chr = jsonData.rows.chr[0];
-            }
-            var range =  new epiviz.datatypes.GenomicRange(chr, globalStartIndex, jsonData.rows.end[rowLength-1] - globalStartIndex);
-            self._chartRange = range;
-
-            var rowDataObj = new epiviz.datatypes.GenomicRangeArray(chr, range, globalStartIndex, jsonData.rows, useOffset);
-            sumExp.addRowData(rowDataObj);
-
-            if(hasfData) {
                 mSet.foreach(function(m) {
-                    var valueData = new epiviz.datatypes.FeatureValueArray(m, range, globalStartIndex, jsonData.cols[m.id()]);
-                    sumExp.addValues(valueData);
+                    var msData = new epiviz.datatypes.MeasurementGenomicDataWrapper(m, sumExp);
+                    chartData.put(m, msData);
                 });
+
+                var genomicData = new epiviz.datatypes.MapGenomicData(chartData);
+                self._chartData = genomicData;
             }
-
-            mSet.foreach(function(m) {
-                var msData = new epiviz.datatypes.MeasurementGenomicDataWrapper(m, sumExp);
-                chartData.put(m, msData);
-            });
-
-            var genomicData = new epiviz.datatypes.MapGenomicData(chartData);
-            self._chartData = genomicData;
         },
 
         _generateRowIndexes: function(length) {
@@ -47920,7 +48096,7 @@ It will also ensure that focus remains in the dialog.
         }
     }
 </script>
-<dom-module id="epiviz-json-heatmap-plot" assetpath="bower_components/epiviz-charts/">
+<dom-module id="epiviz-json-heatmap-plot">
     <template>
         <style>
             :host {
@@ -47933,7 +48109,7 @@ It will also ensure that focus remains in the dialog.
             }
         </style>
 
-        <epiviz-heatmap-plot id="epivizChart" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-heatmap-plot>
+        <epiviz-heatmap-plot id="epivizChart" chart-settings="{{settings}}" chart-colors="{{colors}}" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-heatmap-plot>
     
     </template>
 
@@ -47982,7 +48158,7 @@ It will also ensure that focus remains in the dialog.
             // ready: function() {}
         });
     </script>
-</dom-module><dom-module id="epiviz-json-line-plot" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-json-line-plot">
     <template>
         <style>
             :host {
@@ -47995,7 +48171,7 @@ It will also ensure that focus remains in the dialog.
             }
         </style>
 
-        <epiviz-line-plot id="epivizChart" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-line-plot>
+        <epiviz-line-plot id="epivizChart" chart-settings="{{settings}}" chart-colors="{{colors}}" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-line-plot>
     
     </template>
 
@@ -48044,7 +48220,7 @@ It will also ensure that focus remains in the dialog.
             // ready: function() {}
         });
     </script>
-</dom-module><dom-module id="epiviz-json-line-track" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-json-line-track">
     <template>
         <style>
             :host {
@@ -48057,7 +48233,7 @@ It will also ensure that focus remains in the dialog.
             }
         </style>
 
-        <epiviz-line-track id="epivizChart" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-line-track>
+        <epiviz-line-track id="epivizChart" chart-settings="{{settings}}" chart-colors="{{colors}}" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-line-track>
     
     </template>
 
@@ -48106,7 +48282,7 @@ It will also ensure that focus remains in the dialog.
             // ready: function() {}
         });
     </script>
-</dom-module><dom-module id="epiviz-json-scatter-plot" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-json-scatter-plot">
     <template>
         <style>
             :host {
@@ -48119,7 +48295,7 @@ It will also ensure that focus remains in the dialog.
             }
         </style>
 
-        <epiviz-scatter-plot id="epivizChart" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-scatter-plot>
+        <epiviz-scatter-plot id="epivizChart" chart-settings="{{settings}}" chart-colors="{{colors}}" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-scatter-plot>
     
     </template>
 
@@ -48168,7 +48344,7 @@ It will also ensure that focus remains in the dialog.
             // ready: function() {}
         });
     </script>
-</dom-module><dom-module id="epiviz-json-stacked-line-track" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-json-stacked-line-track">
     <template>
         <style>
             :host {
@@ -48181,7 +48357,7 @@ It will also ensure that focus remains in the dialog.
             }
         </style>
 
-        <epiviz-stacked-line-track id="epivizChart" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-stacked-line-track>
+        <epiviz-stacked-line-track id="epivizChart" chart-settings="{{settings}}" chart-colors="{{colors}}" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-stacked-line-track>
     
     </template>
 
@@ -48230,7 +48406,7 @@ It will also ensure that focus remains in the dialog.
             // ready: function() {}
         });
     </script>
-</dom-module><dom-module id="epiviz-json-stacked-line-plot" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-json-stacked-line-plot">
     <template>
         <style>
             :host {
@@ -48243,7 +48419,7 @@ It will also ensure that focus remains in the dialog.
             }
         </style>
 
-        <epiviz-stacked-line-plot id="epivizChart" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-stacked-line-plot>
+        <epiviz-stacked-line-plot id="epivizChart" chart-settings="{{settings}}" chart-colors="{{colors}}" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-stacked-line-plot>
     
     </template>
 
@@ -48292,7 +48468,7 @@ It will also ensure that focus remains in the dialog.
             // ready: function() {}
         });
     </script>
-</dom-module><dom-module id="epiviz-json-blocks-track" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-json-blocks-track">
     <template>
         <style>
             :host {
@@ -48305,7 +48481,7 @@ It will also ensure that focus remains in the dialog.
             }
         </style>
 
-        <epiviz-blocks-track id="epivizChart" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-blocks-track>
+        <epiviz-blocks-track id="epivizChart" chart-settings="{{settings}}" chart-colors="{{colors}}" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-blocks-track>
     </template>
     
     <script>
@@ -48352,7 +48528,7 @@ It will also ensure that focus remains in the dialog.
             // ready: function() {}
         });
     </script>
-</dom-module><dom-module id="epiviz-json-genes-track" assetpath="bower_components/epiviz-charts/">
+</dom-module><dom-module id="epiviz-json-genes-track">
     <template>
         <style>
             :host {
@@ -48365,7 +48541,7 @@ It will also ensure that focus remains in the dialog.
             }
         </style>
 
-        <epiviz-genes-track id="epivizChart" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-genes-track>
+        <epiviz-genes-track id="epivizChart" chart-settings="{{settings}}" chart-colors="{{colors}}" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-genes-track>
     </template>
     
     <script>
@@ -50167,7 +50343,7 @@ It will also ensure that focus remains in the dialog.
     });
   }());
 </script>
-<dom-module id="epiviz-navigation" assetpath="bower_components/epiviz-charts/">
+<dom-module id="epiviz-navigation">
     <template>
         <style include="shared-settings"></style>
         <style>
@@ -50214,26 +50390,31 @@ It will also ensure that focus remains in the dialog.
                 width: 28px;
                 height: 28px;
             }
+
+            #disableHeader {
+                pointer-events: none;
+                opacity: 0.4;
+            }
         </style>
 
         <div>
-            <button class="collapse-header" on-click="toggleHeader">Collapse</button>
+            <button class="collapse-header" on-click="toggleHeader">Expand</button>
             <button on-click="cloneNavigation">Clone</button>
         </div>
-        <template restamp="true" is="dom-if" if="{{!collapsed}}">
+        <template restamp="true" is="dom-if" if="{{collapsed}}">
             <epiviz-ideogram-track gene-in-range="{{geneInRange}}" id="navTrack" chromosome="{{chr}}" start="{{start}}" end="{{end}}"></epiviz-ideogram-track>
         </template>
         
         <iron-collapse id="navHeader">
-            <template restamp="true" is="dom-if" if="{{collapsed}}">
-                <div class="container flex">
+            <template restamp="true" is="dom-if" if="{{!collapsed}}">
+                <div class="container flex" id="{{_headerName}}">
                     <div class="flexchild">
                         <paper-icon-button title="move left" icon="icons:chevron-left" on-click="moveLeft"></paper-icon-button>
                         <paper-icon-button title="move right" icon="icons:chevron-right" on-click="moveRight"></paper-icon-button>
                         <paper-icon-button title="zoom out" icon="icons:zoom-out" on-click="zoomOut"></paper-icon-button>
                         <paper-icon-button title="zoom in" icon="icons:zoom-in" on-click="zoomIn"></paper-icon-button>
                     </div>
-                    <div class="flexchild">
+                    <div class="flexchild" on-mouseover="locationHovered" on-mouseout="locationUnhovered">
                         <paper-input value="{{_strRange]]" label="Chromosome Location" on-change="_updateStrRange"></paper-input>
                     </div>
                     <div class="flexchild">
@@ -50329,6 +50510,13 @@ It will also ensure that focus remains in the dialog.
 		            computed: 'getStrRange(chr, start, end)'
                 },
 
+
+                _headerName: {
+                    type: String,
+                    notify: true,
+                    value : "enableHeader"
+                },
+
                 /**
                  * Default scroll left/right ratio
                  *
@@ -50359,7 +50547,7 @@ It will also ensure that focus remains in the dialog.
                 collapsed: {
                     type: Boolean,
                     notify: true,
-                    value: false
+                    value: true
                 },
 
                 /**
@@ -50407,8 +50595,8 @@ It will also ensure that focus remains in the dialog.
             toggleHeader: function(event) {
                 this.$.navHeader.toggle();
                 this.collapsed = !this.collapsed;
-                console.log($(this).find(".collapse-header")[0]);
-                if (this.collapsed) {
+                // console.log($(this).find(".collapse-header")[0]);
+                if (!this.collapsed) {
                     $(this).find(".collapse-header")[0].innerHTML = "Collapse";
                 } else {
                     $(this).find(".collapse-header")[0].innerHTML = "Expand";
@@ -50674,6 +50862,26 @@ It will also ensure that focus remains in the dialog.
                 }
             },
 
+            /**
+             * Handles when mouse-overed on a ramge element.
+             */
+            locationHovered: function() {
+                var self = this;
+                self.fire('hover', {
+                    data: self.chartObject
+                });
+            },
+
+            /**
+             * Handles when mouse-out on a range element.
+             */
+            locationUnhovered: function() {
+                var self = this;
+                self.fire('unHover', {
+                    data: null
+                });
+            },
+
             // Initialization that should happen or use FactoryImpl 
             // created: function() {},
             
@@ -50682,10 +50890,14 @@ It will also ensure that focus remains in the dialog.
 
                 var self = this;
 
+                if(!self.dataManager) {
+                    self._headerName = "disableHeader";
+                }
+
                 // listen to events 
                 var parent = self.parentNode;
                 parent.addEventListener('hoverAllCharts', function(e) {
-                    if(!self.collapsed) {
+                    if(self.collapsed) {
                         if(self.$$("#navTrack").chartObject.overlapsWith(e.detail.data)) {
                             self.$$("#navTrack").hover();
                         }
@@ -50700,7 +50912,7 @@ It will also ensure that focus remains in the dialog.
                 }.bind(self));
 
                 parent.addEventListener('unHoverAllCharts', function(e) {
-                    if(!self.collapsed) {
+                    if(self.collapsed) {
                         self.$$("#navTrack").unHover();
                     }
                     else {
@@ -50749,10 +50961,14 @@ It will also ensure that focus remains in the dialog.
                         self.start = data[0].start;
                         self.end = data[0].end;
                         self.range = self.getGenomicRange(self.chr, self.start, self.end);
+
+                        self.chartObject = new epiviz.ui.charts.ChartObject(self.plotId, self.start, self.end, undefined, undefined, undefined, undefined, undefined);
                     });
                 }
                 else if(self.chr && self.start && self.end) {
                     self.range = self.getGenomicRange(self.chr, self.start, self.end);
+
+                    self.chartObject = new epiviz.ui.charts.ChartObject(self.plotId, self.start, self.end, undefined, undefined, undefined, undefined, undefined);
                 }
 
                 if(self.transformDataFunc) {
@@ -50912,7 +51128,7 @@ It will also ensure that focus remains in the dialog.
             });
         }
     }
-</script><dom-module id="epiviz-environment" assetpath="bower_components/epiviz-charts/">
+</script><dom-module id="epiviz-environment">
     <template>	
         <style>
             :host{
@@ -50952,7 +51168,7 @@ It will also ensure that focus remains in the dialog.
             }
         </style>
         <div class="header">
-            <a href="http://epiviz.github.io" target="_blank"><img src="epiviz_4_logo_medium.png" alt="Epiviz" width="100" height="21"></a>
+            <a href="http://epiviz.github.io" target="_blank"><img src="data:image/png;base64,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" alt="Epiviz" width="100" height="21"></a>
         </div>
         <content id="chartEnv" select=".charts"></content>
     </template>
@@ -51060,7 +51276,7 @@ It will also ensure that focus remains in the dialog.
                 // this._measurementsChanged();
                 if(this.chart != null) {
                     // var width = self.offsetWidth - 40;
-                    // if(width < 0) { width = self.chartType.defaultWidth()}
+                    // if(width < self.chartType.defaultWidth()) { width = self.chartType.defaultWidth()}
                     this.chart._properties.width = self.offsetWidth - 20 - epiviz.ui.charts.Visualization.SVG_MARGIN;
                     this.chart._properties.height = self.offsetHeight - 20 - epiviz.ui.charts.Visualization.SVG_MARGIN;
                     this._draw();
@@ -51289,317 +51505,4 @@ It will also ensure that focus remains in the dialog.
             }
         });
     </script>
-</dom-module><dom-module id="epiviz-data-source" assetpath="bower_components/epiviz-data-source/">
-<template>
-  <style>
-  /* local DOM styles go here */
-  :host {
-    display: inline-block;
-  }
-  </style>
-</template>
-<script>
-Polymer({
-  /* Custom element html tag */
-  is: 'epiviz-data-source',
-
-  /* Properties that can be defined on the element */
-  properties: {
-
-    /**
-     * Epiviz Proivder Type.
-     * 
-     * Can be one of the possible values -
-     * `epiviz.data.WebServerDataProvider` | `epiviz.data.WebSocketDataProvider`
-     *
-     * @type {string}
-     */
-    providerType: {
-      type: String,
-      notify: true
-    },
-
-    /**
-     * Unique ID assigned to this datasource
-     *
-     * @type {string}
-     */
-    providerId: {
-      type: String,
-      notify: true
-    },
-
-    /**
-     * APi endpoint/URL location
-     *
-     * @type {string}
-     */
-    providerUrl: {
-      type: String,
-      notify: true
-      // readOnly: true
-    },
-
-    measurements: {
-      type: Object,
-      notify: true
-    },
-
-    measurementSet: {
-      type: Object,
-      notify: true
-    },
-
-    seqInfos: {
-      type: Object,
-      notify: true
-    },
-
-    // not necessary just for testing
-    config: {
-      type: Object,
-      notify: true
-    },
-
-    dataManager: {
-        type: Object,
-        notify: true
-      }
-    },
-
-    /* callback function after the element is initialized */
-    ready: function() {
-
-      var settingsMap = {
-
-        configType: 'default',
-
-        // Navigation settings
-        zoominRatio: 0.8,
-        zoomoutRatio: 1.2,
-        navigationStepRatio: 0.2,
-        navigationDelay: 0,
-
-        // Data retrieval
-
-        dataServerLocation: '', //TODO: Fill in (in site-settings.js)
-        chartSaverLocation: 'src/chart_saving/save_svg.php',
-        dataProviders: [], //TODO: Fill in (in site-settings.js)
-
-        // This is the data provider that handles workspaces; it can be different from the one getting all the other data:
-        workspacesDataProvider: sprintf('epiviz.data.EmptyResponseDataProvider', 'empty', ''), //TODO: Fill in (in site-settings.js)
-
-        // For datasources with hierarchies, the cache must be disabled (Epiviz will crash otherwise)
-        useCache: true,
-
-        // Every n milliseconds, the cache will free up any data associated with parts of the genome not recently visited
-        cacheUpdateIntervalMilliseconds: 30000,
-
-        // For genes search box:
-        maxSearchResults: 12,
-
-        colorPalettes: [
-        new epiviz.ui.charts.ColorPalette(
-          ['#025167', '#e7003e', '#ffcd00', '#057d9f', '#970026', '#ffe373', '#ff8100'],
-          'Epiviz v1.0 Colors', 'epiviz-v1'),
-        new epiviz.ui.charts.ColorPalette(
-          ['#1859a9', '#ed2d2e', '#008c47', '#010101', '#f37d22', '#662c91', '#a11d20', '#b33893'],
-          'Epiviz v2.0 Bright', 'epiviz-v2-bright'),
-        new epiviz.ui.charts.ColorPalette(
-          ['#b8d2eb', '#f2aeac', '#d8e4aa', '#cccccc', '#f2d1b0', '#d4b2d3', '#ddb8a9', '#ebbfd9'],
-          'Epiviz v2.0 Light', 'epiviz-v2-light'),
-        new epiviz.ui.charts.ColorPalette(
-          ['#599ad3', '#f1595f', '#79c36a', '#727272', '#f9a65a', '#9e66ab', '#cd7058', '#d77fb3'],
-          'Epiviz v2.0 Medium', 'epiviz-v2-medium'),
-        new epiviz.ui.charts.ColorPalette(
-          ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"],
-          'D3 Category 10', 'd3-category10'),
-        new epiviz.ui.charts.ColorPalette(
-          ["#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", "#d62728", "#ff9896", "#9467bd", "#c5b0d5", "#8c564b", "#c49c94", "#e377c2", "#f7b6d2", "#7f7f7f", "#c7c7c7", "#bcbd22", "#dbdb8d", "#17becf", "#9edae5"],
-          'D3 Category 20', 'd3-category20'),
-        new epiviz.ui.charts.ColorPalette(
-          ["#393b79", "#5254a3", "#6b6ecf", "#9c9ede", "#637939", "#8ca252", "#b5cf6b", "#cedb9c", "#8c6d31", "#bd9e39", "#e7ba52", "#e7cb94", "#843c39", "#ad494a", "#d6616b", "#e7969c", "#7b4173", "#a55194", "#ce6dbd", "#de9ed6"],
-          'D3 Category 20b', 'd3-category20b'),
-        new epiviz.ui.charts.ColorPalette(
-          ["#3182bd", "#6baed6", "#9ecae1", "#c6dbef", "#e6550d", "#fd8d3c", "#fdae6b", "#fdd0a2", "#31a354", "#74c476", "#a1d99b", "#c7e9c0", "#756bb1", "#9e9ac8", "#bcbddc", "#dadaeb", "#636363", "#969696", "#bdbdbd", "#d9d9d9"],
-          'D3 Category 20c', 'd3-category20c'),
-        new epiviz.ui.charts.ColorPalette(
-          ['#f9a65a', '#599ad3', '#79c36a', '#f1595f', '#727272', '#cd7058', '#d77fb3'],
-          'Genes Default', 'genes-default'),
-        new epiviz.ui.charts.ColorPalette(
-          ['#1859a9', '#ed2d2e', '#008c47', '#010101', '#f37d22', '#662c91', '#a11d20', '#b33893'],
-          'Heatmap Default', 'heatmap-default')
-        ],
-
-        chartSettings: {
-          default: {
-            colors: 'd3-category10',
-            decorations: [
-            'epiviz.ui.charts.decoration.RemoveChartButton',
-            'epiviz.ui.charts.decoration.SaveChartButton',
-            'epiviz.ui.charts.decoration.CustomSettingsButton',
-            'epiviz.ui.charts.decoration.EditCodeButton',
-
-            'epiviz.ui.charts.decoration.ChartColorsButton',
-            'epiviz.ui.charts.decoration.ChartLoaderAnimation',
-            'epiviz.ui.charts.decoration.ChartResize'
-            ]
-          },
-
-          plot: {
-            width: 400,
-            height: 400,
-            margins: new epiviz.ui.charts.Margins(15, 30, 30, 15),
-            decorations: [
-            'epiviz.ui.charts.decoration.ToggleTooltipButton',
-
-            'epiviz.ui.charts.decoration.ChartTooltip',
-            'epiviz.ui.charts.decoration.ChartFilterCodeButton'
-            ]
-          },
-
-          track: {
-            width: '100%',
-            height: 90,
-            margins: new epiviz.ui.charts.Margins(25, 20, 23, 10),
-            decorations: [
-            'epiviz.ui.charts.decoration.ToggleTooltipButton',
-
-            'epiviz.ui.charts.decoration.ChartTooltip',
-            'epiviz.ui.charts.decoration.ChartFilterCodeButton'
-            ]
-          },
-
-          'data-structure': {
-            width: 800,
-            height: 300,
-            margins: new epiviz.ui.charts.Margins(20, 10, 10, 10),
-            colors: 'd3-category20',
-            decorations: [
-            'epiviz.ui.charts.tree.decoration.TogglePropagateSelectionButton',
-            'epiviz.ui.charts.decoration.HierarchyFilterCodeButton'
-            ]
-          },
-
-          'epiviz.plugins.charts.GenesTrack': {
-            height: 120,
-            colors: 'genes-default'
-          },
-
-          'epiviz.plugins.charts.LineTrack': {
-            colors: 'epiviz-v2-bright',
-            decorations: [
-            'epiviz.ui.charts.decoration.ChartGroupByMeasurementsCodeButton',
-            'epiviz.ui.charts.decoration.ChartColorByMeasurementsCodeButton'
-            ]
-          },
-
-          'epiviz.plugins.charts.StackedLineTrack': {
-            height: 300
-          },
-
-          'epiviz.plugins.charts.ScatterPlot': {
-            margins: new epiviz.ui.charts.Margins(15, 50, 50, 15),
-            decorations: [
-            'epiviz.ui.charts.decoration.ChartColorByRowCodeButton'
-            ]
-          },
-
-          'epiviz.plugins.charts.HeatmapPlot': {
-            width: 800,
-            height: 400,
-            margins: new epiviz.ui.charts.Margins(80, 120, 40, 40),
-            decorations: [
-            'epiviz.ui.charts.decoration.ChartGroupByMeasurementsCodeButton',
-            'epiviz.ui.charts.decoration.ChartOrderByMeasurementsCodeButton',
-            'epiviz.ui.charts.decoration.ChartColorByRowCodeButton'
-            ],
-            colors: 'heatmap-default'
-          },
-
-          'epiviz.plugins.charts.LinePlot': {
-            width: 800,
-            height: 400,
-            margins: new epiviz.ui.charts.Margins(30, 30, 50, 15),
-            decorations: [
-            'epiviz.ui.charts.decoration.ChartGroupByMeasurementsCodeButton',
-            'epiviz.ui.charts.decoration.ChartColorByRowCodeButton',
-            'epiviz.ui.charts.decoration.ChartOrderByMeasurementsCodeButton'
-            ],
-            colors: 'd3-category20b'
-          },
-
-          'epiviz.plugins.charts.StackedLinePlot': {
-            width: 800,
-            height: 400,
-            margins: new epiviz.ui.charts.Margins(30, 30, 50, 15),
-            decorations: [
-            'epiviz.ui.charts.decoration.ChartGroupByMeasurementsCodeButton',
-            'epiviz.ui.charts.decoration.ChartColorByRowCodeButton',
-            'epiviz.ui.charts.decoration.ChartOrderByMeasurementsCodeButton'
-            ],
-            colors: 'd3-category20b'
-          }
-        },
-
-        chartCustomSettings: {
-          'epiviz.plugins.charts.BlocksTrack': {
-            minBlockDistance: 3,
-            useColorBy: false,
-            blockColorBy: 'label'
-          },
-          'epiviz.plugins.charts.GenesTrack': {
-
-          },
-          'epiviz.plugins.charts.LineTrack': {
-            step: 1,
-            showPoints: false,
-            showLines: true,
-            pointRadius: 1,
-            lineThickness: 2
-          },
-          'epiviz.plugins.charts.ScatterPlot': {
-            circleRadiusRatio: 0.01
-          },
-          'epiviz.plugins.charts.HeatmapPlot': {
-            colLabel: 'label',
-            maxColumns: 120,
-            clusteringAlg: 'agglomerative'
-          },
-          'epiviz.plugins.charts.StackedLinePlot': {
-            colLabel: 'label'
-          }
-        },
-      };
-
-      epiviz.Config.SETTINGS.dataProviders = [[this.providerType, this.providerId, this.providerUrl]];
-
-      var config = new epiviz.Config(settingsMap);
-      
-      config.dataProviders = [];
-      config.dataProviders.push([this.providerType, this.providerId, this.providerUrl]);
-
-      /** @type {epiviz.data.DataProviderFactory} */
-      var dataProviderFactory = new epiviz.data.DataProviderFactory(config);
-
-      /** @type {epiviz.data.DataManager} */
-      var dataManager = new epiviz.data.DataManager(config, dataProviderFactory);
-
-      this.config = config;
-      this.dataProviderFactory = dataProviderFactory;
-      this.dataManager = dataManager;
-
-      var self = this;
-
-      this.dataManager.getMeasurements(function(result) {
-        self.measurements = result.raw();
-        self.measurementSet = result;
-      });
-
-      this.dataManager.getSeqInfos(function(result) {
-        self.seqInfos = result;
-      });
-    }
-  });
-</script>
 </dom-module></div>
