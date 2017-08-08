@@ -46,13 +46,14 @@
     "ideogram": "eweitz/ideogram#^0.5.0"
   },
   "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#^1.1.8"
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.8",
+    "epiviz-data-source": "epiviz/epiviz-data-source"
   },
-  "_release": "f421c8323b",
+  "_release": "0c7eb2046c",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "f421c8323bce8bc36df0c465d37135773f031e02"
+    "commit": "0c7eb2046cc35ff1e5ebd60d0595aa52657b0b1b"
   },
   "_source": "https://github.com/hcbravolab/epiviz-chart.git",
   "_target": "*",

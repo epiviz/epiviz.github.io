@@ -1,3 +1,0 @@
-library(httr)
-write(httr::content(GET("https://raw.githubusercontent.com/waldronlab/MicrobiomeWorkshop/master/vignettes/MicrobiomeWorkshop.Rmd")), file = "MicrobiomeWorkshop.Rmd")
-file.edit("MicrobiomeWorkshop.Rmd")

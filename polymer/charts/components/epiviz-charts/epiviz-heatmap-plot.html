@@ -9,6 +9,9 @@
 <link rel="import" href="chart-settings.html">
 <link rel="import" href="chart-colors.html">
 
+<!-- Epiviz Shared css -->
+<link rel="import" href="chart-shared-css.html">
+
 <!--
 `<epiviz-heatmap-plot>` creates a heatmap where columns are aligned to the genomic location.
 
@@ -22,21 +25,26 @@ To use, add `<epiviz-heatmap-plot>` in the page
 -->
 
 <dom-module id="epiviz-heatmap-plot">
-    <link rel="import" href="../epiviz-imports/epiviz-common-css.html">
+    <!--<link rel="import" href="../epiviz-imports/epiviz-common-css.html">-->
     <template>
         <style include="shared-settings"></style>
+        <style include="chart-shared-css"></style>
         <style>
             :host {
-                /*min-width: 400px;*/
-                /*min-height: 400px;*/
-                display: inline-block;
+                /*min-width: 400px;
+                min-height: 400px;*/
                 width: 100%;
-                /*border: 1px solid black;*/
-                /*padding: 10px;*/
-                resize: both;
+                height: 100%;
+                display: inline-block;
+                /*border: 1px solid black;
+                padding: 10px;
+                resize: both;*/
                 overflow: auto;
                 transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
+            }
+            #chart {
+                position:relative;
             }
         </style>
 
@@ -254,7 +262,7 @@ To use, add `<epiviz-heatmap-plot>` in the page
                 var self = this;
                 self.plotId = self.plotId || self._generatePlotId();
                 // style observer on charts
-                // self.scopeSubtree(self.$.chart, true);
+                self.scopeSubtree(self.$.chart, true);
                 self.config = new epiviz.Config(self.configSrc);
                 epiviz.ui.charts.transform.clustering.ClusteringAlgorithmFactory.initialize(self.config);
             },

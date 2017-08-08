@@ -20,20 +20,22 @@ To use, add `<epiviz-json-scatter-plot>` in the page
 -->
 
 <dom-module id="epiviz-json-scatter-plot">
-    <link rel="import" href="../epiviz-imports/epiviz-common-css.html">
+    <!--<link rel="import" href="../epiviz-imports/epiviz-common-css.html">-->
     <template>
-        <style include="shared-settings"></style>
+        <!--<style include="shared-settings"></style>-->
         <style>
             :host {
-                min-width: 400px;
-                min-height: 400px;
+                /*min-width: 400px;
+                min-height: 400px;*/
+                width: 100%;
+                height: 100%;
                 display: inline-block;
-                margin: 10px;
+                /*margin: 10px;*/
             }
         </style>
 
         <!-- local DOM goes here -->
-        <epiviz-scatter-plot id="epivizChart" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-scatter-plot>
+        <epiviz-scatter-plot id="epivizChart" chart-settings="{{settings}}" chart-colors="{{colors}}" range="{{_chartRange}}" data="{{_chartData}}" measurements="{{_chartMeasurements}}"></epiviz-scatter-plot>
     
     </template>
 

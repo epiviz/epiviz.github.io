@@ -9,6 +9,9 @@
 <link rel="import" href="chart-settings.html">
 <link rel="import" href="chart-colors.html">
 
+<!-- Epiviz Shared css -->
+<link rel="import" href="chart-shared-css.html">
+
 <!--
 `<epiviz-scatter-plot>` creates a scatter plot chart
 
@@ -22,21 +25,26 @@ To use, add `<epiviz-scatter-plot>` in the page
 -->
 
 <dom-module id="epiviz-scatter-plot">
-    <link rel="import" href="../epiviz-imports/epiviz-common-css.html">
+    <!--<link rel="import" href="../epiviz-imports/epiviz-common-css.html">-->
     <template>
         <style include="shared-settings"></style>
+        <style include="chart-shared-css"></style>
         <style>
             :host {
-                /*min-width: 400px;*/
-                /*min-height: 400px;*/
-                display: inline-block;
+                /*min-width: 400px;
+                min-height: 400px;*/
                 width: 100%;
-                /*border: 1px solid black;*/
-                /*padding: 10px;*/
-                resize: both;
+                /*height: 100%;*/
+                display: inline-block;
+                /*border: 1px solid black;
+                padding: 10px;
+                resize: both;*/
                 overflow: auto;
                 transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
+            }
+            #chart {
+                position:relative;
             }
         </style>
 
@@ -163,7 +171,57 @@ To use, add `<epiviz-scatter-plot>` in the page
 
                         return epiviz.Config.SETTINGS;
                     }
+                },
+
+                colorByRegions: {
+                    type: Array,
+                    notify: true,
+                    observer: "_colorByRegionsChanged"
                 }
+            },
+
+            _colorByRegionsChanged: function() {
+                var self = this;
+                var itemsGroup = self.chart._chartContent.select('.items');
+                var selection = itemsGroup.selectAll('circle');
+
+                var chartRanges = self.colorByRegions;
+
+                // self.colorByRegions.forEach(function(region) {
+                //     chartRanges.push(
+                //         region.seqName(), 
+                //         region.start(), 
+                //         region.end() - region.start());
+                // });
+
+                selection
+                .each(
+                /**
+                 * @param {epiviz.ui.charts.ChartObject} d
+                 */
+                function(d) {
+                    var circle = d3.select(this);
+
+                    var dRange = new epiviz.datatypes.GenomicRange(
+                        d.valueItems[0][0].rowItem.seqName(), 
+                        d.valueItems[0][0].rowItem.start(), 
+                        d.valueItems[0][0].rowItem.end() - d.valueItems[0][0].rowItem.start());
+
+                    var inRegion = false;
+
+                    chartRanges.forEach(function(r,i) {
+                        if(dRange.overlapsWith(r)) {
+                            var fill = self.chart.colors().get(i+1); 
+                            circle.style('fill', fill);
+                            inRegion = true;
+                        }
+                        else if( !inRegion && i == chartRanges.length-1) {
+                            var fill = self.chart.colors().get(0); 
+                            circle.style('fill', fill);
+                            inRegion = true;
+                        }
+                    });
+                });
             },
 
             // Initialization that should happen or use FactoryImpl 
@@ -254,7 +312,7 @@ To use, add `<epiviz-scatter-plot>` in the page
                 var self = this;
                 self.plotId = self.plotId || self._generatePlotId();
                 // style observer on charts
-                // self.scopeSubtree(self.$.chart, true);
+                self.scopeSubtree(self.$.chart, true);
                 self.config = new epiviz.Config(self.configSrc);
             },
             
@@ -266,6 +324,9 @@ To use, add `<epiviz-scatter-plot>` in the page
              */
             _draw: function() {
                 this.chart.draw(this.range, this.data);
+                if(this.colorByRegions) {
+                    this._colorByRegionsChanged();
+                }
             },
 
             /**
