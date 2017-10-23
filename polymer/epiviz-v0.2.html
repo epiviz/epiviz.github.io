@@ -30781,7 +30781,9 @@ module.exports = {
          */
         _chartSettingsChanged: function() {
             var self = this;
-            self.chart.setCustomSettingsValues(self.chartSettings);
+            if(self.chart) {
+              self.chart.setCustomSettingsValues(self.chartSettings);
+            }
             // self._dataChanged();
         },
 
