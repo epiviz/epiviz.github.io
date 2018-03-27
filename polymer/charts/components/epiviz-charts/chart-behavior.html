@@ -5,22 +5,17 @@
 <dom-module id="shared-settings">
   <template>
     <style>
+        :host {
+            overflow: hidden;
+            border: 1px solid black;
+        };
         #chartSettingsContainer {
-            /*float: right;*/
             position:absolute;
             top: 0;
             right: 0;
-            /*display:block;*/
-            /*width: 24px;
-            height: 24px;*/
-            
-            /*--iron-icon-height: 16px;
-            --iron-icon-width: 16px;*/
-
             border: 1px solid #000;
             border-radius: 2px;
             margin:1px;
-            /*background-color: #fff000;*/
         }
 
         #chartSettingsIcon {
@@ -31,6 +26,13 @@
         }
 
         #chartColorsIcon {
+            float: right;
+            width: 24px;
+            height: 24px;
+            padding: 2px;
+        }
+
+        #chartRemoveIcon {
             float: right;
             width: 24px;
             height: 24px;
@@ -59,6 +61,18 @@
             dimS: {
                 type: Array,
                 notify: true
+            },
+
+
+            /**
+             * Parent Container if chart is part of Nav or Env
+             *
+             * @type {Object}
+             */            
+             _parentContainer: {
+                type: Object,
+                notify: true,
+                observer: "_parentContainerChanged"
             },
 
             /**
@@ -135,6 +149,11 @@
                 type: Array,
                 notify: true,
                 observer: '_chartColorsChanged'
+            },
+
+            hostDragging: {
+                type: Boolean,    
+                value: false,            
             }
         },
 
@@ -144,7 +163,7 @@
 
         listeners: {
             'iron-resize': '_onResize',
-            'transitionend': '_onResize'
+            // 'transitionend': '_onResize'
         },
 
         // onElementResize: function(event) {
@@ -158,11 +177,125 @@
             var self = this;
             // this._measurementsChanged();
             if(this.chart != null) {
-                var width = self.offsetWidth - 20;
-                if(width < 0) { width = self.chartType.defaultWidth()/2;}
-                this.chart._properties.width = Math.max(width, self.offsetWidth - epiviz.ui.charts.Visualization.SVG_MARGIN);
+                this.chart._properties.width = Math.max(self.chartType.defaultWidth()/2, self.offsetWidth - epiviz.ui.charts.Visualization.SVG_MARGIN);
                 this.chart._properties.height = Math.max(self.chartType.defaultHeight(), self.offsetHeight - epiviz.ui.charts.Visualization.SVG_MARGIN);
                 self._dataChanged();
+            }
+        },
+
+        /**
+         * Assign Parent Container
+         * intiialize chart brushing events
+         * 
+         * @return {string}
+         */
+        _parentContainerChanged: function() {
+            var self = this;
+
+            var parent = self._parentContainer;
+
+            if(self.nodeName == "EPIVIZ-NAVIGATION") {
+                
+                parent.addEventListener('hoverAllCharts', function(e) {
+                    if(self.collapsed) {
+                        if(Array.isArray(e.detail.data)) {
+                            for (var rIndex = 0; rIndex < e.detail.data.length; rIndex++) {
+                                if(self.$$("#navTrack").chartObject.overlapsWith(e.detail.data[rIndex])) {
+                                    self.$$("#navTrack").hover();
+                                    break;
+                                }
+                            }
+                        }
+                        else {
+                            if(self.$$("#navTrack").chartObject.overlapsWith(e.detail.data)) {
+                                self.$$("#navTrack").hover();
+                            }
+                        }
+                    }
+                    else {
+                        var numChildren = self.getEffectiveChildren().length;
+                        for (var index = 0; index < numChildren; index++) {
+                            var currentChild = self.getEffectiveChildren()[index];
+                            currentChild.hover(e.detail.data);
+                        }
+                    }
+                }.bind(self));
+
+                parent.addEventListener('unHoverAllCharts', function(e) {
+                    if(self.collapsed) {
+                        self.$$("#navTrack").unHover();
+                    }
+                    else {
+                        var numChildren = self.getEffectiveChildren().length;
+                        for (var index = 0; index < numChildren; index++) {
+                            var currentChild = self.getEffectiveChildren()[index];
+                            currentChild.unHover();
+                        }
+                    }
+                }.bind(self));
+
+                parent.addEventListener('selectAllCharts', function(e) {
+                    if(!self.collapsed) {
+                        if(Array.isArray(e.detail.data)) {
+                            for (var rIndex = 0; rIndex < e.detail.data.length; rIndex++) {
+                                if(self.$$("#navTrack").chartObject.overlapsWith(e.detail.data[rIndex])) {
+                                    self.$$("#navTrack").hover();
+                                    break;
+                                }
+                            }
+                        }
+                        else {
+                            if(self.$$("#navTrack").chartObject.overlapsWith(e.detail.data)) {
+                                self.$$("#navTrack").hover();
+                            }
+                        }
+                    }
+                    else {
+                        var numChildren = self.getEffectiveChildren().length;
+                        for (var index = 0; index < numChildren; index++) {
+                            var currentChild = self.getEffectiveChildren()[index];
+                            currentChild.select(e.detail.data);
+                        }
+                    }
+                }.bind(self));
+
+                parent.addEventListener('unSelectAllCharts', function(e) {
+                    if(!self.collapsed) {
+                        self.$$("#navTrack").unHover();
+                    }
+                    else {
+                        var numChildren = self.getEffectiveChildren().length;
+                        for (var index = 0; index < numChildren; index++) {
+                            var currentChild = self.getEffectiveChildren()[index];
+                            currentChild.deSelect();
+                        }
+                    }
+                }.bind(self));
+            }
+            else {
+                parent.addEventListener('hoverAllCharts', function(e) {
+                    if (!self.hostDragging) {
+                        self.hover(e.detail.data);
+                    }
+                }.bind(self));
+
+                parent.addEventListener('unHoverAllCharts', function(e) {
+                    if (!self.hostDragging) {
+                        self.unHover();
+                    }
+                }.bind(self));
+
+                parent.addEventListener('selectAllCharts', function(e) {
+                    if (!self.hostDragging) {
+                        self.select(e.detail.data);
+                    }
+                }.bind(self));
+
+                parent.addEventListener('unSelectAllCharts', function(e) {
+                    if (!self.hostDragging) {
+                        self.deSelect();
+                    }
+                }.bind(self));
             }
         },
 
@@ -231,7 +364,7 @@
          * ChartLocation/RangeChange event handler.
          */
         _rangeChanged: function() {
-            this._measurementsChanged();
+            // this._measurementsChanged();
         },
 
         /**
@@ -271,7 +404,7 @@
                 self.chartType = self._createChart();
 
                 var width = self.offsetWidth - 40;
-                if(width < 0) { width = self.chartType.defaultWidth()/2;}
+                if(width < self.chartType.defaultWidth()/2) { width = self.chartType.defaultWidth()/2;}
 
                 if(self.chartType) {
                     self.chartProperties = new epiviz.ui.charts.VisualizationProperties(
@@ -308,6 +441,7 @@
 
                     self._initializeSettingsDialog();
                     self._initializeColorsDialog();
+                    self._initializeRemoveDialog();
 
                     // Listen to hover event on the chart
                     /**
@@ -342,6 +476,42 @@
                             var data = e.args;
                             self.unHover();
                             self.fire('unHover', {
+                                id: id
+                            });
+                        }
+                    ));
+
+                    /**
+                     * fires event when a chart data object is selected.
+                     *
+                     * @event select
+                     * @type {object}
+                     * @property {object} data - data object currently selected.
+                     */
+                     self.chart.onSelect().addListener(new epiviz.events.EventListener(
+                        function(e) {
+                            var id = e.id;
+                            var data = e.args;
+                            self.select(data);
+                            self.fire('select', {
+                                id: id,
+                                data: data
+                            });
+                        }
+                    ));
+
+
+                    /**
+                     * fires event when a chart data object is unSelected.
+                     *
+                     * @event deSelect
+                     * @type {object}
+                     */
+                     self.chart.onDeselect().addListener(new epiviz.events.EventListener(
+                        function(e) {
+                            var id = e.id;
+                            self.deSelect();
+                            self.fire('deSelect', {
                                 id: id
                             });
                         }
@@ -393,14 +563,33 @@
          * @param {object} data data object currently hovered.
          */
         hover: function(data) {
-            this.chart.doHover(data);
+            if (!this.hostDragging && this.hostDragging !== undefined && this.chart) {
+                this.chart.doHover(data);    
+            }
         },
 
         /**
          * unHover event handler.
          */
         unHover: function() {
-            this.chart.doUnhover();
+            if (!this.hostDragging && this.hostDragging !== undefined && this.chart) {
+                this.chart.doUnhover();    
+            }
+        },
+
+        /**
+         * select event handler.
+         * @param {object} data data object currently hovered.
+         */
+         select: function(data) {
+            this.chart.doSelect(data);
+        },
+
+        /**
+         * deSelect event handler.
+         */
+         deSelect: function() {
+            this.chart.doDeselect();
         },
 
         /**
@@ -414,7 +603,6 @@
                 var iconElem = document.createElement('div');
                 iconElem.hidden = true;
                 iconElem.id = "chartSettingsContainer";
-
                 // iconElem.addEventListener("click", this._showColorsDialog.bind(this));
                 Polymer.dom(chartContainer).appendChild(iconElem);
             }
@@ -438,6 +626,6 @@
             if(currColorsIcon) {
                 currColorsIcon.setAttribute("hidden", true);   
             }
-        }
+        },
     }
 </script>

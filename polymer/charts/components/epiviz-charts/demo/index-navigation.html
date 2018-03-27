@@ -10,6 +10,8 @@
     <link rel="import" href="../epiviz-navigation.html">
     <link rel="import" href="../epiviz-scatter-plot.html">
     <link rel="import" href="../epiviz-genes-track.html">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>s
 
     <!--<link rel="import" href="../../epiviz-data-source/epiviz-data-source.html">-->
 </head>
@@ -24,13 +26,14 @@
         chr="chr6"
         start="64076201"
         end="95088740" 
+        no-logo
         use-default-data-provider="true">
             <epiviz-genes-track class="charts" use-default-data-provider="true"> </epiviz-genes-track>
             <epiviz-scatter-plot class="charts" use-default-data-provider="true"> </epiviz-scatter-plot>
     </epiviz-navigation>
 
     <epiviz-navigation  
-        id="epiNav"                   
+        id="epiNav"
         gene="esr1"
         use-default-data-provider="true">
             <epiviz-genes-track class="charts" use-default-data-provider="true"> </epiviz-genes-track>

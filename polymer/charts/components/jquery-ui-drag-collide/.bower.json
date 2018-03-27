@@ -1,0 +1,40 @@
+{
+  "name": "jquery-ui-drag-collide",
+  "authors": [
+    "Sean Cusack",
+    "Djuri Baars <dsbaars@gmail.com>"
+  ],
+  "description": "Provides collision events while dragging, and handles collision-avoidance.",
+  "main": "js/jquery-ui-draggable-collision.js",
+  "keywords": [
+    "jquery",
+    "ui",
+    "draggable",
+    "collision"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/dsbaars/jquery-ui-drag-collide",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">=1.10.1",
+    "jquery-collision": "dsbaars/jquery-collision"
+  },
+  "devDependencies": {
+    "jquery-ui": ">=1.10.4"
+  },
+  "_release": "f98b06abfc",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f98b06abfcae5f08fcda640517b0e0c8b48d9bc5"
+  },
+  "_source": "https://github.com/dsbaars/jq-ui-draggable-collision.git",
+  "_target": "*",
+  "_originalSource": "jquery-ui-drag-collide"
+}

@@ -1,6 +1,5 @@
 # paper-dropdown-input
-A paper-input that provides the user with input suggestions.  
-Compatible with Polymer 1.9 and 2.x.
+A paper-input that provides the user with input suggestions
 
 _[Demo and API Docs](https://juravenator.github.io/paper-dropdown-input/components/paper-dropdown-input/)_
 
