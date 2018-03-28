@@ -51,10 +51,9 @@ style this element.
 
     <paper-input-container no-label-float$="[[noLabelFloat]]" always-float-label="[[_computeAlwaysFloatLabel(alwaysFloatLabel,placeholder)]]" auto-validate$="[[autoValidate]]" disabled$="[[disabled]]" invalid="[[invalid]]">
 
-      <label hidden$="[[!label]]" aria-hidden="true" for$="[[_inputId]]">[[label]]</label>
+      <label hidden$="[[!label]]" aria-hidden="true">[[label]]</label>
 
-      <iron-autogrow-textarea class="input-element paper-input-input"
-        id$="[[_inputId]]"
+      <iron-autogrow-textarea id="input" class="paper-input-input"
         bind-value="{{value}}"
         invalid="{{invalid}}"
         validator$="[[validator]]"
@@ -132,15 +131,15 @@ style this element.
     },
 
     _ariaLabelledByChanged: function(ariaLabelledBy) {
-      this._focusableElement.setAttribute('aria-labelledby', ariaLabelledBy);
+      this.$.input.textarea.setAttribute('aria-labelledby', ariaLabelledBy);
     },
 
     _ariaDescribedByChanged: function(ariaDescribedBy) {
-      this._focusableElement.setAttribute('aria-describedby', ariaDescribedBy);
+      this.$.input.textarea.setAttribute('aria-describedby', ariaDescribedBy);
     },
 
     get _focusableElement() {
-      return this.inputElement.textarea;
-    }
+      return this.$.input.textarea;
+    },
   });
 </script>

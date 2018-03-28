@@ -14,11 +14,11 @@
     "test",
     "tests"
   ],
-  "_release": "195aafe1a3",
+  "_release": "8f5ba75310",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "195aafe1a39fdc74a005ea60d34cf62ac26d86c0"
+    "commit": "8f5ba75310587edd5f195226e850dbb62522ba77"
   },
   "_source": "https://github.com/jkanche/epiviz-imports.git",
   "_target": "*",

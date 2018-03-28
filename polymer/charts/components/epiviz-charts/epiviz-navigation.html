@@ -11,25 +11,16 @@
 
 <!-- Epiviz data behaviors dependency -->
 <link rel="import" href="chart-data-behavior.html">
-<link rel="import" href="chart-add-behavior.html">
 
 <!-- Chart elements dependency -->
 <link rel="import" href="epiviz-genes-track.html">
 <link rel="import" href="epiviz-ideogram-track.html">
 
-<!-- Polymer Behavior dependency -->
-<link rel="import" href="../iron-fit-behavior/iron-fit-behavior.html">
-
 <!-- External Polymer Styles/elements dependency -->
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-autocomplete/paper-autocomplete.html">
-<link rel="import" href="../paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../paper-menu-button/paper-menu-button.html">
-<link rel="import" href="../paper-menu/paper-menu.html">
-<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 
 <!--
 `<epiviz-navigation>` is similar to `<epiviz-environment>`. It is a wrapper element that handles events 
@@ -54,51 +45,37 @@ To use, add `<epiviz-navigation>` in the page
         <style>
             :host {
                 display: inline-block;
-                border: none;
-                width: 100%;
-                /* border: 1px solid black; */
-                /* border-radius: 10px; */
+                border: 1px solid black;
+                padding: 10px;
+                resize: both;
+                /*width: 100%;
+                height: 100%;*/
+                overflow: auto;
                 transition:width 0.01s, height 0.01s;
+                /*margin: 10px;*/
+                width: auto;
+                height: auto;
             }
-            
+
+            .container {
+                width: 600px;
+                display: inline;
+            }
+
             .flex {
                 @apply(--layout-horizontal);
                 align-items: center;
             }
 
             .flexchild {
-                /* @apply(--layout-flex); */
+                @apply(--layout-flex);
                 padding: 10px;
-                /* flex: 1 1 auto; */
+                flex: 1 1 auto;
             }
 
-            #disableHeader {
-                pointer-events: none;
-                opacity: 0.4;
-            }
-
-            paper-header-panel {
-                float: left;
-                width: 95%;
-                min-height: 500px;
-                margin: 12px;
-                @apply(--shadow-elevation-2dp);
-            }
-
-            .paper-header {
-                height: 50px;
-                font-size: 12px;
-                padding: 0 10px;
-                color: white;
-                transition: height 0.2s;
-                vertical-align: middle;
-            }
-
-            paper-button {
-                display: inline-block;
-                background: #4285f4;
-                color: #fff;
-                vertical-align: middle;
+            .flex-end-justified {
+                @apply(--layout-horizontal);
+                @apply(--layout-end-justified);
             }
 
             paper-icon-button {
@@ -110,95 +87,58 @@ To use, add `<epiviz-navigation>` in the page
                 height: 28px;
             }
 
-            .content {
-                /* height: 800px; */
-                height: 100%;
-                padding: 10px;
-                /* min-height: 300px; */
+            #disableHeader {
+                pointer-events: none;
+                opacity: 0.4;
             }
-
-            #logo {
-                vertical-align: middle;
-            }
-
-            /* .blue .content {
-                background: linear-gradient(white, #e0e2e2);
-            } */
-
-            .blue .paper-header {
-                background-color: #e0e2e2;
-            }
-            paper-menu-button {
-                float: right;
-            }
-
         </style>
 
-        <paper-header-panel class="blue">
-            <div id="header" class="paper-header">
-                <a href="http://epiviz.github.io" target="_blank" hidden$={{noLogo}}>
-                    <img id="logo" src="epiviz_4_logo_medium.png" alt="Epiviz" width="100" height="21">
-                </a> 
-                <div style="display:inline" hidden$="{{collapsed}}">
-                    <epiviz-add-chart></epiviz-add-chart>  
-                </div>  
-<!--                 <paper-button raised class="collapse-header" on-click="toggleHeader">Collapse</paper-button>
-                <paper-button raised on-click="cloneNavigation">Clone</paper-button>     -->
-                <paper-menu-button dynamic-align vertical-align="bottom" vertical-offset=24>
-                    <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
-                    <paper-menu class="dropdown-content">
-                        <paper-item toggles on-click="toggleSelected">Delete</paper-item>
-                        <paper-item on-click="cloneNavigation">Clone</paper-item>
-                        <paper-item on-click="toggleHeader">{{_toggleText}}</paper-item>
-                    </paper-menu>
-                </paper-menu-button>       
-            </div>
-            <div class="content fit">
-                <!-- <template is="dom-if" if="{{collapsed}}"> -->
-                <div hidden$="{{!collapsed}}">
-                    <epiviz-ideogram-track gene-in-range="{{geneInRange}}" id="navTrack" chromosome="{{chr}}" start="{{start}}" end="{{end}}"></epiviz-ideogram-track>
+        <!-- local DOM goes here -->
+        <div>
+            <button class="collapse-header" on-click="toggleHeader">Expand</button>
+            <button on-click="cloneNavigation">Clone</button>
+        </div>
+        <template restamp="true" is="dom-if" if="{{collapsed}}">
+            <epiviz-ideogram-track gene-in-range="{{geneInRange}}" id="navTrack" chromosome="{{chr}}" start="{{start}}" end="{{end}}"></epiviz-ideogram-track>
+        </template>
+        
+        <iron-collapse id="navHeader">
+            <template restamp="true" is="dom-if" if="{{!collapsed}}">
+                <div class="container flex" id="{{_headerName}}">
+                    <div class="flexchild">
+                        <paper-icon-button title="move left" icon="icons:chevron-left" on-click="moveLeft"></paper-icon-button>
+                        <paper-icon-button title="move right" icon="icons:chevron-right" on-click="moveRight"></paper-icon-button>
+                        <paper-icon-button title="zoom out" icon="icons:zoom-out" on-click="zoomOut"></paper-icon-button>
+                        <paper-icon-button title="zoom in" icon="icons:zoom-in" on-click="zoomIn"></paper-icon-button>
+                    </div>
+                    <div class="flexchild" on-mouseover="locationHovered" on-mouseout="locationUnhovered">
+                        <paper-input value="{{_strRange]]" label="Chromosome Location" on-change="_updateStrRange"></paper-input>
+                    </div>
+                    <div class="flexchild">
+                        <paper-autocomplete id="geneSearch" label="Search Gene/Probe" remote-source="true" min-length="2" 
+                            on-autocomplete-selected="_selectGene"
+                            on-autocomplete-change="_searchGene"
+                            value-property="gene"
+                            text-property="gene">
+                            <template autocomplete-custom-template>
+                                <paper-item on-tap="_onSelect" id$="[[_getSuggestionId(index)]]" role="option" aria-selected="false">
+                                <div>[[item.gene]] [[item.seqName]]: [[item.start]] - [[item.end]]</div>
+                                <paper-ripple></paper-ripple>
+                                </paper-item>
+                            </template>
+                        </paper-autocomplete>
+                    </div>
                 </div>
-                <!-- </template> -->
-
-                <!-- <template is="dom-if" if="{{!collapsed}}"> -->
-                    <iron-collapse id="navHeader" hidden$="{{collapsed}}" opened>
-                        <div class="container flex" id="{{_headerName}}">
-                            <div class="flexchild">
-                                <paper-icon-button title="move left" icon="icons:chevron-left" on-click="moveLeft"></paper-icon-button>
-                                <paper-icon-button title="move right" icon="icons:chevron-right" on-click="moveRight"></paper-icon-button>
-                                <paper-icon-button title="zoom out" icon="icons:zoom-out" on-click="zoomOut"></paper-icon-button>
-                                <paper-icon-button title="zoom in" icon="icons:zoom-in" on-click="zoomIn"></paper-icon-button>
-                            </div>
-                            <div class="flexchild" on-mouseover="locationHovered" on-mouseout="locationUnhovered">
-                                <paper-input value="{{_strRange]]" label="Chromosome Location" on-change="_updateStrRange"></paper-input>
-                            </div>
-                            <div class="flexchild">
-                                <paper-autocomplete id="geneSearch" label="Search Gene/Probe" remote-source="true" min-length="2" 
-                                    on-autocomplete-selected="_selectGene"
-                                    on-autocomplete-change="_searchGene"
-                                    value-property="gene"
-                                    text-property="gene">
-                                    <template autocomplete-custom-template>
-                                        <paper-item on-tap="_onSelect" id$="[[_getSuggestionId(index)]]" role="option" aria-selected="false">
-                                        <div>[[item.gene]] [[item.seqName]]: [[item.start]] - [[item.end]]</div>
-                                        <paper-ripple></paper-ripple>
-                                        </paper-item>
-                                    </template>
-                                </paper-autocomplete>
-                            </div>
-                        </div>
-                        <content id="chartNav" select=".charts"></content>
-                    </iron-collapse>
-                <!-- </template> -->
-            </div>
-        </paper-header-panel>
+                <content id="chartNav" select=".charts"></content>
+            </template>
+        </iron-collapse>
     </template>
 
     <script>
         Polymer({
             /* Custom element html tag */
             is: 'epiviz-navigation',
-            behaviors: [epiviz.ChartBehavior, epiviz.ChartDataBehavior, epiviz.ChartAddBehavior, epiviz.ChartWorkspaceBehavior, Polymer.IronResizableBehavior, Polymer.IronFitBehavior],
+            behaviors: [epiviz.ChartBehavior, epiviz.ChartDataBehavior, Polymer.IronResizableBehavior],
 
             /* Properties that can be defined on the element */
             properties: {
@@ -212,8 +152,8 @@ To use, add `<epiviz-navigation>` in the page
                  * @type {string}
                  */
                 chr: {
-                    type: String,
-                    notify: true
+                    type: String
+                    // notify: true
                 },
 
                 /**
@@ -223,8 +163,8 @@ To use, add `<epiviz-navigation>` in the page
                  * @type {number}
                  */
                 start: {
-                    type: Number,
-                    notify: true
+                    type: Number
+                    // notify: true
                 },
 
                 /**
@@ -234,8 +174,8 @@ To use, add `<epiviz-navigation>` in the page
                  * @type {number}
                  */
                 end: {
-                    type: Number,
-                    notify: true
+                    type: Number
+                    // notify: true
                 },
 
                 /**
@@ -255,6 +195,8 @@ To use, add `<epiviz-navigation>` in the page
                  */
                 range: {
                     type: Object,
+                    // notify: true,
+		            computed: 'getGenomicRange(chr, start, end)',
                     observer: '_rangeUpdate'
                 },
 
@@ -274,12 +216,6 @@ To use, add `<epiviz-navigation>` in the page
                     type: String,
                     notify: true,
                     value : "enableHeader"
-                },
-
-                _toggleText: {
-                    type: String,
-                    notify: true,
-                    computed: '_computeToggleText(collapsed)'
                 },
 
                 /**
@@ -312,9 +248,7 @@ To use, add `<epiviz-navigation>` in the page
                 collapsed: {
                     type: Boolean,
                     notify: true,
-                    value: function () {
-                        return false;
-                    }
+                    value: true
                 },
 
                 /**
@@ -330,13 +264,6 @@ To use, add `<epiviz-navigation>` in the page
                 headerClassName: {
                     type: String,
                     notify: true
-                },
-
-                noLogo: {
-                    type: Boolean,
-                    notify: true,
-                    reflectToAttribute: true,
-                    value: false
                 },
 
                 /**
@@ -365,66 +292,28 @@ To use, add `<epiviz-navigation>` in the page
             /* event listeners */
             listeners: {
                 'hover': 'onHover',
-                'unHover': 'onUnhover',
-                'select': 'onSelect',
-                'deSelect': 'onDeselect'
-                // ,
-                // 'transitioning-changed': 'onOpenChanged'
-            },
-
-            _computeToggleText: function(collapsed) {
-                if(collapsed) {
-                    return "Expand";
-                }
-
-                return "Collapse";
-            },
-
-            // onOpenChanged: function(event) {
-            //     console.log(this.$.navHeader.transitioning);
-            //     console.log("here");
-            // },
-
-            toggleSelected: function(event) {
-                $(event.target).parent().parent()[0].selected = null;
+                'unHover': 'onUnhover'
             },
 
             /**
              * Toggle handler (expand/collapse)
              */
             toggleHeader: function(event) {
-                var self = this;
                 this.$.navHeader.toggle();
                 this.collapsed = !this.collapsed;
-                // unselect the selected paper-item;
-                this.toggleSelected(event);
-                // unsafe to reference index 0, but works for now
-                var menuButton = $(this).find("paper-menu-button")[0];
-                menuButton.close();
+                // console.log($(this).find(".collapse-header")[0]);
                 if (!this.collapsed) {
-                    Polymer.dom(self).unobserveNodes(self._observer);
+                    $(this).find(".collapse-header")[0].innerHTML = "Collapse";
                 } else {
-                    self._observer =
-                    Polymer.dom(self.$$("#chartNav")).observeNodes(function(info) {
-                        info.addedNodes.forEach(function(node) {
-                            if(node.nodeName.indexOf("PLOT") != -1 || node.nodeName.indexOf("TRACK") != -1) {
-                                node._parentContainer = self;
-                                var measurements = self.measurements;
-                                if(self._parentContainer) {
-                                    measurements = self._parentContainer.measurements;
-                                }
-                                self._getElementData(node, self, measurements);
-                            }
-                        });
-                        // self.saveWorkspace();
-                    });
+                    $(this).find(".collapse-header")[0].innerHTML = "Expand";
                 }
-                self._onResize();
-
-                if(event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
+                event.preventDefault();
+                event.stopPropagation();
+                // if(!this.collapsed) {
+                //     this._getGenesInRange(this, this);
+                // }
+                // 
+                // this._getData();
             },
 
             /**
@@ -464,42 +353,6 @@ To use, add `<epiviz-navigation>` in the page
             },
 
             /**
-             * Select event handler.
-             * Listens to select events fired from its children elements and propagates to other charts.
-             *
-             * @fires selectAllCharts
-             */
-             onSelect: function(e) {
-                /**
-                 * Propogates select event to other charts.
-                 *
-                 * @event selectAllCharts
-                 * @type {object}
-                 * @property {object} data - data object currently selected.
-                 */
-                this.fire('selectAllCharts', {
-                    data: e.detail.data
-                });
-            },
-
-            /**
-             * deSelect event handler.
-             * Listens to select events fired from its children elements and propagates to other charts.
-             *
-             * @fires unSelectAllCharts
-             */
-             onDeselect: function(e) {
-                /**
-                 * Propogates select event to other charts.
-                 *
-                 * @event unSelectAllCharts
-                 */
-                this.fire('unSelectAllCharts', {
-                    data: null
-                });
-            },
-
-            /**
              * ChartLocation/RangeChange event handler.
              */
             _rangeUpdate: function() {
@@ -512,14 +365,12 @@ To use, add `<epiviz-navigation>` in the page
                     var currentChild = self.getEffectiveChildren()[index];
                     if(currentChild == undefined || currentChild.plotId == undefined) {return ;}
                     currentChild.range = self.range;
-                    var measurements = self.measurements;
-                    if(self._parentContainer) {
-                        measurements = self._parentContainer.measurements;
+                    if(Polymer.dom(self).parentNode.nodeName === "EPIVIZ-ENVIRONMENT") {
+                        self._getElementData(currentChild, self, self.parentNode.measurements);  
                     }
-                    self._getElementData(currentChild, self, measurements);
                 }
 
-                self.chartObject = new epiviz.ui.charts.ChartObject(self.plotId, self.start, self.end, undefined, undefined, undefined, undefined, undefined, self.chr);
+                self.chartObject = new epiviz.ui.charts.ChartObject(self.plotId, self.start, self.end, undefined, undefined, undefined, undefined, undefined);
 
                 self.fire('navigationRangeUpdate', {
                     plotId: self.plotId,
@@ -560,7 +411,9 @@ To use, add `<epiviz-navigation>` in the page
                     }, gene);
                 }
                 else {
-                    var result = self._getElementSearch(gene, self, self);  
+                    if(Polymer.dom(self).parentNode.nodeName === "EPIVIZ-ENVIRONMENT") {
+                        var result = self._getElementSearch(gene, self, self);  
+                    }
                 }
             },
 
@@ -574,8 +427,6 @@ To use, add `<epiviz-navigation>` in the page
                 this.chr = selected.seqName;
                 this.start = selected.start - Math.round(selected.start * 0.01);
                 this.end = selected.end + Math.round(selected.end * 0.01);
-
-                this.range = this.getGenomicRange(this.chr, this.start, this.end);
             },
 
             /**
@@ -677,7 +528,7 @@ To use, add `<epiviz-navigation>` in the page
              * @return {epiviz.datatypes.GenomicRange} Genomic Range object
              */
             getGenomicRange: function(chr, start, end) {
-                return new epiviz.datatypes.GenomicRange(chr, start, end-start);
+                    return new epiviz.datatypes.GenomicRange(chr, start, end-start);
             },
 
             /**
@@ -690,22 +541,18 @@ To use, add `<epiviz-navigation>` in the page
                     var currentChild = self.getEffectiveChildren()[index];
                     if(currentChild == undefined || currentChild.plotId == undefined) {return ;}
                     currentChild.range = self.range;
-                    currentChild._parentContainer = self;
-                    var measurements = self.measurements;
-                    if(self._parentContainer) {
-                        measurements = self._parentContainer.measurements;
+                    if(Polymer.dom(self).parentNode.nodeName === "EPIVIZ-ENVIRONMENT") {
+                        self._getElementData(currentChild, self, self.parentNode.measurements);  
                     }
-                    self._getElementData(currentChild, self, measurements);
                 }
             },
 
             /**
              * Clones a navigation element and add it to the page
              */
-            cloneNavigation: function(event) {
+            cloneNavigation: function() {
                 var self = this;
 
-                this.toggleSelected(event);
                 var navElem = document.createElement('epiviz-navigation');
                 navElem.chr = self.chr;
                 navElem.start = self.start;
@@ -723,7 +570,7 @@ To use, add `<epiviz-navigation>` in the page
                     childElem.measurements = currentChild.measurements;
                     childElem.chartSettings = currentChild.chartSettings;
                     childElem.chartColors = currentChild.chartColors;
-                    childElem._parentContainer = self;
+
                     Polymer.dom(navElem).appendChild(childElem);
                 }
             },
@@ -749,21 +596,55 @@ To use, add `<epiviz-navigation>` in the page
             },
 
             // Initialization that should happen or use FactoryImpl 
-            created: function() {
-                var self = this;
-                self._getElementSeqInfo(self, self);
-            },
+            // created: function() {},
             
             /* callback function after the element is attached to the DOM */
             attached: function() {
 
                 var self = this;
 
-                self.collapsed = false;
-
                 if(!self.dataManager) {
                     self._headerName = "disableHeader";
                 }
+
+                // listen to events 
+                var parent = self.parentNode;
+                parent.addEventListener('hoverAllCharts', function(e) {
+                    if(self.collapsed) {
+                        if(self.$$("#navTrack").chartObject.overlapsWith(e.detail.data)) {
+                            self.$$("#navTrack").hover();
+                        }
+                    }
+                    else {
+                        var numChildren = self.getEffectiveChildren().length;
+                        for (var index = 0; index < numChildren; index++) {
+                            var currentChild = self.getEffectiveChildren()[index];
+                            currentChild.hover(e.detail.data);
+                        }
+                    }
+                }.bind(self));
+
+                parent.addEventListener('unHoverAllCharts', function(e) {
+                    if(self.collapsed) {
+                        self.$$("#navTrack").unHover();
+                    }
+                    else {
+                        var numChildren = self.getEffectiveChildren().length;
+                        for (var index = 0; index < numChildren; index++) {
+                            var currentChild = self.getEffectiveChildren()[index];
+                            currentChild.unHover();
+                        }
+                    }
+                }.bind(self));
+
+                // if(self.collapsed) {
+                    var numChildren = self.getEffectiveChildren().length;
+                    for (var index = 0; index < numChildren; index++) {
+                        var currentChild = self.getEffectiveChildren()[index];
+                        currentChild.range = self.range;
+                        self._getElementData(currentChild, self, self.parentNode.measurements);
+                    }
+                // }
 
                 if (self.useDefaultDataProvider) {
 
@@ -778,48 +659,6 @@ To use, add `<epiviz-navigation>` in the page
                         self.seqInfo = seqinfo;
                     });
                 }
-
-                if(self.gene) {
-                    self._getElementSearch(self.gene, null, null, function(data) {
-                        self.chr = data[0].seqName;
-                        self.start = data[0].start;
-                        self.end = data[0].end;
-                        self.range = self.getGenomicRange(self.chr, self.start, self.end);
-
-                        self.chartObject = new epiviz.ui.charts.ChartObject(self.plotId, self.start, self.end, undefined, undefined, undefined, undefined, undefined, self.chr);
-                    });
-                }
-                else if(self.chr && self.start && self.end) {
-                    self.range = self.getGenomicRange(self.chr, self.start, self.end);
-
-                    self.chartObject = new epiviz.ui.charts.ChartObject(self.plotId, self.start, self.end, undefined, undefined, undefined, undefined, undefined, self.chr);
-                }
-
-                if(!self.collapsed) {
-                    self._observer =
-                    Polymer.dom(self.$$("#chartNav")).observeNodes(function(info) {
-                        info.addedNodes.forEach(function(node) {
-                            if(node.nodeName.indexOf("EPIVIZ-") != -1) {
-                                // self._updateChart(node.plotId);
-                                node._parentContainer = self;
-                                var measurements = self.measurements;
-                                if(self._parentContainer) {
-                                    measurements = self._parentContainer.measurements;
-                                }
-                                self._getElementData(node, self, measurements);
-                            }
-                        });
-                        // self.saveWorkspace();
-                    });
-                }
-            },
-
-            _measurementsChanged: function() {
-                // console.log("ovverriding measurementsChanged function");
-            },
-
-            _rangeChanged: function() { 
-                // console.log("overriding rangeChanged function");
             },
 
             /* callback function after the element is initialized */
@@ -828,7 +667,22 @@ To use, add `<epiviz-navigation>` in the page
 
                 self.plotId = self.plotId || self._generatePlotId();
                 self.config = new epiviz.Config(self.configSrc);
-                // self.range = self.getGenomicRange(self.chr, self.start, self.end);
+
+                if(self.gene) {
+                    self._getElementSearch(self.gene, null, null, function(data) {
+                        self.chr = data[0].seqName;
+                        self.start = data[0].start;
+                        self.end = data[0].end;
+                        self.range = self.getGenomicRange(self.chr, self.start, self.end);
+
+                        self.chartObject = new epiviz.ui.charts.ChartObject(self.plotId, self.start, self.end, undefined, undefined, undefined, undefined, undefined);
+                    });
+                }
+                else if(self.chr && self.start && self.end) {
+                    self.range = self.getGenomicRange(self.chr, self.start, self.end);
+
+                    self.chartObject = new epiviz.ui.charts.ChartObject(self.plotId, self.start, self.end, undefined, undefined, undefined, undefined, undefined);
+                }
 
                 if(self.transformDataFunc) {
                     self.transformFunc = new Function('return ' + self.transformDataFunc);
@@ -836,8 +690,6 @@ To use, add `<epiviz-navigation>` in the page
                 else {
                     self.transformFunc = self.epivizToJSON;
                 }
-
-                self._initializeAddDialog();
             },
 
             /**

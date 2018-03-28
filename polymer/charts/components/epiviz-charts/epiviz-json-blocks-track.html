@@ -30,8 +30,6 @@ To use, add `<epiviz-json-blocks-track>` in the page
                 display: inline-block;
                 width: 100%;
                 height: 100%;
-                /*overflow: auto;*/
-                transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
             }
         </style>
@@ -44,7 +42,7 @@ To use, add `<epiviz-json-blocks-track>` in the page
         Polymer({
             /* Custom element html tag */
             is: 'epiviz-json-blocks-track',
-            behaviors: [epiviz.ChartJSONBehavior, Polymer.IronResizableBehavior],
+            behaviors: [epiviz.ChartJSONBehavior],
 
             properties: {
                 /**
@@ -77,14 +75,6 @@ To use, add `<epiviz-json-blocks-track>` in the page
 
                 parent.addEventListener('unHoverAllCharts', function(e) {
                     self.$.epivizChart.unHover();
-                }.bind(self));
-
-                parent.addEventListener('selectAllCharts', function(e) {
-                    self.$.epivizChart.select(e.detail.data);
-                }.bind(self));
-
-                parent.addEventListener('unSelectAllCharts', function(e) {
-                    self.$.epivizChart.deSelect();
                 }.bind(self));
             }
 

@@ -8,8 +8,6 @@
 <link rel="import" href="chart-behavior.html">
 <link rel="import" href="chart-settings.html">
 <link rel="import" href="chart-colors.html">
-<link rel="import" href="chart-remove.html">
-<link rel="import" href="chart-draggable-behavior.html">
 
 <!-- Epiviz Shared css -->
 <link rel="import" href="chart-shared-css.html">
@@ -41,7 +39,7 @@ To use, add `<epiviz-scatter-plot>` in the page
                 /*border: 1px solid black;
                 padding: 10px;
                 resize: both;*/
-                /*overflow: auto;*/
+                overflow: auto;
                 transition:width 0.01s, height 0.01s;
                 /*margin: 10px;*/
             }
@@ -62,7 +60,7 @@ To use, add `<epiviz-scatter-plot>` in the page
         Polymer({
             /* Custom element html tag */
             is: 'epiviz-scatter-plot',
-            behaviors: [epiviz.ChartBehavior, epiviz.ChartSettingsBehavior, epiviz.ChartColorsBehavior, epiviz.ChartRemoveBehavior, Polymer.IronResizableBehavior, epiviz.ChartDraggableBehavior],
+            behaviors: [epiviz.ChartBehavior, epiviz.ChartSettingsBehavior, epiviz.ChartColorsBehavior, Polymer.IronResizableBehavior],
 
             /* Properties that can be defined on the element */
             properties: {
@@ -231,7 +229,36 @@ To use, add `<epiviz-scatter-plot>` in the page
 
             /* callback function after the element is attached to the DOM */
             attached: function() {
+
                 var self = this;
+
+                // listen to events 
+                var parent = self.parentNode;
+                
+                if(parent.nodeName === "IRON-COLLAPSE") {
+                    parent = parent.parentNode;
+                }
+
+                parent.addEventListener('hoverAllCharts', function(e) {
+                    self.hover(e.detail.data);
+                }.bind(self));
+
+                parent.addEventListener('unHoverAllCharts', function(e) {
+                    self.unHover();
+                }.bind(self));
+
+                // if(parent.nodeName === "EPIVIZ-NAVIGATION") {
+                //     parent.addEventListener('hover', function(e) {
+                //         self.hover(e.detail.data);
+                //     }.bind(self));
+
+                //     parent.addEventListener('unHover', function(e) {
+                //         self.unHover();
+                //     }.bind(self));
+                // }
+
+                self._measurementsChanged();
+                self._dataChanged();
 
                 if (self.useDefaultDataProvider) {
 

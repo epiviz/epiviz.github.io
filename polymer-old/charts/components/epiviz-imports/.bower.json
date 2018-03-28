@@ -1,0 +1,26 @@
+{
+  "name": "epiviz-imports",
+  "authors": [
+    "Jayaram Kancherla <jayaram.kancherla@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/jkanche/epiviz-imports",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "195aafe1a3",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "195aafe1a39fdc74a005ea60d34cf62ac26d86c0"
+  },
+  "_source": "https://github.com/jkanche/epiviz-imports.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/jkanche/epiviz-imports.git"
+}
