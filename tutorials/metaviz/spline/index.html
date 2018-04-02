@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://epiviz.github.io/tutorials/images/favicon.png" type="image/x-icon" />
 
     
-    <title>Metaviz Tutorials</title>
+    <title>Longitudinal Data Analysis</title>
     <link href="https://epiviz.github.io/tutorials/css/nucleus.css" rel="stylesheet">
     <link href="https://epiviz.github.io/tutorials/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://epiviz.github.io/tutorials/css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     {display:none !important;}</style>
     <link href="https://epiviz.github.io/tutorials/css/my_style.css" rel="stylesheet">
   </head>
-  <body class="" data-url="/metaviz/">
+  <body class="" data-url="/metaviz/spline/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -51,7 +51,7 @@
       
       
 
-      <li class="dd-item active parent" data-nav-id="/metaviz/">
+      <li class="dd-item  parent" data-nav-id="/metaviz/">
         <a href="https://epiviz.github.io/tutorials/metaviz/">
           <span>
             
@@ -91,7 +91,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/metaviz/spline/">
+            <li class="dd-item active" data-nav-id="/metaviz/spline/">
               <a href="https://epiviz.github.io/tutorials/metaviz/spline/">
                 <span>Longitudinal Data Analysis     </i></span>
               </a>
@@ -218,43 +218,152 @@
                       </a>
                   </span>
                 
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
                 
                 
                 
                   
                     
                     
+                <a href="https://epiviz.github.io/tutorials/metaviz/" itemprop="url"><span itemprop="title">Metaviz Tutorials</span></a> <i class="fa fa-angle-right"></i>
+                    
                   
                 
                   
                 
-                <span itemprop="title"> Metaviz Tutorials</span>
+                <span itemprop="title"> Longitudinal Data Analysis</span>
               </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#generating-metagenomeseq-objects-and-performing-ss-anova-testing">Generating metagenomeSeq objects and performing SS-ANOVA testing</a></li>
+<li><a href="#generating-metavizr-object-to-plot">Generating metavizR object to plot</a></li>
+<li><a href="#choosing-features-to-plot-and-adding-a-line-plot-to-metaviz">Choosing features to plot and adding a line plot to Metaviz</a></li>
+<li><a href="#updating-chart-settings-from-metavizr">Updating chart settings from metavizR</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
               
 
             </div>
             
-              <div id="chapter">
-            
     	        <div id="body-inner">
+                
+                <h1>Longitudinal Data Analysis</h1>
                 
 
 
 
-<h3 id="tutorials">Tutorials</h3>
+<p>Metaviz is a tool for interactive visualization and exploration of metagenomic sequencing data. It provides a novel navigation tool for exploring hierarchical feature data that is coupled with multiple data visualizations including heatmaps, stacked bar charts, and scatter plots.
+The metavizr package implements two-way communication between the R/Bioconductor computational genomics environment and Metaviz. Objects in an R/Bioconductor session can be visualized and explored using the Metaviz navigation tool and plots.
+In this post we show how to use metavizr and the metagenomeSeq Bioconductor package to
+analyze data from a longitudinal study.</p>
 
-<ul>
-<li><a href="overview">post 1: Metaviz Quick Overview</a></li>
-<li><a href="metagenomeSeq">post 2: Differential Analysis with MetagenomeSeq and Metaviz</a></li>
-<li><a href="video_tutorials">post 3: Visual Analysis of MSD16S Dataset</a></li>
-<li><a href="spline">post 4: Longitudinal Data Analysis</a></li>
-<li><a href="usingDocker">post 5: Metaviz Docker Containers</a></li>
-<li><a href="hostingData">post 6: Hosting Data</a></li>
-</ul>
+<h2 id="generating-metagenomeseq-objects-and-performing-ss-anova-testing">Generating metagenomeSeq objects and performing SS-ANOVA testing</h2>
+
+<p>We use a dataset from &ldquo;Individual-specific changes in the human gut microbiota after challenge with enterotoxigenic Escherichia coli and subsequent ciprofloxacin treatment&rdquo; which includes data from 12 human samples that were challenged with E. coli then provided subsequent antibiotic treatment.<br />
+Samples were taken for 1 day pre-infection and 10 days post-infection. We will analyze this time series data with a smoothing-spline and plot it in a Metaviz workspace with a line plot over all features.</p>
+
+<p>First, import the etec16s dataset, select sample data from the first 9 days. Then use metavizr to launch an instance of the Metaviz app in a local web-browser.</p>
+
+<pre><code class="language-r, eval=FALSE">library(etec16s)
+library(metagenomeSeq)
+library(metavizr)
+data(etec16s)
+etec16s &lt;- etec16s[,-which(pData(etec16s)$Day&gt;9)]
+
+app &lt;- startMetaviz(&quot;http://metaviz.cbcb.umd.edu&quot;) 
+</code></pre>
+
+<p>This provides a new workspace.</p>
+
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/SplineAppLaunch.png" alt="" /></p>
+
+<p>Next, use metagenomeSeq to fit a smoothing-spline to the time series data using the &lsquo;timeSeriesFits&rsquo; method.</p>
+
+<pre><code class="language-r, eval=FALSE">featureData(etec16s)$Kingdom &lt;- &quot;Bacteria&quot;
+feature_order &lt;- c(&quot;Kingdom&quot;, &quot;Phylum&quot;, &quot;Class&quot;, &quot;Order&quot;, &quot;Family&quot;, &quot;Genus&quot;, &quot;Species&quot;, &quot;OTU.ID&quot;)
+
+timeSeriesFits &lt;- fitMultipleTimeSeries(obj=etec16s,
+                             formula = abundance~id + time*class + AntiGiven,
+                             class=&quot;AnyDayDiarrhea&quot;,
+                             id=&quot;SubjectID&quot;,
+                             time=&quot;Day&quot;,
+                             lvl=&quot;Species&quot;,
+                             feature_order = feature_order,
+                             C=0.3,
+                             B=1)
+</code></pre>
+
+<h2 id="generating-metavizr-object-to-plot">Generating metavizR object to plot</h2>
+
+<p>For plotting the data using Metaviz, we use the fit values as y-coordinates and timepoints as x-coordinates.  We need to call &lsquo;ts2MRexperiment&rsquo; with arguments for the sample and feature data, in this case timepoints and annotations, respectively. We also
+aggregate to the &lsquo;species&rsquo; level.</p>
+
+<pre><code class="language-r, eval=FALSE">feature_order2 &lt;- c(&quot;Kingdom&quot;, &quot;Phylum&quot;, &quot;Class&quot;, &quot;Order&quot;, &quot;Family&quot;, &quot;Genus&quot;, &quot;Species&quot;)
+
+splinesMRexp &lt;- ts2MRexperiment(timeSeriesFits, feature_data = featureData(aggregateByTaxonomy(etec16s, lvl=&quot;Species&quot;, feature_order = feature_order2)), sampleNames = timeSeriesFits[[2]]$fit$timePoints)
+etec16s_species &lt;- aggregateByTaxonomy(etec16s, lvl=&quot;Species&quot;, feature_order = feature_order)
+</code></pre>
+
+<h2 id="choosing-features-to-plot-and-adding-a-line-plot-to-metaviz">Choosing features to plot and adding a line plot to Metaviz</h2>
+
+<p>We select features with a timepoint with absolute log-fold change greater than 2. We add the MRexperiment as a measurement for Metaviz to plot the hierarchy in a &lsquo;FacetZoom&rsquo; object.</p>
+
+<pre><code class="language-r, eval=FALSE">splines_to_plot &lt;- sapply(1:nrow(MRcounts(splinesMRexp)), function(i) {max(abs(MRcounts(splinesMRexp[i,]))) &gt;= 2})
+splines_to_plot_indices &lt;- which(splines_to_plot == TRUE)
+
+ic_plot &lt;- app$plot(splinesMRexp[splines_to_plot_indices,], datasource_name = &quot;etec16_base&quot;, control=metavizControl(norm = FALSE, aggregateAtDepth = 6), feature_order = feature_order2)
+</code></pre>
+
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/SplineAddIcicle.png" alt="" /></p>
+
+<p>We then use the &lsquo;revisualize&rsquo; method to add a Line Plot for the smoothing spline.</p>
+
+<pre><code class="language-r, eval=FALSE">splineObj &lt;- app$data_mgr$add_measurements(splinesMRexp[splines_to_plot_indices,], datasource_name = &quot;etec16_base&quot;, control = metavizControl(norm=FALSE, aggregateAtDepth = 6))
+splineMeasurements &lt;- splineObj$get_measurements()
+splineChart &lt;- app$chart_mgr$visualize(&quot;LinePlot&quot;, splineMeasurements)
+</code></pre>
+
+<p>This adds the Line Plot to the workspace but we will need to set the range of the y-axis and modify the color scheme to produce a final workspace.</p>
+
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/SplineLinePlotAdded.png" alt="" /></p>
+
+<h2 id="updating-chart-settings-from-metavizr">Updating chart settings from metavizR</h2>
+
+<p>We can update the colors and settings on the spline chart. For example, lets limit the y axis to be between -10 and 10. To do so we use the &lsquo;set_chart_settings&rsquo; method. We can list existing settings for a chart using the &lsquo;list_chart_settings&rsquo; function.</p>
+
+<pre><code class="language-r, eval=FALSE, echo=FALSE"># list available charts
+app$chart_mgr$list_chart_types()
+
+# list available settings for &quot;LinePlot&quot;
+app$chart_mgr$list_chart_type_settings(&quot;LinePlot&quot;)
+
+# update settings on splineChart 
+settings &lt;- list(yMin = -10, yMax = 10)
+colors &lt;- c(&quot;#1f77b4&quot;, &quot;#ff7f0e&quot;, &quot;#2ca02c&quot;, &quot;#d62728&quot;, &quot;#9467bd&quot;, &quot;#8c564b&quot;, &quot;#e377c2&quot;, &quot;#7f7f7f&quot;, &quot;#bcbd22&quot;, &quot;#17becf&quot;)
+app$chart_mgr$set_chart_settings(splineChart, settings=settings, colors = colors)
+</code></pre>
+
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/SplineLinePlotSettings.png" alt="" /></p>
+
+<p>We can interact with the Metaviz session, such as hovering over the Line Plot to see highlight the path through the hierarchy.</p>
+
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/SplineLinePlotHover.png" alt="" /></p>
+
+<p>Also, we can hover in the icicle plot to highlight all features under that path in the Line Plot.</p>
+
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/SplineIcicleHover.png" alt="" /></p>
 
 
-      
-        </div> 
       
       </div>
     </div>

@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://epiviz.github.io/tutorials/images/favicon.png" type="image/x-icon" />
 
     
-    <title>Metaviz Tutorials</title>
+    <title>Metaviz Docker Containers</title>
     <link href="https://epiviz.github.io/tutorials/css/nucleus.css" rel="stylesheet">
     <link href="https://epiviz.github.io/tutorials/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://epiviz.github.io/tutorials/css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     {display:none !important;}</style>
     <link href="https://epiviz.github.io/tutorials/css/my_style.css" rel="stylesheet">
   </head>
-  <body class="" data-url="/metaviz/">
+  <body class="" data-url="/metaviz/usingDocker/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -51,7 +51,7 @@
       
       
 
-      <li class="dd-item active parent" data-nav-id="/metaviz/">
+      <li class="dd-item  parent" data-nav-id="/metaviz/">
         <a href="https://epiviz.github.io/tutorials/metaviz/">
           <span>
             
@@ -99,7 +99,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/metaviz/usingDocker/">
+            <li class="dd-item active" data-nav-id="/metaviz/usingDocker/">
               <a href="https://epiviz.github.io/tutorials/metaviz/usingDocker/">
                 <span>Metaviz Docker Containers     </i></span>
               </a>
@@ -218,43 +218,173 @@
                       </a>
                   </span>
                 
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
                 
                 
                 
                   
                     
                     
+                <a href="https://epiviz.github.io/tutorials/metaviz/" itemprop="url"><span itemprop="title">Metaviz Tutorials</span></a> <i class="fa fa-angle-right"></i>
+                    
                   
                 
                   
                 
-                <span itemprop="title"> Metaviz Tutorials</span>
+                <span itemprop="title"> Metaviz Docker Containers</span>
               </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#setup-and-installation">Setup and Installation</a></li>
+<li><a href="#adding-data-from-a-biom-file-to-the-metaviz-docker-instance">Adding Data from a Biom File to the Metaviz Docker Instance</a></li>
+<li><a href="#accessing-neo4j-docker-instance">Accessing Neo4j Docker instance</a>
+<ul>
+<li><a href="#visualizing-metagenomic-data-using-metaviz-ui">Visualizing Metagenomic Data using metaviz UI</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
               
 
             </div>
             
-              <div id="chapter">
-            
     	        <div id="body-inner">
+                
+                <h1>Metaviz Docker Containers</h1>
                 
 
 
 
-<h3 id="tutorials">Tutorials</h3>
+<h2 id="setup-and-installation">Setup and Installation</h2>
 
-<ul>
-<li><a href="overview">post 1: Metaviz Quick Overview</a></li>
-<li><a href="metagenomeSeq">post 2: Differential Analysis with MetagenomeSeq and Metaviz</a></li>
-<li><a href="video_tutorials">post 3: Visual Analysis of MSD16S Dataset</a></li>
-<li><a href="spline">post 4: Longitudinal Data Analysis</a></li>
-<li><a href="usingDocker">post 5: Metaviz Docker Containers</a></li>
-<li><a href="hostingData">post 6: Hosting Data</a></li>
-</ul>
+<p>Metaviz UI along with the webservices and the graph database are available as docker containers for self-hosting the application. We use docker-compose to manage these containers and the code is available at <a href="https://github.com/jkanche/metaviz-docker">Metaviz Docker</a>. The following provides the list of containers we use and the url to access them</p>
+
+<table>
+<thead>
+<tr>
+<th>App</th>
+<th>Docker Container Name</th>
+<th>Port</th>
+<th>URL to access</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Graph Database</td>
+<td>db</td>
+<td>7474</td>
+<td><a href="http://localhost:7474">http://localhost:7474</a></td>
+</tr>
+
+<tr>
+<td>Web Services</td>
+<td>services</td>
+<td>5000</td>
+<td><a href="http://localhost:5000">http://localhost:5000</a></td>
+</tr>
+
+<tr>
+<td>Metaviz UI</td>
+<td>ui</td>
+<td>5500</td>
+<td><a href="http://localhost:5500">http://localhost:5500</a></td>
+</tr>
+
+<tr>
+<td>BioConductor</td>
+<td>bioc</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+
+<p>For installing docker and docker-compose, Please follow the instructions at</p>
+
+<p>Docker:
+<a href="https://docs.docker.com/engine/installation/">https://docs.docker.com/engine/installation/</a></p>
+
+<p>Docker Compose:
+<a href="https://docs.docker.com/compose/install/">https://docs.docker.com/compose/install/</a></p>
+
+<p>We provide an easy to use python script <code>metaviz.py</code> (available at <a href="https://github.com/jkanche/metaviz-docker">Metaviz Docker</a>) to manage the Metaviz Docker instances. The following commands are available</p>
+
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+<th>Params</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>build</td>
+<td>builds all the metaviz docker containers.</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>serve</td>
+<td>builds and runs the docker containers</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>restart</td>
+<td>restarts metaviz docker containers</td>
+<td>None</td>
+</tr>
+
+<tr>
+<td>add</td>
+<td>Load a biom file to the docker instance.</td>
+<td><code>&lt;file_location&gt; &lt;datasource_name&gt;</code></td>
+</tr>
+</tbody>
+</table>
+
+<p><code>python metaviz.py -h</code> displays the available commands and params required to run.</p>
+
+<h2 id="adding-data-from-a-biom-file-to-the-metaviz-docker-instance">Adding Data from a Biom File to the Metaviz Docker Instance</h2>
+
+<p>MetavizR is an R-package to manage metagenomic data from locally hosted biom files and visualize the data using the Metaviz UI. We provide functions as part of the R-package to import data from Biom Files into a Neo4J Database. The BioConductor docker container helps with this process. It installs the metavizR package and its dependencies and calls the functions to import data into the database.</p>
+
+<p>The following command loads the metagenomic dataset from a biom file (test_file.biom) and import it to the database as <dataset_name></p>
+
+<p><code>python metaviz.py add &lt;test_file.biom&gt; &lt;dataset_name&gt;</code></p>
+
+<p>Note: The import process runs in the background and to check if it is done, please use the command <code>docker-compose logs bioc</code>. The data won&rsquo;t be available until the bioc container is done with the import.</p>
+
+<h2 id="accessing-neo4j-docker-instance">Accessing Neo4j Docker instance</h2>
+
+<p>Once the data is loaded successfully, neo4j has a built-in UI to explore the graph datasets and can be accessed
+at <a href="http://localhost:7474">http://localhost:7474</a> We first show the feature nodes and hiearchy connected by edges.</p>
+
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/FeatureHierarchy.png" alt="" /></p>
+
+<p>Then we show one path through the feature hierarchy to a leaf node and the count value of one sample as the edge to that leaf node. This denotes the observed counts for that feature in that sample.</p>
+
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/SampleCounts.png" alt="" /></p>
+
+<h3 id="visualizing-metagenomic-data-using-metaviz-ui">Visualizing Metagenomic Data using metaviz UI</h3>
+
+<p>To visualize the data loaded through a biom file using metaviz, please follow the instructions at <a href="tutorialUI">Metaviz Tutorial using msd16s Dataset</a>.</p>
+
+<p>Highlights of the features available through the Metaviz Application, please visit <a href="bestFeatures">Metaviz Features</a>.</p>
 
 
-      
-        </div> 
       
       </div>
     </div>
