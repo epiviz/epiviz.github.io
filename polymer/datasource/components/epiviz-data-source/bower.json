@@ -1,26 +1,15 @@
 {
   "name": "epiviz-data-source",
-  "authors": [
-    "Jayaram Kancherla <jayaram.kancherla@gmail.com>"
-  ],
+  "authors": ["Jayaram Kancherla <jayaram.kancherla@gmail.com>"],
   "description": "Datasource provider element for epiviz",
   "main": "",
-  "keywords": [
-    "epiviz",
-    "datasource"
-  ],
+  "keywords": ["epiviz", "datasource"],
   "license": "MIT",
   "homepage": "",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
+  "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
   "dependencies": {
-    "polymer": "Polymer#^1.6.1",
-    "epiviz-imports": "epiviz/epiviz-imports"
+    "polymer": "Polymer#^2.0",
+    "epiviz-imports": "hcbravolab/epiviz-imports"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.1.8"

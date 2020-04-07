@@ -14,11 +14,11 @@
     "test",
     "tests"
   ],
-  "_release": "8f5ba75310",
+  "_release": "6cd0ed22d3",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "8f5ba75310587edd5f195226e850dbb62522ba77"
+    "commit": "6cd0ed22d3b699eba542ab346bce19f57d413720"
   },
   "_source": "https://github.com/hcbravolab/epiviz-imports.git",
   "_target": "*",

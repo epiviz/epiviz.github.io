@@ -1,7 +1,10 @@
 (function (Prism) {
 	var inside = {
 		'url': /url\((["']?).*?\1\)/i,
-		'string': /("|')(?:[^\\\r\n]|\\(?:\r\n|[\s\S]))*?\1/,
+		'string': {
+			pattern: /("|')(?:(?!\1)[^\\\r\n]|\\(?:\r\n|[\s\S]))*\1/,
+			greedy: true
+		},
 		'interpolation': null, // See below
 		'func': null, // See below
 		'important': /\B!(?:important|optional)\b/i,
@@ -23,19 +26,25 @@
 	inside['interpolation'] = {
 		pattern: /\{[^\r\n}:]+\}/,
 		alias: 'variable',
-		inside: Prism.util.clone(inside)
+		inside: {
+			'delimiter': {
+				pattern: /^{|}$/,
+				alias: 'punctuation'
+			},
+			rest: inside
+		}
 	};
 	inside['func'] = {
 		pattern: /[\w-]+\([^)]*\).*/,
 		inside: {
 			'function': /^[^(]+/,
-			rest: Prism.util.clone(inside)
+			rest: inside
 		}
 	};
 
 	Prism.languages.stylus = {
 		'comment': {
-			pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*)/,
+			pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
 			lookbehind: true
 		},
 		'atrule-declaration': {
@@ -59,7 +68,7 @@
 			pattern: /(^[ \t]*)(?:if|else|for|return|unless)[ \t]+.+/m,
 			lookbehind: true,
 			inside: {
-				keyword: /^\S+/,
+				'keyword': /^\S+/,
 				rest: inside
 			}
 		},
@@ -67,7 +76,7 @@
 		// A property/value pair cannot end with a comma or a brace
 		// It cannot have indented content unless it ended with a semicolon
 		'property-declaration': {
-			pattern: /((?:^|\{)([ \t]*))(?:[\w-]|\{[^}\r\n]+\})+(?:\s*:\s*|[ \t]+)[^{\r\n]*(?:;|[^{\r\n,](?=$)(?!(\r?\n|\r)(?:\{|\2[ \t]+)))/m,
+			pattern: /((?:^|\{)([ \t]*))(?:[\w-]|\{[^}\r\n]+\})+(?:\s*:\s*|[ \t]+)[^{\r\n]*(?:;|[^{\r\n,](?=$)(?!(?:\r?\n|\r)(?:\{|\2[ \t]+)))/m,
 			lookbehind: true,
 			inside: {
 				'property': {

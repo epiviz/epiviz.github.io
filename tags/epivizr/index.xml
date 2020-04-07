@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Epivizr on Epiviz</title>
+    <title>epivizr on Epiviz</title>
     <link>https://epiviz.github.io/tags/epivizr/</link>
-    <description>Recent content in Epivizr on Epiviz</description>
+    <description>Recent content in epivizr on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 15 May 2017 12:52:12 -0500</lastBuildDate>
@@ -18,8 +18,7 @@
       
       <guid>https://epiviz.github.io/post/2017-05-01-epiviz-update/</guid>
       <description>Bioconductor version 3.5 was released last month: http://bioconductor.org/news/bioc_3_5_release/. This Bioconductor version includes updates to epivizr and a new package, metavizr, for interactive visualization of metagenomic data. In this post we describe these, and take the opportunity to update on other developments in the Epiviz project.
-What&amp;rsquo;s new!  epivizr updates Introducing Epiviz desktop application Metavizr now on R/Bioconductor Introducing epiviz webcomponents  epivizr updates 
- Save and Restart an epivizr session</description>
+What&amp;rsquo;s new!  epivizr updates Introducing Epiviz desktop application Metavizr now on R/Bioconductor Introducing epiviz webcomponents    Save and Restart an epivizr session</description>
     </item>
     
     <item>
@@ -29,7 +28,7 @@ What&amp;rsquo;s new!  epivizr updates Introducing Epiviz desktop application Me
       
       <guid>https://epiviz.github.io/post/2014-12-18-bedtools/</guid>
       <description>On a twitter exchange I showed A. Quinlan how to use epivizr to load data from a custom bed file. Here is the code I gave him:
-library(epivizr) library(rtracklayer) # download example bed file download.file(&amp;quot;https://raw.githubusercontent.com/arq5x/bedtools/master/data/aluY.hg19.bed.gz&amp;quot;, destfile=&amp;quot;test.bed.gz&amp;quot;, method=&amp;quot;curl&amp;quot;) # start UI mgr &amp;lt;- startEpiviz(workspace=&amp;quot;mi9NojjqT1l&amp;quot;) # import bed file gr &amp;lt;- import(BEDFile(&amp;quot;test.bed.gz&amp;quot;)) # drop data from unplaced contigs gr &amp;lt;- keepSeqlevels(gr, paste0(&amp;quot;chr&amp;quot;,c(1:22,&amp;quot;X&amp;quot;,&amp;quot;Y&amp;quot;))) # add track with bed file data dev &amp;lt;- mgr$addDevice(gr, &amp;quot;example bed&amp;quot;) # finish up mgr$stopServer()  Also at https://gist.</description>
+library(epivizr) library(rtracklayer) # download example bed file download.file(&amp;#34;https://raw.githubusercontent.com/arq5x/bedtools/master/data/aluY.hg19.bed.gz&amp;#34;, destfile=&amp;#34;test.bed.gz&amp;#34;, method=&amp;#34;curl&amp;#34;) # start UI mgr &amp;lt;- startEpiviz(workspace=&amp;#34;mi9NojjqT1l&amp;#34;) # import bed file gr &amp;lt;- import(BEDFile(&amp;#34;test.bed.gz&amp;#34;)) # drop data from unplaced contigs gr &amp;lt;- keepSeqlevels(gr, paste0(&amp;#34;chr&amp;#34;,c(1:22,&amp;#34;X&amp;#34;,&amp;#34;Y&amp;#34;))) # add track with bed file data dev &amp;lt;- mgr$addDevice(gr, &amp;#34;example bed&amp;#34;) # finish up mgr$stopServer() Also at https://gist.</description>
     </item>
     
     <item>

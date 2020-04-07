@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jobs on Epiviz</title>
+    <title>jobs on Epiviz</title>
     <link>https://epiviz.github.io/tags/jobs/</link>
-    <description>Recent content in Jobs on Epiviz</description>
+    <description>Recent content in jobs on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 15 Sep 2015 10:52:12 -0500</lastBuildDate>

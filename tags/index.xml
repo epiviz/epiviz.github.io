@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Epiviz</title>
@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Epivizr</title>
+      <title>epivizr</title>
       <link>https://epiviz.github.io/tags/epivizr/</link>
       <pubDate>Mon, 15 May 2017 12:52:12 -0500</pubDate>
       
@@ -21,25 +21,7 @@
     </item>
     
     <item>
-      <title>Features</title>
-      <link>https://epiviz.github.io/tags/features/</link>
-      <pubDate>Tue, 28 Oct 2014 13:00:00 -0500</pubDate>
-      
-      <guid>https://epiviz.github.io/tags/features/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Jobs</title>
-      <link>https://epiviz.github.io/tags/jobs/</link>
-      <pubDate>Tue, 15 Sep 2015 10:52:12 -0500</pubDate>
-      
-      <guid>https://epiviz.github.io/tags/jobs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Metaviz</title>
+      <title>metaviz</title>
       <link>https://epiviz.github.io/tags/metaviz/</link>
       <pubDate>Mon, 15 May 2017 12:52:12 -0500</pubDate>
       
@@ -48,25 +30,7 @@
     </item>
     
     <item>
-      <title>News</title>
-      <link>https://epiviz.github.io/tags/news/</link>
-      <pubDate>Mon, 17 Aug 2015 10:52:12 -0500</pubDate>
-      
-      <guid>https://epiviz.github.io/tags/news/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Papers</title>
-      <link>https://epiviz.github.io/tags/papers/</link>
-      <pubDate>Sun, 03 Aug 2014 19:46:32 -0500</pubDate>
-      
-      <guid>https://epiviz.github.io/tags/papers/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Polymer</title>
+      <title>polymer</title>
       <link>https://epiviz.github.io/tags/polymer/</link>
       <pubDate>Mon, 15 May 2017 12:52:12 -0500</pubDate>
       
@@ -75,7 +39,34 @@
     </item>
     
     <item>
-      <title>Publications</title>
+      <title>update</title>
+      <link>https://epiviz.github.io/tags/update/</link>
+      <pubDate>Mon, 15 May 2017 12:52:12 -0500</pubDate>
+      
+      <guid>https://epiviz.github.io/tags/update/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jobs</title>
+      <link>https://epiviz.github.io/tags/jobs/</link>
+      <pubDate>Tue, 15 Sep 2015 10:52:12 -0500</pubDate>
+      
+      <guid>https://epiviz.github.io/tags/jobs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>news</title>
+      <link>https://epiviz.github.io/tags/news/</link>
+      <pubDate>Mon, 17 Aug 2015 10:52:12 -0500</pubDate>
+      
+      <guid>https://epiviz.github.io/tags/news/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>publications</title>
       <link>https://epiviz.github.io/tags/publications/</link>
       <pubDate>Mon, 17 Aug 2015 10:52:12 -0500</pubDate>
       
@@ -84,11 +75,20 @@
     </item>
     
     <item>
-      <title>Update</title>
-      <link>https://epiviz.github.io/tags/update/</link>
-      <pubDate>Mon, 15 May 2017 12:52:12 -0500</pubDate>
+      <title>features</title>
+      <link>https://epiviz.github.io/tags/features/</link>
+      <pubDate>Tue, 28 Oct 2014 13:00:00 -0500</pubDate>
       
-      <guid>https://epiviz.github.io/tags/update/</guid>
+      <guid>https://epiviz.github.io/tags/features/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>papers</title>
+      <link>https://epiviz.github.io/tags/papers/</link>
+      <pubDate>Sun, 03 Aug 2014 19:46:32 -0500</pubDate>
+      
+      <guid>https://epiviz.github.io/tags/papers/</guid>
       <description></description>
     </item>
     

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Papers on Epiviz</title>
+    <title>papers on Epiviz</title>
     <link>https://epiviz.github.io/tags/papers/</link>
-    <description>Recent content in Papers on Epiviz</description>
+    <description>Recent content in papers on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 03 Aug 2014 19:46:32 -0500</lastBuildDate>

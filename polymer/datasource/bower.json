@@ -24,5 +24,9 @@
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.1.8"
+  },
+  "resolutions": {
+    "polymer": "^2.0",
+    "webcomponentsjs": "^v1.1.0"
   }
 }
