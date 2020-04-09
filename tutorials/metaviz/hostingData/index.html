@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://epiviz.github.io/tutorials/images/favicon.png" type="image/x-icon" />
 
     
-    <title>Metaviz Tutorials</title>
+    <title>Hosting Data in Metaviz</title>
     <link href="https://epiviz.github.io/tutorials/css/nucleus.css" rel="stylesheet">
     <link href="https://epiviz.github.io/tutorials/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://epiviz.github.io/tutorials/css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     {display:none !important;}</style>
     <link href="https://epiviz.github.io/tutorials/css/my_style.css" rel="stylesheet">
   </head>
-  <body class="" data-url="/metaviz/">
+  <body class="" data-url="/metaviz/hostingData/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -51,7 +51,7 @@
       
       
 
-      <li class="dd-item active parent" data-nav-id="/metaviz/">
+      <li class="dd-item  parent" data-nav-id="/metaviz/">
         <a href="https://epiviz.github.io/tutorials/metaviz/">
           <span>
             
@@ -107,7 +107,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/metaviz/hostingData/">
+            <li class="dd-item active" data-nav-id="/metaviz/hostingData/">
               <a href="https://epiviz.github.io/tutorials/metaviz/hostingData/">
                 <span>Hosting Data in Metaviz     </i></span>
               </a>
@@ -218,43 +218,118 @@
                       </a>
                   </span>
                 
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
                 
                 
                 
                   
                     
                     
+                <a href="https://epiviz.github.io/tutorials/metaviz/" itemprop="url"><span itemprop="title">Metaviz Tutorials</span></a> <i class="fa fa-angle-right"></i>
+                    
                   
                 
                   
                 
-                <span itemprop="title"> Metaviz Tutorials</span>
+                <span itemprop="title"> Hosting Data in Metaviz</span>
               </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#loading-data-using-metavizr">Loading data using metavizR</a></li>
+<li><a href="#abundance-matrix-data-format">Abundance matrix data format</a></li>
+<li><a href="#cbcb-storage">CBCB storage</a></li>
+<li><a href="#contact-us">Contact Us</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
               
 
             </div>
             
-              <div id="chapter">
-            
     	        <div id="body-inner">
+                
+                <h1>Hosting Data in Metaviz</h1>
                 
 
 
 
-<h3 id="tutorials">Tutorials</h3>
+<p>Metaviz is a tool for interactive visualization and exploration of metagenomic sequencing data. It provides a novel navigation tool for exploring hierarchical feature data that is coupled with multiple data visualizations including heatmaps, stacked bar charts, and scatter plots.
+In this post we show how to load into a Metaviz backend database. We
+also talk about our plans to host a metagenomics data repository
+accessible at metaviz.cbcb.umd.edu.</p>
 
-<ul>
-<li><a href="overview">post 1: Metaviz Quick Overview</a></li>
-<li><a href="metagenomeSeq">post 2: Differential Analysis with MetagenomeSeq and Metaviz</a></li>
-<li><a href="video_tutorials">post 3: Visual Analysis of MSD16S Dataset</a></li>
-<li><a href="spline">post 4: Longitudinal Data Analysis</a></li>
-<li><a href="usingDocker">post 5: Metaviz Docker Containers</a></li>
-<li><a href="hostingData">post 6: Hosting Data</a></li>
-</ul>
+<h2 id="loading-data-using-metavizr">Loading data using metavizR</h2>
+
+<p>metavizr is an
+R-package that can serve data from an R session to a Metaviz browser
+instance and load data into a persistent graph database. In this section
+we will load the mouseData available from the metagenomeSeq Bioconductor
+package. metavizr operates over a metagenomeSeq MRexperiment object to
+build a hierarchy tree data structure over the features and makes count
+data available at any level of the tree through aggregation.</p>
+
+<p>We first load the metavizr and metagenomeSeq packages along with the
+data.</p>
+
+<pre><code>library(metagenomeSeq)
+library(metavizr)
+data(mouseData)
+</code></pre>
+
+<p>Now we use the mouseData MRexperiment object to create an
+EpivizMetagenomicsData object with metavizr.</p>
+
+<pre><code>feature_order &lt;- c(&quot;superkingdom&quot;,&quot;phylum&quot;,&quot;class&quot;,&quot;order&quot;,&quot;family&quot;,&quot;genus&quot;,&quot;OTU&quot;)
+obj &lt;- metavizr:::EpivizMetagenomicsData$new(object = mouseData, feature_order = feature_order)
+</code></pre>
+
+<p>Next we call the &lsquo;toNEO4jDb&rsquo; which will build a hierarchy tree using the
+metagenomeSeq object, add all features nodes to a graph database, then
+add all sample nodes to the database, add edges denoting hierarchy
+levels between all feature nodes, and add edges between leaf feature
+nodes and sample nodes to denote observed count values.</p>
+
+<pre><code>obj$toNEO4JDbHTTP(batch_url = &quot;http://localhost:7474/db/data/batch&quot;, neo4juser = &quot;user&quot;, neo4jpass = &quot;pass&quot;, datasource = &quot;mouseData&quot;)
+</code></pre>
+
+<h2 id="abundance-matrix-data-format">Abundance matrix data format</h2>
+
+<p>For the abundance matrix, which is typically a
+biom file, we need each entry of the &ldquo;rows&rdquo; field to have the
+&ldquo;metadata&rdquo;&rdquo; field contain a key &ldquo;taxonomy&rdquo; with the value as the
+taxonomic lineage for that feature. We also need a non-null value for
+the &ldquo;metadata&rdquo; key for each entry of the &ldquo;columns&rdquo; field which denotes
+the sample attributes. We provide format validation in the metavizr
+package with appropriate error messages for each criteria.</p>
+
+<h2 id="cbcb-storage">CBCB storage</h2>
+
+<p>We can add datasets to our database and make them accessible through
+metaviz.cbcb.umd.edu. We currently store 5 datasets - 3 from published datasets and 2 from
+collaborators. The datasets are stored in one Neo4j instance with a
+top-level node that is the initial node we query of the disconnected
+graph for each dataset. These top-level nodes are what is rendered in
+the initial measurement browser pop-up when adding a chart to the
+Metaviz workspace.</p>
+
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/MetavizDatasets.png" alt="" /></p>
+
+<h2 id="contact-us">Contact Us</h2>
+
+<p>For hosting a dataset, please email us at hcorrada@umiacs.umd.edu.</p>
+
+<p>For any functionality requests, please post an issue in the appropriate repository at <a href="https://github.com/epiviz/">https://github.com/epiviz/</a>.</p>
 
 
-      
-        </div> 
       
       </div>
     </div>

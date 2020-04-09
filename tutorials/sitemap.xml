@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
     <loc>https://epiviz.github.io/tutorials/</loc>
@@ -18,11 +17,63 @@
   </url>
   
   <url>
-    <loc>https://epiviz.github.io/tutorials/categories/</loc>
+    <loc>https://epiviz.github.io/tutorials/metaviz/overview/</loc>
+    <lastmod>2017-01-24T14:08:04-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://epiviz.github.io/tutorials/tags/</loc>
+    <loc>https://epiviz.github.io/tutorials/metaviz/metagenomeSeq/</loc>
+    <lastmod>2017-01-17T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/metaviz/video_tutorials/</loc>
+    <lastmod>2017-02-17T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/metaviz/spline/</loc>
+    <lastmod>2017-01-13T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/metaviz/usingDocker/</loc>
+    <lastmod>2017-01-13T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/metaviz/hostingData/</loc>
+    <lastmod>2017-01-23T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/tutorials/timp2014/</loc>
+    <lastmod>2016-11-23T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/tutorials/charts/</loc>
+    <lastmod>2016-11-23T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/tutorials/computed-measurements/</loc>
+    <lastmod>2016-11-23T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/tutorials/epivizr/</loc>
+    <lastmod>2016-11-23T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/tutorials/plugins/</loc>
+    <lastmod>2016-11-23T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/tutorials/websocket/</loc>
+    <lastmod>2016-11-23T14:08:04-05:00</lastmod>
   </url>
   
 </urlset>
