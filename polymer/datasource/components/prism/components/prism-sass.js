@@ -20,7 +20,7 @@
 	delete Prism.languages.sass.atrule;
 
 
-	var variable = /\$[-\w]+|#\{\$[-\w]+\}/;
+	var variable = /((\$[-_\w]+)|(#\{\$[-_\w]+\}))/i;
 	var operator = [
 		/[+*\/%]|[=!]=|<=?|>=?|\b(?:and|or|not)\b/,
 		{
@@ -62,6 +62,7 @@
 
 	// Now that whole lines for other patterns are consumed,
 	// what's left should be selectors
+	delete Prism.languages.sass.selector;
 	Prism.languages.insertBefore('sass', 'punctuation', {
 		'selector': {
 			pattern: /([ \t]*)\S(?:,?[^,\r\n]+)*(?:,(?:\r?\n|\r)\1[ \t]+\S(?:,?[^,\r\n]+)*)*/,

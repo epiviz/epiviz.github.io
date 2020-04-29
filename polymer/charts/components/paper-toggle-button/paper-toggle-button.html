@@ -63,9 +63,9 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
     <style>
       :host {
         display: inline-block;
-        @apply --layout-horizontal;
-        @apply --layout-center;
-        @apply --paper-font-common-base;
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        @apply(--paper-font-common-base);
       }
 
       :host([disabled]) {
@@ -86,7 +86,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         transition: background-color linear .08s;
         background-color: var(--paper-toggle-button-unchecked-bar-color, #000000);
 
-        @apply --paper-toggle-button-unchecked-bar;
+        @apply(--paper-toggle-button-unchecked-bar);
       }
 
       .toggle-button {
@@ -100,9 +100,9 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         transition: -webkit-transform linear .08s, background-color linear .08s;
         transition: transform linear .08s, background-color linear .08s;
         will-change: transform;
-        background-color: var(--paper-toggle-button-unchecked-button-color, var(--paper-grey-50));
+        background-color: var(--paper-toggle-button-unchecked-button-color, --paper-grey-50);
 
-        @apply --paper-toggle-button-unchecked-button;
+        @apply(--paper-toggle-button-unchecked-button);
       }
 
       .toggle-button.dragging {
@@ -112,9 +112,9 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 
       :host([checked]:not([disabled])) .toggle-bar {
         opacity: 0.5;
-        background-color: var(--paper-toggle-button-checked-bar-color, var(--primary-color));
+        background-color: var(--paper-toggle-button-checked-bar-color, --primary-color);
 
-        @apply --paper-toggle-button-checked-bar;
+        @apply(--paper-toggle-button-checked-bar);
       }
 
       :host([disabled]) .toggle-bar {
@@ -128,9 +128,9 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
 
       :host([checked]:not([disabled])) .toggle-button {
-        background-color: var(--paper-toggle-button-checked-button-color, var(--primary-color));
+        background-color: var(--paper-toggle-button-checked-button-color, --primary-color);
 
-        @apply --paper-toggle-button-checked-button;
+        @apply(--paper-toggle-button-checked-button);
       }
 
       :host([disabled]) .toggle-button {
@@ -148,15 +148,15 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         height: 48px;
         opacity: 0.5;
         pointer-events: none;
-        color: var(--paper-toggle-button-unchecked-ink-color, var(--primary-text-color));
+        color: var(--paper-toggle-button-unchecked-ink-color, --primary-text-color);
 
-        @apply --paper-toggle-button-unchecked-ink;
+        @apply(--paper-toggle-button-unchecked-ink);
       }
 
       :host([checked]) .toggle-ink {
-        color: var(--paper-toggle-button-checked-ink-color, var(--primary-color));
+        color: var(--paper-toggle-button-checked-ink-color, --primary-color);
 
-        @apply --paper-toggle-button-checked-ink;
+        @apply(--paper-toggle-button-checked-ink);
       }
 
       .toggle-container {
@@ -175,20 +175,20 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         vertical-align: middle;
         padding-left: var(--paper-toggle-button-label-spacing, 8px);
         pointer-events: none;
-        color: var(--paper-toggle-button-label-color, var(--primary-text-color));
+        color: var(--paper-toggle-button-label-color, --primary-text-color);
       }
 
       /* invalid state */
       :host([invalid]) .toggle-bar {
-        background-color: var(--paper-toggle-button-invalid-bar-color, var(--error-color));
+        background-color: var(--paper-toggle-button-invalid-bar-color, --error-color);
       }
 
       :host([invalid]) .toggle-button {
-        background-color: var(--paper-toggle-button-invalid-button-color, var(--error-color));
+        background-color: var(--paper-toggle-button-invalid-button-color, --error-color);
       }
 
       :host([invalid]) .toggle-ink {
-        color: var(--paper-toggle-button-invalid-ink-color, var(--error-color));
+        color: var(--paper-toggle-button-invalid-ink-color, --error-color);
       }
     </style>
 
@@ -197,7 +197,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       <div id="toggleButton" class="toggle-button"></div>
     </div>
 
-    <div class="toggle-label"><slot></slot></div>
+    <div class="toggle-label"><content></content></div>
 
   </template>
 
@@ -205,29 +205,36 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
     Polymer({
       is: 'paper-toggle-button',
 
-      behaviors: [Polymer.PaperCheckedElementBehavior],
+      behaviors: [
+        Polymer.PaperCheckedElementBehavior
+      ],
 
-      /** @private */
-      hostAttributes: {role: 'button', 'aria-pressed': 'false', tabindex: 0},
-
-      properties: {
-          /**
-           * Fired when the checked state changes due to user interaction.
-           *
-           * @event change
-           */
-          /**
-           * Fired when the checked state changes.
-           *
-           * @event iron-change
-           */
+      hostAttributes: {
+        role: 'button',
+        'aria-pressed': 'false',
+        tabindex: 0
       },
 
-      listeners: {track: '_ontrack'},
+      properties: {
+        /**
+         * Fired when the checked state changes due to user interaction.
+         *
+         * @event change
+         */
+        /**
+         * Fired when the checked state changes.
+         *
+         * @event iron-change
+         */
+      },
+
+      listeners: {
+        track: '_ontrack'
+      },
 
       attached: function() {
         Polymer.RenderStatus.afterNextRender(this, function() {
-          Polymer.Gestures.setTouchAction(this, 'pan-y');
+          this.setScrollDirection('y');
         });
       },
 
@@ -254,8 +261,8 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 
       _trackMove: function(track) {
         var dx = track.dx;
-        this._x = Math.min(
-            this._width, Math.max(0, this._trackChecked ? this._width + dx : dx));
+        this._x = Math.min(this._width,
+            Math.max(0, this._trackChecked ? this._width + dx : dx));
         this.translate3d(this._x + 'px', 0, 0, this.$.toggleButton);
         this._userActivate(this._x > (this._width / 2));
       },

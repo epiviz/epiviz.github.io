@@ -45,8 +45,7 @@ suite('<iron-icons>', function() {
     ];
 
     setup(function() {
-      meta = document.createElement('iron-meta');
-      meta.type = 'iconset';
+      meta = Polymer.Base.create('iron-meta', {type: 'iconset'});
     });
 
     test('all uniquely named', function() {
@@ -59,15 +58,13 @@ suite('<iron-icons>', function() {
         expect(iconNames).to.not.be.empty;
 
         for (var j = 0; j < iconNames.length; j++) {
-          var iconName = iconNames[j];
-          var parts = iconName.split(':');
-
+          var parts = iconNames[j].split(':');
           expect(parts).to.have.length(2);
           expect(parts[0]).to.equal(iconsetNames[i]);
           expect(parts[1]).to.have.length.at.least(1);
+          expect(allIcons.hasOwnProperty(parts[1])).to.be.false;
 
-          expect(allIcons.hasOwnProperty(iconName)).to.be.false;
-          allIcons[iconName] = true;
+          allIcons[parts[1]] = true;
         }
       }
 

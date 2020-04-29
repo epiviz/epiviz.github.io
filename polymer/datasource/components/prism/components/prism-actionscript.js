@@ -7,9 +7,11 @@ Prism.languages.actionscript['class-name'].alias = 'function';
 if (Prism.languages.markup) {
 	Prism.languages.insertBefore('actionscript', 'string', {
 		'xml': {
-			pattern: /(^|[^.])<\/?\w+(?:\s+[^\s>\/=]+=("|')(?:\\[\s\S]|(?!\2)[^\\])*\2)*\s*\/?>/,
+			pattern: /(^|[^.])<\/?\w+(?:\s+[^\s>\/=]+=("|')(?:\\\1|\\?(?!\1)[\w\W])*\2)*\s*\/?>/,
 			lookbehind: true,
-			inside: Prism.languages.markup
+			inside: {
+				rest: Prism.languages.markup
+			}
 		}
 	});
 }

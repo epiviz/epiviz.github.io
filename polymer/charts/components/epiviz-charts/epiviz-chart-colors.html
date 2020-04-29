@@ -1,5 +1,5 @@
 <!-- Polymer dependency -->
-<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/polymer.html">
 
 <!-- External Polymer Styles/elements dependency -->
 <link rel="import" href="../paper-button/paper-button.html">
@@ -15,13 +15,28 @@
 
 <!--
 `<epiviz-chart-colors>` is a view element that manages chart colors. 
-
-All charts implement the `epiviz.ChartColorsBehavior` that manages this element.
+All charts automatically create an instance of `<epiviz-chart-colors>` element.
 -->
 
 <dom-module id="epiviz-chart-colors">
+
     <template>
         <style>
+            .flex {
+                @apply(--layout-horizontal);
+            }
+
+            .flexchild {
+                @apply(--layout-flex);
+                padding: 20px;
+                flex: 1 1 auto;
+            }
+
+            .flex-end-justified {
+                @apply(--layout-horizontal);
+                @apply(--layout-end-justified);
+            }
+
             #formSettings {
                 min-width: 500px;
             }
@@ -32,12 +47,6 @@ All charts implement the `epiviz.ChartColorsBehavior` that manages this element.
 
             .color-item {
                 display: block;
-                text-align: center;
-            }
-
-            .container {
-                display: grid;
-                grid-auto-flow: column dense;
             }
         </style>
 
@@ -46,103 +55,95 @@ All charts implement the `epiviz.ChartColorsBehavior` that manages this element.
             <!--no-overlap horizontal-align="left" vertical-align="top"-->
             <paper-dialog id="modal" modal>
                 <h2>Chart Color Settings</h2>
-                <iron-form id="formSettings">
-                    <form>
-                        <div class="container">
-                            <template id="colorPickers" is="dom-repeat" items="{{labels}}">
-                                <div class="color-item">
-                                    <paper-swatch-picker id="[[_getId(item)]]" name="{{item}}" color="[[_getColor(item)]]"></paper-swatch-picker>
-                                    <iron-label for="{{_getId(item)}}">{{item}}</iron-label>
-                                </div>
-                            </template>
+                <form is="iron-form" method="POST" id="formSettings">
+                    <paper-dialog-scrollable id="scrollContent">
+                        <div class="container flex">
+                            <div class="flexchild">
+                                <template is="dom-repeat" items="{{labels}}">
+                                    <template restamp="true" is="dom-if" if="[[_isIndexGroup(index, 0)]]">
+                                        <div class="color-item">
+                                            <paper-swatch-picker id="[[_getId(item)]]" name="{{item}}" color="[[_getColor(item)]]"></paper-swatch-picker>
+                                            <iron-label for="{{_getId(item)}}">{{item}}</iron-label>
+                                        </div>
+                                    </template>
+                                </template>
+                            </div>
+                            <div class="flexchild">
+                                <template is="dom-repeat" items="{{labels}}">
+                                    <template restamp="true" is="dom-if" if="[[_isIndexGroup(index, 1)]]">
+                                        <div class="color-item">                                        
+                                            <paper-swatch-picker id="[[_getId(item)]]" name="{{item}}" color="[[_getColor(item)]]"></paper-swatch-picker>
+                                            <iron-label for="{{_getId(item)}}">{{item}}</iron-label>
+                                        </div>
+                                    </template>
+                                </template>
+                            </div>
+                            <div class="flexchild">
+                                <template is="dom-repeat" items="{{labels}}">
+                                    <template restamp="true" is="dom-if" if="[[_isIndexGroup(index, 2)]]">
+                                        <div class="color-item">
+                                            <paper-swatch-picker id="[[_getId(item)]]" name="{{item}}" color="[[_getColor(item)]]"></paper-swatch-picker>
+                                            <iron-label for="{{_getId(item)}}">{{item}}</iron-label>
+                                        </div>
+                                    </template>
+                                </template>
+                            </div>
                         </div>
 
-                        <div class="buttons container flex-end-justified">
-                            <paper-button id="submit" on-tap="_submit" raised>Apply</paper-button>
-                            <paper-button id="cancel" on-tap="_cancel" raised>Cancel</paper-button>
-                        </div>
-                    </form>
-                </iron-form>
+                    </paper-dialog-scrollable>
+                    <div class="container flex-end-justified">
+                        <paper-button id="submit" raised>Apply</paper-button>
+                        <paper-button id="cancel" raised>Cancel</paper-button>
+                    </div>
+                </form>
             </paper-dialog>
         </div>
-
+    
     </template>
 
     <script>
+        Polymer({
+            /* Custom element html tag */
+            is: 'epiviz-chart-colors',
 
-        // Extend Polymer.Element base class
-        class EpivizChartColors extends Polymer.Element {
+            /* Properties that can be defined on the element */
+            properties: {
 
-            static get is() { return 'epiviz-chart-colors'; }
+                /**
+                * Default chart color labels.
+                *
+                * @type {Object<string, string>}
+                */
+                labels: {
+                    type: Object,
+                    notify: true
+                },
 
-            static get properties() {
-                return {
-                    /**
-                    * Default chart color labels.
-                    *
-                    * @type {Object<string, string>}
-                    */
-                    labels: {
-                        type: Object,
-                        notify: true
-                    },
+                /**
+                * Default chart color palettes.
+                *
+                * @type {Array<epiviz.ui.charts.ColorPalette>}
+                */
+                palettes: {
+                    type: Array,
+                    notify: true
+                },
 
-                    /**
-                    * Default chart color palettes.
-                    *
-                    * @type {Array<epiviz.ui.charts.ColorPalette>}
-                    */
-                    palettes: {
-                        type: Array,
-                        notify: true
-                    },
-
-                    /**
-                    * currently selected chart colors.
-                    *
-                    * @type {Object<string, string>}
-                    */
-                    selected: {
-                        type: Object,
-                        notify: true
-                    }
+                /**
+                * currently selected chart colors.
+                *
+                * @type {Object<string, string>}
+                */
+                selected: {
+                    type: Object,
+                    notify: true
                 }
-            }
+            },
 
-            static get observers() {
-                return [
-                    /* observer array just like 1.x */
-                ]
-            }
-
-            constructor() {
-                super();
-                // this.addEventListener('submit.click', e => this._submit(e));
-                // this.addEventListener('cancel.click', e => this._cancel(e));
-            }
-
-            connectedCallback() {
-                var self = this;
-                super.connectedCallback();
-
-                this.$.formSettings.addEventListener('iron-form-submit', this._form_submit.bind(this));
-                var colorPickers = this.$.colorPickers;
-                colorPickers.addEventListener('dom-change', function(e) {
-                    // auto-binding template is ready.
-                    var labels = self.$.colorPickers.items;
-                    var colorSwatch = self.shadowRoot.querySelectorAll("paper-swatch-picker");
-                    colorSwatch.forEach(function(item, index) {
-                        var defaultColors = item.defaultColors();
-                        defaultColors[0] = self._getColor(labels[index]);
-                        item.set('colorList', defaultColors);
-                        item.set('color', self._getColor(labels[index]));
-                    });
-                });
-            }
-
-            disconnectedCallback() {
-                super.connectedCallback();
-            }
+            listeners: {
+                'submit.click': '_submit',
+                'cancel.click': '_cancel'
+            },
 
             /**
              * Get Color for a given label/Key.
@@ -151,9 +152,9 @@ All charts implement the `epiviz.ChartColorsBehavior` that manages this element.
              *
              * @return {Object} color set for the given label
              */
-            _getColor(label) { 
+            _getColor: function(label) {
                 return this.selected.getByKey(label);
-            }
+            },
 
             /**
              * UI Helper function to find group
@@ -162,13 +163,13 @@ All charts implement the `epiviz.ChartColorsBehavior` that manages this element.
              * @param {number} expeced expected group
              * @return {boolean} returns True if value in expected
              */
-            _isIndexGroup(value, expected) {
-                if (value % 3 == expected) {
+            _isIndexGroup: function(value, expected) {
+                if( value % 3 == expected ) {
                     return true;
                 }
 
                 return false;
-            }
+            },
 
             /**
              * UI Helper function to create Id for a given label (ignore spaces)
@@ -177,27 +178,27 @@ All charts implement the `epiviz.ChartColorsBehavior` that manages this element.
              * 
              * @return {string} return label ignoring white spaces
              */
-            _getId(label) {
+            _getId: function(label) {
                 return label.split(' ').join('');
-            }
+            },
 
             /**
              * handles form submit action
              */
-            _submit(event) {
+            _submit: function(event) {
                 this.$.formSettings.submit();
-            }
+            },
 
             /**
              * handles form submit action
              */
-            _form_submit(event) {
+            _form_submit: function(event) {
                 var self = this;
 
                 //collect all colors set
-                var colors = [];
-                for (var i = 0; i < this.labels.length; i++) {
-                    var swatch = self.shadowRoot.querySelector('#' + this._getId(this.labels[i]));
+                colors = [];
+                for (var i=0; i < this.labels.length; i++) {
+                    var swatch = self.$$('#' + this._getId(this.labels[i]));
                     colors.push(swatch.color);
                 }
 
@@ -206,35 +207,40 @@ All charts implement the `epiviz.ChartColorsBehavior` that manages this element.
                 // this.vals = event.detail;
                 this.callback(colors);
                 this.closeColors();
-            }
+            },
 
             /**
              * handles form cancel action
              */
-            _cancel(event) {
+            _cancel: function(event) {
                 this.closeColors();
-            }
+            },
 
             /**
              * handles element modal show action
              */
-            showColors(target, callback) {
-                var self = this;
-                // this.$.scrollContent.dialogElement = this.$.modal;
+            showColors: function(target, callback) {
                 this.callback = callback;
                 this.$.modal.positionTarget = target;
                 this.$.modal.open();
-            }
+            },
 
             /**
              * handles element modal close action
              */
-            closeColors() {
+            closeColors: function() {
                 this.$.modal.close();
+            },
+
+            // Initialization that should happen or use FactoryImpl 
+            // created: function() {},
+
+            /* callback function after the element is initialized */
+            ready: function() {
+                var self = this;
+                self.$.scrollContent.dialogElement = self.$.modal;
+                self.$.formSettings.addEventListener('iron-form-submit', this._form_submit.bind(self));
             }
-        };
-
-        customElements.define(EpivizChartColors.is, EpivizChartColors);
-
+        });
     </script>
 </dom-module>

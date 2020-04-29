@@ -1,458 +1,198 @@
 <!-- Polymer dependency -->
-<link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../polymer/lib/utils/flattened-nodes-observer.html">
-<link rel="import" href="../polymer/lib/utils/render-status.html">
+<link rel="import" href="../polymer/polymer.html">
 
 <!-- Epiviz imports dependency -->
-<!-- <link rel="import" href="../epiviz-imports/epiviz-common-js.html">
-<link rel="import" href="../epiviz-imports/epiviz-common-css.html"> -->
+<link rel="import" href="../epiviz-imports/epiviz-common-js.html">
 
 <!-- Epiviz Polymer Behaviors dependency -->
 <link rel="import" href="chart-data-behavior.html">
 <link rel="import" href="chart-workspace-behavior.html">
-<link rel="import" href="chart-add-behavior.html">
-<link rel="import" href="chart-draggable-behavior.html">
-<!-- <link rel="import" href="chart-remove.html"> -->
-
-<!-- Polymer Elements -->
-<link rel="import" href="../paper-button/paper-button.html">
-<link rel="import" href="../paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../paper-menu-button/paper-menu-button.html">
-<link rel="import" href="../paper-listbox/paper-listbox.html">
-<link rel="import" href="../iron-dropdown/iron-dropdown.html">
-<link rel="import" href="../paper-item/paper-item.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../iron-label/iron-label.html">
 
 <!--
-<h2> App Component </h2>
+`<epiviz-environment>` is a wrapper element that manages measurements, handles events and brushing across all of its children `<epiviz-charts>` elements.
 
-epiviz-chart components are pure user interface (UI) elements. They cannot make data requests
-or can directly interact with other epiviz elements on the page. Chart elements emit hover events
-that propagate up the DOM hierarchy. To build interactive web applications or to coordinate
-events, interactions and data requests across different chart elements, we encapsulate charts inside
-app components.
+To use, add `<epiviz-environment>` in the page
 
-Another essential part of the epiviz design is that data and plots are separated: you can visualize
-multiple charts from the same data object without having to replicate the data. This way, data
-queries are made by the data object, not per chart, which leads to a more responsive design of the
-system.
-
-epiviz-app components are abstract components that 1) manage layouts, 2) coordinate interactions
-across charts by genomic position and 3) handle and cache data across charts.
-
-<h2> `epiviz-environment` </h2>
-`epiviz-environment` is an app component and is not linked to a specific genomic region. If a genomic region is
-not set, the charts visualize the entire data set. 
-
-To create an environment element on a HTML page, add
-
-      <epiviz-environment>
-          .. can have epiviz-charts as children html nodes
-          <epiviz-genes-track></epiviz-genes-track>
-          <epiviz-scatter-plot></epiviz-scatter-plot>
-      </epiviz-environment>
+      <epiviz-environment></epiviz-environment>
 
 @demo demo/index-environment.html Example page showing a environment element with charts 
 -->
 
 <dom-module id="epiviz-environment">
-    <template>
+    <template>	
         <style>
-            :host {
+            :host{
                 display: inline-block;
-                /* padding: 15px; */
-                width: 99%;
-                /* width: auto; */
-                /* height: 100%; */
-                margin: 10px;
-                resize: both;
-                border-radius: 5px;
-                /* padding: 4px; */
-                /* margin:5px; */
-                transition: width 0.01s, height 0.01s;
-                @apply(--shadow-elevation-2dp);
+                padding: 15px;
+                /*margin: 5px;*/
+                /*border: 1px solid black;*/
+                /*border-radius: 5px;*/
+                /*min-width: 400px;*/
+                /*min-height: 400px;*/
+                /*resize: both;*/
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                transition:width 0.01s, height 0.01s;
+                /*margin: 10px;*/
+                /*width: auto;
+                height: auto;*/
             }
-
 
             #chartSettingsContainer {
-                position: absolute;
+                /*float: right;*/
+                position:absolute;
                 top: 0;
                 right: 0;
+                /*display:block;*/
+                /*width: 24px;
+                height: 24px;*/
+                
+                /*--iron-icon-height: 16px;
+                --iron-icon-width: 16px;*/
+
                 border: 1px solid #000;
                 border-radius: 2px;
-                margin: 1px;
-            }
-
-            .paper-header {
-                background-color: var(--google-grey-300);
-                padding-left: 5px;
-            }
-
-            #logo {
-                vertical-align: middle;
-            }
-
-
-            paper-menu-button {
-                float: right;
-            }
-
-            iron-label {
-                color: #4285f4;
-                font-weight: bold;
-                font-size: 16px;
-            }
-
-            .isempty {
-                position: relative;
-                top: 50%;
-                left: 50%;
-                transform: translateX(-50%) translateY(-50%);
-            }
-
-            #header {
-                height: 50px;
-                /* linear-gradient(white, #e0e2e2) */
-            }
-
-            .content {
-                min-height: 500px;
-                padding: 5px;
-                /* min height should be height of largest plot */
-                display: grid;
-                grid-template-columns: repeat(6, 1fr);
-                grid-auto-rows: minmax(max-content, 100px);
-                grid-row-gap: 2px;
-                grid-column-gap: 2px;
-            }
-
-            .content ::slotted {
-                /* min height should be height of largest plot */
-                display: grid;
-                grid-template-columns: repeat(6, 1fr);
-                grid-auto-rows: minmax(max-content, 100px);
-                grid-row-gap: 2px;
-                grid-column-gap: 2px;
-            }
-
-            .content ::slotted(.grid-plot) {
-                grid-row: span 1;
-                grid-column: span 2;
-            }
-
-            .content ::slotted(.grid-track) {
-                grid-column: span 6;
-                grid-row: span 1;
-            }
-
-            .content ::slotted(.grid-navigation) {
-                grid-row: span 1;
-                grid-column: span 6;
-                order: 2;
+                margin:1px;
+                /*background-color: #fff000;*/
             }
         </style>
-
-        <div id="header" class="paper-header">
-            <iron-label>EPIVIZ ENVIRONMENT</iron-label>
-            <a href="http://epiviz.github.io" target="_blank" hidden$="[[noLogo]]">
-                <img id="logo" src="epiviz_4_logo_medium.png" alt="Epiviz" width="100" height="21">
-            </a>
-            <!-- <iron-dropdown> -->
-            <!-- </iron-dropdown> -->
-
-            <epiviz-add-chart id="addChart"></epiviz-add-chart>
-            <paper-menu-button dynamic-align vertical-align="bottom" vertical-offset=24>
-                <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
-                <paper-menu class="dropdown-content">
-                    <paper-item>Delete</paper-item>
-                    <paper-item>Clone</paper-item>
-                </paper-menu>
-            </paper-menu-button>
+        <div class="header">
+            <a href="http://epiviz.github.io" target="_blank"><img src="data:image/png;base64,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" alt="Epiviz" width="100" height="21"></a>
         </div>
-        <div class="content chartContainer">
-            <slot id="chartEnv" name="charts"></slot>
-        </div>
+        <content id="chartEnv" select=".charts"></content>
     </template>
 
     <script>
-        // Extend Polymer.Element base class
-        class EpivizEnvironment extends EpivizChartDraggableBehavior(EpivizChartWorkspaceBehavior(EpivizChartDataBehavior(EpivizChartAddBehavior(Polymer.Element)))) {
+        Polymer({
+            is: 'epiviz-environment',
+            behaviors: [epiviz.ChartDataBehavior, epiviz.ChartWorkspaceBehavior],
 
-            static get is() { return 'epiviz-environment'; }
+            properties: {
+                
+                /**
+                 * Measurement Object mapped to measurements provided from `<epiviz-data-source>`.
+                 *
+                 * @type {Object}
+                 */
+                measurements: {
+                    type: Object,
+                    notify: true,
+                    reflectToAttribute: true
+                },
 
-            static get properties() {
-                return {
-                    /**
-                     * Measurement Object mapped to measurements provided from `<epiviz-data-source>`.
-                     *
-                     * @type {Object}
-                     */
-                    measurements: {
-                        type: Object,
-                        notify: true,
-                        reflectToAttribute: true
-                    },
+                /**
+                 * Chromosome location.
+                 * Default Location Attribute to set to all the children chart elements.
+                 *
+                 * @example: chr1
+                 *
+                 * @type {string}
+                 */
+                chr: {
+                    type: String,
+                    notify: true
+                },
 
-                    /**
-                     * Chromosome location.
-                     * Default Location Attribute to set to all the children chart elements.
-                     *
-                     * @example: chr1
-                     *
-                     * @type {string}
-                     */
-                    chr: {
-                        type: String,
-                        notify: true,
-                        value: "all"
-                    },
+                /**
+                 * <Optional> Chromosome start. 
+                 * Default Chromosome start value to use. (defaults to 0).
+                 *
+                 * @type {number}
+                 */
+                start: {
+                    type: Number,
+                    notify: true
+                },
 
-                    /**
-                     * <Optional> Chromosome start. 
-                     * Default Chromosome start value to use. (defaults to 0).
-                     *
-                     * @type {number}
-                     */
-                    start: {
-                        type: Number,
-                        notify: true,
-                        value: null
-                    },
+                /**
+                 * <Optional> Chromosome end. 
+                 * Default Chromosome end value to use. (defaults to the `<chr>` length).
+                 *
+                 * @type {number}
+                 */
+                end: {
+                    type: Number,
+                    notify: true
+                },
 
-                    /**
-                     * <Optional> Chromosome end. 
-                     * Default Chromosome end value to use. (defaults to the `<chr>` length).
-                     *
-                     * @type {number}
-                     */
-                    end: {
-                        type: Number,
-                        notify: true,
-                        value: null
-                    },
+                /**
+                 * Computed Range from `<chr>`, `<start>` & `<end>`. 
+                 *
+                 * @type {Object<epiviz.datatypes.GenomicRange>}
+                 */
+                range: {
+                    type: Object,
+                    notify: true,
+		            computed: 'getGenomicRange(chr, start, end)'
+                },
 
-                    /**
-                     * Computed Range from `<chr>`, `<start>` & `<end>`. 
-                     *
-                     * @type {Object<epiviz.datatypes.GenomicRange>}
-                     */
-                    range: {
-                        type: Object,
-                        notify: true,
-                        computed: 'getGenomicRange(chr, start, end)'
-                    },
+                /**
+                 * Intiliazes an environment with `<epiviz-navigation>` elements.
+                 * 
+                 * Can be one of these {region: {chr , start, end}} or {gene} 
+                 *
+                 * @example: [{region: {chr: 'chr11', start: 20000, end: 600000}{, {gene: 'esr1'}]
+                 * 
+                 * @type {Array[<Object>]}
+                 */
+                initializeRegions: {
+                    type: Array,
+                    value: []
+                },
 
-                    /**
-                    * Unique plot-id. an id will be assigned if not set
-                    *
-                    * @type {string}
-                    */
-                    plotId: {
-                        type: String,
-                        reflectToAttribute: true,
-                        notify: true
-                    },
-
-                    /**
-                     * Intiliazes an environment with `<epiviz-navigation>` elements.
-                     * 
-                     * Can be one of these {region: {chr , start, end}} or {gene} 
-                     *
-                     * @example: [{region: {chr: 'chr11', start: 20000, end: 600000}{, {gene: 'esr1'}]
-                     * 
-                     * @type {Array[<Object>]}
-                     */
-                    initializeRegions: {
-                        type: Array,
-                        value: []
-                    },
-
-                    /**
-                     * List of regions currently in workspace
-                     * 
-                     * @type {Array}
-                     */
-                    navigationRegions: {
-                        type: Array,
-                        notify: true,
-                        value: []
-                    },
-
-                    /**
-                     * Whether to show/hide the epiviz logo
-                     *
-                     * @type {boolean}
-                     */
-                    noLogo: {
-                        type: Boolean,
-                        notify: true,
-                        reflectToAttribute: true,
-                        value: false
-                    },
-
-                    /**
-                     * Whether to use the default layout
-                     *
-                     * @type {boolean}
-                     */
-                    useLayout: {
-                        type: Boolean,
-                        notify: true,
-                        reflectToAttribute: true,
-                        value: true
-                    },
-
-                    /**
-                     * Whether the element has no children
-                     *
-                     * @type {boolean}
-                     */
-                    _isEmpty: {
-                        type: Boolean,
-                        notify: true,
-                        value: function () {
-                            return false;
-                        }
-                    }
+                /**
+                 * List of regions currently in workspace
+                 * 
+                 * @type {Array}
+                 */
+                navigationRegions: {
+                    type: Array,
+                    notify: true,
+                    value: []
                 }
-            }
+            },
 
-            static get observers() {
-                return [
-                    /* observer array just like 1.x */
-                    // '_rangeChanged(chr.*, start.*, end.*)',
-                    '_navigationRegionsChanged(navigationRegions.*)'
-                ]
-            }
+            observers: [
+                '_rangeChanged(chr.*, start.*, end.*)',
+                '_navigationRegionsChanged(navigationRegions.*)'
+            ],
 
-            constructor() {
-                super();
-                this.addEventListener('navigationRangeUpdate', e => this._updateNavRegion(e));
-                this.addEventListener('hover', e => this.onHover(e));
-                this.addEventListener('unHover', e => this.onUnhover(e));
-                this.addEventListener('select', e => this.onSelect(e));
-                this.addEventListener('deSelect', e => this.onDeSelect(e));
-                this.addEventListener('dimChanged', e => this.onDimChanged(e));
-                this.addEventListener('iron-resize', e => this._onResize(e));
-                this.addEventListener('navWorkspaceChanged', e => this._childWorkspaceChanged(e));
+            // Listeners for interaction between charts
+            listeners: {
+                'hover': 'onHover',
+                'unHover': 'onUnhover',
+                'dimChanged': 'onDimChanged',
+                'navigationRangeUpdate': '_updateNavRegion'
+            },
 
-                // this.addEventListener('transitionend', e => this._onResize(e));
-            }
+            _updateNavRegion: function(e) {
 
-            connectedCallback() {
-                super.connectedCallback();
-                var self = this;
-                if (self.initializeRegions.length > 0) {
-                    for (var i = 0; i < self.initializeRegions.length; i++) {
-                        var navElem = document.createElement("epiviz-navigation");
-                        navElem.className = "charts";
-                        if (Object.keys(self.initializeRegions[i]).indexOf("gene") != -1) {
-                            navElem.gene = self.initializeRegions[i].gene;
-                        }
-                        else {
-                            navElem.chr = self.initializeRegions[i].region.chr;
-                            navElem.start = self.initializeRegions[i].region.start;
-                            navElem.end = self.initializeRegions[i].region.end;
-                        }
-                        this.shadowRoot.appendChild(navElem);
-                    }
-                }
-
-                self._observer = new Polymer.FlattenedNodesObserver(this.$.chartEnv, (info) => {
-                    info.addedNodes.forEach(function (node) {
-                        node._parentContainer = self;
-                        if (node.nodeName === "EPIVIZ-NAVIGATION") {
-                            self._getElementSeqInfo(node, Polymer.dom(self));
-                            self.push("navigationRegions", { "plotId": node.plotId, "range": node.range });
-                            let navChildren =
-                                Polymer.FlattenedNodesObserver.getFlattenedNodes(node).filter(n => n.nodeType === Node.ELEMENT_NODE)
-                            for (var nindex = 0; nindex < navChildren.length; nindex++) {
-                                var currentNavChild = navChildren[nindex];
-                                currentNavChild._parentContainer = self;
-                                currentNavChild.range = node.range;
-                                if (!currentNavChild.data) {
-                                    self._getElementData(currentNavChild, self, self.measurements);
-                                }
-                            }
-                        }
-                        else {
-                            if (!node.data && !node.useDefaultDataProvider) {
-                                self._getElementData(node, self, self.measurements);
-                            }
-                        }
-                        self.set('_isEmpty', true);
-                    });
-                    self.saveWorkspace();
-                    // this._processRemovedNodes(info.removedNodes);
-                });
-
-                self._initializeSortable();
-                self.$.addChart._parentContainer = self;
-
-                self._createPropertyObserver('_rangeChanged(chr.*, start.*, end.*)', false);
-            }
-
-            disconnectedCallback() {
-                super.disconnectedCallback();
-            }
-
-            /* callback function after the element is initialized & attached */
-            ready() {
-                super.ready();
-                var self = this;
-                self.plotId = self.plotId || self._generatePlotId();
-
-                if (self.transformDataFunc) {
-                    self.transformFunc = new Function('return ' + self.transformDataFunc);
-                }
-                else {
-                    self.transformFunc = self.epivizToJSON;
-                }
-
-                // self._getElementSeqInfo(self, self);
-
-                if (self.chr != "all") {
-                    self._getElementSeqInfo(self, self);
-                }
-
-                if (self.workspace) {
-                    self.loadWorkspace(self.workspace);
-                }
-                self._initializeAddDialog();
-            }
-
-            _updateNavRegion(e) {
-                for (var regIndex = 0; regIndex < this.navigationRegions.length; regIndex++) {
-                    if (e.detail.plotId == this.navigationRegions[regIndex]["plotId"]
-                        && (e.detail.range != this.navigationRegions[regIndex]["range"])
-                    ) {
+                for(var regIndex = 0; regIndex < this.navigationRegions.length; regIndex++) {
+                    // nRegions.push(this.navigationRegions[regIndex]["range"]);
+                    if(e.detail.plotId == this.navigationRegions[regIndex]["plotId"]
+                            && (e.detail.range != this.navigationRegions[regIndex]["range"])
+                            ) {
                         this.navigationRegions.splice(regIndex, 1);
-                        this.push("navigationRegions", { "plotId": e.detail.plotId, "range": e.detail.range });
+                        this.push("navigationRegions", {"plotId": e.detail.plotId, "range": e.detail.range});
                     }
                 }
-            }
-
-            _childWorkspaceChanged(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                this.saveWorkspace();
-            }
+            },
 
             /**
              * Resizes the chart.
              */
-            _onResize() {
+            _onResize: function() {
                 var self = this;
-                let navChildren =
-                    Polymer.FlattenedNodesObserver.getFlattenedNodes(this.$.chartEnv).filter(n => n.nodeType === Node.ELEMENT_NODE);
-                var numChildren = navChildren.length;
-                if (numChildren > 0) { self.set('_isEmpty', true); }
-                for (var index = 0; index < numChildren; index++) {
-                    var currentChild = navChildren[index];
-                    currentChild._onResize();
+                // this._measurementsChanged();
+                if(this.chart != null) {
+                    // var width = self.offsetWidth - 40;
+                    // if(width < self.chartType.defaultWidth()) { width = self.chartType.defaultWidth()}
+                    this.chart._properties.width = self.offsetWidth - 20 - epiviz.ui.charts.Visualization.SVG_MARGIN;
+                    this.chart._properties.height = self.offsetHeight - 20 - epiviz.ui.charts.Visualization.SVG_MARGIN;
+                    this._draw();
                 }
-            }
+            },
 
             /**
              * Creates a epiviz GenomicRange object from chromosome, start and end.
@@ -463,39 +203,33 @@ To create an environment element on a HTML page, add
              * 
              * @return {epiviz.datatypes.GenomicRange}
              */
-            getGenomicRange(chr, start, end) {
-                return new epiviz.datatypes.GenomicRange(chr, start, end - start);
-            }
+            getGenomicRange: function(chr, start, end) {
+                return new epiviz.datatypes.GenomicRange(chr, start, end-start);
+            },
 
-            _navigationRegionsChanged() {
+            _navigationRegionsChanged: function() {
                 var self = this;
-                if (this.navigationRegions && this.navigationRegions.length > 0) {
-                    this.dispatchEvent(new CustomEvent('navigationRegions',
-                        {
-                            detail: {
-                                data: this.navigationRegions
-                            }
-                        }
-                    ));
+                // console.log(this.navigationRegions);
+                if(this.navigationRegions && this.navigationRegions.length > 0) {
+                    // this.fire('navigationRegions', {
+                    //     data: this.navigationRegions
+                    // });
 
                     var nRegions = [];
 
-                    for (var regIndex = 0; regIndex < this.navigationRegions.length; regIndex++) {
+                    for(var regIndex = 0; regIndex < this.navigationRegions.length; regIndex++) {
                         nRegions.push(this.navigationRegions[regIndex]["range"]);
                     }
 
-                    let navChildren =
-                        Polymer.FlattenedNodesObserver.getFlattenedNodes(this.$.chartEnv).filter(n => n.nodeType === Node.ELEMENT_NODE);
-                    var numChildren = navChildren.length;
-                    if (numChildren > 0) { self.set('_isEmpty', true); }
+                    var numChildren = self.getEffectiveChildren().length;
                     for (var index = 0; index < numChildren; index++) {
-                        var currentChild = navChildren[index];
-                        if (currentChild.nodeName === "EPIVIZ-SCATTER-PLOT") {
+                        var currentChild = self.getEffectiveChildren()[index];
+                        if(currentChild.nodeName === "EPIVIZ-SCATTER-PLOT") {
                             currentChild.colorByRegions = nRegions;
                         }
                     }
                 }
-            }
+            },
 
             /**
              * Hover event handler.
@@ -503,7 +237,7 @@ To create an environment element on a HTML page, add
              *
              * @fires hoverAllCharts
              */
-            onHover(e) {
+            onHover: function(e) {
 
                 /**
                  * Propogates hover event to other charts.
@@ -512,17 +246,12 @@ To create an environment element on a HTML page, add
                  * @type {object}
                  * @property {object} data - data object currently hovered.
                  */
-                this.dispatchEvent(new CustomEvent('hoverAllCharts',
-                    {
-                        detail: {
-                            data: e.detail.data
-                        }
-                    }
-                )
-                );
+                this.fire('hoverAllCharts', {
+                    data: e.detail.data
+                });
                 e.preventDefault();
                 e.stopPropagation();
-            }
+            },
 
             /**
              * Unhover event handler.
@@ -530,97 +259,38 @@ To create an environment element on a HTML page, add
              * 
              * @fires unHoverAllCharts
              */
-            onUnhover(e) {
+            onUnhover: function(e) {
 
                 /**
                  * Propogates unHover event to other charts.
                  *
                  * @event unHoverAllCharts
                  */
-                this.dispatchEvent(new CustomEvent('unHoverAllCharts',
-                    {
-                        detail: {
-                            data: null
-                        }
-                    }
-                )
-                );
+                this.fire('unHoverAllCharts', {
+                    data: null
+                });
                 e.preventDefault();
                 e.stopPropagation();
-            }
-
-            /**
-             * select event handler.
-             * Listens to select events fired from its children elements and propagates to other charts
-             * 
-             * @fires selectAllCharts
-             */
-            onSelect(e) {
-
-                /**
-                 * Propogates select event to other charts.
-                 *
-                 * @event selectAllCharts
-                 */
-                this.dispatchEvent(new CustomEvent('selectAllCharts',
-                    {
-                        detail: {
-                            data: e.detail.data
-                        }
-                    }
-                )
-                );
-                e.preventDefault();
-                e.stopPropagation();
-            }
-
-            /**
-             * deSelect event handler.
-             * Listens to deSelect events fired from its children elements and propagates to other charts
-             * 
-             * @fires unSelectAllCharts
-             */
-            onDeSelect(e) {
-
-                /**
-                 * Propogates select event to other charts.
-                 *
-                 * @event unSelectAllCharts
-                 */
-                this.dispatchEvent(new CustomEvent('unSelectAllCharts',
-                    {
-                        detail: {
-                            data: null
-                        }
-                    }
-                )
-                );
-                e.preventDefault();
-                e.stopPropagation();
-            }
+            },
 
             /**
              * MeasurementChange/ChartDimension event handler.
              * Listens to when a chart dimensions(axes) are changed and updates chart
              */
-            onDimChanged(e) {
+            onDimChanged: function(e) {
                 var chartId = e.detail.id;
 
                 if (chartId != null) {
-                    var currentChild = this.shadowRoot.querySelector('[plot-id$="' + cId + '"]');
-                    currentChild.shadowRoot.querySelector("paper-spinner-lite").active = true;
-
                     this._updateChart(chartId);
                 }
-                self._initializeRemoveDialog();
-            }
+            },
 
             /**
              * Generates a unique chart ID
              * 
              * @return {string}
              */
-            _generatePlotId() {
+            _generatePlotId: function() {
                 var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                 var result = '';
                 var size = 7;
@@ -629,31 +299,123 @@ To create an environment element on a HTML page, add
                     result += chars[Math.round(Math.random() * (chars.length - 1))];
                 }
                 return 'epiviz-' + result;
-            }
+            },
 
             /**
              * ChartLocation/RangeChange event handler.
              */
-            _rangeChanged() {
+            _rangeChanged: function() {
 
                 var self = this;
-                if (self.measurements) {
-                    let navChildren =
-                        Polymer.FlattenedNodesObserver.getFlattenedNodes(this.$.chartEnv).filter(n => n.nodeType === Node.ELEMENT_NODE);
-                    var numChildren = navChildren.length;
-                    if (numChildren > 0) { self.set('_isEmpty', true); }
-                    for (var index = 0; index < numChildren; index++) {
-                        var currentChild = navChildren[index];
-                        if (currentChild == undefined || currentChild.plotId == undefined) { return; }
-                        if (currentChild.data) { return; }
-                        currentChild.range = self.range;
-                        // self._updateChart(currentChild.plotId);  
-                        self._getElementData(currentChild, self, self.measurements);
+
+                var numChildren = self.getEffectiveChildren().length;
+                for (var index = 0; index < numChildren; index++) {
+                    var currentChild = self.getEffectiveChildren()[index];
+                    if(currentChild == undefined || currentChild.plotId == undefined) {return ;}
+                    currentChild.range = self.range;
+                    // self._updateChart(currentChild.plotId);  
+                    self._getElementData(currentChild, self, self.measurements);
+                }
+            },
+
+            /* callback function after the element is attached to the DOM */
+            attached: function() {
+
+                var self = this;
+
+                if(!(self.start && self.end)) {
+                    if(self.chr && self.seqInfo) {
+                        self.start = 0;
+                        self.end = self.seqInfo[self.chr].max;
                     }
                 }
-            }
-        };
 
-        customElements.define(EpivizEnvironment.is, EpivizEnvironment);
+                if(self.initializeRegions.length > 0) {
+                    for(var i=0; i< self.initializeRegions.length; i++) {
+                        var navElem = document.createElement("epiviz-navigation");
+                        navElem.className = "charts";
+                        if(Object.keys(self.initializeRegions[i]).indexOf("gene") != -1) {
+                            navElem.gene = self.initializeRegions[i].gene;
+                        }
+                        else {
+                            navElem.chr = self.initializeRegions[i].region.chr;
+                            navElem.start = self.initializeRegions[i].region.start;
+                            navElem.end = self.initializeRegions[i].region.end;
+                        }
+                        Polymer.dom(self).appendChild(navElem);
+                    }
+                }
+
+                if(self.measurements) {
+                    var numChildren = self.getEffectiveChildren().length;
+                    for (var index = 0; index < numChildren; index++) {
+                        var currentChild = self.getEffectiveChildren()[index];
+
+                        if(currentChild.nodeName === "EPIVIZ-NAVIGATION") {
+
+                            self.push("navigationRegions", {"plotId": currentChild.plotId, "range": currentChild.range});
+                            self._getElementSeqInfo(currentChild, self);
+
+                            if(currentChild.collapsed) {
+                                var navChildren = currentChild.getEffectiveChildren().length;
+                                for (var nindex = 0; nindex < navChildren; nindex++) {
+                                    var currentNavChild = currentChild.getEffectiveChildren()[nindex];
+                                    self._getElementData(currentNavChild, self, self.measurements);
+                                }
+                            }
+                        }
+                        else {
+                            self._getElementData(currentChild, self, self.measurements);
+                        }
+                    }
+                }
+
+                self._observer =
+                    Polymer.dom(self.$.chartEnv).observeNodes(function(info) {
+                        info.addedNodes.forEach(function(node) {
+                            // self._updateChart(node.plotId);
+                            if(node.nodeName === "EPIVIZ-NAVIGATION") {
+                                self._getElementSeqInfo(node, Polymer.dom(self));
+
+                                self.push("navigationRegions", {"plotId": currentChild.plotId, "range": currentChild.range});
+
+                                // if(node.collapsed) {
+                                    var navChildren = node.getEffectiveChildren().length;
+                                    for (var nindex = 0; nindex < navChildren; nindex++) {
+                                        var currentNavChild = node.getEffectiveChildren()[nindex];
+                                        self._getElementData(currentNavChild, self, self.measurements);
+                                    }
+                                // }
+                            }
+                            else {
+                                self._getElementData(node, self, self.measurements);
+                            }
+                        });
+
+                        self.saveWorkspace();
+                    });
+            },
+
+            /* callback function after the element is initialized & attached */
+            ready: function() {
+                // this.scopeSubtree(this, true);
+                var self = this;
+
+                self.plotId = self.plotId || self._generatePlotId();
+
+                if(self.transformDataFunc) {
+                    self.transformFunc = new Function('return ' + self.transformDataFunc);
+                }
+                else {
+                    self.transformFunc = self.epivizToJSON;
+                }
+
+                self._getElementSeqInfo(self, self);
+
+                if(self.workspace) {
+                    self.loadWorkspace(self.workspace);
+                }
+            }
+        });
     </script>
 </dom-module>

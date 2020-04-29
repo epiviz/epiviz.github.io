@@ -68,26 +68,29 @@ of a listbox item will also focus it.
         display: block;
         padding: 8px 0;
 
-        background: var(--paper-listbox-background-color, var(--primary-background-color));
-        color: var(--paper-listbox-color, var(--primary-text-color));
+        background: var(--paper-listbox-background-color, --primary-background-color);
+        color: var(--paper-listbox-color, --primary-text-color);
 
-        @apply --paper-listbox;
+        @apply(--paper-listbox);
       }
     </style>
 
-    <slot></slot>
+    <content></content>
   </template>
 
   <script>
     (function() {
-    Polymer({
-      is: 'paper-listbox',
+      Polymer({
+        is: 'paper-listbox',
 
-      behaviors: [Polymer.IronMenuBehavior],
+        behaviors: [
+          Polymer.IronMenuBehavior
+        ],
 
-      /** @private */
-      hostAttributes: {role: 'listbox'}
-    });
+        hostAttributes: {
+          role: 'listbox'
+        }
+      });
     })();
   </script>
 </dom-module>

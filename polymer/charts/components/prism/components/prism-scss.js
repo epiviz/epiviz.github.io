@@ -1,6 +1,6 @@
 Prism.languages.scss = Prism.languages.extend('css', {
 	'comment': {
-		pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
+		pattern: /(^|[^\\])(?:\/\*[\w\W]*?\*\/|\/\/.*)/,
 		lookbehind: true
 	},
 	'atrule': {
@@ -11,7 +11,7 @@ Prism.languages.scss = Prism.languages.extend('css', {
 		}
 	},
 	// url, compassified
-	'url': /(?:[-a-z]+-)?url(?=\()/i,
+	'url': /(?:[-a-z]+-)*url(?=\()/i,
 	// CSS selector regex is not appropriate for Sass
 	// since there can be lot more things (var, @ directive, nesting..)
 	// a selector must start at the end of a property or after a brace (end of other rules or nesting)
@@ -21,20 +21,14 @@ Prism.languages.scss = Prism.languages.extend('css', {
 	// this one was hard to do, so please be careful if you edit this one :)
 	'selector': {
 		// Initial look-ahead is used to prevent matching of blank selectors
-		pattern: /(?=\S)[^@;{}()]?(?:[^@;{}()]|#\{\$[-\w]+\})+(?=\s*\{(?:\}|\s|[^}]+[:{][^}]+))/m,
+		pattern: /(?=\S)[^@;\{\}\(\)]?([^@;\{\}\(\)]|&|#\{\$[-_\w]+\})+(?=\s*\{(\}|\s|[^\}]+(:|\{)[^\}]+))/m,
 		inside: {
 			'parent': {
 				pattern: /&/,
 				alias: 'important'
 			},
-			'placeholder': /%[-\w]+/,
-			'variable': /\$[-\w]+|#\{\$[-\w]+\}/
-		}
-	},
-	'property': {
-		pattern: /(?:[\w-]|\$[-\w]+|#\{\$[-\w]+\})+(?=\s*:)/,
-		inside: {
-			'variable': /\$[-\w]+|#\{\$[-\w]+\}/
+			'placeholder': /%[-_\w]+/,
+			'variable': /\$[-_\w]+|#\{\$[-_\w]+\}/
 		}
 	}
 });
@@ -49,14 +43,21 @@ Prism.languages.insertBefore('scss', 'atrule', {
 	]
 });
 
+Prism.languages.scss.property = {
+	pattern: /(?:[\w-]|\$[-_\w]+|#\{\$[-_\w]+\})+(?=\s*:)/i,
+	inside: {
+		'variable': /\$[-_\w]+|#\{\$[-_\w]+\}/
+	}
+};
+
 Prism.languages.insertBefore('scss', 'important', {
 	// var and interpolated vars
-	'variable': /\$[-\w]+|#\{\$[-\w]+\}/
+	'variable': /\$[-_\w]+|#\{\$[-_\w]+\}/
 });
 
 Prism.languages.insertBefore('scss', 'function', {
 	'placeholder': {
-		pattern: /%[-\w]+/,
+		pattern: /%[-_\w]+/,
 		alias: 'selector'
 	},
 	'statement': {
@@ -64,14 +65,11 @@ Prism.languages.insertBefore('scss', 'function', {
 		alias: 'keyword'
 	},
 	'boolean': /\b(?:true|false)\b/,
-	'null': {
-		pattern: /\bnull\b/,
-		alias: 'keyword'
-	},
+	'null': /\bnull\b/,
 	'operator': {
 		pattern: /(\s)(?:[-+*\/%]|[=!]=|<=?|>=?|and|or|not)(?=\s)/,
 		lookbehind: true
 	}
 });
 
-Prism.languages.scss['atrule'].inside.rest = Prism.languages.scss;
+Prism.languages.scss['atrule'].inside.rest = Prism.util.clone(Prism.languages.scss);

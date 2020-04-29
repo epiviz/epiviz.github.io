@@ -1,19 +1,9 @@
 {
-  "name": "@polymer/paper-button",
+  "name": "paper-button",
+  "version": "2.0.0",
   "private": true,
-  "description": "Material design button",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/PolymerElements/paper-button.git"
-  },
-  "license": "BSD-3-Clause",
-  "devDependencies": {
-    "@polymer/gen-typescript-declarations": "^1.2.2",
-    "bower": "^1.8.0",
-    "webmat": "^0.2.0"
-  },
-  "scripts": {
-    "update-types": "bower install && gen-typescript-declarations --deleteExisting --outDir .",
-    "format": "webmat && npm run update-types"
-  }
+  "main": "index.js",
+  "repository": "https://github.com/PolymerElements/paper-button.git",
+  "author": "Justin Fagnani <justinfagnani@google.com>",
+  "license": "MIT"
 }
