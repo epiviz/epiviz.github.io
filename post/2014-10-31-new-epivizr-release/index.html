@@ -86,92 +86,71 @@
 	<div class="row">
 		<div class="col-md-offset-1 col-md-10">
 			<br>
-			
-
-<p>Version 1.4 of <a href="http://www.bioconductor.org/packages/release/bioc/html/epivizr.html"><code>epivizr</code></a> was released as part of the new <a href="http://master.bioconductor.org/news/bioc_3_0_release/">Bioconductor 3.0 release</a>. There are a good number of new features in <code>epivizr</code> in this release, including the ability of running the Epiviz UI <em>within R</em>, making R/Bioconductor capable of running it&rsquo;s own genome browser!</p>
-
+			<p>Version 1.4 of <a href="http://www.bioconductor.org/packages/release/bioc/html/epivizr.html"><code>epivizr</code></a> was released as part of the new <a href="http://master.bioconductor.org/news/bioc_3_0_release/">Bioconductor 3.0 release</a>. There are a good number of new features in <code>epivizr</code> in this release, including the ability of running the Epiviz UI <em>within R</em>, making R/Bioconductor capable of running it&rsquo;s own genome browser!</p>
 <h2 id="running-epiviz-as-a-standalone">Running <code>epiviz</code> as a standalone</h2>
-
 <p>Previous versions of <code>epivizr</code> used the {{ site.epiviz }} web application hosted at the University of Maryland as the front-end for UI. In this new version, we bundle the <code>JavaScript</code> source for the {{ site.epiviz }} UI in the <code>epivizr</code> package which allows <code>R</code> to serve as it&rsquo;s own web host. Like <a href="http://shiny.rstudio.com/">Shiny</a>, we use the <code>httpuv</code> package to serve the interactive application. In fact, lots of thanks to <a href="http://github.com/jcheng5">Joe Cheng</a> and <a href="http://rstudio.com">RStudio</a> for helping to make this happen!</p>
-
 <p>A genome browser without a genome is not very useful, so you need to tell it about the genome annotation you want to use. One place in <code>Bioconductor</code> where you can get genome annotation information is in their <code>OrganismDb</code> packages.</p>
-
 <p>(Make sure you have version 1.4.2 installed to follow along! Just run <code>biocLite(&quot;epivizr&quot;)</code> to get it). The <code>startStandalone</code> function can take an object of this class and start the UI with that genome and its gene annotation loaded. Here&rsquo;s how you can browse the mouse genome with Bioconductor:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(epivizr)
+<span style="color:#a6e22e">library</span>(Mus.musculus)
 
-<pre><code class="language-r">library(epivizr)
-library(Mus.musculus)
-
-# this call makes the gene annotation from Mus.musculus,
-# takes a couple of seconds (see more info below)
-mgr &lt;- startStandalone(Mus.musculus, &quot;mm10&quot;, keepSeqlevels=paste0(&quot;chr&quot;,c(1:19,&quot;X&quot;,&quot;Y&quot;)))
-mgr$stopServer()
-</code></pre>
-
-<h2 id="dynamic-genome-annotation-on-any-ui">Dynamic genome annotation on any UI</h2>
-
+<span style="color:#75715e"># this call makes the gene annotation from Mus.musculus,</span>
+<span style="color:#75715e"># takes a couple of seconds (see more info below)</span>
+mgr <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">startStandalone</span>(Mus.musculus, <span style="color:#e6db74">&#34;mm10&#34;</span>, keepSeqlevels<span style="color:#f92672">=</span><span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;chr&#34;</span>,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">19</span>,<span style="color:#e6db74">&#34;X&#34;</span>,<span style="color:#e6db74">&#34;Y&#34;</span>)))
+mgr<span style="color:#f92672">$</span><span style="color:#a6e22e">stopServer</span>()
+</code></pre></div><h2 id="dynamic-genome-annotation-on-any-ui">Dynamic genome annotation on any UI</h2>
 <p>This release also allows to add genome and gene information on any Epiviz UI, both standalone and hosted (e.g., at the University of Maryland). For instance, to add the mouse genome to the Epiviz UI hosted at UMD you can use:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">mgr <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">startEpiviz</span>(workspace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;OJS2BPGrh7v&#34;</span>)
 
-<pre><code class="language-r">mgr &lt;- startEpiviz(workspace=&quot;OJS2BPGrh7v&quot;)
 
+<span style="color:#75715e"># remove the pre-loaded hg19 annotation</span>
+mgr<span style="color:#f92672">$</span><span style="color:#a6e22e">rmSeqinfo</span>(<span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;chr&#34;</span>,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">22</span>,<span style="color:#e6db74">&#34;X&#34;</span>,<span style="color:#e6db74">&#34;Y&#34;</span>)))
 
-# remove the pre-loaded hg19 annotation
-mgr$rmSeqinfo(paste0(&quot;chr&quot;,c(1:22,&quot;X&quot;,&quot;Y&quot;)))
+<span style="color:#75715e"># make a genome annotation object (takes a few seconds)</span>
+anno <span style="color:#f92672">&lt;-</span> epivizr<span style="color:#f92672">::</span><span style="color:#a6e22e">makeGeneTrackAnnotation</span>(Mus.musculus, keepSeqlevels<span style="color:#f92672">=</span><span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;chr&#34;</span>, <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">19</span>,<span style="color:#e6db74">&#34;X&#34;</span>,<span style="color:#e6db74">&#34;Y&#34;</span>)))
 
-# make a genome annotation object (takes a few seconds)
-anno &lt;- epivizr::makeGeneTrackAnnotation(Mus.musculus, keepSeqlevels=paste0(&quot;chr&quot;, c(1:19,&quot;X&quot;,&quot;Y&quot;)))
+<span style="color:#75715e"># add chromosome names and lengths</span>
+mgr<span style="color:#f92672">$</span><span style="color:#a6e22e">addSeqinfo</span>(<span style="color:#a6e22e">seqinfo</span>(anno))
 
-# add chromosome names and lengths
-mgr$addSeqinfo(seqinfo(anno))
+<span style="color:#75715e"># check on UI, only 19 autosomes now</span>
+<span style="color:#75715e"># add the gene annotation track</span>
+annoDevice <span style="color:#f92672">&lt;-</span> mgr<span style="color:#f92672">$</span><span style="color:#a6e22e">addDevice</span>(anno, <span style="color:#e6db74">&#34;mm10&#34;</span>, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;geneInfo&#34;</span>)
 
-# check on UI, only 19 autosomes now
-# add the gene annotation track
-annoDevice &lt;- mgr$addDevice(anno, &quot;mm10&quot;, type=&quot;geneInfo&quot;)
-
-# now you have a mouse genome browser!
-mgr$stopServer()
-</code></pre>
-
-<h2 id="heatmaps">Heatmaps</h2>
-
+<span style="color:#75715e"># now you have a mouse genome browser!</span>
+mgr<span style="color:#f92672">$</span><span style="color:#a6e22e">stopServer</span>()
+</code></pre></div><h2 id="heatmaps">Heatmaps</h2>
 <p>You can now add heatmaps to your Epiviz sessions. Here is an example using exon-level RNA-seq count data from the TCGA project (this data is included in the <code>epivizr</code> package).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(epivizr)
+<span style="color:#a6e22e">data</span>(tcga_colon_expression)
 
-<pre><code class="language-r">library(epivizr)
-data(tcga_colon_expression)
+<span style="color:#75715e"># make the names easier to understand</span>
+sampleNames <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">paste0</span>(<span style="color:#a6e22e">seq</span>(len<span style="color:#f92672">=</span><span style="color:#a6e22e">nrow</span>(<span style="color:#a6e22e">colData</span>(colonSE))),<span style="color:#e6db74">&#34;:&#34;</span>,<span style="color:#a6e22e">colData</span>(colonSE)<span style="color:#f92672">$</span>sample_type)
+<span style="color:#a6e22e">colnames</span>(colonSE) <span style="color:#f92672">&lt;-</span> sampleNames
 
-# make the names easier to understand
-sampleNames &lt;- paste0(seq(len=nrow(colData(colonSE))),&quot;:&quot;,colData(colonSE)$sample_type)
-colnames(colonSE) &lt;- sampleNames
+<span style="color:#75715e"># normalize counts using DE-Seq&#39;s size factors</span>
+ref_sample <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span> ^ <span style="color:#a6e22e">rowMeans</span>(<span style="color:#a6e22e">log2</span>(<span style="color:#a6e22e">assay</span>(colonSE) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>))
+scaled <span style="color:#f92672">&lt;-</span> (<span style="color:#a6e22e">assay</span>(colonSE) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> ref_sample
+scaleFactor <span style="color:#f92672">&lt;-</span> Biobase<span style="color:#f92672">::</span><span style="color:#a6e22e">rowMedians</span>(<span style="color:#a6e22e">t</span>(scaled))
+assay_normalized <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sweep</span>(<span style="color:#a6e22e">assay</span>(colonSE), <span style="color:#ae81ff">2</span>, scaleFactor, <span style="color:#e6db74">&#34;/&#34;</span>)
+<span style="color:#a6e22e">assay</span>(colonSE) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">log2</span>(assay_normalized <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
 
-# normalize counts using DE-Seq's size factors
-ref_sample &lt;- 2 ^ rowMeans(log2(assay(colonSE) + 1))
-scaled &lt;- (assay(colonSE) + 1) / ref_sample
-scaleFactor &lt;- Biobase::rowMedians(t(scaled))
-assay_normalized &lt;- sweep(assay(colonSE), 2, scaleFactor, &quot;/&quot;)
-assay(colonSE) &lt;- log2(assay_normalized + 1)
+<span style="color:#75715e"># start the UI manager</span>
+mgr <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">startEpiviz</span>(workspace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;qyOTB6vVnff&#34;</span>)
 
-# start the UI manager
-mgr &lt;- startEpiviz(workspace=&quot;qyOTB6vVnff&quot;)
+<span style="color:#75715e"># add the count data</span>
+msObj <span style="color:#f92672">&lt;-</span> mgr<span style="color:#f92672">$</span><span style="color:#a6e22e">addMeasurements</span>(colonSE, <span style="color:#e6db74">&#34;tcga exon expression&#34;</span>)
 
-# add the count data
-msObj &lt;- mgr$addMeasurements(colonSE, &quot;tcga exon expression&quot;)
+<span style="color:#75715e"># make a heatmap of the first 15 samples</span>
+devObj <span style="color:#f92672">&lt;-</span> mgr<span style="color:#f92672">$</span><span style="color:#a6e22e">heatmapChart</span>(msObj<span style="color:#f92672">$</span><span style="color:#a6e22e">getMeasurements</span>()[1<span style="color:#f92672">:</span><span style="color:#ae81ff">15</span>])
 
-# make a heatmap of the first 15 samples
-devObj &lt;- mgr$heatmapChart(msObj$getMeasurements()[1:15])
-
-mgr$stopServer()
-</code></pre>
-
-<p>And since Epiviz <a href="http://epiviz.github.io/features/2014/10/28/new-feature-clustering.html">now supports clustering on heatmaps</a>, you have a dynamic heatmap visualization of your expression data as you browse the genome.</p>
-
-<h2 id="what-s-coming-next">What&rsquo;s coming next&hellip;</h2>
-
+mgr<span style="color:#f92672">$</span><span style="color:#a6e22e">stopServer</span>()
+</code></pre></div><p>And since Epiviz <a href="http://epiviz.github.io/features/2014/10/28/new-feature-clustering.html">now supports clustering on heatmaps</a>, you have a dynamic heatmap visualization of your expression data as you browse the genome.</p>
+<h2 id="whats-coming-next">What&rsquo;s coming next&hellip;</h2>
 <p>For the next release of <code>epivizr</code> we are planning some new fun things:</p>
-
 <ol>
 <li>Support for visualization directly from <code>BigWig</code> and <code>BAM</code> files to support NGS workflows.</li>
 <li>Using epiviz browser sessions, or standalone visualizations in publications (markdown documents, html5 slidedecks, or your own web application).</li>
 </ol>
-
 <p>We&rsquo;ve started working on #1 above, you can see how it&rsquo;s going by using the <a href="https://github.com/epiviz/epivizr"><code>epivizr</code> development version</a>.</p>
 
 		</div>
@@ -188,7 +167,7 @@ mgr$stopServer()
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2017 ~ epiviz ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.37.1 ~ <a href="https://epiviz.github.io/license">License</a>
+                        &copy; 2012 ~ University of Maryland, Hector Corrada Bravo, Jayaram Kancherla, Florin Chelaru. All Rights Reserved ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.69.1 ~ <a href="https://epiviz.github.io/license">License</a>
                     </p>
                 </div>
 

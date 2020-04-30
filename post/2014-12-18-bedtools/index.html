@@ -87,33 +87,28 @@
 		<div class="col-md-offset-1 col-md-10">
 			<br>
 			<p>On <a href="https://twitter.com/aaronquinlan/status/545559723853246464">a twitter exchange</a> I showed <a href="https://twitter.com/aaronquinlan">A. Quinlan</a> how to use <code>epivizr</code> to load data from a custom <code>bed</code> file. Here is the code I gave him:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(epivizr)
+<span style="color:#a6e22e">library</span>(rtracklayer)
 
-<pre><code class="language-r">library(epivizr)
-library(rtracklayer)
+<span style="color:#75715e"># download example bed file</span>
+<span style="color:#a6e22e">download.file</span>(<span style="color:#e6db74">&#34;https://raw.githubusercontent.com/arq5x/bedtools/master/data/aluY.hg19.bed.gz&#34;</span>, destfile<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;test.bed.gz&#34;</span>, method<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;curl&#34;</span>)
 
-# download example bed file
-download.file(&quot;https://raw.githubusercontent.com/arq5x/bedtools/master/data/aluY.hg19.bed.gz&quot;, destfile=&quot;test.bed.gz&quot;, method=&quot;curl&quot;)
+<span style="color:#75715e"># start UI</span>
+mgr <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">startEpiviz</span>(workspace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mi9NojjqT1l&#34;</span>)
 
-# start UI
-mgr &lt;- startEpiviz(workspace=&quot;mi9NojjqT1l&quot;)
+<span style="color:#75715e"># import bed file</span>
+gr <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">import</span>(<span style="color:#a6e22e">BEDFile</span>(<span style="color:#e6db74">&#34;test.bed.gz&#34;</span>))
 
-# import bed file
-gr &lt;- import(BEDFile(&quot;test.bed.gz&quot;))
+<span style="color:#75715e"># drop data from unplaced contigs</span>
+gr <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">keepSeqlevels</span>(gr, <span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;chr&#34;</span>,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">22</span>,<span style="color:#e6db74">&#34;X&#34;</span>,<span style="color:#e6db74">&#34;Y&#34;</span>)))
 
-# drop data from unplaced contigs
-gr &lt;- keepSeqlevels(gr, paste0(&quot;chr&quot;,c(1:22,&quot;X&quot;,&quot;Y&quot;)))
+<span style="color:#75715e"># add track with bed file data</span>
+dev <span style="color:#f92672">&lt;-</span> mgr<span style="color:#f92672">$</span><span style="color:#a6e22e">addDevice</span>(gr, <span style="color:#e6db74">&#34;example bed&#34;</span>)
 
-# add track with bed file data
-dev &lt;- mgr$addDevice(gr, &quot;example bed&quot;)
-
-# finish up
-mgr$stopServer()
-</code></pre>
-
-<p>Also at <a href="https://gist.github.com/hcorrada/f930fa0092f1100f1d37">https://gist.github.com/hcorrada/f930fa0092f1100f1d37</a>.</p>
-
+<span style="color:#75715e"># finish up</span>
+mgr<span style="color:#f92672">$</span><span style="color:#a6e22e">stopServer</span>()
+</code></pre></div><p>Also at <a href="https://gist.github.com/hcorrada/f930fa0092f1100f1d37">https://gist.github.com/hcorrada/f930fa0092f1100f1d37</a>.</p>
 <p>The idea behind the <code>epivizr</code> BioC package is that it can use that infrastructure to import <strong>a lot</strong> of data formats into <code>GenomicRanges</code>-like objects one can manipulate (say, filter or transform), and have interactive visualization that reflects those manipulations immediately. However, it&rsquo;s a little cumbersome for the use-case of where you have data on a BED file that you don&rsquo;t need to manipulate, but just explore visually.</p>
-
 <p>An option we&rsquo;d like to get started with to support this <em>contextual-data</em> use-case is to write small programs that would use, say <a href="https://github.com/arq5x/bedtools">bedtools</a> for example, to implement the epiviz <a href="http://epiviz.github.io/plugins.html#new-data-provider-plugin">Data Provider API</a> and serve data directly from a bed file.</p>
 
 		</div>
@@ -130,7 +125,7 @@ mgr$stopServer()
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2017 ~ epiviz ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.37.1 ~ <a href="https://epiviz.github.io/license">License</a>
+                        &copy; 2012 ~ University of Maryland, Hector Corrada Bravo, Jayaram Kancherla, Florin Chelaru. All Rights Reserved ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.69.1 ~ <a href="https://epiviz.github.io/license">License</a>
                     </p>
                 </div>
 

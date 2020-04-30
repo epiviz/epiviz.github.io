@@ -91,38 +91,27 @@
 <li><strong><a href="http://epiviz.cbcb.umd.edu/3/?ws=MaQiywcMkec&amp;settings=default">See it in Epiviz 3</a></strong></li>
 <li><strong><a href="http://epiviz.cbcb.umd.edu/2/?ws=MaQiywcMkec&amp;settings=default">See it in Epiviz 2</a></strong></li>
 </ul>
-
 <p>Now visualizations&rsquo; code can be customized in the UI, based on user needs!</p>
-
 <p>To do it, simply click on the <em>Edit code</em> button on any of the available charts:
-<img src="https://epiviz.github.io/images/edit_code_button.png" alt="Edit Code Button" /></p>
-
+<img src="https://epiviz.github.io/images/edit_code_button.png" alt="Edit Code Button"></p>
 <p>Select the method(s) you want to edit. Only the methods corresponding to this particular instance
 of the chart will be modified. For example, in the MA Plot at
 <a href="http://epiviz.cbcb.umd.edu/4/?ws=S5qde7SD1Je&amp;settings=default">http://epiviz.cbcb.umd.edu/4/?ws=S5qde7SD1Je</a>,
 we edited the <code>_drawAxes</code> method by adding the following code at the beginning of the method:</p>
-
-<pre><code class="language-javascript">  this._svg.selectAll('.midline').remove();
-  this._svg.append('line')
-      .attr('class', 'midline')
-      .attr('x1', this.margins().left())
-      .attr('x2', this.width() - this.margins().right())
-      .attr('y1', yScale(0) + this.margins().top())
-      .attr('y2', yScale(0) + this.margins().top())
-      .style('stroke', '#444444')
-      .style('shape-rendering', 'crispEdges');
-</code></pre>
-
-<p><img src="https://epiviz.github.io/images/edit_code_dialog.png" alt="Edit Code Dialog" /></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_svg</span>.<span style="color:#a6e22e">selectAll</span>(<span style="color:#e6db74">&#39;.midline&#39;</span>).<span style="color:#a6e22e">remove</span>();
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_svg</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;line&#39;</span>)
+      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;class&#39;</span>, <span style="color:#e6db74">&#39;midline&#39;</span>)
+      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;x1&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">margins</span>().<span style="color:#a6e22e">left</span>())
+      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;x2&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">width</span>() <span style="color:#f92672">-</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">margins</span>().<span style="color:#a6e22e">right</span>())
+      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;y1&#39;</span>, <span style="color:#a6e22e">yScale</span>(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">margins</span>().<span style="color:#a6e22e">top</span>())
+      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;y2&#39;</span>, <span style="color:#a6e22e">yScale</span>(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">margins</span>().<span style="color:#a6e22e">top</span>())
+      .<span style="color:#a6e22e">style</span>(<span style="color:#e6db74">&#39;stroke&#39;</span>, <span style="color:#e6db74">&#39;#444444&#39;</span>)
+      .<span style="color:#a6e22e">style</span>(<span style="color:#e6db74">&#39;shape-rendering&#39;</span>, <span style="color:#e6db74">&#39;crispEdges&#39;</span>);
+</code></pre></div><p><img src="https://epiviz.github.io/images/edit_code_dialog.png" alt="Edit Code Dialog"></p>
 <p>This should add a line at <code>y=0</code>, which is a common view for the MA Plot.</p>
-
 <p>Once happy with the changes, click <em>Save</em> and see the changes take effect immediately:</p>
-
-<p><img src="https://epiviz.github.io/images/edit_code_ma_plot.png" alt="Heatmap Clustering" /></p>
-
+<p><img src="https://epiviz.github.io/images/edit_code_ma_plot.png" alt="Heatmap Clustering"></p>
 <p><strong>The changes can be saved in the current workspace!</strong></p>
-
 <ul>
 <li><strong><a href="http://epiviz.cbcb.umd.edu/4/?ws=MaQiywcMkec&amp;settings=default">See it in Epiviz 4</a></strong></li>
 <li><strong><a href="http://epiviz.cbcb.umd.edu/3/?ws=MaQiywcMkec&amp;settings=default">See it in Epiviz 3</a></strong></li>
@@ -143,7 +132,7 @@ we edited the <code>_drawAxes</code> method by adding the following code at the 
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2017 ~ epiviz ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.37.1 ~ <a href="https://epiviz.github.io/license">License</a>
+                        &copy; 2012 ~ University of Maryland, Hector Corrada Bravo, Jayaram Kancherla, Florin Chelaru. All Rights Reserved ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.69.1 ~ <a href="https://epiviz.github.io/license">License</a>
                     </p>
                 </div>
 
