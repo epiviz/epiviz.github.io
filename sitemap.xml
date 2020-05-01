@@ -152,4 +152,9 @@
     <lastmod>2014-08-03T19:46:32-05:00</lastmod>
   </url>
   
+  <url>
+    <loc>https://epiviz.github.io/components/</loc>
+    <priority>0</priority>
+  </url>
+  
 </urlset>

@@ -18,7 +18,7 @@
       
       <guid>https://epiviz.github.io/post/2017-05-01-epiviz-update/</guid>
       <description>Bioconductor version 3.5 was released last month: http://bioconductor.org/news/bioc_3_5_release/. This Bioconductor version includes updates to epivizr and a new package, metavizr, for interactive visualization of metagenomic data. In this post we describe these, and take the opportunity to update on other developments in the Epiviz project.
-What&amp;rsquo;s new!  epivizr updates Introducing Epiviz desktop application Metavizr now on R/Bioconductor Introducing epiviz webcomponents    Save and Restart an epivizr session</description>
+What&amp;rsquo;s new!  epivizr updates Introducing Epiviz desktop application Metavizr now on R/Bioconductor Introducing epiviz webcomponents  ## epivizr updates    Save and Restart an epivizr session</description>
     </item>
     
   </channel>
