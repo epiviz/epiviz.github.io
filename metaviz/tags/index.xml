@@ -5,10 +5,6 @@
     <link>https://epiviz.github.io/metaviz/tags/</link>
     <description>Recent content in Tags on Metaviz</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://epiviz.github.io/metaviz/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://epiviz.github.io/metaviz/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

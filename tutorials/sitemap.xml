@@ -1,20 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <url>
-    <loc>https://epiviz.github.io/tutorials/</loc>
-    <lastmod>2016-11-22T14:12:05-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://epiviz.github.io/tutorials/tutorials/</loc>
-    <lastmod>2016-11-22T14:12:05-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://epiviz.github.io/tutorials/metaviz/</loc>
-    <lastmod>2016-11-22T14:12:05-05:00</lastmod>
-  </url>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>https://epiviz.github.io/tutorials/metaviz/overview/</loc>
@@ -22,7 +8,7 @@
   </url>
   
   <url>
-    <loc>https://epiviz.github.io/tutorials/metaviz/metagenomeSeq/</loc>
+    <loc>https://epiviz.github.io/tutorials/metaviz/metagenomeseq/</loc>
     <lastmod>2017-01-17T14:08:04-05:00</lastmod>
   </url>
   
@@ -37,12 +23,12 @@
   </url>
   
   <url>
-    <loc>https://epiviz.github.io/tutorials/metaviz/usingDocker/</loc>
+    <loc>https://epiviz.github.io/tutorials/metaviz/usingdocker/</loc>
     <lastmod>2017-01-13T14:08:04-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://epiviz.github.io/tutorials/metaviz/hostingData/</loc>
+    <loc>https://epiviz.github.io/tutorials/metaviz/hostingdata/</loc>
     <lastmod>2017-01-23T14:08:04-05:00</lastmod>
   </url>
   
@@ -74,6 +60,45 @@
   <url>
     <loc>https://epiviz.github.io/tutorials/tutorials/websocket/</loc>
     <lastmod>2016-11-23T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/metaviz/diveristy_plot/</loc>
+    <lastmod>2021-01-20T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/metaviz/save_plots/</loc>
+    <lastmod>2021-01-20T14:08:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/</loc>
+    <lastmod>2021-01-20T14:08:04-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/tutorials/</loc>
+    <lastmod>2016-11-22T14:12:05-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/tutorials/</loc>
+    <lastmod>2016-11-22T14:12:05-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/metaviz/</loc>
+    <lastmod>2016-11-22T14:12:05-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://epiviz.github.io/tutorials/tags/</loc>
   </url>
   
 </urlset>

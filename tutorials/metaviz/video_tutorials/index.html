@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.17" />
+    <meta name="generator" content="Hugo 0.80.0" />
     <meta name="description" content="">
 
 
-    <link rel="shortcut icon" href="https://epiviz.github.io/tutorials/images/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="https://epiviz.github.io/tutorials/images/favicon.png" type="image/png">
 
     
     <title>Visual Analysis of MSD16S Dataset</title>
@@ -25,184 +25,447 @@
     {display:none !important;}</style>
     <link href="https://epiviz.github.io/tutorials/css/my_style.css" rel="stylesheet">
   </head>
-  <body class="" data-url="/metaviz/video_tutorials/">
-    <nav id="sidebar">
+  <body class="" data-url="https://epiviz.github.io/tutorials/metaviz/video_tutorials/">
+    <nav id="sidebar" class="">
+
+
+
   <div id="header-wrapper">
     <div id="header">
       <a width="100%" height="100%" href="https://epiviz.github.io"><img src="https://epiviz.github.io/tutorials/images/epiviz_logo.png"></a>
     </div>
     
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
+<script type="text/javascript" src="https://epiviz.github.io/tutorials/js/lunr.min.js?1611195371"></script>
+<script type="text/javascript" src="https://epiviz.github.io/tutorials/js/auto-complete.js?1611195371"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/epiviz.github.io\/tutorials";
+    
+</script>
+<script type="text/javascript" src="https://epiviz.github.io/tutorials/js/search.js?1611195371"></script>
 
-  <div class="highlightable">
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='https://epiviz.github.io/tutorials/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
     <ul class="topics">
-      
-      
-        
-      
-      
-      
-      
 
-      
         
-      
-      
-      
+          
+          
 
-      <li class="dd-item  parent" data-nav-id="/metaviz/">
-        <a href="https://epiviz.github.io/tutorials/metaviz/">
-          <span>
-            
-              <b>X. </b>
-            
-             Metaviz Tutorials
-            
-           </span>
-        </a>
+
+
+
+ 
+  
+    
+    <li data-nav-id="/tutorials/" title="Epiviz Tutorials" class="dd-item
         
+        
+        
+        ">
+      <a href="https://epiviz.github.io/tutorials/tutorials/">
+          Epiviz Tutorials
+          
+      </a>
+      
+      
         <ul>
           
           
           
-          
-            <li class="dd-item " data-nav-id="/metaviz/overview/">
-              <a href="https://epiviz.github.io/tutorials/metaviz/overview/">
-                <span>Metaviz Quick Overview     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/metaviz/metagenomeSeq/">
-              <a href="https://epiviz.github.io/tutorials/metaviz/metagenomeSeq/">
-                <span>Differential Analysis with MetagenomeSeq and Metaviz     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item active" data-nav-id="/metaviz/video_tutorials/">
-              <a href="https://epiviz.github.io/tutorials/metaviz/video_tutorials/">
-                <span>Visual Analysis of MSD16S Dataset     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/metaviz/spline/">
-              <a href="https://epiviz.github.io/tutorials/metaviz/spline/">
-                <span>Longitudinal Data Analysis     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/metaviz/usingDocker/">
-              <a href="https://epiviz.github.io/tutorials/metaviz/usingDocker/">
-                <span>Metaviz Docker Containers     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/metaviz/hostingData/">
-              <a href="https://epiviz.github.io/tutorials/metaviz/hostingData/">
-                <span>Hosting Data in Metaviz     </i></span>
-              </a>
-            </li>
-          
-          
-        </ul>
-        
-      </li>
-      
-      
-      
 
-      
         
-      
-      
-      
+          
+            
+            
 
-      <li class="dd-item  " data-nav-id="/tutorials/">
-        <a href="https://epiviz.github.io/tutorials/tutorials/">
-          <span>
-            
-              <b>X. </b>
-            
-             Epiviz Tutorials
-            
-           </span>
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/timp2014/" title="450k Illumina Human Methylation data for multiple solid tumors" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/timp2014/">
+        450k Illumina Human Methylation data for multiple solid tumors
+        
         </a>
-        
-        <ul>
-          
-          
-          
-          
-            <li class="dd-item " data-nav-id="/tutorials/timp2014/">
-              <a href="https://epiviz.github.io/tutorials/tutorials/timp2014/">
-                <span>450k Illumina Human Methylation data for multiple solid tumors     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/tutorials/charts/">
-              <a href="https://epiviz.github.io/tutorials/tutorials/charts/">
-                <span>Chart Tutorial     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/tutorials/computed-measurements/">
-              <a href="https://epiviz.github.io/tutorials/tutorials/computed-measurements/">
-                <span>Computed Measurements     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/tutorials/epivizr/">
-              <a href="https://epiviz.github.io/tutorials/tutorials/epivizr/">
-                <span>Epivizr     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/tutorials/plugins/">
-              <a href="https://epiviz.github.io/tutorials/tutorials/plugins/">
-                <span>External Scripts and Plugins     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/tutorials/websocket/">
-              <a href="https://epiviz.github.io/tutorials/tutorials/websocket/">
-                <span>Websocket Tutorial     </i></span>
-              </a>
-            </li>
-          
-          
-        </ul>
-        
-      </li>
-      
-      
-    </ul>
-    <hr>
+    </li>
      
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/charts/" title="Chart Tutorial" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/charts/">
+        Chart Tutorial
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/computed-measurements/" title="Computed Measurements" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/computed-measurements/">
+        Computed Measurements
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/epivizr/" title="Epivizr" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/epivizr/">
+        Epivizr
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/plugins/" title="External Scripts and Plugins" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/plugins/">
+        External Scripts and Plugins
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/websocket/" title="Websocket Tutorial" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/websocket/">
+        Websocket Tutorial
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/" title="Epiviz Tutorials" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/">
+        Epiviz Tutorials
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/metaviz/" title="Metaviz Tutorials" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="https://epiviz.github.io/tutorials/metaviz/">
+          Metaviz Tutorials
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/overview/" title="Metaviz Quick Overview" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/overview/">
+        Metaviz Quick Overview
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/metagenomeseq/" title="Differential Analysis with MetagenomeSeq and Metaviz" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/metagenomeseq/">
+        Differential Analysis with MetagenomeSeq and Metaviz
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/video_tutorials/" title="Visual Analysis of MSD16S Dataset" class="dd-item active">
+        <a href="https://epiviz.github.io/tutorials/metaviz/video_tutorials/">
+        Visual Analysis of MSD16S Dataset
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/spline/" title="Longitudinal Data Analysis" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/spline/">
+        Longitudinal Data Analysis
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/usingdocker/" title="Metaviz Docker Containers" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/usingdocker/">
+        Metaviz Docker Containers
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/hostingdata/" title="Hosting Data in Metaviz" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/hostingdata/">
+        Hosting Data in Metaviz
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/diveristy_plot/" title="Create a Diversity Plot with HMP2Data IBD Biopsy" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/diveristy_plot/">
+        Create a Diversity Plot with HMP2Data IBD Biopsy
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/save_plots/" title="Save plots on Metaviz" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/save_plots/">
+        Save plots on Metaviz
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
     <section id="footer">
-      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
     </section>
   </div>
 </nav>
+
+
+
 
         <section id="body">
         <div id="overlay"></div>
@@ -224,11 +487,6 @@
                 
                 
                   
-                    
-                    
-                <a href="https://epiviz.github.io/tutorials/metaviz/" itemprop="url"><span itemprop="title">Metaviz Tutorials</span></a> <i class="fa fa-angle-right"></i>
-                    
-                  
                 
                   
                 
@@ -238,15 +496,12 @@
                   <div class="progress">
     <div class="wrapper">
 <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#create-a-navigation-widget-and-visualizing-count-values">Create a Navigation widget and visualizing count values</a></li>
-<li><a href="#adding-a-pca-plot">Adding a PCA Plot</a></li>
-<li><a href="#creating-stacked-line-plots-for-case-and-control">Creating Stacked Line Plots for Case and Control</a></li>
-<li><a href="#exploring-workspace-and-analysis-using-the-facetzoom-navigation-widget">Exploring workspace and analysis using the FacetZoom navigation widget</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#create-a-navigation-widget-and-visualizing-count-values">Create a Navigation widget and visualizing count values</a></li>
+    <li><a href="#adding-a-pca-plot">Adding a PCA Plot</a></li>
+    <li><a href="#creating-stacked-line-plots-for-case-and-control">Creating Stacked Line Plots for Case and Control</a></li>
+    <li><a href="#exploring-workspace-and-analysis-using-the-facetzoom-navigation-widget">Exploring workspace and analysis using the FacetZoom navigation widget</a></li>
+  </ul>
 </nav>
     </div>
 </div>
@@ -261,155 +516,416 @@
                 
 
 
-
 <p>Metaviz is a tool for interactive visualization and exploration of metagenomic sequencing data. It provides a novel navigation tool for exploring hierarchical feature data that is coupled with multiple data visualizations including heatmaps, stacked bar charts, and scatter plots. Metaviz supports a flexible plugin framework so users can add new d3 visualizations.
 This post shows how to use all the UI features of Metaviz to examine the Moderate to Severe childhood diaherrial disease (msd16s) dataset.
 A post providing an overview of Metaviz can be found <a href="overview.html">here</a>.</p>
-
 <p>The dataset we use here consists of case and control samples from children under the age of 6. A total of 992 samples are present that are spread across 4 countries. We will explore one country in detail and use heatmaps and stacked line plots to examine the differences in observed abundance of microbiome features at all levels a taxonomic hierarchy.</p>
-
 <p>We provide a video showing the workflow in each section and also provide a step by step walkthrough with screenshots after the video.</p>
-
 <h2 id="create-a-navigation-widget-and-visualizing-count-values">Create a Navigation widget and visualizing count values</h2>
-
 <p>The following video describes the workflow to add a navigation control to explore the taxonomic feature hierarchy and also add a heatmap to visualize the abundance matrix.</p>
-
-<video class="mejs-player" height=750 width=1200 controls>
-    <source src="https://epiviz.github.io/tutorials/videos/Video1.mp4" />
-</video>
-
-<p><details>
-<summary>
-<strong>Click Here for a step by step walkthrough of this section</strong>
-</summary></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>The landing page of <a href="http://metaviz.cbcb.umd.edu">http://metaviz.cbcb.umd.edu</a> will show a blank workspace and a tool bar at the top. To explore the feature hierarchy of a dataset, We click on the &lsquo;Add Visualizations&rsquo; button and
 choose the &lsquo;Add new Navigation Control&rsquo; from the drop-down menu. Then, a pop-up measurement browser displays all datasets available in the UMD Metaviz database.</p>
-
 <p>For this tutorial, choose the &lsquo;msd16s&rsquo; datasource and then click &lsquo;Finish&rsquo;.</p>
-
 <p>What is displayed in the Metaviz workspace is called a &lsquo;FacetZoom&rsquo; control that shows a limited section of the taxonomic hierarchy at one time.  A &lsquo;FacetZoom&rsquo; control can be used to explore the observed features in the dataset and aggregate counts to specific nodes or levels in the hierarchy.  We will introduce &lsquo;FacetZoom&rsquo; functionality as needed throughout this workflow.  A &lsquo;FacetZoom&rsquo; object controls the views of data visualizations that we will add in the next sections.</p>
-
 <p>The next step will be to add a heatmap that visualizes the abundance matrix and is linked to the &lsquo;FacetZoom&rsquo; navigation widget. For this dataset, we chose to focus on the samples from Bangladesh. In order to add a heatmap, we click &lsquo;Add Visualizations&rsquo; then select &lsquo;Add new heatmap&rsquo;.  Once the measurement browser pop-up appears, select the &lsquo;msd16s&rsquo; datasource and click &lsquo;next&rsquo;.</p>
-
 <p>To show more annotations in the measurement browser, click on the &lsquo;Selected Columns&rsquo; tab. The &lsquo;Selected Columns&rsquo; tab lists all the data annotation fields available for the samples and will be different across datasets. In order to select an equal number of case and control samples from one country,click on &lsquo;Country&rsquo; and &lsquo;Dysentery&rsquo;.</p>
-
 <p>To show more than &lsquo;10&rsquo; samples, change the &lsquo;Show Entries&rsquo; configuration to &lsquo;25&rsquo;. Clicking on a column header will sort the samples based on that attribute. First sort samples by &lsquo;Dysentery&rsquo; and then by &lsquo;Country&rsquo;. Now highlight 25 &lsquo;Control&rsquo; samples from Bangladesh and follow this by selecting 25 &lsquo;Case&rsquo; samples followed by clicking &lsquo;Finish&rsquo;.</p>
-
-<p>We now see a blank heatmap added to the Metaviz workspace above the &lsquo;FacetZoom&rsquo; control. We also can notice a dark grey bar at the top of the Navigation Widget. This sets the range of features in the hierarchy that are plotted in the heatmap.<br />
+<p>We now see a blank heatmap added to the Metaviz workspace above the &lsquo;FacetZoom&rsquo; control. We also can notice a dark grey bar at the top of the Navigation Widget. This sets the range of features in the hierarchy that are plotted in the heatmap.<br>
 The samples we selected appear to have no observed counts for those features and we therefore need to modify the selection of features to visualize.</p>
-
 <p>On the &lsquo;FacetZoom&rsquo; navigation widget, expand the navigation bar to include on features by clicking on the red end of the navigation bar and dragging to the specified length. The buttons with arrows in the upper left hand corner of the Navigation Widget control the navigation bar and can be used to move left, right, and expand to cover all features.</p>
-
 <p>Now that we can see entries in the heatmap, we can change the settings by clicking the settings (fourth) icon in the upper right-hand menu of the heatmap object. Every component in Metaviz has a settings menu to modify many of the charts attributes. To change row labels from the currently displayed sample id&rsquo;s , change the row label setting to &lsquo;Dysentery&rsquo;. Next Toggle the &lsquo;Row labels as colors&rsquo; to &lsquo;ON&rsquo;.</p>
-
-<p></details></p>
-
+<!-- raw HTML omitted -->
 <h2 id="adding-a-pca-plot">Adding a PCA Plot</h2>
-
 <p>This tutorial continues from the previous video and adds a PCA Plot to examine variance for the same set of samples to the existing workspace</p>
-
-<video class="mejs-player" height=750 width=1200 controls>
-    <source src="https://epiviz.github.io/tutorials/videos/Video2.mp4" />
-</video>
-
-<p><details>
-<summary>
-<strong>Click Here for a step by step walkthrough of this section</strong>
-</summary></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>The next step will be to generate a PCA ordination plot over the samples selected. Select &lsquo;Add new PCA scatter&rsquo; from the &lsquo;Add Visualizations&rsquo; button. Select the Heatmap samples, this is designated by msd16s_plot-heatmap-EU1va which is a random id assigned to every chart on the Metaviz workspace, then click &lsquo;next&rsquo;. Chose &lsquo;Select All&rsquo; to select all samples and &lsquo;Finish&rsquo; to add a PCA plot to the workspace.</p>
-
 <p>To differentiate between samples, we can adjust the &lsquo;Color By&rsquo; setting and set it to &lsquo;Dysentery&rsquo; Status.</p>
-
-<p></details></p>
-
+<!-- raw HTML omitted -->
 <h2 id="creating-stacked-line-plots-for-case-and-control">Creating Stacked Line Plots for Case and Control</h2>
-
 <p>This section describes the workflow to visualize feature proportions across case and control samples using Stacked Bar plots.</p>
-
-<video class="mejs-player" height=750 width=1200 controls>
-    <source src="https://epiviz.github.io/tutorials/videos/Video3.mp4" />
-</video>
-
-<p><details>
-<summary>
-<strong>Click Here for a step by step walkthrough of this section</strong>
-</summary></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>The next step will be to add stacked bar plots for case and control samples. In order to do this, again click on &lsquo;Add Visualizations&rsquo; then select &lsquo;Add new stacked plot&rsquo;. In the pop-up measurement browser, there will be an entry &lsquo;msd16s_plot-heatmap-yxy3D&rsquo; which is the measurements that were selected to build the heatmap and PCA scatter plot. Click on this datasource then &lsquo;Next&rsquo;. Click on the &lsquo;Selected Columns&rsquo; tab to show &lsquo;Dysentery&rsquo; status, select &lsquo;25&rsquo; from the &lsquo;Show Entries&rsquo; drop-down configuration. To add a stacked plot for the case samples,  click on the &lsquo;Dysentery&rsquo; column heading to arrange by status. Highlight the case samples and click &lsquo;Finish&rsquo;.</p>
-
 <p>Now perform the same process and select control samples.</p>
-
 <p>Also, we can show how to write custom JavaScript within Metaviz for display, in this instance we want to order the stacked plot entries by AgeFactor. In the case samples stacked bar plot, click on the third icon &lsquo;Code&rsquo;. With the pop-up window, click the &lsquo;Order By&rsquo; tab.</p>
-
-<p>For any modifications to take effect, we will need to set the radio button in the upper left corner to &lsquo;On&rsquo;. Under the &lsquo;Mark&rsquo; method, we change the function to take the current measurement &rsquo;m&rsquo;, retrieve its metadata by calling .annotation(), and choosing the &lsquo;AgeFactor&rsquo; field to order by.</p>
-
+<p>For any modifications to take effect, we will need to set the radio button in the upper left corner to &lsquo;On&rsquo;. Under the &lsquo;Mark&rsquo; method, we change the function to take the current measurement &rsquo;m', retrieve its metadata by calling .annotation(), and choosing the &lsquo;AgeFactor&rsquo; field to order by.</p>
 <p>Now we can modifying the settings for the stacked bar plot to show sample &lsquo;AgeFactor&rsquo; instead of &lsquo;name&rsquo;. We can apply this process to both case and control stacked bar plots and order them by &lsquo;AgeFactor&rsquo;.</p>
-
 <p>Now we can &lsquo;Group-by&rsquo; &lsquo;AgeFactor&rsquo; in the control samples by choosing the settings tab and setting &lsquo;Group-by&rsquo; to &lsquo;On&rsquo; and choosing &lsquo;AgeFactor&rsquo; as the field. We can also perform that for the case samples.</p>
-
-<p></details></p>
-
+<!-- raw HTML omitted -->
 <h2 id="exploring-workspace-and-analysis-using-the-facetzoom-navigation-widget">Exploring workspace and analysis using the FacetZoom navigation widget</h2>
-
 <p>This video describes how to modify the state of the FacetZoom navigation widget and propagating feature node states to other visualizations in the workspace.
 We also provide a text based search to quickly navigate to the feature of interest.</p>
-
-<video class="mejs-player" height=750 width=1200 controls>
-    <source src="https://epiviz.github.io/tutorials/videos/Video4.mp4" />
-</video>
-
-<p><details>
-<summary>
-<strong>Click Here for a step by step walkthrough of this section</strong>
-</summary></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>Now that we have added a FacetZoom navigation widget and different charts that show different views of the abundace matrix, we can now focus on exploring the dataset and how changing state of the features effect the analysis. We can focus on a specific features by adjusting the navigation bar in the FacetZoom object. We provide text-based search to quickly navigate the FacetZoom widget to a feature. This can be done by typing in the text box in the menu bar &lsquo;Text Based Search&rsquo;. Lets update the navigation bar in the FacetZoom widget to &lsquo;Firmicutes&rsquo; by typing &lsquo;Firmucutes&rsquo; in the text box.</p>
-
 <p>Choose &lsquo;Firmucutes&rsquo;, &lsquo;phylum&rsquo; from the drop down menu. This will move the navigation bar to encompass that item.</p>
-
 <p>Beyond text-based search, the navigation bar can be moved, expanded, and reduced by using either the controls in the left-hand corner of the FacetZoom object or by dragging the red ends of the navigation bar.</p>
-
 <p>All charts in the Metavize workspace are linked to the features on the FacetZoom control.  By hovering over any chart, we see that feature highlighted in all other charts as well as the path in the FacetZoom hierarchy.</p>
-
 <p>Now we will modify the state of the feature nodes in the FacetZoom object to see selections propagate to the heatmap and stacked line plots. You can interact with the FacetZoom object by clicking on any node. Clicking on a node at a lower level than the root of the hierarchy will render a new subtree with the clicked node as the root. This helps navigate the hierarchy.  Each node can be in one of three states:
 (1) expanded, which means that the children of the node are shown in visualizations,
 (2) aggregated, which means that the counts for all children nodes are summed to that node, or
 (3) removed, which means that the node and all of its children counts are removed from visualizations.</p>
-
 <p>To show the states, we click through on the first node of the second row &lsquo;Proteobacteria&rsquo; and then we also click directly on the node to show a new subtree and explore the feature hierarchy. To set aggregation for an entire level, adjust the row control to set the aggregation to another level.  Click on the fourth item, with an &lsquo;F&rsquo; standing for &lsquo;Family&rsquo; and now all counts are summed to the Family level nodes across the samples in the charts.</p>
-
 <p>Next, we change the aggregation level back to Order and navigate to have &lsquo;Bacteria&rsquo; as the root of the FacetZoom.  We then set some nodes to &lsquo;expanded&rsquo;, &lsquo;removed&rsquo;, and &lsquo;aggregated&rsquo;. We made the following selections based on the appearance of the heatmap.</p>
+<!-- raw HTML omitted -->
 
-<p></details></p>
 
+<footer class="footline">
+	
+</footer>
 
-      
+        
+        </div>
+        
+
       </div>
-    </div>
 
     <div id="navigation">
         
         
+
         
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://epiviz.github.io/tutorials/metaviz/metagenomeseq/" title="Differential Analysis with MetagenomeSeq and Metaviz"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://epiviz.github.io/tutorials/metaviz/spline/" title="Longitudinal Data Analysis" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
     </div>
 
     </section>
+
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://epiviz.github.io/tutorials/js/clipboard.min.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/perfect-scrollbar.min.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/perfect-scrollbar.jquery.min.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/jquery.sticky-kit.min.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/featherlight.min.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/html5shiv-printshiv.min.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/highlight.pack.js"></script>
+    <script src="https://epiviz.github.io/tutorials/js/clipboard.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/perfect-scrollbar.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/perfect-scrollbar.jquery.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/jquery.sticky.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/featherlight.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/highlight.pack.js?1611195371"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://epiviz.github.io/tutorials/js/modernizr.custom.71422.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/learn.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/hugo-learn.js"></script>
+    <script src="https://epiviz.github.io/tutorials/js/modernizr.custom-3.6.0.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/learn.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/hugo-learn.js?1611195371"></script>
+    
+        
+            <script src="https://epiviz.github.io/tutorials/mermaid/mermaid.js?1611195371"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
     
 
   </body>

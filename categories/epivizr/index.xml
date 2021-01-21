@@ -6,11 +6,7 @@
     <description>Recent content in epivizr on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Dec 2014 10:52:12 -0500</lastBuildDate>
-    
-	<atom:link href="https://epiviz.github.io/categories/epivizr/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 18 Dec 2014 10:52:12 -0500</lastBuildDate><atom:link href="https://epiviz.github.io/categories/epivizr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Using BED files with epiviz</title>
       <link>https://epiviz.github.io/post/2014-12-18-bedtools/</link>

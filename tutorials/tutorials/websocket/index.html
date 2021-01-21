@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.17" />
+    <meta name="generator" content="Hugo 0.80.0" />
     <meta name="description" content="">
 
 
-    <link rel="shortcut icon" href="https://epiviz.github.io/tutorials/images/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="https://epiviz.github.io/tutorials/images/favicon.png" type="image/png">
 
     
     <title>Websocket Tutorial</title>
@@ -25,184 +25,447 @@
     {display:none !important;}</style>
     <link href="https://epiviz.github.io/tutorials/css/my_style.css" rel="stylesheet">
   </head>
-  <body class="" data-url="/tutorials/websocket/">
-    <nav id="sidebar">
+  <body class="" data-url="https://epiviz.github.io/tutorials/tutorials/websocket/">
+    <nav id="sidebar" class="">
+
+
+
   <div id="header-wrapper">
     <div id="header">
       <a width="100%" height="100%" href="https://epiviz.github.io"><img src="https://epiviz.github.io/tutorials/images/epiviz_logo.png"></a>
     </div>
     
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
+<script type="text/javascript" src="https://epiviz.github.io/tutorials/js/lunr.min.js?1611195371"></script>
+<script type="text/javascript" src="https://epiviz.github.io/tutorials/js/auto-complete.js?1611195371"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/epiviz.github.io\/tutorials";
+    
+</script>
+<script type="text/javascript" src="https://epiviz.github.io/tutorials/js/search.js?1611195371"></script>
 
-  <div class="highlightable">
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='https://epiviz.github.io/tutorials/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
     <ul class="topics">
-      
-      
-        
-      
-      
-      
-      
 
-      
         
-      
-      
-      
+          
+          
 
-      <li class="dd-item  " data-nav-id="/metaviz/">
-        <a href="https://epiviz.github.io/tutorials/metaviz/">
-          <span>
-            
-              <b>X. </b>
-            
-             Metaviz Tutorials
-            
-           </span>
-        </a>
+
+
+
+ 
+  
+    
+    <li data-nav-id="/tutorials/" title="Epiviz Tutorials" class="dd-item
+        parent
         
+        
+        ">
+      <a href="https://epiviz.github.io/tutorials/tutorials/">
+          Epiviz Tutorials
+          
+      </a>
+      
+      
         <ul>
           
           
           
-          
-            <li class="dd-item " data-nav-id="/metaviz/overview/">
-              <a href="https://epiviz.github.io/tutorials/metaviz/overview/">
-                <span>Metaviz Quick Overview     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/metaviz/metagenomeSeq/">
-              <a href="https://epiviz.github.io/tutorials/metaviz/metagenomeSeq/">
-                <span>Differential Analysis with MetagenomeSeq and Metaviz     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/metaviz/video_tutorials/">
-              <a href="https://epiviz.github.io/tutorials/metaviz/video_tutorials/">
-                <span>Visual Analysis of MSD16S Dataset     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/metaviz/spline/">
-              <a href="https://epiviz.github.io/tutorials/metaviz/spline/">
-                <span>Longitudinal Data Analysis     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/metaviz/usingDocker/">
-              <a href="https://epiviz.github.io/tutorials/metaviz/usingDocker/">
-                <span>Metaviz Docker Containers     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/metaviz/hostingData/">
-              <a href="https://epiviz.github.io/tutorials/metaviz/hostingData/">
-                <span>Hosting Data in Metaviz     </i></span>
-              </a>
-            </li>
-          
-          
-        </ul>
-        
-      </li>
-      
-      
-      
 
-      
         
-      
-      
-      
+          
+            
+            
 
-      <li class="dd-item  parent" data-nav-id="/tutorials/">
-        <a href="https://epiviz.github.io/tutorials/tutorials/">
-          <span>
-            
-              <b>X. </b>
-            
-             Epiviz Tutorials
-            
-           </span>
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/timp2014/" title="450k Illumina Human Methylation data for multiple solid tumors" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/timp2014/">
+        450k Illumina Human Methylation data for multiple solid tumors
+        
         </a>
-        
-        <ul>
-          
-          
-          
-          
-            <li class="dd-item " data-nav-id="/tutorials/timp2014/">
-              <a href="https://epiviz.github.io/tutorials/tutorials/timp2014/">
-                <span>450k Illumina Human Methylation data for multiple solid tumors     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/tutorials/charts/">
-              <a href="https://epiviz.github.io/tutorials/tutorials/charts/">
-                <span>Chart Tutorial     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/tutorials/computed-measurements/">
-              <a href="https://epiviz.github.io/tutorials/tutorials/computed-measurements/">
-                <span>Computed Measurements     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/tutorials/epivizr/">
-              <a href="https://epiviz.github.io/tutorials/tutorials/epivizr/">
-                <span>Epivizr     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/tutorials/plugins/">
-              <a href="https://epiviz.github.io/tutorials/tutorials/plugins/">
-                <span>External Scripts and Plugins     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item active" data-nav-id="/tutorials/websocket/">
-              <a href="https://epiviz.github.io/tutorials/tutorials/websocket/">
-                <span>Websocket Tutorial     </i></span>
-              </a>
-            </li>
-          
-          
-        </ul>
-        
-      </li>
-      
-      
-    </ul>
-    <hr>
+    </li>
      
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/charts/" title="Chart Tutorial" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/charts/">
+        Chart Tutorial
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/computed-measurements/" title="Computed Measurements" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/computed-measurements/">
+        Computed Measurements
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/epivizr/" title="Epivizr" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/epivizr/">
+        Epivizr
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/plugins/" title="External Scripts and Plugins" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/plugins/">
+        External Scripts and Plugins
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/websocket/" title="Websocket Tutorial" class="dd-item active">
+        <a href="https://epiviz.github.io/tutorials/tutorials/websocket/">
+        Websocket Tutorial
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/" title="Epiviz Tutorials" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/">
+        Epiviz Tutorials
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/metaviz/" title="Metaviz Tutorials" class="dd-item
+        
+        
+        
+        ">
+      <a href="https://epiviz.github.io/tutorials/metaviz/">
+          Metaviz Tutorials
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/overview/" title="Metaviz Quick Overview" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/overview/">
+        Metaviz Quick Overview
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/metagenomeseq/" title="Differential Analysis with MetagenomeSeq and Metaviz" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/metagenomeseq/">
+        Differential Analysis with MetagenomeSeq and Metaviz
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/video_tutorials/" title="Visual Analysis of MSD16S Dataset" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/video_tutorials/">
+        Visual Analysis of MSD16S Dataset
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/spline/" title="Longitudinal Data Analysis" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/spline/">
+        Longitudinal Data Analysis
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/usingdocker/" title="Metaviz Docker Containers" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/usingdocker/">
+        Metaviz Docker Containers
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/hostingdata/" title="Hosting Data in Metaviz" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/hostingdata/">
+        Hosting Data in Metaviz
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/diveristy_plot/" title="Create a Diversity Plot with HMP2Data IBD Biopsy" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/diveristy_plot/">
+        Create a Diversity Plot with HMP2Data IBD Biopsy
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/save_plots/" title="Save plots on Metaviz" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/save_plots/">
+        Save plots on Metaviz
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
     <section id="footer">
-      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
     </section>
   </div>
 </nav>
+
+
+
 
         <section id="body">
         <div id="overlay"></div>
@@ -226,11 +489,6 @@
                   
                 
                   
-                    
-                    
-                <a href="https://epiviz.github.io/tutorials/tutorials/" itemprop="url"><span itemprop="title">Epiviz Tutorials</span></a> <i class="fa fa-angle-right"></i>
-                    
-                  
                 
                 <span itemprop="title"> Websocket Tutorial</span>
               </div>
@@ -238,12 +496,9 @@
                   <div class="progress">
     <div class="wrapper">
 <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#to-connect-to-epiviz-using-the-websocket-api">To connect to Epiviz using the WebSocket API</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#to-connect-to-epiviz-using-the-websocket-api">To connect to Epiviz using the WebSocket API</a></li>
+  </ul>
 </nav>
     </div>
 </div>
@@ -258,408 +513,701 @@
                 
 
 
-
 <p>The complete Python source code for this example can be found here: <a href="https://github.com/epiviz/epivizpy">https://github.com/epiviz/epivizpy</a>.</p>
-
-<hr />
-
+<hr>
 <p>One of the key features of <code>Epiviz</code> is allowing users to plug in new data on the fly, using <a href="https://epiviz.github.io/tutorials/docs/plugins.html#new-data-provider-plugin">Data Provider plugins</a>. One powerful such plugin is the <strong>WebSocket data provider</strong>. This data provider offers an interface between <code>Epiviz</code> and any programming environment that supports <a href="http://www.websocket.org/">WebSocket</a> connections. In R there is already <a href="http://www.bioconductor.org/packages/release/bioc/html/epivizr.html">a Bioconductor library</a> that supports communication with <code>Epiviz</code> through WebSockets, called <a href="http://www.bioconductor.org/packages/release/bioc/html/epivizr.html">Epivizr</a>.</p>
-
 <p>In this tutorial, we go over the essentials of creating a new WebSocket endpoint for Epiviz. We choose <a href="https://www.python.org/">Python</a> as an example programming environment, to emphasize the flexibility and power of the Epiviz framework. We create a simple program with the same functionality as <code>epiviz.plugins.data.MyDataProvider</code>, from the <a href="plugins.html#new-data-provider-plugin">Data Provider Plugin Tutorial</a>.</p>
-
 <h2 id="to-connect-to-epiviz-using-the-websocket-api">To connect to Epiviz using the WebSocket API</h2>
-
 <p>To connect to the Epiviz WebSocket API, you need a programming environment that supports the WebSocket protocol (like R,
 Python, Java EE, etc). In R, you can use the <a href="http://www.bioconductor.org/packages/release/bioc/html/epivizr.html">Epivizr Bioconductor package</a>. For this demo, we create an example in Python (source code available <a href="https://github.com/epiviz/epivizpy">here</a>). The same functionality can be replicated in any other language as long as the API is respected.</p>
-
 <ol>
 <li>In Python, one library that provides access to the WebSocket protocol is <a href="http://www.tornadoweb.org/en/stable/">tornado</a>.
 First we implement a subclass of <code>tornado.websocket.WebSocketHandler</code>.</li>
 </ol>
-
 <p><strong>Example</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> simplejson
+<span style="color:#f92672">import</span> tornado.websocket
 
-<pre><code class="language-python">  import simplejson
-  import tornado.websocket
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EpiVizPyEndpoint</span>(tornado<span style="color:#f92672">.</span>websocket<span style="color:#f92672">.</span>WebSocketHandler):
 
-  class EpiVizPyEndpoint(tornado.websocket.WebSocketHandler):
+    <span style="color:#66d9ef">def</span> __init__(self, <span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs):
+        super(EpiVizPyEndpoint, self)<span style="color:#f92672">.</span>__init__(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs)
 
-      def __init__(self, *args, **kwargs):
-          super(EpiVizPyEndpoint, self).__init__(*args, **kwargs)
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">open</span>(self):
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;new connection&#39;</span>
 
-      def open(self):
-          print 'new connection'
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_message</span>(self, json_message):
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;message received </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> json_message
+        message <span style="color:#f92672">=</span> simplejson<span style="color:#f92672">.</span>loads(json_message)
 
-      def on_message(self, json_message):
-          print 'message received %s' % json_message
-          message = simplejson.loads(json_message)
-
-      def on_close(self):
-          print 'connection closed'
-</code></pre>
-
-<ol>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_close</span>(self):
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;connection closed&#39;</span>
+</code></pre></div><ol start="2">
 <li>Create a class that can parse request strings (this is optional, but will make our work a lot easier). As described
 in the <a href="plugins.html#new-data-provider-plugin">Data Provider Plugin Tutorial</a>, there are two types of request actions in Epiviz: <strong>Server Actions</strong> and <strong>UI Actions</strong>.</li>
 </ol>
-
 <p><strong>Example</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> enum <span style="color:#f92672">import</span> Enum
 
-<pre><code class="language-python">  from enum import Enum
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Request</span>(object):
 
-  class Request(object):
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Action</span>(Enum):
+        <span style="color:#75715e"># Server actions</span>
+        GET_ROWS <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;getRows&#39;</span>
+        GET_VALUES <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;getValues&#39;</span>
+        GET_MEASUREMENTS <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;getMeasurements&#39;</span>
+        SEARCH <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;search&#39;</span>
+        GET_SEQINFOS <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;getSeqInfos&#39;</span>
+        SAVE_WORKSPACE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;saveWorkspace&#39;</span>
+        GET_WORKSPACES <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;getWorkspaces&#39;</span>
 
-      class Action(Enum):
-          # Server actions
-          GET_ROWS = 'getRows'
-          GET_VALUES = 'getValues'
-          GET_MEASUREMENTS = 'getMeasurements'
-          SEARCH = 'search'
-          GET_SEQINFOS = 'getSeqInfos'
-          SAVE_WORKSPACE = 'saveWorkspace'
-          GET_WORKSPACES = 'getWorkspaces'
+        <span style="color:#75715e"># UI actions</span>
+        ADD_MEASUREMENTS <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;addMeasurements&#39;</span>
+        REMOVE_MEASUREMENTS <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;removeMeasurements&#39;</span>
+        ADD_SEQINFOS <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;addSeqInfos&#39;</span>
+        REMOVE_SEQNAMES <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;removeSeqNames&#39;</span>
+        ADD_CHART <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;addChart&#39;</span>
+        REMOVE_CHART <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;removeChart&#39;</span>
+        CLEAR_DATASOURCE_GROUP_CACHE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;clearDatasourceGroupCache&#39;</span>
+        FLUSH_CACHE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;flushCache&#39;</span>
+        NAVIGATE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;navigate&#39;</span>
 
-          # UI actions
-          ADD_MEASUREMENTS = 'addMeasurements'
-          REMOVE_MEASUREMENTS = 'removeMeasurements'
-          ADD_SEQINFOS = 'addSeqInfos'
-          REMOVE_SEQNAMES = 'removeSeqNames'
-          ADD_CHART = 'addChart'
-          REMOVE_CHART = 'removeChart'
-          CLEAR_DATASOURCE_GROUP_CACHE = 'clearDatasourceGroupCache'
-          FLUSH_CACHE = 'flushCache'
-          NAVIGATE = 'navigate'
+    <span style="color:#66d9ef">def</span> __init__(self, request_id, args):
+        <span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">        :param request_id: number
+</span><span style="color:#e6db74">        :param args: map&lt;string, string&gt;
+</span><span style="color:#e6db74">        &#39;&#39;&#39;</span>
+        self<span style="color:#f92672">.</span>_id <span style="color:#f92672">=</span> request_id
+        self<span style="color:#f92672">.</span>_args <span style="color:#f92672">=</span> args
 
-      def __init__(self, request_id, args):
-          '''
-          :param request_id: number
-          :param args: map&lt;string, string&gt;
-          '''
-          self._id = request_id
-          self._args = args
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">id</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_id
 
-      def id(self):
-          return self._id
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get</span>(self, arg):
+        <span style="color:#66d9ef">if</span> arg <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>_args:
+            <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_args[arg]
 
-      def get(self, arg):
-          if arg in self._args:
-              return self._args[arg]
+        <span style="color:#66d9ef">return</span> None
 
-          return None
-
-      @staticmethod
-      def from_raw_object(o):
-          return Request(o['requestId'], o['data'])
-</code></pre>
-
-<ol>
+    <span style="color:#a6e22e">@staticmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">from_raw_object</span>(o):
+        <span style="color:#66d9ef">return</span> Request(o[<span style="color:#e6db74">&#39;requestId&#39;</span>], o[<span style="color:#e6db74">&#39;data&#39;</span>])
+</code></pre></div><ol start="3">
 <li>In our <code>EpivizPyEndpoint</code> class, create a method to handle the Server actions. And methods for the actions. The
 functionality is that for any request, we return a set of blocks of fixed length of <code>100</code> at every <code>1000</code> base pairs.
 The value associated to them is generated randomly between <code>-5</code> and <code>25</code>.</li>
 </ol>
-
 <p><strong>Complete Example</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> simplejson
+<span style="color:#f92672">import</span> math
+<span style="color:#f92672">import</span> random
 
-<pre><code class="language-python">  import simplejson
-  import math
-  import random
+<span style="color:#f92672">import</span> tornado.websocket
 
-  import tornado.websocket
-
-  from epiviz.websocket.Request import Request
-  from epiviz.websocket.Response import Response
-
-
-  class EpiVizPyEndpoint(tornado.websocket.WebSocketHandler):
-
-      def __init__(self, *args, **kwargs):
-          super(EpiVizPyEndpoint, self).__init__(*args, **kwargs)
-
-          self._mock_measurement = {
-            'id': 'py_column',
-            'name': 'Python Measurement',
-            'type': 'feature',
-            'datasourceId': 'py_datasource',
-            'datasourceGroup': 'py_datasourcegroup',
-            'defaultChartType': 'Line Track',
-            'annotation': None,
-            'minValue': -5,
-            'maxValue': 25,
-            'metadata': ['py_metadata']
-          }
-
-      def open(self):
-          print 'new connection'
-
-      def on_message(self, json_message):
-          print 'message received %s' % json_message
-          message = simplejson.loads(json_message)
-
-          if message['type'] == 'request':
-              request = Request.from_raw_object(message)
-              self._handle_request(request)
-
-      def on_close(self):
-          print 'connection closed'
-
-      def _handle_request(self, request):
-          action = request.get('action')
-
-          # switch(action)
-          response = {
-              Request.Action.GET_MEASUREMENTS: lambda: self._get_measurements(request.id()),
-              Request.Action.GET_ROWS: lambda: self._get_rows(request.id(), request.get('datasource'), request.get('chr'), request.get('start'), request.get('end'), request.get('metadata')),
-              Request.Action.GET_VALUES: lambda: self._get_values(request.id(), request.get('measurement'), request.get('datasource'), request.get('chr'), request.get('start'), request.get('end')),
-              Request.Action.GET_SEQINFOS: lambda: self._get_seqinfos(request.id()),
-              Request.Action.SEARCH: lambda: self._search(request.id(), request.get('q'), request.get('maxResults'))
-          }[action]()
+<span style="color:#f92672">from</span> epiviz.websocket.Request <span style="color:#f92672">import</span> Request
+<span style="color:#f92672">from</span> epiviz.websocket.Response <span style="color:#f92672">import</span> Response
 
 
-          message = response.to_json()
-          print 'response %s' % message
-          self.write_message(message)
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EpiVizPyEndpoint</span>(tornado<span style="color:#f92672">.</span>websocket<span style="color:#f92672">.</span>WebSocketHandler):
 
-      # Request handlers
+    <span style="color:#66d9ef">def</span> __init__(self, <span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs):
+        super(EpiVizPyEndpoint, self)<span style="color:#f92672">.</span>__init__(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs)
 
-      def _get_measurements(self, request_id):
-          '''
-          Returns Response
-          '''
-          return Response(request_id, {
-            'id': [self._mock_measurement['id']],
-            'name': [self._mock_measurement['name']],
-            'type': [self._mock_measurement['type']],
-            'datasourceId': [self._mock_measurement['datasourceId']],
-            'datasourceGroup': [self._mock_measurement['datasourceGroup']],
-            'defaultChartType': [self._mock_measurement['defaultChartType']],
-            'annotation': [self._mock_measurement['annotation']],
-            'minValue': [self._mock_measurement['minValue']],
-            'maxValue': [self._mock_measurement['maxValue']],
-            'metadata': [self._mock_measurement['metadata']]
-          })
+        self<span style="color:#f92672">.</span>_mock_measurement <span style="color:#f92672">=</span> {
+          <span style="color:#e6db74">&#39;id&#39;</span>: <span style="color:#e6db74">&#39;py_column&#39;</span>,
+          <span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#e6db74">&#39;Python Measurement&#39;</span>,
+          <span style="color:#e6db74">&#39;type&#39;</span>: <span style="color:#e6db74">&#39;feature&#39;</span>,
+          <span style="color:#e6db74">&#39;datasourceId&#39;</span>: <span style="color:#e6db74">&#39;py_datasource&#39;</span>,
+          <span style="color:#e6db74">&#39;datasourceGroup&#39;</span>: <span style="color:#e6db74">&#39;py_datasourcegroup&#39;</span>,
+          <span style="color:#e6db74">&#39;defaultChartType&#39;</span>: <span style="color:#e6db74">&#39;Line Track&#39;</span>,
+          <span style="color:#e6db74">&#39;annotation&#39;</span>: None,
+          <span style="color:#e6db74">&#39;minValue&#39;</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>,
+          <span style="color:#e6db74">&#39;maxValue&#39;</span>: <span style="color:#ae81ff">25</span>,
+          <span style="color:#e6db74">&#39;metadata&#39;</span>: [<span style="color:#e6db74">&#39;py_metadata&#39;</span>]
+        }
 
-      def _get_rows(self, request_id, datasource, seq_name, start, end, metadata):
-          '''
-          :param datasource: string
-          :param seq_name: string
-          :param start: number
-          :param end: number
-          :param metadata: string[] A list of column names for which to retrieve the values
-          Returns response
-          '''
-          # Return a genomic range of 100 base pairs every 1000 base pairs
-          step, width = 1000, 100
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">open</span>(self):
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;new connection&#39;</span>
 
-          globalStartIndex = math.floor((start - 1) / step) + 1
-          firstStart = globalStartIndex * step + 1
-          firstEnd = firstStart + width
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_message</span>(self, json_message):
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;message received </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> json_message
+        message <span style="color:#f92672">=</span> simplejson<span style="color:#f92672">.</span>loads(json_message)
 
-          if firstEnd &lt; start:
-              firstStart += step
-              firstEnd += step
+        <span style="color:#66d9ef">if</span> message[<span style="color:#e6db74">&#39;type&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;request&#39;</span>:
+            request <span style="color:#f92672">=</span> Request<span style="color:#f92672">.</span>from_raw_object(message)
+            self<span style="color:#f92672">.</span>_handle_request(request)
 
-          if firstStart &gt;= end:
-              # Nothing to return
-              return Response(request_id, {
-                'values': { 'id': [], 'start': [], 'end': [], 'strand': [], 'metadata': { 'py_metadata': [] } },
-                'globalStartIndex': None,
-                'useOffset': False
-              })
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_close</span>(self):
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;connection closed&#39;</span>
 
-          ids = []
-          starts = []
-          ends = []
-          strands = '*'
-          py_metadata = []
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_handle_request</span>(self, request):
+        action <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;action&#39;</span>)
 
-          globalIndex = globalStartIndex
-          s = firstStart
-
-          while s &lt; end:
-              ids.append(globalIndex)
-              starts.append(s)
-              ends.append(s + width)
-              py_metadata.append(self._random_str(5)) # Random string
-              globalIndex += 1
-              s += step
-
-          return Response(request_id, {
-            'values': { 'id': ids, 'start': starts, 'end': ends, 'strand': strands, 'metadata':{ 'py_metadata': py_metadata } },
-            'globalStartIndex': globalStartIndex,
-            'useOffset': False
-          })
-
-      def _get_values(self, request_id, measurement, datasource, seq_name, start, end):
-          '''
-          :param measurement: string, column name in the datasource that contains requested values
-          :param datasource: string
-          :param seq_name: string
-          :param start: number
-          :param end: number
-          Returns response
-          '''
-          # Return a genomic range of 100 base pairs every 1000 base pairs
-          step, width = 1000, 100
-
-          globalStartIndex = math.floor((start - 1) / step) + 1
-          firstStart = globalStartIndex * step + 1
-          firstEnd = firstStart + width
-
-          if firstEnd &lt; start:
-              firstStart += step
-              firstEnd += step
-
-          if firstStart &gt;= end:
-              # Nothing to return
-              return Response(request_id, {
-                'values': [],
-                'globalStartIndex': None,
-              })
-
-          values = []
-          globalIndex = globalStartIndex
-          s = firstStart
-          m = self._mock_measurement
-          while s &lt; end:
-              v = random.random() * (m['maxValue'] - m['minValue']) + m['minValue']
-              values.append(v)
-              globalIndex += 1
-              s += step
-
-          return Response(request_id, {
-            'values': values,
-            'globalStartIndex': globalStartIndex
-          })
-
-      def _get_seqinfos(self, request_id):
-          '''
-          Returns response
-          '''
-          return Response(request_id, [['chr1', 1, 248956422], ['pyChr', 1, 1000000000]])
-
-      def _search(self, request_id, query, max_results):
-          '''
-          :param query: string
-          :param max_results: number
-          Returns response
-          '''
-          return Response(request_id, [])
+        <span style="color:#75715e"># switch(action)</span>
+        response <span style="color:#f92672">=</span> {
+            Request<span style="color:#f92672">.</span>Action<span style="color:#f92672">.</span>GET_MEASUREMENTS: <span style="color:#66d9ef">lambda</span>: self<span style="color:#f92672">.</span>_get_measurements(request<span style="color:#f92672">.</span>id()),
+            Request<span style="color:#f92672">.</span>Action<span style="color:#f92672">.</span>GET_ROWS: <span style="color:#66d9ef">lambda</span>: self<span style="color:#f92672">.</span>_get_rows(request<span style="color:#f92672">.</span>id(), request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;datasource&#39;</span>), request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;chr&#39;</span>), request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;start&#39;</span>), request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;end&#39;</span>), request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;metadata&#39;</span>)),
+            Request<span style="color:#f92672">.</span>Action<span style="color:#f92672">.</span>GET_VALUES: <span style="color:#66d9ef">lambda</span>: self<span style="color:#f92672">.</span>_get_values(request<span style="color:#f92672">.</span>id(), request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;measurement&#39;</span>), request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;datasource&#39;</span>), request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;chr&#39;</span>), request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;start&#39;</span>), request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;end&#39;</span>)),
+            Request<span style="color:#f92672">.</span>Action<span style="color:#f92672">.</span>GET_SEQINFOS: <span style="color:#66d9ef">lambda</span>: self<span style="color:#f92672">.</span>_get_seqinfos(request<span style="color:#f92672">.</span>id()),
+            Request<span style="color:#f92672">.</span>Action<span style="color:#f92672">.</span>SEARCH: <span style="color:#66d9ef">lambda</span>: self<span style="color:#f92672">.</span>_search(request<span style="color:#f92672">.</span>id(), request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;q&#39;</span>), request<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;maxResults&#39;</span>))
+        }[action]()
 
 
-      def _random_str(self, size):
-          chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-          result = ''
+        message <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>to_json()
+        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;response </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> message
+        self<span style="color:#f92672">.</span>write_message(message)
 
-          for _ in range(size):
-              result += chars[random.randint(0, len(chars) - 1)]
+    <span style="color:#75715e"># Request handlers</span>
 
-          return result
-</code></pre>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_get_measurements</span>(self, request_id):
+        <span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">        Returns Response
+</span><span style="color:#e6db74">        &#39;&#39;&#39;</span>
+        <span style="color:#66d9ef">return</span> Response(request_id, {
+          <span style="color:#e6db74">&#39;id&#39;</span>: [self<span style="color:#f92672">.</span>_mock_measurement[<span style="color:#e6db74">&#39;id&#39;</span>]],
+          <span style="color:#e6db74">&#39;name&#39;</span>: [self<span style="color:#f92672">.</span>_mock_measurement[<span style="color:#e6db74">&#39;name&#39;</span>]],
+          <span style="color:#e6db74">&#39;type&#39;</span>: [self<span style="color:#f92672">.</span>_mock_measurement[<span style="color:#e6db74">&#39;type&#39;</span>]],
+          <span style="color:#e6db74">&#39;datasourceId&#39;</span>: [self<span style="color:#f92672">.</span>_mock_measurement[<span style="color:#e6db74">&#39;datasourceId&#39;</span>]],
+          <span style="color:#e6db74">&#39;datasourceGroup&#39;</span>: [self<span style="color:#f92672">.</span>_mock_measurement[<span style="color:#e6db74">&#39;datasourceGroup&#39;</span>]],
+          <span style="color:#e6db74">&#39;defaultChartType&#39;</span>: [self<span style="color:#f92672">.</span>_mock_measurement[<span style="color:#e6db74">&#39;defaultChartType&#39;</span>]],
+          <span style="color:#e6db74">&#39;annotation&#39;</span>: [self<span style="color:#f92672">.</span>_mock_measurement[<span style="color:#e6db74">&#39;annotation&#39;</span>]],
+          <span style="color:#e6db74">&#39;minValue&#39;</span>: [self<span style="color:#f92672">.</span>_mock_measurement[<span style="color:#e6db74">&#39;minValue&#39;</span>]],
+          <span style="color:#e6db74">&#39;maxValue&#39;</span>: [self<span style="color:#f92672">.</span>_mock_measurement[<span style="color:#e6db74">&#39;maxValue&#39;</span>]],
+          <span style="color:#e6db74">&#39;metadata&#39;</span>: [self<span style="color:#f92672">.</span>_mock_measurement[<span style="color:#e6db74">&#39;metadata&#39;</span>]]
+        })
 
-<ol>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_get_rows</span>(self, request_id, datasource, seq_name, start, end, metadata):
+        <span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">        :param datasource: string
+</span><span style="color:#e6db74">        :param seq_name: string
+</span><span style="color:#e6db74">        :param start: number
+</span><span style="color:#e6db74">        :param end: number
+</span><span style="color:#e6db74">        :param metadata: string[] A list of column names for which to retrieve the values
+</span><span style="color:#e6db74">        Returns response
+</span><span style="color:#e6db74">        &#39;&#39;&#39;</span>
+        <span style="color:#75715e"># Return a genomic range of 100 base pairs every 1000 base pairs</span>
+        step, width <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>, <span style="color:#ae81ff">100</span>
+
+        globalStartIndex <span style="color:#f92672">=</span> math<span style="color:#f92672">.</span>floor((start <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> step) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+        firstStart <span style="color:#f92672">=</span> globalStartIndex <span style="color:#f92672">*</span> step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+        firstEnd <span style="color:#f92672">=</span> firstStart <span style="color:#f92672">+</span> width
+
+        <span style="color:#66d9ef">if</span> firstEnd <span style="color:#f92672">&lt;</span> start:
+            firstStart <span style="color:#f92672">+=</span> step
+            firstEnd <span style="color:#f92672">+=</span> step
+
+        <span style="color:#66d9ef">if</span> firstStart <span style="color:#f92672">&gt;=</span> end:
+            <span style="color:#75715e"># Nothing to return</span>
+            <span style="color:#66d9ef">return</span> Response(request_id, {
+              <span style="color:#e6db74">&#39;values&#39;</span>: { <span style="color:#e6db74">&#39;id&#39;</span>: [], <span style="color:#e6db74">&#39;start&#39;</span>: [], <span style="color:#e6db74">&#39;end&#39;</span>: [], <span style="color:#e6db74">&#39;strand&#39;</span>: [], <span style="color:#e6db74">&#39;metadata&#39;</span>: { <span style="color:#e6db74">&#39;py_metadata&#39;</span>: [] } },
+              <span style="color:#e6db74">&#39;globalStartIndex&#39;</span>: None,
+              <span style="color:#e6db74">&#39;useOffset&#39;</span>: False
+            })
+
+        ids <span style="color:#f92672">=</span> []
+        starts <span style="color:#f92672">=</span> []
+        ends <span style="color:#f92672">=</span> []
+        strands <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;*&#39;</span>
+        py_metadata <span style="color:#f92672">=</span> []
+
+        globalIndex <span style="color:#f92672">=</span> globalStartIndex
+        s <span style="color:#f92672">=</span> firstStart
+
+        <span style="color:#66d9ef">while</span> s <span style="color:#f92672">&lt;</span> end:
+            ids<span style="color:#f92672">.</span>append(globalIndex)
+            starts<span style="color:#f92672">.</span>append(s)
+            ends<span style="color:#f92672">.</span>append(s <span style="color:#f92672">+</span> width)
+            py_metadata<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>_random_str(<span style="color:#ae81ff">5</span>)) <span style="color:#75715e"># Random string</span>
+            globalIndex <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            s <span style="color:#f92672">+=</span> step
+
+        <span style="color:#66d9ef">return</span> Response(request_id, {
+          <span style="color:#e6db74">&#39;values&#39;</span>: { <span style="color:#e6db74">&#39;id&#39;</span>: ids, <span style="color:#e6db74">&#39;start&#39;</span>: starts, <span style="color:#e6db74">&#39;end&#39;</span>: ends, <span style="color:#e6db74">&#39;strand&#39;</span>: strands, <span style="color:#e6db74">&#39;metadata&#39;</span>:{ <span style="color:#e6db74">&#39;py_metadata&#39;</span>: py_metadata } },
+          <span style="color:#e6db74">&#39;globalStartIndex&#39;</span>: globalStartIndex,
+          <span style="color:#e6db74">&#39;useOffset&#39;</span>: False
+        })
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_get_values</span>(self, request_id, measurement, datasource, seq_name, start, end):
+        <span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">        :param measurement: string, column name in the datasource that contains requested values
+</span><span style="color:#e6db74">        :param datasource: string
+</span><span style="color:#e6db74">        :param seq_name: string
+</span><span style="color:#e6db74">        :param start: number
+</span><span style="color:#e6db74">        :param end: number
+</span><span style="color:#e6db74">        Returns response
+</span><span style="color:#e6db74">        &#39;&#39;&#39;</span>
+        <span style="color:#75715e"># Return a genomic range of 100 base pairs every 1000 base pairs</span>
+        step, width <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>, <span style="color:#ae81ff">100</span>
+
+        globalStartIndex <span style="color:#f92672">=</span> math<span style="color:#f92672">.</span>floor((start <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> step) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+        firstStart <span style="color:#f92672">=</span> globalStartIndex <span style="color:#f92672">*</span> step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+        firstEnd <span style="color:#f92672">=</span> firstStart <span style="color:#f92672">+</span> width
+
+        <span style="color:#66d9ef">if</span> firstEnd <span style="color:#f92672">&lt;</span> start:
+            firstStart <span style="color:#f92672">+=</span> step
+            firstEnd <span style="color:#f92672">+=</span> step
+
+        <span style="color:#66d9ef">if</span> firstStart <span style="color:#f92672">&gt;=</span> end:
+            <span style="color:#75715e"># Nothing to return</span>
+            <span style="color:#66d9ef">return</span> Response(request_id, {
+              <span style="color:#e6db74">&#39;values&#39;</span>: [],
+              <span style="color:#e6db74">&#39;globalStartIndex&#39;</span>: None,
+            })
+
+        values <span style="color:#f92672">=</span> []
+        globalIndex <span style="color:#f92672">=</span> globalStartIndex
+        s <span style="color:#f92672">=</span> firstStart
+        m <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>_mock_measurement
+        <span style="color:#66d9ef">while</span> s <span style="color:#f92672">&lt;</span> end:
+            v <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>random() <span style="color:#f92672">*</span> (m[<span style="color:#e6db74">&#39;maxValue&#39;</span>] <span style="color:#f92672">-</span> m[<span style="color:#e6db74">&#39;minValue&#39;</span>]) <span style="color:#f92672">+</span> m[<span style="color:#e6db74">&#39;minValue&#39;</span>]
+            values<span style="color:#f92672">.</span>append(v)
+            globalIndex <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            s <span style="color:#f92672">+=</span> step
+
+        <span style="color:#66d9ef">return</span> Response(request_id, {
+          <span style="color:#e6db74">&#39;values&#39;</span>: values,
+          <span style="color:#e6db74">&#39;globalStartIndex&#39;</span>: globalStartIndex
+        })
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_get_seqinfos</span>(self, request_id):
+        <span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">        Returns response
+</span><span style="color:#e6db74">        &#39;&#39;&#39;</span>
+        <span style="color:#66d9ef">return</span> Response(request_id, [[<span style="color:#e6db74">&#39;chr1&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">248956422</span>], [<span style="color:#e6db74">&#39;pyChr&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1000000000</span>]])
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_search</span>(self, request_id, query, max_results):
+        <span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">        :param query: string
+</span><span style="color:#e6db74">        :param max_results: number
+</span><span style="color:#e6db74">        Returns response
+</span><span style="color:#e6db74">        &#39;&#39;&#39;</span>
+        <span style="color:#66d9ef">return</span> Response(request_id, [])
+
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_random_str</span>(self, size):
+        chars <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>
+        result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+
+        <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(size):
+            result <span style="color:#f92672">+=</span> chars[random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>, len(chars) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)]
+
+        <span style="color:#66d9ef">return</span> result
+</code></pre></div><ol start="4">
 <li>Create a class that instantiates the WebSocket endpoint in another thread so the main thread is kept unblocked.</li>
 </ol>
-
 <p><strong>Example</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> threading
 
-<pre><code class="language-python">  import threading
+<span style="color:#f92672">import</span> tornado.httpserver
+<span style="color:#f92672">import</span> tornado.ioloop
+<span style="color:#f92672">import</span> tornado.web
 
-  import tornado.httpserver
-  import tornado.ioloop
-  import tornado.web
-
-  from epiviz.websocket.EpiVizPyEndpoint import EpiVizPyEndpoint
+<span style="color:#f92672">from</span> epiviz.websocket.EpiVizPyEndpoint <span style="color:#f92672">import</span> EpiVizPyEndpoint
 
 
-  class EpiVizPy(object):
-      def __init__(self, server_path=r'/ws'):
-          self._thread = None
-          self._server = None
-          self._application = tornado.web.Application([(server_path, EpiVizPyEndpoint)])
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EpiVizPy</span>(object):
+    <span style="color:#66d9ef">def</span> __init__(self, server_path<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;/ws&#39;</span>):
+        self<span style="color:#f92672">.</span>_thread <span style="color:#f92672">=</span> None
+        self<span style="color:#f92672">.</span>_server <span style="color:#f92672">=</span> None
+        self<span style="color:#f92672">.</span>_application <span style="color:#f92672">=</span> tornado<span style="color:#f92672">.</span>web<span style="color:#f92672">.</span>Application([(server_path, EpiVizPyEndpoint)])
 
-      def start(self, port=8888):
-          self.stop()
-          self._thread = threading.Thread(target=lambda: self._listen(port)).start()
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">start</span>(self, port<span style="color:#f92672">=</span><span style="color:#ae81ff">8888</span>):
+        self<span style="color:#f92672">.</span>stop()
+        self<span style="color:#f92672">.</span>_thread <span style="color:#f92672">=</span> threading<span style="color:#f92672">.</span>Thread(target<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span>: self<span style="color:#f92672">.</span>_listen(port))<span style="color:#f92672">.</span>start()
 
-      def stop(self):
-          if self._server != None:
-              tornado.ioloop.IOLoop.instance().stop()
-              self._server = None
-              self._thread = None
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">stop</span>(self):
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>_server <span style="color:#f92672">!=</span> None:
+            tornado<span style="color:#f92672">.</span>ioloop<span style="color:#f92672">.</span>IOLoop<span style="color:#f92672">.</span>instance()<span style="color:#f92672">.</span>stop()
+            self<span style="color:#f92672">.</span>_server <span style="color:#f92672">=</span> None
+            self<span style="color:#f92672">.</span>_thread <span style="color:#f92672">=</span> None
 
-      def _listen(self, port):
-          self._server = tornado.httpserver.HTTPServer(self._application)
-          self._server.listen(port)
-          tornado.ioloop.IOLoop.instance().start()
-</code></pre>
-
-<ol>
-<li>Finally create a main program that runs the whole thing.</li>
-</ol>
-
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_listen</span>(self, port):
+        self<span style="color:#f92672">.</span>_server <span style="color:#f92672">=</span> tornado<span style="color:#f92672">.</span>httpserver<span style="color:#f92672">.</span>HTTPServer(self<span style="color:#f92672">.</span>_application)
+        self<span style="color:#f92672">.</span>_server<span style="color:#f92672">.</span>listen(port)
+        tornado<span style="color:#f92672">.</span>ioloop<span style="color:#f92672">.</span>IOLoop<span style="color:#f92672">.</span>instance()<span style="color:#f92672">.</span>start()
+</code></pre></div><ol start="5">
+<li>
+<p>Finally create a main program that runs the whole thing.</p>
 <p><strong>Example</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> sys <span style="color:#f92672">import</span> stdin
 
-<pre><code class="language-python">   from sys import stdin
+<span style="color:#f92672">from</span> epiviz.websocket.EpiVizPy <span style="color:#f92672">import</span> EpiVizPy
 
-   from epiviz.websocket.EpiVizPy import EpiVizPy
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    epivizpy <span style="color:#f92672">=</span> EpiVizPy()
+    epivizpy<span style="color:#f92672">.</span>start()
 
-   if __name__ == '__main__':
-       epivizpy = EpiVizPy()
-       epivizpy.start()
-
-       print 'press enter to stop'
-       userinput = stdin.readline()
-       epivizpy.stop()
-       print 'stopped'
-</code></pre>
-
-<ol>
-<li>Run it, and open an Epiviz instance, using the URL argument <code>websocket-host[]=ws://localhost:8888/ws</code>: <a href="http://epiviz.cbcb.umd.edu/4/?websocket-host[]=ws://localhost:8888/ws">http://epiviz.cbcb.umd.edu/4/?websocket-host[]=ws://localhost:8888/ws</a>.</li>
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;press enter to stop&#39;</span>
+    userinput <span style="color:#f92672">=</span> stdin<span style="color:#f92672">.</span>readline()
+    epivizpy<span style="color:#f92672">.</span>stop()
+    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#39;stopped&#39;</span>
+</code></pre></div></li>
+<li>
+<p>Run it, and open an Epiviz instance, using the URL argument <code>websocket-host[]=ws://localhost:8888/ws</code>: <a href="http://epiviz.cbcb.umd.edu/4/?websocket-host%5B%5D=ws://localhost:8888/ws">http://epiviz.cbcb.umd.edu/4/?websocket-host[]=ws://localhost:8888/ws</a>.</p>
+</li>
 </ol>
-
 <p><strong>Python console</strong></p>
-
-<p><img src="https://epiviz.github.io/tutorials/images/pydev_console_websocket_connection.png" alt="Python console" /></p>
-
+<p><img src="https://epiviz.github.io/tutorials/images/pydev_console_websocket_connection.png" alt="Python console"></p>
 <p><strong>New measurement in menus</strong></p>
-
-<p><img src="https://epiviz.github.io/tutorials/images/scr_pywebsocket_add_linetrack.png" alt="New measurements in menus" /></p>
-
+<p><img src="https://epiviz.github.io/tutorials/images/scr_pywebsocket_add_linetrack.png" alt="New measurements in menus"></p>
 <p><strong>Different charts showing the measurement defined in Python</strong></p>
-
-<p><img src="https://epiviz.github.io/tutorials/images/scr_pywebsocket_heatmap.png" alt="Heatmap" />
-  <img src="https://epiviz.github.io/tutorials/images/scr_pywebsocket_line_blocks.png" alt="Line Blocks" /></p>
-
-<hr />
-
+<p><img src="https://epiviz.github.io/tutorials/images/scr_pywebsocket_heatmap.png" alt="Heatmap">
+<img src="https://epiviz.github.io/tutorials/images/scr_pywebsocket_line_blocks.png" alt="Line Blocks"></p>
+<hr>
 <p>The complete Python source code for this example can be found here: <a href="https://github.com/epiviz/epivizpy">https://github.com/epiviz/epivizpy</a>.</p>
 
 
-      
+<footer class="footline">
+	
+</footer>
+
+        
+        </div>
+        
+
       </div>
-    </div>
 
     <div id="navigation">
         
         
+
         
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://epiviz.github.io/tutorials/tutorials/websocket/" title="Websocket Tutorial"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://epiviz.github.io/tutorials/metaviz/" title="Metaviz Tutorials" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
     </div>
 
     </section>
+
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://epiviz.github.io/tutorials/js/clipboard.min.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/perfect-scrollbar.min.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/perfect-scrollbar.jquery.min.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/jquery.sticky-kit.min.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/featherlight.min.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/html5shiv-printshiv.min.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/highlight.pack.js"></script>
+    <script src="https://epiviz.github.io/tutorials/js/clipboard.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/perfect-scrollbar.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/perfect-scrollbar.jquery.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/jquery.sticky.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/featherlight.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/highlight.pack.js?1611195371"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://epiviz.github.io/tutorials/js/modernizr.custom.71422.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/learn.js"></script>
-    <script src="https://epiviz.github.io/tutorials/js/hugo-learn.js"></script>
+    <script src="https://epiviz.github.io/tutorials/js/modernizr.custom-3.6.0.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/learn.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/hugo-learn.js?1611195371"></script>
+    
+        
+            <script src="https://epiviz.github.io/tutorials/mermaid/mermaid.js?1611195371"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
     
 
   </body>

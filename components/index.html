@@ -10,12 +10,13 @@
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="https://epiviz.github.io/favicon.ico">
 
-    
+    <script src="https://epiviz.github.io/polymer/charts/components/webcomponentsjs/webcomponents-lite.js"></script>
 
     <title> &middot; Epiviz</title>
 
     
-    
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-data-source/epiviz-data-source.html">
+    <link rel="import" href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/epiviz-charts.html">
 
 
    	
@@ -80,9 +81,9 @@
 <p>The library provides multiple data visualizations for both location (visualizing data along the genome genes tracks (epiviz-genes-track) or line tracks (epiviz-line-track)) and feature based data (visualizing quantitative measurements like gene expression with scatterplots (epiviz-scatter-plot) and heatmaps (epiviz-heatmap-plot)). A complete list is available in the documentation.</p>
 <ul>
 <li><a href="http://github.com/epiviz/epiviz-chart">GitHub</a></li>
-<li><a href="http://epiviz.github.io/epiviz-chart">Website</a></li>
-<li><a href="http://epiviz.github.io/polymer/datasource/">Data Source</a></li>
-<li><a href="http://epiviz.github.io/polymer/charts/">Charts</a></li>
+<li><a href="http://epiviz.github.io/epiviz-chart">Documentation</a></li>
+<li><a href="http://epiviz.github.io/polymer/datasource/">Data Source Components</a></li>
+<li><a href="http://epiviz.github.io/polymer/charts/">Chart Components</a></li>
 </ul>
 <h2 id="how-to-use">How to use</h2>
 <h3 id="load-dependencies-add-this-to-html-head">Load dependencies (add this to html head)</h3>
@@ -109,9 +110,7 @@ json-data='{
 }'></epiviz-scatter-plot></p>
 <h3 id="a-fancier-example">A fancier example</h3>
 <p>Using data from <a href="http://epiviz.cbcb.umd.edu">http://epiviz.cbcb.umd.edu</a></p>
-
 <script src="https://gist.github.com/jkanche/9bb7f79637329d15199464afb31ee2a2.js?file=epiviz-environment"></script>
-
 <p><epiviz-data-source provider-type="epiviz.data.WebServerDataProvider" provider-id="umd" provider-url="https://epiviz-dev.cbcb.umd.edu/api/"></epiviz-data-source></p>
 <p><epiviz-environment chr="chr6" start=40076201 end=45076201 no-logo measurements='{"affy1":{
 "id":"e070",
@@ -174,7 +173,7 @@ json-data='{
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2012 ~ University of Maryland, Hector Corrada Bravo, Jayaram Kancherla, Florin Chelaru. All Rights Reserved ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.69.1 ~ <a href="https://epiviz.github.io/license">License</a>
+                        &copy; 2012 ~ University of Maryland, Hector Corrada Bravo, Jayaram Kancherla, Florin Chelaru. All Rights Reserved ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.80.0 ~ <a href="https://epiviz.github.io/license">License</a>
                     </p>
                 </div>
 

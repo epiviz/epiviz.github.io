@@ -107,7 +107,9 @@ on other developments in the Epiviz project.</p>
 <li><a href="#metavizr">Metavizr now on R/Bioconductor</a></li>
 <li><a href="#polymer">Introducing epiviz webcomponents</a></li>
 </ul>
-<!-- raw HTML omitted -->
+<a name="epivizr">
+## epivizr updates
+</a>
 <ul>
 <li>
 <p><strong><code>Save</code> and <code>Restart</code> an epivizr session</strong></p>
@@ -164,7 +166,9 @@ epiviz visualizations using an R script.</p>
     app$load_workspace(workspace_id=&quot;Ago25FdPLVb&quot;)
 </code></pre></li>
 </ul>
-<!-- raw HTML omitted -->
+<a name="epiviz-desktop">
+## Introducing Epiviz Desktop Application
+</a>
 <p>We packaged Epiviz into a self contained desktop application for PC, Linux and Mac using the electron framework. Electron framework is being used by several applications including slack, git-kraken, microsoft visual code editor, atom editor etc.. Similar to the epiviz web application, the desktop application can be used as a standalone app where it serves data hosted at UMD. The desktop application can also visualize data from an interactive r-session by using [<code>epivizrStandalone</code> R/Bioconductor package] (<a href="https://bioconductor.org/packages/release/bioc/html/epivizrStandalone.html)">https://bioconductor.org/packages/release/bioc/html/epivizrStandalone.html)</a>.</p>
 <p>To install the epiviz standalone application for your platform, please visit- <strong>[Epiviz-desktop github release page] (<a href="https://github.com/epiviz/epiviz-desktop-app/releases/tag/0.0.1">https://github.com/epiviz/epiviz-desktop-app/releases/tag/0.0.1</a>)</strong></p>
 <p>To launch the desktop app that can load data from an R session -</p>
@@ -180,7 +184,9 @@ epiviz visualizations using an R script.</p>
     # to load a workspace,
     app$load_workspace(workspace_id=&quot;Ago25FdPLVb&quot;)
 </code></pre><p>Note: Please allow installation of epiviz as a system application so that it can be launched from the command line.</p>
-<!-- raw HTML omitted -->
+<a name="metavizr">
+## Metavizr now on Bioconductor (release 3.5)
+</a>
 <p>We recently released our <a href="http://metaviz.org">metaviz</a> application for interactive analysis
 of metagenomic data. It&rsquo;s companion R/Bioconductor pacakge, <code>metavizr</code>, implements two-way communication between the R/Bioconductor environment and the metaviz web app. The hierarchy of features from a microbiome sequencing result can be visualized with a hierarchical navigation utility and count values are displayed dynamically updated heatmaps or stacked bar plots. <code>metavizr</code> uses Websockets for communication between the browser Javascript client and the R environment. The <code>metavizr</code> package was released in Bioconductor 3.5.</p>
 <p>To install metavizr through Bioconductor and try the package vignette,</p>
@@ -192,7 +198,9 @@ of metagenomic data. It&rsquo;s companion R/Bioconductor pacakge, <code>metavizr
     browseVignettes(&quot;metavizr&quot;)
 </code></pre><p>There are multiple tutorials on metaviz available on the metaviz <a href="https://epiviz.github.io/tutorials/metaviz/">tutorial page</a>, covering the application interactive visualization facilities and how to perform visual and statistical analysis using metavizr and metagenomeSeq.
 For more information, please visit the <a href="http://www.bioconductor.org/packages/release/bioc/html/metavizr.html">R/Bioconductor page</a>. If you have any problems, please post an issue on our <a href="http://github.com/epiviz/metavizr">Github page</a>. A preprint describing metaviz and metavizr is available on biorxiv: <a href="http://biorxiv.org/content/early/2017/03/06/105205">http://biorxiv.org/content/early/2017/03/06/105205</a>.</p>
-<!-- raw HTML omitted -->
+<a name="polymer">
+## Introducing epiviz polymer components
+</a>
 <p>Note: This is currently a work in progress.</p>
 <p>We have been developing and exploring new ways to make our chart components versatile and extensible across various platforms and applications. We are developing epiviz <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">webcomponents</a> using the <a href="https://www.polymer-project.org/">Google Polymer library</a>. We developed custom web components for</p>
 <ul>
@@ -223,13 +231,59 @@ For more information, please visit the <a href="http://www.bioconductor.org/pack
         &lt;epiviz-heatmap-plot class=&quot;charts&quot; use-default-data-provider=&quot;true&quot;&gt;&lt;/epiviz-heatmap-plot&gt;&lt;br/&gt;
     &lt;/epiviz-environment&gt;
 </code></pre><p>The above page will look like the block below when viewed in a browser. <a href="https://epiviz.github.io/polymer/charts/">Documentation</a> and examples are available on our <a href="https://github.com/epiviz/epiviz-chart">Github Page</a>.</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->
-<!-- raw HTML omitted --></p>
+<p><epiviz-data-source provider-type="epiviz.data.WebServerDataProvider" provider-id="umd" provider-url="https://epiviz.cbcb.umd.edu/data/main.php"></epiviz-data-source></p>
+<p><epiviz-environment 
+chr="chr6"
+start=64076201
+end=95088740
+measurements='{"affy1":{
+"id":"cancer",
+"name":"Expression Colon Cancer",
+"type":"feature",
+"datasourceId":"gene_expression",
+"datasourceGroup":"affymetrix_probeset",
+"dataprovider":"umd",
+"formula":null,
+"defaultChartType":null,
+"annotation":null,
+"minValue":-3,
+"maxValue":20,
+"metadata":["probe"]
+},
+"affy2":{
+"id":"normal",
+"name":"Expression Colon Normal",
+"type":"feature",
+"datasourceId":"gene_expression",
+"datasourceGroup":"affymetrix_probeset",
+"dataprovider":"umd",
+"formula":null,
+"defaultChartType":null,
+"annotation":null,
+"minValue":-3,
+"maxValue":20,
+"metadata":["probe"]
+},
+"genes": {
+"id": "genes",
+"name": "Genes",
+"type": "range",
+"datasourceId": "genes",
+"datasourceGroup": "genes",
+"dataprovider": "umd",
+"formula": null,
+"defaultChartType": "Genes Track",
+"annotation": null,
+"minValue": null,
+"maxValue": null,
+"metadata": ["gene", "entrez", "exon_starts", "exon_ends"]
+}
+}'>
+<epiviz-genes-track class="charts" dim-s='["genes"]'></epiviz-genes-track>
+<epiviz-scatter-plot class="charts" dim-s='["affy1", "affy2"]'></epiviz-scatter-plot>
+<epiviz-blocks-track class="charts" dim-s='["affy1", "affy2"]'></epiviz-blocks-track><br/>
+<epiviz-heatmap-plot class="charts" dim-s='["affy1", "affy2"]'></epiviz-heatmap-plot><br/>
+</epiviz-environment></p>
 <h3 id="epiviz-navigationhttpsepivizgithubiopolymerchartscomponentsepiviz-chartsepiviz-navigation"><a href="https://epiviz.github.io/polymer/charts/components/epiviz-charts/#epiviz-navigation">epiviz-navigation</a></h3>
 <p>Our current epiviz application has genomic location defined at the application level. So all charts visualize data to only that region in the genome. To simultaneosuly look at data from multiple regions in the genome, we are adding a new component - <code>epiviz-navigation</code>. <code>epiviz-navigation</code> inherits from <code>epiviz-environment</code> and in addition, adds ui elements to easily navigate (change genomic location) or search (for genes/targets) the genome. A page can have multiple navigation components and navigation components can also be enclosed within an environment element. This enables us to visualize an entire dataset (using <code>epiviz-environment</code>) and also look at a specific region (using <code>epiviz-navigation</code>) at the same time.</p>
 <pre><code class="language-{html}" data-lang="{html}">    &lt;epiviz-environment
@@ -274,7 +328,7 @@ To be part of our development, please install our components and let us know if 
             <footer>
                 <div class="pull-left">
                     <p>
-                        &copy; 2012 ~ University of Maryland, Hector Corrada Bravo, Jayaram Kancherla, Florin Chelaru. All Rights Reserved ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.69.1 ~ <a href="https://epiviz.github.io/license">License</a>
+                        &copy; 2012 ~ University of Maryland, Hector Corrada Bravo, Jayaram Kancherla, Florin Chelaru. All Rights Reserved ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.80.0 ~ <a href="https://epiviz.github.io/license">License</a>
                     </p>
                 </div>
 

@@ -6,11 +6,7 @@
     <description>Recent content in Posts on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 May 2017 12:52:12 -0500</lastBuildDate>
-    
-	<atom:link href="https://epiviz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 15 May 2017 12:52:12 -0500</lastBuildDate><atom:link href="https://epiviz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Epiviz Updates for Bioconductor 3.5 Release</title>
       <link>https://epiviz.github.io/post/2017-05-01-epiviz-update/</link>
@@ -18,7 +14,7 @@
       
       <guid>https://epiviz.github.io/post/2017-05-01-epiviz-update/</guid>
       <description>Bioconductor version 3.5 was released last month: http://bioconductor.org/news/bioc_3_5_release/. This Bioconductor version includes updates to epivizr and a new package, metavizr, for interactive visualization of metagenomic data. In this post we describe these, and take the opportunity to update on other developments in the Epiviz project.
-What&amp;rsquo;s new!  epivizr updates Introducing Epiviz desktop application Metavizr now on R/Bioconductor Introducing epiviz webcomponents    Save and Restart an epivizr session</description>
+What&amp;rsquo;s new!  epivizr updates Introducing Epiviz desktop application Metavizr now on R/Bioconductor Introducing epiviz webcomponents  ## epivizr updates    Save and Restart an epivizr session</description>
     </item>
     
     <item>
@@ -76,7 +72,7 @@ Running epiviz as a standalone Previous versions of epivizr used the {{ site.epi
       <pubDate>Tue, 28 Oct 2014 13:00:00 -0500</pubDate>
       
       <guid>https://epiviz.github.io/post/2014-10-28-new-feature-code-edit/</guid>
-      <description>See it in Epiviz 4 See it in Epiviz 3 See it in Epiviz 2  Now visualizations&amp;rsquo; code can be customized in the UI, based on user needs!
+      <description>See it in Epiviz 4 See it in Epiviz 3 See it in Epiviz 2  Now visualizations&#39; code can be customized in the UI, based on user needs!
 To do it, simply click on the Edit code button on any of the available charts: Select the method(s) you want to edit. Only the methods corresponding to this particular instance of the chart will be modified. For example, in the MA Plot at http://epiviz.</description>
     </item>
     

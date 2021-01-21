@@ -6,18 +6,14 @@
     <description>Recent content in features on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Oct 2014 13:00:00 -0500</lastBuildDate>
-    
-	<atom:link href="https://epiviz.github.io/tags/features/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 28 Oct 2014 13:00:00 -0500</lastBuildDate><atom:link href="https://epiviz.github.io/tags/features/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>New Code Customization Feature for Visualizations</title>
       <link>https://epiviz.github.io/post/2014-10-28-new-feature-code-edit/</link>
       <pubDate>Tue, 28 Oct 2014 13:00:00 -0500</pubDate>
       
       <guid>https://epiviz.github.io/post/2014-10-28-new-feature-code-edit/</guid>
-      <description>See it in Epiviz 4 See it in Epiviz 3 See it in Epiviz 2  Now visualizations&amp;rsquo; code can be customized in the UI, based on user needs!
+      <description>See it in Epiviz 4 See it in Epiviz 3 See it in Epiviz 2  Now visualizations&#39; code can be customized in the UI, based on user needs!
 To do it, simply click on the Edit code button on any of the available charts: Select the method(s) you want to edit. Only the methods corresponding to this particular instance of the chart will be modified. For example, in the MA Plot at http://epiviz.</description>
     </item>
     

@@ -6,11 +6,7 @@
     <description>Recent content in epivizr on Epiviz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 May 2017 12:52:12 -0500</lastBuildDate>
-    
-	<atom:link href="https://epiviz.github.io/tags/epivizr/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 15 May 2017 12:52:12 -0500</lastBuildDate><atom:link href="https://epiviz.github.io/tags/epivizr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Epiviz Updates for Bioconductor 3.5 Release</title>
       <link>https://epiviz.github.io/post/2017-05-01-epiviz-update/</link>
