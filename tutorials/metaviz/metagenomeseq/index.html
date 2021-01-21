@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="https://epiviz.github.io/tutorials/images/favicon.png" type="image/png">
+
+    
+    <title>Differential Analysis with MetagenomeSeq and Metaviz</title>
+    <link href="https://epiviz.github.io/tutorials/css/nucleus.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/hybrid.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/featherlight.min.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/horsey.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/theme.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/hugo-theme.css" rel="stylesheet">
+    <script src="https://epiviz.github.io/tutorials/js/jquery-2.x.min.js"></script>
+    <script src="https://epiviz.github.io/tutorials/js/prism.js"></script>
+    <style type="text/css">:root #header + #content > #left > #rlblock_left
+    {display:none !important;}</style>
+    <link href="https://epiviz.github.io/tutorials/css/my_style.css" rel="stylesheet">
+  </head>
+  <body class="" data-url="https://epiviz.github.io/tutorials/metaviz/metagenomeseq/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a width="100%" height="100%" href="https://epiviz.github.io"><img src="https://epiviz.github.io/tutorials/images/epiviz_logo.png"></a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://epiviz.github.io/tutorials/js/lunr.min.js?1611195371"></script>
+<script type="text/javascript" src="https://epiviz.github.io/tutorials/js/auto-complete.js?1611195371"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/epiviz.github.io\/tutorials";
+    
+</script>
+<script type="text/javascript" src="https://epiviz.github.io/tutorials/js/search.js?1611195371"></script>
+
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='https://epiviz.github.io/tutorials/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/tutorials/" title="Epiviz Tutorials" class="dd-item
+        
+        
+        
+        ">
+      <a href="https://epiviz.github.io/tutorials/tutorials/">
+          Epiviz Tutorials
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/timp2014/" title="450k Illumina Human Methylation data for multiple solid tumors" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/timp2014/">
+        450k Illumina Human Methylation data for multiple solid tumors
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/charts/" title="Chart Tutorial" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/charts/">
+        Chart Tutorial
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/computed-measurements/" title="Computed Measurements" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/computed-measurements/">
+        Computed Measurements
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/epivizr/" title="Epivizr" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/epivizr/">
+        Epivizr
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/plugins/" title="External Scripts and Plugins" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/plugins/">
+        External Scripts and Plugins
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/websocket/" title="Websocket Tutorial" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/websocket/">
+        Websocket Tutorial
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/" title="Epiviz Tutorials" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/">
+        Epiviz Tutorials
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/metaviz/" title="Metaviz Tutorials" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="https://epiviz.github.io/tutorials/metaviz/">
+          Metaviz Tutorials
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/overview/" title="Metaviz Quick Overview" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/overview/">
+        Metaviz Quick Overview
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/metagenomeseq/" title="Differential Analysis with MetagenomeSeq and Metaviz" class="dd-item active">
+        <a href="https://epiviz.github.io/tutorials/metaviz/metagenomeseq/">
+        Differential Analysis with MetagenomeSeq and Metaviz
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/video_tutorials/" title="Visual Analysis of MSD16S Dataset" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/video_tutorials/">
+        Visual Analysis of MSD16S Dataset
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/spline/" title="Longitudinal Data Analysis" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/spline/">
+        Longitudinal Data Analysis
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/usingdocker/" title="Metaviz Docker Containers" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/usingdocker/">
+        Metaviz Docker Containers
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/hostingdata/" title="Hosting Data in Metaviz" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/hostingdata/">
+        Hosting Data in Metaviz
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/diveristy_plot/" title="Create a Diversity Plot with HMP2Data IBD Biopsy" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/diveristy_plot/">
+        Create a Diversity Plot with HMP2Data IBD Biopsy
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/save_plots/" title="Save plots on Metaviz" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/save_plots/">
+        Save plots on Metaviz
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+
+        <div class="padding highlightable">
+
+            <div id="top-bar">
+              
+              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                  <span id="sidebar-toggle-span">
+                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                        <i class="fa fa-bars"></i>
+                      </a>
+                  </span>
+                
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
+                
+                
+                
+                  
+                
+                  
+                
+                <span itemprop="title"> Differential Analysis with MetagenomeSeq and Metaviz</span>
+              </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#generating-metagenomeseq-objects-and-computing-differential-abundance">Generating metagenomeSeq objects and computing differential abundance</a></li>
+    <li><a href="#creating-metavizr-object">Creating metavizR object</a></li>
+    <li><a href="#adding-heatmap">Adding heatmap</a></li>
+    <li><a href="#modifying-settings-and-exploring-with-the-facetzoom-object">Modifying Settings and Exploring with the FacetZoom object</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+              
+
+            </div>
+            
+    	        <div id="body-inner">
+                
+                <h1>Differential Analysis with MetagenomeSeq and Metaviz</h1>
+                
+
+
+<p>Metaviz is a tool for interactive visualization and exploration of metagenomic sequencing data. It provides a novel navigation tool for exploring hierarchical feature data that is coupled with multiple data visualizations including heatmaps, stacked bar charts, and scatter plots.
+The metavizr package implements two-way communication between the R/Bioconductor computational genomics environment and Metaviz. Objects in an R/Bioconductor session can be visualized and explored using the Metaviz navigation tool and plots. In this post we show how to use metavizr and the metagenomeSeq Bioconductor package to perform a statistical and visual analysis of differential abundance of metagenomic data.</p>
+<p>First, the following libraries will need to be downloaded and loaded:</p>
+<pre><code class="language-{r," data-lang="{r,">library(metagenomeSeq)
+library(msd16s)
+library(metavizr)
+</code></pre><h2 id="generating-metagenomeseq-objects-and-computing-differential-abundance">Generating metagenomeSeq objects and computing differential abundance</h2>
+<p>In an R session we will use <code>metagenomeSeq</code> to compute differential abundance.  We focus on the <code>msd16s</code> dataset and its 301 samples from Bangladesh.<br>
+In <code>metagenomeSeq</code>, we first subset the data to only Bangladesh samples, aggregate the count data to the species level, and normalize the count data.</p>
+<pre><code class="language-{r," data-lang="{r,">aggregated_feature_order &lt;- colnames(fData(msd16s))[3:9]
+
+msd16s_species &lt;- msd16s
+fData(msd16s) &lt;- fData(msd16s)[feature_order]
+fData(msd16s_species) &lt;- fData(msd16s_species)[aggregated_feature_order]
+  
+bangladesh &lt;- msd16s[, which(pData(msd16s)$Country == &quot;Bangladesh&quot;)]
+bangladesh_species &lt;- msd16s_species[, which(pData(msd16s_species)$Country == &quot;Bangladesh&quot;)]
+
+aggregated_species &lt;-  cumNorm(aggregateByTaxonomy(bangladesh_species, lvl=&quot;species&quot;), p = 0.75)
+</code></pre><p>We then aggregate another copy of the Bangladesh subset to aggregate to the &ldquo;class&rdquo; level, normalize count data, and compute differential abundance at the &ldquo;class&rdquo; level between dysentery cases and controls.</p>
+<pre><code class="language-{r," data-lang="{r,">aggregation_level &lt;- &quot;class&quot;
+aggregated_bangladesh &lt;- aggregateByTaxonomy(bangladesh, lvl=aggregation_level)
+
+normed_bangladesh &lt;-  cumNorm(aggregated_bangladesh, p = 0.75)
+bangladesh_sample_data &lt;-  pData(normed_bangladesh)
+mod &lt;-  model.matrix(~1+Dysentery, data = bangladesh_sample_data)
+results_bangladesh &lt;-  fitFeatureModel(normed_bangladesh, mod) # Check: ?results_bangladesh
+</code></pre><p>We can then extract a list of bacterial classes that have a log fold-change greater than 2 and an FDR adjusted p-value less than .1 between dysentery case and control samples from Bangladesh. Once we have this list of differentially abundant classes, we propagate them to an MRexperiment at &ldquo;species&rdquo; level to visualize and explore these results.  The differential abundance cutoff can be set to a different threshold and the aggregation level can also be changed to examine the dataset.</p>
+<pre><code class="language-{r," data-lang="{r,">logFC_bangladesh &lt;- MRcoefs(results_bangladesh, number = nrow(normed_bangladesh))
+
+feature_names &lt;- rownames(logFC_bangladesh[which(logFC_bangladesh[which(abs(logFC_bangladesh$logFC) &gt; 1),]$adjPvalues &lt; .1),]) 
+fSelection &lt;- generateSelection(feature_names = feature_names , aggregation_level = aggregation_level, selection_type =2)
+</code></pre><h2 id="creating-metavizr-object">Creating metavizR object</h2>
+<p>The next step will be to launch a Metaviz instance from the R session, add a &lsquo;FacetZoom&rsquo; object, modify the node selections to show those nodes that are differentially abundant, and add a heatmap showing only species within differentially abundant classes.
+Load the &lsquo;metavizr&rsquo; package and create a Metaviz instance by calling</p>
+<pre><code class="language-{r," data-lang="{r,">app &lt;- startMetaviz()
+</code></pre><p>This will open a new Metaviz session on the default browser.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/AppInitial.png" alt=""></p>
+<p>Then, to add a FacetZoom object of the msd16s hierarchy the following call is made to create a Metaviz control object then add a plot.</p>
+<pre><code class="language-{r," data-lang="{r,">control &lt;- metavizr::metavizControl(featureSelection = fSelection)
+icicle_plot &lt;- app$plot(aggregated_species, datasource_name=&quot;msd16s&quot;, control=control, feature_order = aggregated_feature_order)
+</code></pre><p>The &lsquo;plot&rsquo; function adds the object to the Metaviz session.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/IciclePlotPushed.png" alt=""></p>
+<h2 id="adding-heatmap">Adding heatmap</h2>
+<p>This step is simple using metavizr, all that needs to be done is call the &lsquo;revisualize&rsquo; method to add another visualization of the same data.</p>
+<pre><code class="language-{r," data-lang="{r,">heatmap &lt;- app$chart_mgr$revisualize(chart_type = &quot;HeatmapPlot&quot;, chart = icicle_plot)
+</code></pre><p>Now a heatmap is added to the Metaviz workspace.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/HeatmapAdded.png" alt=""></p>
+<h2 id="modifying-settings-and-exploring-with-the-facetzoom-object">Modifying Settings and Exploring with the FacetZoom object</h2>
+<p>Now we modify chart settings to customize the visualization for our purposes. We group-by Dysentery and modify the color settings. To accomplish this we click on the &lsquo;Custom settings&rsquo; icon.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/HeatmapSettingsHover.png" alt=""></p>
+<p>This launches a pop-up dialog window with all available chart settings.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/HeatmapSettingsPopup.png" alt=""></p>
+<p>The first setting to change is the &lsquo;Row labels&rsquo; which will be set to &lsquo;Dysentery&rsquo;.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/HeatmapSettingsDysentery.png" alt=""></p>
+<p>Next, move the &lsquo;Row labels as colors&rsquo; radio control to &lsquo;On&rsquo;.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/HeatmapSettingsColorByOn.png" alt=""></p>
+<p>Now the heatmap rows will colored by the &lsquo;Dysentery&rsquo; status.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/HeatmapSettingsComplete.png" alt=""></p>
+<p>As with a FacetZoom control added from the UI, a user can modify node states in order to examine the statistical test result.  We modify the navigation widget by changing the &lsquo;Actinobacteria&rsquo; status from removed to aggregated.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetActino.png" alt=""></p>
+<p>We can then hover on the new column of the heatmap to highlight the path through the hierarchy.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetActinoHover.png" alt=""></p>
+<p>A user can also traverse the hierarchy and change the aggregation setting for all nodes at a given level. To show this utility, we navigate to a lower level of the hierarchy by clicking on the &lsquo;Proteobacteria&rsquo; node and set the aggregation level to &lsquo;Family&rsquo; by clicking on the row control node.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetDescendProteoBacteriaSetGenusAsAgg.png" alt=""></p>
+<p>Then we can hover on a column that appears to show a difference between case and control samples.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/NavigationWidgetHeatmapHoverShigella.png" alt=""></p>
+<p>We also can modify chart settings directly through metavizR.  The code block below shows how to list the chart settings, update the &lsquo;Row Labels&rsquo; and &lsquo;Color-By&rsquo; settings, and propogate those changes to the Metaviz interactive visualization.</p>
+<pre><code class="language-{r," data-lang="{r,"># List available chart settings 
+app$chart_mgr$list_chart_type_settings(&quot;HeatmapPlot&quot;)
+
+# Choose new settings
+settings &lt;- list(rowLabel = 'Dysentery', showColorsForRowLabels = TRUE)
+
+# Apply settings to existing chart
+app$chart_mgr$set_chart_settings(heatmap, settings=settings)
+</code></pre>
+
+<footer class="footline">
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://epiviz.github.io/tutorials/metaviz/overview/" title="Metaviz Quick Overview"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://epiviz.github.io/tutorials/metaviz/video_tutorials/" title="Visual Analysis of MSD16S Dataset" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://epiviz.github.io/tutorials/js/clipboard.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/perfect-scrollbar.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/perfect-scrollbar.jquery.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/jquery.sticky.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/featherlight.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/highlight.pack.js?1611195371"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://epiviz.github.io/tutorials/js/modernizr.custom-3.6.0.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/learn.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/hugo-learn.js?1611195371"></script>
+    
+        
+            <script src="https://epiviz.github.io/tutorials/mermaid/mermaid.js?1611195371"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    
+
+  </body>
+</html>
+

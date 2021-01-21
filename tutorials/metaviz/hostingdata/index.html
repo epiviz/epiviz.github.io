@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="https://epiviz.github.io/tutorials/images/favicon.png" type="image/png">
+
+    
+    <title>Hosting Data in Metaviz</title>
+    <link href="https://epiviz.github.io/tutorials/css/nucleus.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/hybrid.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/featherlight.min.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/horsey.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/theme.css" rel="stylesheet">
+    <link href="https://epiviz.github.io/tutorials/css/hugo-theme.css" rel="stylesheet">
+    <script src="https://epiviz.github.io/tutorials/js/jquery-2.x.min.js"></script>
+    <script src="https://epiviz.github.io/tutorials/js/prism.js"></script>
+    <style type="text/css">:root #header + #content > #left > #rlblock_left
+    {display:none !important;}</style>
+    <link href="https://epiviz.github.io/tutorials/css/my_style.css" rel="stylesheet">
+  </head>
+  <body class="" data-url="https://epiviz.github.io/tutorials/metaviz/hostingdata/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a width="100%" height="100%" href="https://epiviz.github.io"><img src="https://epiviz.github.io/tutorials/images/epiviz_logo.png"></a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://epiviz.github.io/tutorials/js/lunr.min.js?1611195371"></script>
+<script type="text/javascript" src="https://epiviz.github.io/tutorials/js/auto-complete.js?1611195371"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/epiviz.github.io\/tutorials";
+    
+</script>
+<script type="text/javascript" src="https://epiviz.github.io/tutorials/js/search.js?1611195371"></script>
+
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='https://epiviz.github.io/tutorials/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/tutorials/" title="Epiviz Tutorials" class="dd-item
+        
+        
+        
+        ">
+      <a href="https://epiviz.github.io/tutorials/tutorials/">
+          Epiviz Tutorials
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/timp2014/" title="450k Illumina Human Methylation data for multiple solid tumors" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/timp2014/">
+        450k Illumina Human Methylation data for multiple solid tumors
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/charts/" title="Chart Tutorial" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/charts/">
+        Chart Tutorial
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/computed-measurements/" title="Computed Measurements" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/computed-measurements/">
+        Computed Measurements
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/epivizr/" title="Epivizr" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/epivizr/">
+        Epivizr
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/plugins/" title="External Scripts and Plugins" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/plugins/">
+        External Scripts and Plugins
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/websocket/" title="Websocket Tutorial" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/websocket/">
+        Websocket Tutorial
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/tutorials/" title="Epiviz Tutorials" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/tutorials/">
+        Epiviz Tutorials
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/metaviz/" title="Metaviz Tutorials" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="https://epiviz.github.io/tutorials/metaviz/">
+          Metaviz Tutorials
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/overview/" title="Metaviz Quick Overview" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/overview/">
+        Metaviz Quick Overview
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/metagenomeseq/" title="Differential Analysis with MetagenomeSeq and Metaviz" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/metagenomeseq/">
+        Differential Analysis with MetagenomeSeq and Metaviz
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/video_tutorials/" title="Visual Analysis of MSD16S Dataset" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/video_tutorials/">
+        Visual Analysis of MSD16S Dataset
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/spline/" title="Longitudinal Data Analysis" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/spline/">
+        Longitudinal Data Analysis
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/usingdocker/" title="Metaviz Docker Containers" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/usingdocker/">
+        Metaviz Docker Containers
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/hostingdata/" title="Hosting Data in Metaviz" class="dd-item active">
+        <a href="https://epiviz.github.io/tutorials/metaviz/hostingdata/">
+        Hosting Data in Metaviz
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/diveristy_plot/" title="Create a Diversity Plot with HMP2Data IBD Biopsy" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/diveristy_plot/">
+        Create a Diversity Plot with HMP2Data IBD Biopsy
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/metaviz/save_plots/" title="Save plots on Metaviz" class="dd-item ">
+        <a href="https://epiviz.github.io/tutorials/metaviz/save_plots/">
+        Save plots on Metaviz
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+
+        <div class="padding highlightable">
+
+            <div id="top-bar">
+              
+              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                  <span id="sidebar-toggle-span">
+                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                        <i class="fa fa-bars"></i>
+                      </a>
+                  </span>
+                
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
+                
+                
+                
+                
+                  
+                
+                  
+                
+                <span itemprop="title"> Hosting Data in Metaviz</span>
+              </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#loading-data-using-metavizr">Loading data using metavizR</a></li>
+    <li><a href="#abundance-matrix-data-format">Abundance matrix data format</a></li>
+    <li><a href="#cbcb-storage">CBCB storage</a></li>
+    <li><a href="#contact-us">Contact Us</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+              
+
+            </div>
+            
+    	        <div id="body-inner">
+                
+                <h1>Hosting Data in Metaviz</h1>
+                
+
+
+<p>Metaviz is a tool for interactive visualization and exploration of metagenomic sequencing data. It provides a novel navigation tool for exploring hierarchical feature data that is coupled with multiple data visualizations including heatmaps, stacked bar charts, and scatter plots.
+In this post we show how to load into a Metaviz backend database. We
+also talk about our plans to host a metagenomics data repository
+accessible at metaviz.cbcb.umd.edu.</p>
+<h2 id="loading-data-using-metavizr">Loading data using metavizR</h2>
+<p>metavizr is an
+R-package that can serve data from an R session to a Metaviz browser
+instance and load data into a persistent graph database. In this section
+we will load the mouseData available from the metagenomeSeq Bioconductor
+package. metavizr operates over a metagenomeSeq MRexperiment object to
+build a hierarchy tree data structure over the features and makes count
+data available at any level of the tree through aggregation.</p>
+<p>We first load the metavizr and metagenomeSeq packages along with the
+data.</p>
+<pre><code>library(metagenomeSeq)
+library(metavizr)
+data(mouseData)
+</code></pre>
+<p>Now we use the mouseData MRexperiment object to create an
+EpivizMetagenomicsData object with metavizr.</p>
+<pre><code>feature_order &lt;- c(&quot;superkingdom&quot;,&quot;phylum&quot;,&quot;class&quot;,&quot;order&quot;,&quot;family&quot;,&quot;genus&quot;,&quot;OTU&quot;)
+obj &lt;- metavizr:::EpivizMetagenomicsData$new(object = mouseData, feature_order = feature_order)
+</code></pre>
+<p>Next we call the &lsquo;toNEO4jDb&rsquo; which will build a hierarchy tree using the
+metagenomeSeq object, add all features nodes to a graph database, then
+add all sample nodes to the database, add edges denoting hierarchy
+levels between all feature nodes, and add edges between leaf feature
+nodes and sample nodes to denote observed count values.</p>
+<pre><code>obj$toNEO4JDbHTTP(batch_url = &quot;http://localhost:7474/db/data/batch&quot;, neo4juser = &quot;user&quot;, neo4jpass = &quot;pass&quot;, datasource = &quot;mouseData&quot;)
+</code></pre>
+<h2 id="abundance-matrix-data-format">Abundance matrix data format</h2>
+<p>For the abundance matrix, which is typically a
+biom file, we need each entry of the &ldquo;rows&rdquo; field to have the
+&ldquo;metadata&rdquo;&quot; field contain a key &ldquo;taxonomy&rdquo; with the value as the
+taxonomic lineage for that feature. We also need a non-null value for
+the &ldquo;metadata&rdquo; key for each entry of the &ldquo;columns&rdquo; field which denotes
+the sample attributes. We provide format validation in the metavizr
+package with appropriate error messages for each criteria.</p>
+<h2 id="cbcb-storage">CBCB storage</h2>
+<p>We can add datasets to our database and make them accessible through
+metaviz.cbcb.umd.edu. We currently store 5 datasets - 3 from published datasets and 2 from
+collaborators. The datasets are stored in one Neo4j instance with a
+top-level node that is the initial node we query of the disconnected
+graph for each dataset. These top-level nodes are what is rendered in
+the initial measurement browser pop-up when adding a chart to the
+Metaviz workspace.</p>
+<p><img src="https://epiviz.github.io/tutorials/images/metaviz/MetavizDatasets.png" alt=""></p>
+<h2 id="contact-us">Contact Us</h2>
+<p>For hosting a dataset, please email us at <a href="mailto:hcorrada@umiacs.umd.edu">hcorrada@umiacs.umd.edu</a>.</p>
+<p>For any functionality requests, please post an issue in the appropriate repository at <a href="https://github.com/epiviz/">https://github.com/epiviz/</a>.</p>
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://epiviz.github.io/tutorials/metaviz/usingdocker/" title="Metaviz Docker Containers"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://epiviz.github.io/tutorials/metaviz/diveristy_plot/" title="Create a Diversity Plot with HMP2Data IBD Biopsy" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://epiviz.github.io/tutorials/js/clipboard.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/perfect-scrollbar.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/perfect-scrollbar.jquery.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/jquery.sticky.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/featherlight.min.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/highlight.pack.js?1611195371"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://epiviz.github.io/tutorials/js/modernizr.custom-3.6.0.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/learn.js?1611195371"></script>
+    <script src="https://epiviz.github.io/tutorials/js/hugo-learn.js?1611195371"></script>
+    
+        
+            <script src="https://epiviz.github.io/tutorials/mermaid/mermaid.js?1611195371"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    
+
+  </body>
+</html>
+
